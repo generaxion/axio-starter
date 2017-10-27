@@ -1,0 +1,60 @@
+/* ==========================================================================
+  Global - Site variables
+========================================================================== */
+
+/* Fonts
+----------------------------------------------- */
+
+$font-text: 'Open Sans', sans-serif;
+$font-title: 'Georgia', serif;
+
+$base-line-height: 1.6;
+$base-font-color: #2b2b2b;
+
+$normal: 400;
+$bold: 700;
+
+
+/* Colors
+----------------------------------------------- */
+
+$black: #000;
+$white: #fff;
+$grey: #ddd;
+$grey-light: #aaa;
+
+$blue: #42a0d9;
+
+
+/* Menu
+----------------------------------------------- */
+
+$menu-hidden: max-width 500px; // hamburger
+$menu-visible: 501px;          // no hamburger
+$menu-dropdown-width: 12rem;   // desktop dropdown width
+$menu-dropdown-color: #3b3b3b;
+
+
+/* Breakpoints
+----------------------------------------------- */
+
+$sub-s: max-width 529px;
+$s: 530px, 'no-query' '.lt-ie9';
+$sub-m: max-width 719px;
+$m: 720px, 'no-query' '.lt-ie9';
+$sub-l: max-width 1119px;
+$l: 1120px, 'no-query' '.lt-ie9';
+$sub-xl: max-width 1439px, 'no-query' '.lt-ie9';
+$xl: 1440px;
+$retina: min-resolution 1.5dppx;
+
+
+/* Grid settings
+----------------------------------------------- */
+
+@include add-grid(4);
+@include add-grid(12 at $m);
+@include add-grid(16 at $l);
+@include add-gutter(0.5);
+@include add-gutter(0.3 at $l);
+

@@ -1,0 +1,32 @@
+/* ==========================================================================
+  Elements - Numeric posts navigation
+========================================================================== */
+
+.numeric-navigation {
+  display: block;
+  text-align: center;
+  margin: 1.5rem 0;
+  ul {
+    @include list-reset;
+  }
+
+  li {
+    display: inline-block;
+    margin: .5rem .25rem;
+    a {
+      text-decoration: none;
+      &:hover,
+      &:focus,
+      &:active {
+
+      }
+    }
+    &.active {
+
+    }
+    &.disabled {
+
+    }
+  }
+
+}

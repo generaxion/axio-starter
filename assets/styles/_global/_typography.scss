@@ -1,0 +1,369 @@
+/* ==========================================================================
+  Global - Typography
+========================================================================== */
+
+/* Typography
+----------------------------------------------- */
+
+html {
+  color: $base-font-color;
+  font-family: $font-text;
+  line-height: $base-line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 87.5%; // 14px
+  @include breakpoint($m) {
+    font-size: 100%; // 16px
+  }
+}
+
+h1, .h1 {
+  font-size: 3rem; // 48px
+  font-weight: $bold;
+  line-height: 1.125; // 54px
+  margin: 0 0 2.25rem; // 36px
+}
+
+h2, .h2 {
+  font-size: 2rem; // 30px
+  font-weight: $bold;
+  line-height: 1.333333; // 40px
+  margin: 0 0 1.5rem; // 24px
+  padding-top: 1.5rem; // 24px
+}
+
+h3, .h3 {
+  font-size: 1.5rem; // 24px
+  font-weight: $bold;
+  line-height: 1.5; // 36px
+  margin-bottom: 1.5rem; // 24px
+}
+
+h4, .h4 {
+  font-size: 1.25rem; // 20px
+  line-height: 1.5; // 30px
+  font-weight: $normal;
+  margin-bottom: 1.5rem; // 24px
+}
+
+h5, .h5 {
+  font-size: 1rem; // 16px
+  font-weight: $bold;
+  line-height: 1.5; // 24px
+  margin-bottom: 0;
+}
+
+p, .p {
+  font-size: 1rem; // 16px
+  line-height: 1.5; // 24px
+  margin: 0 0 1.5rem; // 24px
+  &.ingress {
+    font-size: 1.25rem; // 20px
+  }
+}
+
+hr {
+  margin: 2em 0;
+  display: block;
+}
+
+.entry-header {
+  h1, .h1,
+  h2, .h2 {
+    margin: 0 0 1rem;
+    a {
+      color: $base-font-color;
+      text-decoration: none;
+    }
+  }
+  margin: 0 0 2.25rem;
+}
+
+/* Lists
+----------------------------------------------- */
+
+ul, ol {
+  margin: 0 0 1em;
+}
+
+
+/* Links
+----------------------------------------------- */
+
+a {
+  color: $blue;
+  &:hover, &:active, &:focus {
+
+  }
+}
+
+
+/* Forms
+----------------------------------------------- */
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  border: 0;
+  text-transform: none;
+}
+
+label {
+  max-width: 100%;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: .25rem 0 0;
+  line-height: normal;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  max-width: 100%;
+  padding: .5rem 1rem;
+  color: $base-font-color;
+  background: $white;
+}
+
+textarea {
+  height: 180px;
+}
+
+button,
+input[type="submit"] {
+
+}
+
+/* Tables
+----------------------------------------------- */
+
+table, .mce-item-table {
+  width: 100%;
+  margin: 1.5em 0;
+  border: 0;
+  thead {
+    background: $grey;
+  }
+  td {
+    border: 0;
+    border-left: 1px solid $grey;
+    padding: .5rem .75rem;
+    &:first-of-type {
+      border-left: 0;
+    }
+  }
+  tr {
+    border-bottom: 1px solid $grey;
+  }
+}
+
+/* Images
+----------------------------------------------- */
+
+.wp-caption {
+  font-size: .9rem;
+  float: none;
+  margin: 0;
+}
+
+.alignnone {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.aligncenter {
+  display: block;
+  margin: 1rem auto;
+  height: auto;
+}
+
+.alignleft,
+.alignright {
+  display: block;
+  margin-bottom: 1rem;
+  height: auto;
+}
+
+@include breakpoint($s) {
+  .alignleft {
+    float: left;
+    margin-right: 1rem;
+  }
+  .alignright {
+    float: right;
+    margin-left: 1rem;
+  }
+}
+
+/* Gallery
+----------------------------------------------- */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  img {
+    display: block;
+    line-height: 0;
+  }
+}
+
+.gallery-item {
+  width: 100%;
+  margin: 0;
+  padding: .5rem 0;
+  .gallery-columns-2 & {
+    width: 100%;
+    @include breakpoint($s) {
+      width: calc(50% - 1rem);
+      margin-right: 1rem;
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .gallery-columns-3 & {
+    width: 100%;
+    @include breakpoint($s) {
+      width: calc(50% - 1rem);
+      margin-right: 1rem;
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($m) {
+      width: calc(33.33% - 1rem);
+      margin-right: 1rem;
+      &:nth-of-type(2n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .gallery-columns-4 & {
+    width: 100%;
+    @include breakpoint($s) {
+      width: calc(50% - 1rem);
+      margin-right: 1rem;
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($m) {
+      width: calc(33.33% - 1rem);
+      margin-right: 1rem;
+      &:nth-of-type(2n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($l) {
+      width: calc(25% - 1rem);
+      margin-right: 1rem;
+      &:nth-of-type(2n),
+      &:nth-of-type(3n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(4n) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+/* Icons
+----------------------------------------------- */
+
+.icon {
+  height: 1em; // match current font-size
+  width:  1em; // match current font-size
+  fill: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Text format styles
+----------------------------------------------- */
+
+blockquote {
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 2px solid $grey;
+  p {
+    font-size: 1.15rem;
+  }
+}
+
+iframe {
+  max-width: 100%;
+}
+
+/* Accessibility
+----------------------------------------------- */
+
+a:focus {
+  outline: 1px dotted;
+}
+
+.screen-reader-text {
+  @include visuallyhidden;
+}
+
+.skip-to-content {
+  background-color: #f1f1f1;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .2);
+  display: block;
+  left: -9999em;
+  outline: none;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  text-transform: none;
+  top: -9999em;
+  &:focus {
+    clip: auto;
+    height: auto;
+    left: .5rem;
+    top: .5rem;
+    width: auto;
+    z-index: 100000;
+  }
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+.social-share-link:focus {
+  outline: 1px dotted;
+  outline-offset: -2px;
+}

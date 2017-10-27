@@ -1,0 +1,60 @@
+/* ==========================================================================
+  Elements - Social share buttons
+========================================================================== */
+
+$blue-facebook: #3b5998;
+$blue-twitter: #00aced;
+$blue-linkedin: #007bb6;
+$red-google-plus: #dd4b39;
+$red-pinterest: #cb2027;
+
+.social-share-container {
+  padding-top: 1.5rem;
+  h3 {
+
+  }
+  .social-share-link {
+    display: inline-block;
+    color: $white;
+    vertical-align: top;
+    padding: .75rem;
+    line-height: 0;
+    margin: 0 .25rem .5rem 0;
+    position: relative;
+    transition: background .2s ease-in-out;
+    text-decoration: none;
+    .icon-wrap {
+      margin-right: .25rem;
+    }
+    span {
+
+    }
+    &:last-of-type {
+      margin-right: 0;
+    }
+    &.social-share-fb {
+      background: $blue-facebook;
+      &:hover, &:focus {
+        background: darken($blue-facebook, 9);
+      }
+    }
+    &.social-share-twitter {
+      background: $blue-twitter;
+      &:hover, &:focus {
+        background: darken($blue-twitter, 9);
+      }
+    }
+    &.social-share-linkedin {
+      background: $blue-linkedin;
+      &:hover, &:focus {
+        background: darken($blue-linkedin, 9);
+      }
+    }
+    &.social-share-googleplus {
+      background: $red-google-plus;
+      &:hover, &:focus {
+        background: darken($red-google-plus, 9);
+      }
+    }
+  }
+}

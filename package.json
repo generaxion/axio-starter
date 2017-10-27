@@ -1,0 +1,62 @@
+{
+  "name": "aucor_starter",
+  "version": "1.2.0",
+  "author": "Aucor Oy",
+  "homepage": "https://www.aucor.fi",
+  "private": true,
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "scripts": {
+    "build": "bower install && gulp",
+    "jshint": "gulp jshint",
+    "jscs": "jscs gulpfile.js assets/scripts/*.js"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "npm": ">=2.1.5"
+  },
+  "devDependencies": {
+    "asset-builder": "^1.1.0",
+    "breakpoint-sass": "^2.5.0",
+    "browser-sync": "^2.8.2",
+    "del": "^2.2.1",
+    "fitvids": "^2.0.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-changed": "^1.3.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-file": "^0.3.0",
+    "gulp-flatten": "0.3.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-less": "^3.0.3",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rev": "^7.1.0",
+    "gulp-sass": "^2.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-svgmin": "^1.2.3",
+    "gulp-svgstore": "^6.0.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "imagemin-pngcrush": "^5.0.0",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.0.1",
+    "lazypipe": "^1.0.1",
+    "merge-stream": "^1.0.0",
+    "minimist": "^1.1.3",
+    "run-sequence": "^1.1.2",
+    "sass-toolkit": "^2.10.2",
+    "sassy-maps": "git://github.com/at-import/Sassy-Maps.git#v0.4.0",
+    "singularitygs": "^1.8.0",
+    "svgxuse": "latest",
+    "traverse": "^0.6.6",
+    "wiredep": "^4.0.0"
+  }
+}

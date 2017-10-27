@@ -1,0 +1,280 @@
+/* ==========================================================================
+  Elements - Primary menu
+========================================================================== */
+
+button.menu-toggle {
+  display: none;
+  @include breakpoint($menu-hidden) {
+    display: inline-block;
+  }
+}
+
+#primary-navigation-items {
+
+  /* -------------------------------------------------------
+    Both navigations
+  ---------------------------------------------------------*/
+
+  a {}
+
+  &, ul {
+    @include list-reset;
+  }
+
+  /* -------------------------------------------------------
+    Mobile navigation
+  ---------------------------------------------------------*/
+
+  @include breakpoint($menu-hidden) {
+    padding: 1rem 0;
+    display: none;
+    .active & {
+      display: block;
+    }
+
+    // all <li>
+    li {
+      &.menu-item-has-children {
+        position: relative;
+        & > a {
+          display: block;
+          margin-right: 2rem; // room for caret
+        }
+
+        & > .icon-wrap {
+          position: absolute;
+          right: 0;
+          top: .15rem;
+          width: 2rem;
+        }
+
+        svg {
+          transition: transform .2s ease-out;
+        }
+
+        &.active {
+          & > .icon-wrap > .icon {
+            transform: rotate(180deg); // flip caret to point up
+          }
+        }
+
+      }
+    }
+
+    // all <a>
+    a {}
+
+    // all .sub-menu
+    .sub-menu {
+      padding-left: 1.25rem;
+
+      // all lower <li>
+      li {
+        padding: .25rem 0;
+        &:last-of-type {
+          padding-bottom: 0;
+        }
+      }
+
+    }
+
+    // 1st level <li>
+    & > li {
+
+      padding: .25rem 0;
+
+      // 1st level <a>
+      & > a {}
+
+        // 2nd level <ul class="sub-menu"> [closed]
+        & > ul {
+          max-height: 0;
+          background: $white;
+          opacity: 0;
+          transition: all .2s ease-out;
+
+          // 2nd level <ul class="sub-menu"> [open]
+          &.open {
+            opacity: 1;
+            max-height: 999px;
+
+          }
+
+
+          // 2nd level <li>
+          & > li {
+
+            // 2nd level <a>
+            & > a {}
+
+            // 3rd level <ul class="sub-menu"> [closed]
+            & > ul {
+              max-height: 0;
+              opacity: 0;
+              transition: all .2s ease-out;
+
+
+              // 3rd level <ul class="sub-menu"> [open]
+              &.open {
+                opacity: 1;
+                max-height: 999px;
+              }
+            }
+
+
+          }
+
+        }
+
+    }
+
+
+  }
+
+  /* -------------------------------------------------------
+    Desktop navigation
+  ---------------------------------------------------------*/
+
+  @include breakpoint($menu-visible) {
+
+    display: flex;
+    flex-wrap: wrap;
+
+    // all <li>
+    li {}
+
+    // all <a>
+    a {
+      color: $base-font-color;
+      text-decoration: none;
+    }
+
+    // all <svg>
+    .icon {
+      margin-left: .25em;
+      width: .75em;
+      height: .75em;
+      top: -.125rem;
+      position: relative;
+    }
+
+    // 1st level <li>
+    & > li {
+      position: relative;
+      margin-right: 1rem;
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      // 1st level <a>
+      & > a {
+        font-weight: $bold;
+      }
+
+      // all dropdown <li>
+      li {
+        background: $menu-dropdown-color;
+        a {
+          color: $white;
+          padding: .5rem .75rem;
+          font-size: .875rem;
+          display: block;
+        }
+        &:hover, &:focus, &:active {
+          background: lighten($menu-dropdown-color, 6);
+        }
+        .icon {
+          color: $white;
+          transform: rotate(-90deg);
+        }
+      }
+
+
+
+
+      // 2nd level <ul class="sub-menu"> [open]
+      &:hover > .sub-menu,
+      & > .sub-menu.open {
+        opacity: 1;
+        left: 50%;
+      }
+
+      // 2nd level <ul class="sub-menu"> [closed]
+      & > ul {
+        width: $menu-dropdown-width;
+        margin: .4rem 0 0 $menu-dropdown-width*-0.5; // margin-left half of the width!
+        background: $white;
+        position: absolute;
+        left: -999em;
+        z-index: 99;
+        box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+        opacity: 0;
+        transition: opacity .2s ease-out;
+
+        // 2nd level caret
+        &:before {
+          content: '';
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 .4rem .4rem .4rem;
+          border-color: transparent transparent $menu-dropdown-color transparent;
+          position: absolute;
+          top: -.4rem;
+          left: 50%;
+          left: calc(50% - .2rem);
+
+        }
+
+        // 2nd level <li>
+        & > li {
+
+          &.menu-item-has-children {
+            position: relative;
+            & > a {
+              margin-right: 2.5rem; // room for caret
+            }
+            & > .icon-wrap {
+              text-align: center;
+              width: 2.5rem;
+              position: absolute;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+
+          // 2nd level <a>
+          & > a {
+            display: block;
+          }
+
+          // 3rd level <ul class="sub-menu"> [open]
+
+          &:hover > .sub-menu,
+          & > .sub-menu.open {
+            opacity: 1;
+            left: $menu-dropdown-width;
+            top: 0;
+          }
+
+          // 3rd level <ul class="sub-menu"> [closed]
+          & > ul {
+            width: $menu-dropdown-width;
+            background: $white;
+            position: absolute;
+            left: -999em;
+            z-index: 99;
+            box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+            opacity: 0;
+            transition: opacity .2s ease-out;
+
+          }
+
+        }
+
+      }
+
+    }
+  }
+}

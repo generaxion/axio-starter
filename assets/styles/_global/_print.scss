@@ -1,0 +1,86 @@
+/* ==========================================================================
+  Global - Print
+========================================================================== */
+
+@media print {
+
+  html {
+    font-size: 12pt;
+    color: black; // optimizes printing speed
+  }
+
+  // hide elements
+
+  form,
+  button,
+  input,
+  select,
+  textarea,
+  .main-navigation,
+  .social-share-container,
+  .hierarchial-pages,
+  .site-footer {
+    display: none;
+  }
+
+  // typography
+
+  .entry-content {
+    h1 {
+      font-size: 24pt;
+    }
+    h2 {
+      font-size: 18pt
+    }
+    h3 {
+      font-size: 16pt;
+    }
+    h4 {
+    font-size: 14pt;
+    }
+  }
+
+  // margins
+
+  @page {
+    margin: 2cm
+  }
+
+  // page breaks
+
+  a {
+    page-break-inside: avoid;
+  }
+  blockquote {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  img {
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+  table, pre {
+    page-break-inside: avoid;
+  }
+  ul, ol, dl {
+    page-break-before: avoid;
+  }
+
+  // links
+
+  .entry-content a[href^=http]:after {
+    content:" (" attr(href) ") ";
+  }
+
+  .entry-content a[href^="#"]:after {
+    content: "";
+  }
+
+  .entry-content a:not(:local-link):after {
+    content:" (" attr(href) ") ";
+  }
+
+}
