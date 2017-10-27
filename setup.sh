@@ -83,29 +83,29 @@ Run setup:
 =========="
 
 # style.css
-find $basedir -name 'style.css' -type f -exec sed -i '' "s|$default_name|$name|g" {} \;
+find $basedir -name 'style.css' -type f -exec perl -p -i -e "s|$default_name|$name|g" {} \;
 
 # PHP files
-find $basedir_all_files -name '*.php' -type f -exec sed -i '' "s/$default_name/$name/g" {} \;
+find $basedir_all_files -name '*.php' -type f -exec perl -p -i -e "s|$default_name|$name|g" {} \;
 
 echo "--> Search & replace name ... ${green}done${txtreset}"
 
 # PHP files
-find $basedir_all_files -name '*.php' -type f -exec sed -i '' "s/$default_id/$id/g" {} \;
+find $basedir_all_files -name '*.php' -type f -exec perl -p -i -e "s|$default_id|$id|g" {} \;
 
 # style.css
-find $basedir -name 'style.css' -type f -exec sed -i '' "s/$default_id/$id/g" {} \;
+find $basedir -name 'style.css' -type f -exec perl -p -i -e "s|$default_id|$id|g" {} \;
 
 # bower.json
-find $basedir -name 'bower.json' -type f -exec sed -i '' "s/$default_id/$id/g" {} \;
+find $basedir -name 'bower.json' -type f -exec perl -p -i -e "s|$default_id|$id|g" {} \;
 
 # package.json
-find $basedir -name 'package.json' -type f -exec sed -i '' "s/$default_id/$id/g" {} \;
+find $basedir -name 'package.json' -type f -exec perl -p -i -e "s|$default_id|$id|g" {} \;
 
 echo "--> Search & replace id ..... ${green}done${txtreset}"
 
 # manifest.json
-find $assetsdir -name 'manifest.json' -type f -exec sed -i '' "s|$default_url|$url|g" {} \;
+find $assetsdir -name 'manifest.json' -type f -exec perl -p -i -e "s|$default_url|$url|g" {} \;
 
 echo "--> Change url .............. ${green}done${txtreset}"
 
