@@ -66,8 +66,8 @@ function aucor_starter_social_menu_icons($item_output, $item, $depth, $args) {
       }
     }
 
-    // replace title with svg and <span> wrapped title
-    $item_output = str_replace($item->post_title, aucor_starter_get_svg(esc_attr($svg), array('title' => $item->post_title)) . '<span class="menu-item-label">' . $item->post_title . '</span>', $item_output);
+    // replace only last occurrence of the title with svg and <span> wrapped title
+    $item_output = preg_replace('~.*\K'. preg_quote($item->post_title, '~') . '~', '$1' . whim_get_svg(esc_attr($svg), array('title' => $item->post_title)) . '<span class="menu-item-label">' . $item->post_title . '</span>', $item_output);
 
     return $item_output;
   }
