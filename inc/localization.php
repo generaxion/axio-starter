@@ -189,6 +189,18 @@ if(!function_exists('pll__')) :
   function pll_e($s) {
     echo $s;
   }
+	function pll_esc_html_e($s) {
+		echo $s;
+	}
+	function pll_esc_html__($s) {
+		return $s;
+	}
+	function pll_esc_attr_e($s) {
+		echo $s;
+	}
+	function pll_esc_attr__($s) {
+		return $s;
+	}
   function pll_current_language() {
     return 'fi';
   }
