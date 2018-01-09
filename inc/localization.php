@@ -190,13 +190,13 @@ if(!function_exists('pll__')) :
     echo $s;
   }
 	function pll_esc_html_e($s) {
-		esc_html_e($s);
+		return esc_html_e($s);
 	}
 	function pll_esc_html__($s) {
 		return esc_html__($s);
 	}
 	function pll_esc_attr_e($s) {
-		esc_attr_e($s);
+		return esc_attr_e($s);
 	}
 	function pll_esc_attr__($s) {
 		return esc_attr__($s);
