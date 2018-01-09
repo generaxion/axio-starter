@@ -60,7 +60,9 @@ Direcrory structure is a mixture between [_underscores](http://underscores.me/) 
 
 `/inc/` has all php files that are not part of template structure
 
-`/template-parts/` has small components like menus and contents of pages and search results
+`/partials/` has small templates like menus and contents of pages and search results
+
+`/template-tags/` has small template functions to be used in templates
 
 ## 2. Setup
 
@@ -85,6 +87,8 @@ Every developer does this before first time working with the project.
 1. Open terminal and navigate to `/wp-content/themes/sitename`
 2. Run `yarn install` (fetches all node packages for build tools) (no yarn? download: https://yarnpkg.com/en/docs/install)
 3. Go to "Start working"
+
+**Protip**: If you don't have Gulp installed locally run `npm install --global gulp-cli`.
 
 ### 2.3 Start working
 
@@ -252,7 +256,7 @@ Put your static images in `/assets/images/` and Gulp will compress them a bit. R
 
 ## 6. Template tags
 
-Template tags `/inc/template-tags.php` includes functions to be used in templates. Here's what you get by default. Notice that function prefix is changed to whatever you choose it to be in setup.
+Template tags `/template-tags/` includes functions to be used in templates. Here's what you get by default. Notice that function prefix is changed to whatever you choose it to be in setup.
 
 ### 6.1 Get SVG from SVG sprite
 
@@ -367,6 +371,11 @@ Display categories and tags of single post.
 Function: `aucor_starter_menu_toggle_btn($id, $args = array())`
 
 Display hamburger button for menu.
+
+### 6.8 Search
+Function: `aucor_starter_search_form($id, $args = array())`
+
+Display easily customizable search form.
 
 ## 7. Includes
 

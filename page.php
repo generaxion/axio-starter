@@ -8,6 +8,8 @@
  * different template.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package aucor_starter
  */
 
 get_header(); ?>
@@ -15,13 +17,11 @@ get_header(); ?>
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
-      <?php
-      while ( have_posts() ) : the_post();
+      <?php while (have_posts()) : the_post(); ?>
 
-        get_template_part( 'template-parts/content', 'page' );
+        <?php get_template_part('partials/content', 'page'); ?>
 
-      endwhile; // End of the loop.
-      ?>
+      <?php endwhile; ?>
 
     </main><!-- #main -->
   </div><!-- #primary -->

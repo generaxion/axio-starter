@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<ruleset name="Aucor Coding Standards">
+
+  <description>Code standard rules to check for WordPress themes and plugins. Relaxed standard from WordPress and Drupal coding standards.</description>
+
+  <!--
+    Pass some flags to PHPCS:
+    p flag: Show progress of the run.
+    s flag: Show sniff codes in all reports.
+    v flag: Print verbose output.
+    n flag: Do not print warnings.
+  -->
+  <arg value="psvn"/>
+
+  <!-- Only check the PHP and SCSS files as JS files are checked by JSHint. -->
+  <arg name="extensions" value="php"/>
+
+  <!-- All code files must be UTF-8 encoded and we treat them as such. -->
+  <arg name="encoding" value="utf-8"/>
+
+  <!-- Check all files in this directory and the directories below it. -->
+  <file>.</file>
+
+
+  <!--
+  ==============================================================
+  Naming conventions
+  ==============================================================
+  -->
+
+  <!--
+    Rule: Constants should be in all upper-case with underscores separating words.
+    @example: SITE_URL
+  -->
+  <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+
+  <!--
+    Rule: Use lowercase for default PHP constants.
+    @example: true, false, null
+  -->
+  <rule ref="Generic.PHP.LowerCaseConstant"/>
+
+  <!--
+    Rule: Function keywords should be lowercase.
+    @example: public function lorem_ipsum()
+  -->
+  <rule ref="Squiz.Functions.LowercaseFunctionKeywords"/>
+
+  <!--
+    Rule: Built-in PHP functions should be lowercase.
+    @example: print_r()
+  -->
+  <rule ref="Squiz.PHP.LowercasePHPFunctions" />
+
+  <!--
+  ==============================================================
+  Documentation
+  ==============================================================
+  -->
+
+  <!--
+    Rule: Document your functions:
+    - The first line of the comment should just be the /** code.
+    - The last line of the comment should just be the */ code.
+    - Add empty line between descriptions and @ groups
+
+    @example:
+    /**
+     * Lorem ipsum
+     *
+     * Dolor sit amet integer omit nomen donec.
+     *
+     * @example lorem_ipsum($post_id)
+     *
+     * @param int    $lorem dolor sit amet
+     * @param string $donec acta non verba
+     *
+     * @return int lorem ipsum dolor
+     */
+
+    @example:
+    /**
+     * Lorem ipsum dolor
+     */
+
+    @example:
+    /**
+     * Lorem ipsum
+     *
+     * @return int lorem ipsum dolor
+     */
+  -->
+  <rule ref="Generic.Commenting.DocComment">
+    <exclude name="Generic.Commenting.DocComment.ParamNotFirst" />
+  </rule>
+
+  <!--
+    Rule: Make asterisks (*) aligned and leave 1 space before content
+    @example:
+    /**
+     * Lorem ipsum
+     */
+  -->
+  <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+
+
+  <!--
+  ==============================================================
+  Quotes ''
+  ==============================================================
+  -->
+
+  <!--
+    Rule: Use single and double quotes when appropriate.
+    If you're not evaluating anything in the string, use single quotes.
+    @see: https://make.wordpress.org/core/handbook/coding-standards/php/#single-and-double-quotes
+  -->
+  <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
+  <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+    <severity>0</severity>
+  </rule>
+
+
+  <!--
+  ==============================================================
+  Braces {}
+  ==============================================================
+  -->
+
+  <!--
+    Rule: Class opening braces should be on the same line as the statement.
+  -->
+  <rule ref="Generic.Classes.OpeningBraceSameLine"/>
+
+  <!--
+    Rule: Braces shall be used for all blocks, even when they are not required.
+    @see: https://make.wordpress.org/core/handbook/coding-standards/php/#brace-style
+  -->
+  <rule ref="Squiz.ControlStructures.ControlSignature">
+    <exclude name="Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace" />
+  </rule>
+  <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+
+  <!--
+  ==============================================================
+  Conditions
+  ==============================================================
+  -->
+
+  <!--
+    Rule: Use elseif, not else if.
+  -->
+  <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
+
+
+  <!--
+  ==============================================================
+  Embedding PHP in HTML
+  ==============================================================
+  -->
+
+  <!--
+    Rule: When embedding multi-line PHP snippets within a HTML block, the
+    PHP open and close tags must be on a line by themselves.
+    @see: https://make.wordpress.org/core/handbook/coding-standards/php/#opening-and-closing-php-tags
+  -->
+
+  <rule ref="Squiz.PHP.EmbeddedPhp">
+    <exclude name="Squiz.PHP.EmbeddedPhp.SpacingBefore"/>
+    <exclude name="Squiz.PHP.EmbeddedPhp.Indent"/>
+    <exclude name="Squiz.PHP.EmbeddedPhp.OpenTagIndent"/>
+    <exclude name="Squiz.PHP.EmbeddedPhp.SpacingAfter"/>
+  </rule>
+
+  <!--
+    Rule: Never use shorthand PHP start tags. Always use full PHP tags.
+    @example: <?php ?>
+  -->
+  <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+  <rule ref="Generic.PHP.DisallowAlternativePHPTags"/>
+
+  <!--
+    Rule: Don't put closing PHP tag at the end of a file, leave it open.
+  -->
+  <rule ref="PSR2.Files.ClosingTag"/>
+
+
+  <!--
+  ==============================================================
+  Whitespace
+  ==============================================================
+  -->
+
+  <!--
+    Rule: Indent with spaces, 2 at a time.
+  -->
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="exact" value="false" />
+      <property name="indent" value="2"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+    <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+  </rule>
+
+  <!--
+    Rule: No whitespace at the end of each line of code.
+  -->
+  <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+
+  <!--
+    Rule: All files should end with a new line.
+  -->
+  <rule ref="Generic.Files.EndFileNewline"/>
+
+  <!--
+    Rule: No whitespace before semicolon.
+  -->
+  <rule ref="Squiz.WhiteSpace.SemicolonSpacing" />
+
+  <!--
+    Rule: Separate function arguments with space.
+    @example function($lorem, $ipsum, $dolor)
+  -->
+  <rule ref="Generic.Functions.FunctionCallArgumentSpacing">
+    <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma" />
+  </rule>
+
+</ruleset>

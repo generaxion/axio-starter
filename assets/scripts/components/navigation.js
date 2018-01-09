@@ -11,233 +11,370 @@
  * - works at least with 3 levels (probably more)
  *
  */
+aucor_navigation = function( menu, options ) {
 
-(function($) {
+  var extend = function ( defaults, options ) {
+    var extended = {};
+    var prop;
+    for (prop in defaults) {
+        if (Object.prototype.hasOwnProperty.call(defaults, prop)) {
+            extended[prop] = defaults[prop];
+        }
+    }
+    for (prop in options) {
+        if (Object.prototype.hasOwnProperty.call(options, prop)) {
+            extended[prop] = options[prop];
+        }
+    }
+    return extended;
+  };
 
-  $.fn.aucor_navigation = function( options ) {
+  // Default settings
+  var defaults = {
+    desktop_min_width: 501,
+    menu_toggle: "#menu-toggle",
+  };
 
-    // Default settings
-    var defaults = {
-      desktop_min_width: 501,
-      menu_toggle: "#menu-toggle",
-    };
+  var settings = extend( defaults, options ),
+      desktop_min_width = settings.desktop_min_width, // match this to $menu-visible SASS variable
+      menu_toggle = document.querySelector(settings.menu_toggle),
+      screen_w,
+      hover_timer,
+      focus_timer;
 
-    var settings = $.extend( {}, defaults, options ),
-        $menu = $(this),
-        desktop_min_width = settings.desktop_min_width, // match this to $menu-visible SASS variable
-        $menu_toggle = $(settings.menu_toggle), // hamburger icon
-        screen_w,
-        hover_timer,
-        focus_timer;
+  /**
+   * Is desktop menu
+   *
+   * Checks if window is wider than set desktop limit.
+   *
+   * @return bool is desktop width screen
+   */
+  function is_desktop_menu() {
 
-    /* Get menu type
-    ----------------------------------------------- */
+    screen_w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    if(screen_w < desktop_min_width) {
+      return false;
+    }
+    return true;
 
-    function is_desktop_menu() {
-      screen_w = $(window).width();
-      if(screen_w < desktop_min_width) {
-        return false;
+  }
+
+  /**
+   * Hover timer (only for desktop menus)
+   *
+   * Keeps sub-menu open for a small time when hover has left the element.
+   */
+  var open_sub_menu = function(e) {
+
+    if(is_desktop_menu()) {
+
+      // clear timer
+      clearTimeout(hover_timer);
+
+      // make sure hover_timer did it's thing even if it didn't have time to fire
+      // -> close all .sub-menus that don't belong to this DOM tree
+      var this_tree_submenus = [];
+
+      // get submenus on tree parents
+      var current_parent = this.parentElement;
+      while(!current_parent.isEqualNode(menu)) {
+        if(current_parent.classList.contains('sub-menu')) {
+            this_tree_submenus.push(current_parent);
+        }
+        current_parent = current_parent.parentElement;
       }
-      return true;
+
+      // get submenus on tree descendants
+      var current_descendants = this.querySelectorAll('.sub-menu');
+      for(var d = 0; d < current_descendants.length; d++) {
+        this_tree_submenus.push(current_descendants[d]);
+      }
+
+      // fetch all open submenus
+      var all_open_sub_menus = menu.querySelectorAll('.open');
+      for(var j = 0; j < all_open_sub_menus.length; j++) {
+        // close the submenu only if not in current tree
+        if(this_tree_submenus.indexOf(all_open_sub_menus[j]) === -1) {
+          all_open_sub_menus[j].classList.remove('open');
+        }
+      }
+
+      // open child sub-menu
+      if(this.querySelector('.sub-menu')) {
+        this.querySelector('.sub-menu').classList.add('open');
+      }
+
     }
 
-    /* Hover timer: only for desktop menus
-    ----------------------------------------------- */
+  };
 
-    $menu.find('.menu-item-has-children').on('mouseover', function() {
-      if(is_desktop_menu()) {
+  /**
+   * Close menu when hover timer has ended (only for desktop menus)
+   *
+   * Triggers when mouse leaves menu element.
+   */
+  var close_sub_menu = function(e) {
+    var t = this;
+    // create timeout that let's the cursor get outside of menu for a moment
+    if(is_desktop_menu()) {
+      hover_timer = setTimeout( function() {
+        var parent = t.parentElement;
+        while(!parent.isEqualNode(menu)) {
+          parent.classList.remove('open');
+          parent = parent.parentElement;
+        }
+        if(t.querySelector('.open')) {
+          t.querySelector('.open').classList.remove('open');
+        }
+      }, 750 );
+    }
+  };
 
-        // clear timer
-        clearTimeout(hover_timer);
+  var open_submenu_with_click = function(e) {
+    // toggle .open class to child .sub-menu
+    this.querySelector('.sub-menu').classList.toggle('open');
 
-        // make sure hover_timer did it's thing even if it didn't have time to fire
-        // -> close all .sub-menus that don't belong to this DOM tree
-        $menu.find('.sub-menu').not($(this).find('.sub-menu'), $(this).parents('.sub-menu')).removeClass('open');
+    // toggle .active class to this <li>
+    if(!is_desktop_menu()) {
+      this.classList.toggle('active');
+    }
 
-        // open child sub-menu
-        $(this).find('.sub-menu').first().addClass('open');
+    // don't trigger parent(s)
+    e.stopPropagation();
+  };
 
-      }
-    }).on('mouseleave', function() {
-
-      // create timeout that let's the cursor get outside of menu for a moment
-      if(is_desktop_menu()) {
-        var $el = $(this);
-        hover_timer = setTimeout( function() {
-          $el.parents('.sub-menu').removeClass('open');
-          $el.find('.sub-menu').removeClass('open');
-        }, 750 );
-      }
-
-    });
+  var items_with_children = menu.querySelectorAll('.menu-item-has-children');
+  for(var i = 0; i < items_with_children.length; i++) {
+    var item = items_with_children[i];
+    item.addEventListener('mouseover', open_sub_menu);
+    item.addEventListener('mouseleave', close_sub_menu);
 
     /* Open sub-menu with click to <li>
     ----------------------------------------------- */
+    item.addEventListener('click', open_submenu_with_click);
+  }
 
-    $menu.find('.menu-item-has-children').click(function (e) {
+  /* Keyboard (tab)
+  ----------------------------------------------- */
+  var on_link_focus = function(e) {
+    // open sub-menu below
+    var submenu_below = e.target.parentElement.querySelector('.sub-menu');
+    if(submenu_below) {
+      submenu_below.classList.add('open');
+    }
 
-      // toggle .open class to child .sub-menu
-      $(this).find('.sub-menu').first().toggleClass('open');
+    // open all sub-menus above
+    var parent = e.target.parentElement;
+    while(!parent.isEqualNode(menu)) {
+      if(parent.classList.contains('sub-menu')) {
+        parent.classList.add('open');
+      }
+      parent = parent.parentElement;
+    }
+  };
 
-      // toggle .active class to this <li>
-      if(!is_desktop_menu()) {
-        $(this).toggleClass('active');
+  var on_link_blur = function(e) {
+    // close sub-menu below
+    var submenu_below = e.target.parentElement.querySelector('.sub-menu');
+    if(submenu_below) {
+      submenu_below.classList.remove('open');
+    }
+
+    // close all sub-menus above
+    var parent = e.target.parentElement;
+    while(!parent.isEqualNode(menu)) {
+      if(parent.classList.contains('sub-menu')) {
+        parent.classList.remove('open');
+      }
+      parent = parent.parentElement;
+    }
+  };
+
+  var links = menu.querySelectorAll('a');
+  for(var k = 0; k < links.length; k++) {
+    var link = links[k];
+
+    link.addEventListener('focus', on_link_focus);
+    link.addEventListener('blur', on_link_blur);
+  }
+
+  /* Toggle menu (hamburger)
+  ----------------------------------------------- */
+
+  menu_toggle.addEventListener('click', function() {
+    if(menu_toggle.classList.contains('active')) {
+
+      // remove .active class from hamburger icon
+      menu_toggle.classList.remove('active');
+      menu_toggle.setAttribute('aria-expanded', 'false');
+
+      // remove .active class to menu container
+      menu.classList.remove('active');
+
+      // focus out of the menu
+      menu_toggle.dispatchEvent(new Event('focus'));
+
+    } else {
+
+      // .active class to hamburger icon
+      menu_toggle.classList.add('active');
+      menu_toggle.setAttribute('aria-expanded', 'true');
+
+      // .active class to menu container
+      menu.classList.add('active');
+    }
+  });
+
+  /* Empty links "#": open sub-menu
+  ----------------------------------------------- */
+
+//  $menu.find('a[href="#"]').click(function(e) {
+//
+//    // don't go to "#"
+//    e.preventDefault();
+//
+//    // do the same stuff as clicking to .menu-item-has-children
+//    $(this).parent('.menu-item-has-children').trigger('click');
+//
+//  });
+
+
+  /* Touch + desktop menu: doubletap
+  ----------------------------------------------- */
+
+  var touchStartFn;
+  var maybeCloseMenuFn;
+
+  if ('ontouchstart' in window) {
+
+    var findAndRemoveClass = function(container, className) {
+      var elements = container.querySelectorAll('.' + className);
+      for(var e = 0; e < elements.length; e++) {
+        elements[e].classList.remove(className);
+      }
+    };
+
+    var targetInsideMenu = function(elem) {
+      var isInsideMenu = false;
+      while ((elem = elem.parentElement) !== null) {
+        if (elem.nodeType !== Node.ELEMENT_NODE) {
+          continue;
+        }
+        if(elem.isEqualNode(menu)) {
+          isInsideMenu = true;
+        }
+      }
+      return isInsideMenu;
+    };
+
+    // maybe close menu after it has been opened by tap
+    maybeCloseMenuFn = function(e) {
+
+      // if the target of the tap isn't menu nor a descendant of menu
+      if (menu !== e.target && !targetInsideMenu(e.target) && is_desktop_menu()) {
+
+        // reset menu state to default
+        findAndRemoveClass(menu, 'open');
+        findAndRemoveClass(menu, 'tapped');
+        findAndRemoveClass(menu, 'active');
+
       }
 
-      // don't trigger parent(s)
-      e.stopPropagation();
+      // remove this event listener
+      document.removeEventListener("ontouchstart", maybeCloseMenuFn, false);
 
-    });
+    };
 
-    /* Keyboard (tab)
-    ----------------------------------------------- */
+    touchStartFn = function(e) {
+      // only fire on desktop menu
+      if(!is_desktop_menu()) {
+        return false;
+      }
 
-    $menu.on('focus', '.menu-item-has-children a', function(e) {
+      var current_list_item = this.parentElement;
+      var current_parent;
 
-      // open sub-menu below
-      $(this).parent('li').find('.sub-menu').first().addClass( 'open' );
+      if ( !current_list_item.classList.contains('tapped') ) {
 
-      // open all sub-menus above
-      $(this).parents('.sub-menu').addClass( 'open' );
+        // first tap: don't go to <a> yet
+        e.preventDefault();
 
-    }).on('blur', '.menu-item-has-children a', function(e) {
+        // remove .tapped class to <li> that don't belong to this DOM tree
+        var this_parents_li = [];
+        current_parent = current_list_item;
+        while(!current_parent.isEqualNode(menu)) {
+          if(current_parent.classList.contains('tapped')) {
+            this_parents_li.push(current_parent);
+          }
+          current_parent = current_parent.parentElement;
+        }
+        var all_tapped = menu.querySelectorAll('.tapped');
+        for(var j = 0; j < all_tapped.length; j++) {
+          // Close the submenu only if not in current tree
+          if(this_parents_li.indexOf(all_tapped[j]) === -1) {
+            all_tapped[j].classList.remove('tapped');
+          }
+        }
 
-      // close sub-menu below
-      $(this).parent('li').find('.sub-menu').first().removeClass('open');
+        // add .tapped class to <li> element
+        current_list_item.classList.add('tapped');
 
-      // close all sub-menus above
-      $(this).parents('.sub-menu').removeClass('open');
+        // close all .sub-menus that don't belong to this DOM tree
+        var this_parents_submenu = [];
+        current_parent = current_list_item;
+        while(!current_parent.isEqualNode(menu)) {
+          if(current_parent.classList.contains('open')) {
+            this_parents_submenu.push(current_parent);
+          }
+          current_parent = current_parent.parentElement;
+        }
+        var all_open_submenus = menu.querySelectorAll('.open');
+        for(var t = 0; t < all_open_submenus.length; t++) {
+          // Close the submenu only if not in current tree
+          if(this_parents_submenu.indexOf(all_open_submenus[t]) === -1) {
+            all_open_submenus[t].classList.remove('open');
+          }
+        }
 
-    });
+        // open .sub-menu below
+        if(current_list_item.querySelector('.sub-menu')) {
+          current_list_item.querySelector('.sub-menu').classList.add('open');
+        }
 
-    /* Toggle menu (hamburger)
-    ----------------------------------------------- */
+        // open all .sub-menus above
+        current_parent = this.parentElement;
+        while(!current_parent.isEqualNode(menu)) {
+          if(current_parent.classList.contains('sub-menu')) {
+              current_parent.classList.add('open');
+          }
+          current_parent = current_parent.parentElement;
+        }
 
-    $menu_toggle.click(function() {
-      if($menu_toggle.hasClass('active')) {
-
-        // remove .active class from hamburger icon
-        $menu_toggle.removeClass('active').attr('aria-expanded', 'false');
-
-        // remove .active class to menu container
-        $menu.removeClass('active');
-
-        // focus out of the menu
-        $menu_toggle.focus();
+        // add EventListener to second click
+        document.addEventListener('touchstart', maybeCloseMenuFn, false);
 
       } else {
 
-        // .active class to hamburger icon
-        $menu_toggle.addClass('active').attr('aria-expanded', 'true');
+        // second tap: go to <a>
 
-        // .active class to menu container
-        $menu.addClass('active');
-      }
-    });
+        // remove .tapped from current <li>
+        current_list_item.classList.remove('tapped');
 
-    /* Empty links "#": open sub-menu
-    ----------------------------------------------- */
-
-  //  $menu.find('a[href="#"]').click(function(e) {
-  //
-  //    // don't go to "#"
-  //    e.preventDefault();
-  //
-  //    // do the same stuff as clicking to .menu-item-has-children
-  //    $(this).parent('.menu-item-has-children').trigger('click');
-  //
-  //  });
-
-
-    /* Touch + desktop menu: doubletap
-    ----------------------------------------------- */
-
-    var touchStartFn;
-    var maybeCloseMenuFn;
-    var $parent_links = $menu.find('.menu-item-has-children > a');
-
-    if ('ontouchstart' in window) {
-
-
-      // maybe close menu after it has been opened by tap
-      maybeCloseMenuFn = function(e) {
-
-      // if the target of the tap isn't menu nor a descendant of menu
-      if (!$menu.is(e.target) && $menu.has(e.target).length === 0 && is_desktop_menu()) {
-
-        // reset menu state to default
-        $menu.find('.open').removeClass('open');
-        $menu.find('.tapped').removeClass('tapped');
-        $menu.find('.active').removeClass('active');
+        // close .sub-menus
+        findAndRemoveClass(menu, 'open');
 
       }
 
-        // remove this event listener
-        if(typeof removeEventListener === 'function') {
-          document.removeEventListener("ontouchstart", maybeCloseMenuFn, false);
-        }
+    };
 
-      };
-
-      touchStartFn = function(e) {
-
-        // only fire on desktop menu
-        if(!is_desktop_menu()) {
-          return false;
-        }
-
-        var $current_list_item = $(this).parent('li');
-
-        if ( !$current_list_item.hasClass('tapped') ) {
-
-          // first tap: don't go to <a> yet
-          e.preventDefault();
-
-          // remove .tapped class to <li> that don't belong to this DOM tree
-          $menu.find('.tapped').not($(this).parents('li')).removeClass('tapped');
-
-          // add .tapped class to <li> element
-          $current_list_item.addClass('tapped');
-
-          // close all .sub-menus that don't belong to this DOM tree
-          $menu.find('.sub-menu').not($(this).parents('.sub-menu')).removeClass('open');
-
-          // open .sub-menu below
-          $current_list_item.find('.sub-menu').first().addClass('open');
-
-          // open all .sub-menus above
-          $(this).parents('.sub-menu').addClass('open');
-
-          // add EventListener to second click
-          if(typeof addEventListener === 'function') {
-            document.addEventListener('touchstart', maybeCloseMenuFn, false);
-          }
-
-        } else {
-
-          // second tap: go to <a>
-
-          // remove .tapped from current <li>
-          $current_list_item.removeClass('tapped');
-
-          // close .sub-menus
-          $menu.find('.sub-menu').removeClass('open');
-
-        }
-
-      };
-
-      // add eventlisteners for each <a> with a sub-menu
-      $.each($parent_links, function(i, link) {
-        if(typeof addEventListener === 'function') {
-          link.addEventListener('touchstart', touchStartFn, false);
-        }
-      });
-
+    // add eventlisteners for each <a> with a sub-menu
+    var parent_links = menu.querySelectorAll('.menu-item-has-children > a');
+    for(var p = 0; p < parent_links.length; p++) {
+      parent_links[p].addEventListener('touchstart', touchStartFn, false);
     }
 
-    // make the call chainable
-    return this;
-  };
+  }
 
-})(jQuery);
+  // make the call chainable
+  return this;
+};

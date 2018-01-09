@@ -1,23 +1,22 @@
 /* ==========================================================================
-  Main.js
+  main.js
 ========================================================================== */
 
-(function($) {
+// navigation
+aucor_navigation(document.getElementById('primary-navigation'), {
+  desktop_min_width: 501, // min width in pixels
+  menu_toggle: '#menu-toggle' // selector for toggle
+});
 
-  // Aucor navigation
-  $(document).ready(function(){
-    $('#primary-navigation').aucor_navigation({
-      desktop_min_width:  501,            // min width in pixels
-      menu_toggle:        '#menu-toggle'  // selector for toggle
-    });
-  });
+// responsive videos
+fitvids();
 
-  // Responsive videos
-  fitvids();
 
-  //
-  $(document).ready(function(){
+// add jquery as dependency in functions.php and uncomment the following if you need jquery
+//
+// (function($) {
+//   $(document).ready(function(){
+//
+//   });
+// })(jQuery);
 
-  });
-
-})(jQuery);
