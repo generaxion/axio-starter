@@ -190,16 +190,16 @@ if(!function_exists('pll__')) :
     echo $s;
   }
 	function pll_esc_html_e($s) {
-		echo $s;
+		esc_html_e($s);
 	}
 	function pll_esc_html__($s) {
-		return $s;
+		return esc_html__($s);
 	}
 	function pll_esc_attr_e($s) {
-		echo $s;
+		esc_attr_e($s);
 	}
 	function pll_esc_attr__($s) {
-		return $s;
+		return esc_attr__($s);
 	}
   function pll_current_language() {
     return 'fi';
