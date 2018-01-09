@@ -14,7 +14,7 @@
  */
 function aucor_starter_rename_authors($name) {
 
-  if(is_admin()) {
+  if (is_admin()) {
     return $name;
   }
 
@@ -48,12 +48,12 @@ add_filter('get_the_author_link', 'aucor_starter_author_link_to_front_page', 100
 function aucor_starter_disable_user_endpoints($endpoints) {
 
   // disable list of users
-  if(isset($endpoints['/wp/v2/users'])) {
+  if (isset($endpoints['/wp/v2/users'])) {
     unset($endpoints['/wp/v2/users']);
   }
 
   // disable single user
-  if(isset($endpoints['/wp/v2/users/(?P<id>[\d]+)'])) {
+  if (isset($endpoints['/wp/v2/users/(?P<id>[\d]+)'])) {
     unset($endpoints['/wp/v2/users/(?P<id>[\d]+)']);
   }
 
