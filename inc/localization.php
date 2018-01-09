@@ -193,13 +193,13 @@ if(!function_exists('pll__')) :
 		return esc_html_e($s);
 	}
 	function pll_esc_html__($s) {
-		return esc_html__($s);
+		return esc_html($s);
 	}
 	function pll_esc_attr_e($s) {
 		return esc_attr_e($s);
 	}
 	function pll_esc_attr__($s) {
-		return esc_attr__($s);
+		return esc_attr($s);
 	}
   function pll_current_language() {
     return 'fi';
