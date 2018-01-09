@@ -87,12 +87,9 @@ find "$basedir" -name 'style.css' -type f -exec perl -p -i -e "s|$default_name|$
 
 # PHP files
 find "$basedir_all_files" -name '*.php' -type f -exec perl -p -i -e "s|$default_name|$name|g" {} \;
-<<<<<<< HEAD
 
 # README.md
 find "$basedir" -name 'README.md' -type f -exec perl -p -i -e "s|$default_name|$name|g" {} \;
-=======
->>>>>>> d98dd752078087dff95d0337efc12227efe864ca
 
 echo "--> Search & replace name ... ${green}done${txtreset}"
 
@@ -122,8 +119,5 @@ echo "--> ${green}Setup complete!${txtreset}"
 
 echo "--> setup.sh removed"
 rm "$setup_script"
-<<<<<<< HEAD
-=======
 
->>>>>>> d98dd752078087dff95d0337efc12227efe864ca
 
