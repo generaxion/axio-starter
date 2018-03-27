@@ -52,7 +52,7 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 ## 1. Directory structure
 
-Direcrory structure is a mixture between [_underscores](http://underscores.me/) (template structure) and [Sage](https://roots.io/sage/) (Gulp and assets).
+Directory structure is a mixture between [_underscores](http://underscores.me/) (template structure) and [Sage](https://roots.io/sage/) (Gulp and assets).
 
 `/assets/` includes all JS, SASS, images, SVG and fonts
 
