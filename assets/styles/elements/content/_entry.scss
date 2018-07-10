@@ -1,0 +1,28 @@
+/* ==========================================================================
+ elements / content / entry
+========================================================================== */
+
+.entry {
+
+}
+
+.entry__header {
+  margin: 0 0 2rem;
+  h1, .h1,
+  h2, .h2 {
+    margin: 0 0 1rem;
+    a {
+      color: $base-font-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.entry__content {
+  & > :first-child {
+    margin-top: 0;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}

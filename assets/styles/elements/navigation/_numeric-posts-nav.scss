@@ -1,5 +1,5 @@
 /* ==========================================================================
-  Elements - Numeric posts navigation
+ elements / navigation / numeric posts nav
 ========================================================================== */
 
 .numeric-navigation {
@@ -10,23 +10,32 @@
     @include list-reset;
   }
 
-  li {
+  &__link {
     display: inline-block;
     margin: .5rem .25rem;
     a {
       text-decoration: none;
-      &:hover,
-      &:focus,
-      &:active {
+      &:hover, &:focus, &:active {
 
       }
     }
-    &.active {
+
+    &--previous {
 
     }
-    &.disabled {
+
+    &--next {
 
     }
+
+    &--pagenum {
+
+    }
+
+    &--active {
+
+    }
+
   }
 
 }

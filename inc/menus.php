@@ -20,11 +20,12 @@ function aucor_starter_dropdown_icon_to_menu_links($item_output, $item, $depth, 
   if ($args->theme_location == 'primary') {
     foreach ($item->classes as $value) {
       if ($value == 'menu-item-has-children') {
-        return $item_output . aucor_starter_get_svg('caret-down');
+        // add caret button. not focusable as tab navigation is handeled without this button
+        $item_output .= '<button tabindex="-1" class="menu-item__link__caret js-menu-caret">' . aucor_starter_get_svg('caret-down') . '</button>';
       }
     }
   }
-  return $item_output;
+  return '<span class="menu-item__link">' . $item_output . '</span>';
 
 }
 add_filter('walker_nav_menu_start_el', 'aucor_starter_dropdown_icon_to_menu_links', 10, 4);
@@ -64,7 +65,7 @@ function aucor_starter_social_menu_icons($title, $item, $args, $depth) {
     }
 
     // replace title with svg and <span> wrapped title
-    $title = aucor_starter_get_svg(esc_attr($svg), array('title' => $title)) . '<span class="menu-item-label">' . $title . '</span>';
+    $title = aucor_starter_get_svg(esc_attr($svg), array('title' => $title)) . '<span class="social-navigation__item__label">' . $title . '</span>';
 
     return $title;
 

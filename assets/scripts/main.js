@@ -2,13 +2,17 @@
   main.js
 ========================================================================== */
 
-// navigation
+/**
+ * Navigation
+ */
 aucor_navigation(document.getElementById('primary-navigation'), {
   desktop_min_width: 501, // min width in pixels
   menu_toggle: '#menu-toggle' // selector for toggle
 });
 
-// responsive videos
+/**
+ * Responsive videos
+ */
 fitvids();
 
 
@@ -20,3 +24,14 @@ fitvids();
 //   });
 // })(jQuery);
 
+/**
+ * Polyfill object-fit for lazyloaded
+ */
+if (typeof objectFitPolyfill === "function") {
+  document.addEventListener('lazybeforeunveil', function(e){
+    objectFitPolyfill();
+    el.addEventListener('load', function() {
+      objectFitPolyfill();
+    });
+  });
+}

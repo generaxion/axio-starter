@@ -1,0 +1,148 @@
+/* ==========================================================================
+ elements / content / hero
+========================================================================== */
+
+$hero-s: 530px;
+$hero-m: 650px;
+$hero-l: 1120px;
+$hero-xl: 1600px;
+
+.hero {
+  position: relative;
+  background: $grey-light;
+  display: flex;
+  align-items: center;
+
+  &__container {
+    @include wrap;
+    max-width: 640px;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    position: relative;
+    z-index: 4;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 2.5rem;
+    @include breakpoint($hero-m) {
+      font-size: 3rem;
+    }
+    @include breakpoint($hero-l) {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__description {
+    margin: 1rem 0 0 0;
+    font-size: 1rem;
+    @include breakpoint($hero-m) {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* -------------------------------------------------------
+    No background image
+  ---------------------------------------------------------*/
+
+  &--no-background {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* -------------------------------------------------------
+    Has background image
+  ---------------------------------------------------------*/
+
+  &--has-background {
+
+    overflow: hidden;
+
+    .hero__background, .hero__background__image {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+
+    // min-height as aspect ratio but grow with the content
+    &:before {
+      content: '';
+      float: left;
+
+      // 8:5 for smaller screens
+      @include aspect-ratio(8, 5);
+
+      // 8:3 for middle size
+      @include breakpoint($hero-m) {
+        @include aspect-ratio(8, 3);
+      }
+
+      // 3:1 for bigger screens
+      @include breakpoint($hero-l) {
+        @include aspect-ratio(3, 1);
+      }
+
+      // 420px for really big screens
+      @include breakpoint($hero-xl) {
+        padding-bottom: 525px;
+      }
+
+
+    }
+    &:after {
+      clear: left;
+      content: ' ';
+      display: table;
+    }
+    h1, p {
+      color: $white;
+      text-shadow: 0 0 1rem rgba(0,0,0,.35);
+    }
+  }
+
+  &__background {
+    &__image {
+      line-height: 0;
+      img {
+        display: block;
+        line-height: 0;
+        z-index: 2;
+        position: absolute;
+
+        // proper way to cover
+        object-fit: cover;
+
+        // close enough cover for older browsers
+        min-width: 100%;
+        min-height: 100%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+
+        // scale preload image
+        &.lazyload-preload {
+          transform: translate(-55%,-55%) scale(1.1);
+        }
+      }
+
+    }
+    &__dimming {
+      display: block;
+      position: absolute;
+      line-height: 0;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      background: rgba($base-font-color, .3);
+    }
+  }
+
+}
+

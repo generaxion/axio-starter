@@ -9,20 +9,21 @@
 
 get_header(); ?>
 
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+  <?php get_template_part('partials/hero'); ?>
 
-      <div class="error-404 not-found">
-        <div class="page-content">
-          <h1 class="entry-title"><?php ask_e('404: Page not found'); ?></h1>
-          <div class="entry-content">
-            <p><?php ask_e('404: Page not found description'); ?></p>
-            <div class="search-404 search-form">
-              <?php get_search_form(); ?>
-            </div>
+  <div id="primary" class="primary primary--404">
+    <main id="main" class="main">
+
+      <article class="entry entry--404">
+
+        <div class="entry__content">
+          <p><?php ask_e('404: Page not found description'); ?></p>
+          <div class="search-form search-form--404">
+            <?php aucor_starter_search_form('search-form--404'); ?>
           </div>
-        </div><!-- .page-content -->
-      </div><!-- .error-404 -->
+        </div>
+
+      </article><!-- .entry-404 -->
 
     </main><!-- #main -->
   </div><!-- #primary -->

@@ -1,0 +1,184 @@
+/* ==========================================================================
+ elements / typography / media
+========================================================================== */
+
+/* Lazyload
+----------------------------------------------- */
+
+// lazyload from transparent to visible
+img.lazyload--fast {
+  transition: .15s ease-in-out;
+  &.lazyload,
+  &.lazyloading {
+    opacity: 0;
+  }
+  &.lazyloaded {
+    opacity: 1;
+  }
+}
+
+// lazyload from blurry to visible
+img.lazyload--animated {
+  transition: .15s ease-in-out;
+  &.lazyload,
+  &.lazyloading,
+  &.lazyloaded {
+    opacity: 1;
+  }
+  &.lazyload-preload {
+  z-index: 3;
+  filter: blur(15px);
+  transition: .5s ease-out;
+  transform: scale(1.075);
+  backface-visibility: hidden;
+    &.lazyload-preload--ready {
+      opacity: 0;
+    }
+  }
+}
+
+// hide js depended images if there's no js
+.no-js {
+  .lazyload,
+  .lazyload-preload {
+    display: none !important;
+  }
+}
+
+/* Images
+----------------------------------------------- */
+
+.wp-caption {
+  font-size: .875rem;
+  float: none;
+  margin: 0;
+}
+
+.alignnone {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.aligncenter {
+  display: block;
+  margin: 1rem auto;
+  height: auto;
+}
+
+.alignleft,
+.alignright {
+  display: block;
+  margin-bottom: 1rem;
+  height: auto;
+}
+
+@include breakpoint($s) {
+  .alignleft {
+    float: left;
+    margin-right: 1rem;
+  }
+  .alignright {
+    float: right;
+    margin-left: 1rem;
+  }
+}
+
+/* Icons
+----------------------------------------------- */
+
+.icon {
+  display: inline-block;
+  fill: currentColor;
+  height: 1em; // match current font-size
+  width:  1em; // match current font-size
+  vertical-align: middle;
+}
+
+/* Iframe
+----------------------------------------------- */
+
+iframe {
+  max-width: 100%;
+}
+
+/* Gallery
+----------------------------------------------- */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  img {
+    display: block;
+    line-height: 0;
+  }
+}
+
+.gallery-item {
+  margin: 0;
+  padding: .5rem 0;
+  width: 100%;
+  .gallery-columns-2 & {
+    width: 100%;
+    @include breakpoint($s) {
+      margin-right: 1rem;
+      width: calc(50% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .gallery-columns-3 & {
+    width: 100%;
+    @include breakpoint($s) {
+      margin-right: 1rem;
+      width: calc(50% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($m) {
+      margin-right: 1rem;
+      width: calc(33.33% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .gallery-columns-4 & {
+    width: 100%;
+    @include breakpoint($s) {
+      margin-right: 1rem;
+      width: calc(50% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($m) {
+      margin-right: 1rem;
+      width: calc(33.33% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($l) {
+      margin-right: 1rem;
+      width: calc(25% - 1rem);
+      &:nth-of-type(2n),
+      &:nth-of-type(3n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(4n) {
+        margin-right: 0;
+      }
+    }
+  }
+}

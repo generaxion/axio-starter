@@ -11,7 +11,14 @@
 
   </div><!-- #content -->
 
-  <footer id="colophon" class="site-footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+  <footer id="colophon" class="site-footer" itemscope itemtype="http://schema.org/WPFooter">
+
+    <div class="site-footer__container">
+
+      <?php bloginfo('name'); ?>
+
+    </div>
+
 
   </footer><!-- #colophon -->
 </div><!-- #page -->

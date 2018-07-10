@@ -1,0 +1,23 @@
+/* ==========================================================================
+ elements / typography / tables
+========================================================================== */
+
+table, .mce-item-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border: 0;
+  thead {
+    background: $grey;
+  }
+  td {
+    border: 0;
+    border-left: 1px solid $grey;
+    padding: .5rem .75rem;
+    &:first-of-type {
+      border-left: 0;
+    }
+  }
+  tr {
+    border-bottom: 1px solid $grey;
+  }
+}

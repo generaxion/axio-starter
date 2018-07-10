@@ -9,18 +9,17 @@
 
 get_header(); ?>
 
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+<?php get_template_part('partials/hero'); ?>
+
+  <div id="primary" class="primary primary--search">
+
+    <main id="main" class="main">
 
     <?php if (have_posts()) : ?>
 
-      <header class="page-header">
-        <h1 class="page-title"><?php printf(ask__('Search: Title') . '<span class="search-terms">' . get_search_query() . '</span>'); ?></h1>
-      </header><!-- .page-header -->
-
       <?php while (have_posts()) : the_post(); ?>
 
-        <?php get_template_part('partials/content', 'search'); ?>
+        <?php get_template_part('partials/teaser'); ?>
 
       <?php endwhile; ?>
 
@@ -28,11 +27,25 @@ get_header(); ?>
 
     <?php else : ?>
 
-      <?php get_template_part('partials/content', 'none'); ?>
+      <article class="entry entry--search-empty">
+
+        <header class="entry__header">
+          <h1 class="entry__header__title"><?php ask_e('Search: Nothing found'); ?></h1>
+        </header><!-- .entry__header -->
+
+        <div class="entry__content">
+          <p><?php ask_e('Search: Nothing found description'); ?></p>
+          <div class="search-form search-form--search-empty">
+            <?php aucor_starter_search_form('search-form--search-empty'); ?>
+          </div>
+        </div>
+
+      </article>
 
     <?php endif; ?>
 
     </main><!-- #main -->
+
   </div><!-- #primary -->
 
 <?php

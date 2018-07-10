@@ -17,13 +17,18 @@ function aucor_starter_strings() {
 
   return array(
 
+    // titles
+    'Title: Home'                       => 'Blogi',
+    'Title: Archives'                   => 'Arkisto',
+    'Title: Search'                     => 'Haku',
+    'Title: 404'                        => 'Hakemaasi sivua ei löytynyt',
+
     // menu
     'Menu: Button label'                => 'Menu',
     'Menu: Primary Menu'                => 'Päävalikko',
     'Menu: Social Menu'                 => 'Sosiaalisen median kanavat',
 
     // 404
-    '404: Page not found'               => 'Hakemaasi sivua ei löytynyt',
     '404: Page not found description'   => 'Sivu on saatettu poistaa tai siirtää eri osoitteeseen. Käytä alla olevaa hakua löytääksesi etsimäsi.',
 
     // search
@@ -43,9 +48,9 @@ function aucor_starter_strings() {
 
     // social
     'Social share: Title'                => 'Jaa sosiaalisessa mediassa',
-    'Social share: Facebook'             => 'Facebook',
-    'Social share: Twitter'              => 'Twitter',
-    'Social share: LinkedIn'             => 'LinkedIn',
+    'Social share: Facebook'             => 'Jaa Facebookissa',
+    'Social share: Twitter'              => 'Jaa Twitterissä',
+    'Social share: LinkedIn'             => 'Jaa LinkedInissä',
 
     // taxonomies
     'Taxonomies: Keywords'               => 'Avainsanat',
@@ -87,27 +92,7 @@ function ask__($key, $lang = null) {
   }
 
   // debug missing strings
-  if (WP_DEBUG === true) {
-
-    // init warning to get source
-    $e = new Exception('Localization error - Missing string by key {' . $key . '}');
-
-    // find file and line for problem
-    $trace_line ='';
-    foreach ($e->getTrace() as $trace) {
-      if (in_array($trace['function'], array('ask__', 'ask_e'))) {
-        $trace_line = ' in ' . $trace['file'] . ':' . $trace['line'];
-      }
-    }
-
-    // compose error message
-    $error_msg = $e->getMessage() . $trace_line . ' ==> add it to /inc/localization.php';
-
-    // trigger errors
-    trigger_error($error_msg, E_USER_WARNING);
-    error_log($error_msg);
-
-  }
+  aucor_starter_debug('Localization error - Missing string by key {' . $key . '}', array('ask__', 'ask_e'));
 
   return $key;
 
@@ -138,30 +123,7 @@ function ask_e($key, $lang = null) {
 function asv__($value, $lang = null) {
 
   // debug missing strings
-  if (WP_DEBUG === true) {
-    $strings = aucor_starter_strings();
-    if (array_search($value, $strings) === false) {
-
-      // init warning to get source
-      $e = new Exception('Localization error - Missing string by value {' . $value . '}');
-
-      // find file and line for problem
-      $trace_line = '';
-      foreach ($e->getTrace() as $trace) {
-        if (in_array($trace['function'], array('asv__', 'asv_e'))) {
-          $trace_line = ' in ' . $trace['file'] . ':' . $trace['line'];
-        }
-      }
-
-      // compose error message
-      $error_msg = $e->getMessage() . $trace_line . ' ==> add it to /inc/localization.php';
-
-      // trigger errors
-      trigger_error($error_msg, E_USER_WARNING);
-      error_log($error_msg);
-
-    }
-  }
+  aucor_starter_debug('Localization error - Missing string by value {' . $value . '}', array('asv__', 'asv_e'));
 
   if ($lang === null) {
     return pll__($value);

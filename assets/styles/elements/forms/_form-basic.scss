@@ -1,0 +1,60 @@
+/* ==========================================================================
+ elements / forms / basic
+========================================================================== */
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  border: 0;
+  text-transform: none;
+}
+
+label {
+  max-width: 100%;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: .25rem 0 0;
+  line-height: normal;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  max-width: 100%;
+  padding: .5rem 1rem;
+  color: $base-font-color;
+  background: $white;
+}
+
+textarea {
+  height: 180px;
+}
+
+button,
+input[type="submit"] {
+
+}

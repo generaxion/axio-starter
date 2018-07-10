@@ -29,7 +29,7 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
   }
 
   $paged_variable        = (empty($custom_paged_var)) ? 'paged' : $custom_paged_var;
-  $has_default_paged_var = ($paged_variable == 'paged') ? true : false;
+  $has_default_paged_var = ($paged_variable === 'paged') ? true : false;
   $max_num_pages         = $wp_query->max_num_pages;
 
   // remove current paged var from url
@@ -67,14 +67,15 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
 
   // previous post link
   if ($has_default_paged_var && get_previous_posts_link()) {
-    printf('<li>%s</li>' . "\n", get_previous_posts_link($prev_label));
+    printf('<li class="numeric-navigation__link numeric-navigation__link--previous">%s</li>' . "\n", get_previous_posts_link($prev_label));
   } elseif ($paged > 1) {
-    printf('<li><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", add_query_arg($paged_variable, ($paged - 1), $clean_url), $prev_label);
+    printf('<li class="numeric-navigation__link numeric-navigation__link--previous"><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", add_query_arg($paged_variable, ($paged - 1), $clean_url), $prev_label);
   }
 
   // page 1
   if (!in_array(1, $links)) {
-    $class = ($paged == 1) ? ' class="active"' : '';
+    $active = ($paged === 1) ? 'numeric-navigation__link--active' : '';
+    $class = 'class="numeric-navigation__link numeric-navigation__link--pagenum' . $active . '"';
     if ($has_default_paged_var) {
       printf('<li%s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link( 1 )), '1');
     } else {
@@ -88,18 +89,20 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
   // link to current page, plus 2 pages in either direction if necessary
   sort($links);
   foreach ((array) $links as $link) {
-    $class = ($paged == $link) ? ' class="active"' : '';
-    $url = ($paged_variable == 'paged') ? esc_url(get_pagenum_link($link)) : add_query_arg($paged_variable, $link, $clean_url);
+    $active = ($paged === $link) ? 'numeric-navigation__link--active' : '';
+    $class = 'class="numeric-navigation__link numeric-navigation__link--pagenum' . $active . '"';
+    $url = ($paged_variable === 'paged') ? esc_url(get_pagenum_link($link)) : add_query_arg($paged_variable, $link, $clean_url);
     printf('<li%s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, $url, $link);
   }
 
   if (!in_array($max, $links)) {
     if (!in_array($max - 1, $links)) {
-      echo '<li>…</li>' . "\n";
+      echo '<li class="numeric-navigation__separator">…</li>' . "\n";
     }
 
-    $class = ($paged == $max) ? ' class="active"' : '';
-    if ($paged_variable == 'paged') {
+    $active = ($paged === $max) ? 'numeric-navigation__link--active' : '';
+    $class = 'class="numeric-navigation__link numeric-navigation__link--pagenum' . $active . '"';
+    if ($paged_variable === 'paged') {
       printf('<li%s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($max)), $max);
     } else {
       printf('<li><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", add_query_arg($paged_variable, $max, $clean_url), $max);
@@ -108,9 +111,9 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
 
   // next post Link
   if ($has_default_paged_var && get_next_posts_link()) {
-    printf('<li>%s</li>' . "\n", get_next_posts_link($next_label)); // add custom next posts label
+    printf('<li class="numeric-navigation__link numeric-navigation__link--next">%s</li>' . "\n", get_next_posts_link($next_label)); // add custom next posts label
   } elseif ($paged < $max && $max > 1) {
-    printf('<li><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", add_query_arg($paged_variable, ($paged + 1), $clean_url), $next_label);
+    printf('<li class="numeric-navigation__link numeric-navigation__link--next"><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", add_query_arg($paged_variable, ($paged + 1), $clean_url), $next_label);
   }
 
   echo '</ul></nav>' . "\n";
@@ -145,7 +148,7 @@ class aucor_starter_Pretendable_Walker extends Walker_Page {
     // get currently pretended ID
     global $pretend_id;
 
-    if (!empty($pretend_id) && $pretend_id == $page->ID) {
+    if (!empty($pretend_id) && $pretend_id === $page->ID) {
       $args['link_before'] = '<span class="current_page_item pretend_current_page_item">';
       $args['link_after']  = '</span>';
     }
@@ -162,14 +165,14 @@ class aucor_starter_Pretendable_Walker extends Walker_Page {
       if ($_current_page && in_array( $page->ID, $_current_page->ancestors)) {
         $css_class[] = 'current_page_ancestor';
       }
-      if ($page->ID == $current_page) {
+      if ($page->ID === $current_page) {
         $css_class[] = 'current_page_item';
-      } elseif ($_current_page && $page->ID == $_current_page->post_parent) {
+      } elseif ($_current_page && $page->ID === $_current_page->post_parent) {
         $css_class[] = 'current_page_parent';
       }
-    } elseif ($page->ID == get_option('page_for_posts')) {
+    } elseif ($page->ID === get_option('page_for_posts')) {
       $css_class[] = 'current_page_parent';
-    } elseif (!empty($pretend_id) && $page->ID == $pretend_id) {
+    } elseif (!empty($pretend_id) && $page->ID === $pretend_id) {
       $css_class[] = 'current_page_item';
       $css_class[] = 'pretend_current_page_item';
     }
@@ -227,16 +230,16 @@ function aucor_starter_sub_pages_navigation() {
     $grand_parent       = wp_get_post_parent_id($great_grand_parent);
     $parent             = wp_get_post_parent_id($grand_parent);
 
-  } elseif ($hierarchy_pos == 3) {
+  } elseif ($hierarchy_pos === 3) {
 
     $grand_parent = wp_get_post_parent_id($post->post_parent);
     $parent       = wp_get_post_parent_id($grand_parent);
 
-  } elseif ($hierarchy_pos == 2) {
+  } elseif ($hierarchy_pos === 2) {
 
     $parent = wp_get_post_parent_id($post->post_parent);
 
-  } elseif ($hierarchy_pos == 0) {
+  } elseif ($hierarchy_pos === 0) {
 
     $parent = $post->ID;
 
@@ -253,6 +256,7 @@ function aucor_starter_sub_pages_navigation() {
     'child_of'    => $parent,
     'link_after'  => '',
     'title_li'    => '',
+    'post_type'   => $post->post_type,
     'sort_column' => 'menu_order, post_title',
     'walker'      => $walker
   ));
@@ -265,19 +269,19 @@ function aucor_starter_sub_pages_navigation() {
       $parent_css = '';
     }
 
-    if (empty($parent_top) || $first_parent->ID == get_the_ID()) {
+    if (empty($parent_top) || $first_parent->ID === get_the_ID()) {
       $parent_css = 'current_page_item';
       $first_parent = get_page(get_the_ID());
     }
 
     ?>
-    <nav class="sub-pages-navigation" itemscope itemtype="http://schema.org/SiteNavigationElement/">
+    <nav class="sub-pages" itemscope itemtype="http://schema.org/SiteNavigationElement/">
 
-      <span class="h2" class="<?php echo $parent_css; ?>">
+      <span class="sub-pages__title <?php echo $parent_css; ?>">
         <a href="<?php echo get_permalink($first_parent->ID); ?>"><?php echo $first_parent->post_title; ?></a>
       </span>
 
-      <ul class="sub-pages-list">
+      <ul class="sub-pages__list">
         <?php echo $list; ?>
       </ul>
 

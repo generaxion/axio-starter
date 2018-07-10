@@ -22,7 +22,7 @@ function aucor_starter_posted_on() {
 function aucor_starter_entry_footer() {
 
   // hide category and tag text for pages
-  if ( get_post_type() === 'post' ) {
+  if (get_post_type() === 'post') {
 
     $categories_list = get_the_category_list(', ');
     if ($categories_list) {

@@ -1,5 +1,5 @@
 /* ==========================================================================
-  Global - Print
+ _global / print
 ========================================================================== */
 
 @media print {
@@ -10,7 +10,6 @@
   }
 
   // hide elements
-
   form,
   button,
   input,
@@ -24,8 +23,7 @@
   }
 
   // typography
-
-  .entry-content {
+  .entry__content {
     h1 {
       font-size: 24pt;
     }
@@ -41,13 +39,11 @@
   }
 
   // margins
-
   @page {
     margin: 2cm
   }
 
   // page breaks
-
   a {
     page-break-inside: avoid;
   }
@@ -70,16 +66,15 @@
   }
 
   // links
-
-  .entry-content a[href^=http]:after {
+  .entry__content a[href^=http]:after {
     content:" (" attr(href) ") ";
   }
 
-  .entry-content a[href^="#"]:after {
+  .entry__content a[href^="#"]:after {
     content: "";
   }
 
-  .entry-content a:not(:local-link):after {
+  .entry__content a:not(:local-link):after {
     content:" (" attr(href) ") ";
   }
 

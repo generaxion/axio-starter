@@ -1,12 +1,12 @@
 # Aucor Starter
 
-Superior WordPress starter theme with modern build tools by **[Aucor](https://www.aucor.fi)**. 100+ hours of development over 2 years to make the greatest starting point for WordPress site.
+Superior WordPress starter theme with modern build tools by **[Aucor](https://www.aucor.fi)**. 150+ hours of development over 2 years to make the greatest starting point for WordPress site.
 
 **For who**: Developers building superb WordPress sites
 
-**A few buzz-words**: Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org
+**A few buzz-words**: Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Responsive images
 
-![aucor-starter](https://user-images.githubusercontent.com/9577084/28660986-d73568b2-72bd-11e7-899a-3eabe2be674b.png)
+![aucor-starter](https://user-images.githubusercontent.com/9577084/42504046-1dce72e0-8443-11e8-9aa7-d10aab7c2ddf.png)
 
 ## Table of contents
 
@@ -19,7 +19,8 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     1. [Directory structure](#31-directory-structure)
     2. [Workflow](#32-workflow)
     3. [Adding new files](#33-adding-new-files)
-    4. [Tips](#34-tips)
+    4. [Naming](#34-naming)
+    5. [Tips](#35-tips)
 4. [Scripts](#4-scripts)
     1. [Directory structure](#41-directory-structure)
     2. [Workflow](#42-workflow)
@@ -27,15 +28,17 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 5. [SVG and Images](#5-svg-and-images)
     1. [SVG sprite](#51-svg-sprite)
     2. [Single SVG images](#52-single-svg-images)
-    3. [Images](#53-images)
+    3. [Static Images](#53-static-images)
+    4. [Image sizes](#54-image-sizes)
+    5. [Embed images](#55-embed-images)
+    6. [Lazy load](#56-lazy-load)
 6. [Template tags](#6-template-tags)
-    1. [Get SVG from SVG sprite](#61-get-svg-from-svg-sprite)
-    2. [Social share buttons](#62-social-share-buttons)
-    3. [Numeric posts navigation](#63-numeric-posts-navigation)
-    4. [Sub-pages navigation \(pretendable\)](#64-sub-pages-navigation-pretendable)
-    5. [Posted on](#65-posted-on)
-    6. [Entry footer](#66-entry-footer)
-    7. [Menu toggle btn](#67-menu-toggle-btn)
+    1. [Buttons](#61-buttons)
+    2. [Icons](#62-icons)
+    3. [Meta](#63-meta)
+    4. [Navigation](#64-navigation)
+    5. [Search](#65-search)
+    6. [Titles](#66-titles)
 7. [Includes](#7-includes)
     1. [Localization \(Polylang\)](#71-localization-polylang)
     2. [Menus](#72-menus)
@@ -77,7 +80,9 @@ Project setup is done once in project's lifetime. Do it before modifying anythin
 3. Run setup wizard in theme root with bash `sh setup.sh`
     1. **Site name** (Default: "Aucor Starter")
     2. **Unique id** for your theme. Use only a-z and _. The shorter the better 3-4 characters is the best. (Default: aucor_starter)
-    3. **Local development url** is used by Browsersync and can be changed in `/assets/manifest.json` (Default: https://aucor_starter.local)
+    3. **Local development url** is used by Browsersync and can be changed in `/assets/manifest.js` (Default: https://aucor_starter.local)
+    4. **Author name** is shown in default style.css (Default: Aucor Oy)
+    5. **Author URL** is shown in default style.css (Default: https://www.aucor.fi)
 4. Go to "Developer setup"
 
 ### 2.2 Developer setup
@@ -98,7 +103,7 @@ Do this everythime you start to work with the theme.
 2. Run `gulp watch` to activate build process in background. You'll get development proxy at http://localhost:3000 where changes to code will be updated automatically to browser (no need to reload).
 3. To quit press `ctrl` + `c`
 
-**Protip**: You can also run just `gulp` to build all the resources.
+**Protip**: You can also run just `gulp` to build all the resources or just some resources with `gulp styles` or `gulp scripts`.
 
 ## 3. Styles
 
@@ -115,19 +120,19 @@ Styles are written in SASS in `/assets/styles`. There's four separate stylesheet
       * `_variables.scss` colors, fonts, breakpoints
       * `_mixins.scss` a few [SASS mixins](http://sass-lang.com/guide) for wrapping content, reseting styles and a11y
       * `_normalize.scss` reset base styles for all browsers
-      * `_typography.scss` text styles for titles, lists, images, tables etc.
       * `_print.scss` printing styles, hiding elements, page margins
-  * `/elements/` component styles
-      * `_menu-toggle.scss` hamburger menu button
-      * `_menu-primary.scss` primary menu styles for desktop and mobile
-      * `_menu-social.scss` social media icon menu styles
-      * `_numeric-posts-nav.scss` styles for pagination
-      * `_social-share.scss` social share buttons
-  * `/templates/` template styles
-      * `_header.scss` header styles (without primary menu)
-      * `_footer.scss` footer styles
-      * `_page.scss` styles for pages
+  * `/elements/` elements and components to be used as part of templates
+      * `/content/` styles for content elements (hero, teaser, entry)
+      * `/forms/` styles for forms (basic, search)
+      * `/navigation/` styles for navigation elements (menus, header, footer, social share)
+      * `/typography/` styles for typography (text, buttons, tables, media)
+  * `/templates/` independent templates (archives, singular, page templates)
+      * `_404.scss` styles for 404 page
       * `_front-page.scss` styles for front page
+      * `_index.scss` styles for archives
+      * `_page.scss` styles for pages
+      * `_search.scss` styles for search page
+      * `_single.scss` styles for singular (posts)
   * `@node_modules` vendor packages
       * `breakpoint-sass` [awesome functions](http://breakpoint-sass.com/) for breakpoints
       * `singularitygs` [grid system](https://github.com/at-import/Singularity) with SASS (to be replaced with CSS grid)
@@ -144,11 +149,37 @@ Styles are written in SASS in `/assets/styles`. There's four separate stylesheet
 
 ### 3.3 Adding new files
 
-  1. Make a new file like `/assets/styles/templates/_single.scss`
+  1. Make a new file like `/assets/styles/templates/_template-projects.scss`
   2. Go edit `main.scss`
-  3. Import the new file with `@import "templates/single";`
+  3. Import the new file with `@import "templates/template-projects";`
 
-### 3.4 Tips
+### 3.4 Naming
+
+Theme uses [BEM methodology](http://getbem.com/) to organize class names. Quick example:
+
+```
+.teaser        <-- normal element (Block)
+.teaser__title <-- sub-element    (Element)
+.teaser--big   <-- variant        (Modifier)
+```
+
+BEM in HTML:
+```html
+<div class="teaser">
+  <h2 class="teaser__title">Lorem ipsum</h2>
+</div>
+```
+
+BEM in SASS:
+```scss
+.teaser {
+  &__title {
+    font-size: 1.25rem;
+  }
+}
+```
+
+### 3.5 Tips
 
  * Setup responsive font sizes by setting fonts in percentages in `html` and change html font size with media queries. All elements use `rem` for font sizes so all the font size changes happen in html.
  * Don't hesitate to create variables if you have repeating values. Put all variable definitions in `_variables.scss` or at the beginning of the file.
@@ -164,7 +195,8 @@ The script have very simple structure.
 
   * `/components/` directory for small components
       * `navigation.js` navigation functionality
-  * `main.js` main js file
+  * `main.js` main js file that is run in footer
+  * `critical.js` scripts that should be run in head
 
 ### 4.2 Workflow
 
@@ -177,60 +209,37 @@ The script have very simple structure.
 
 #### 4.3.1 Add script from file
 
-Put file in `/assets/scripts/components/my_script.js`. Add script to main.js (or some other file) in `/assets/manifest.json`:
+Put file in `/assets/scripts/components/my_script.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
 
-```json
-
-"main.js": {
-   "files": [
-     "scripts/components/my_script.js"
-  ]
-}
+```js
+"main.js": [
+  "scripts/main.js"
+],
 ```
 
 **Combine scripts in one file:**
-```json
-
-"main.js": {
-   "files": [
-     "scripts/vendor/wow.js",
-     "scripts/components/my_script.js"
-  ]
-}
+```js
+"main.js": [
+  "scripts/components/navigation.js",
+  "scripts/main.js"
+],
 ```
 
 #### 4.3.2 Add script with yarn (node_modules)
 
 First, go to [npmjs.com](https://www.npmjs.com/) and find if your library is avaialble. Add your library in `package.json` devDependencies. Run `yarn upgrade`.
 
-Include the script in `/assets/manifest.json`.
+Include the script in `/assets/manifest.js`.
 
-```json
-
-"main.js": {
-  "files": [
-    "../node_modules/fitvids/fitvids.js",
-    "scripts/main.js"
-  ]
-}
+```js
+"main.js": [
+  "../node_modules/fitvids/dist/fitvids.js",
+  "scripts/components/navigation.js",
+  "scripts/main.js"
+],
 ```
 
 **Protip:** Add this library also to `.jshintignore` and Gulp won't check the syntax.
-
-
-#### 4.3.2 Add script with bower (bower_components)
-
-Always prefer Yarn if it's available. Bower often includes libraries that you don't need or they are duplicates to your own.
-
-Add script to `/bower.json` and run `bower install`. Include library in `/assets/manifest.json`.
-
-
-```json
-
-"jquery.js": {
-  "bower": ["jquery"]
-}
-```
 
 ## 5. SVG and Images
 
@@ -250,15 +259,100 @@ In PHP you can get these images with (more exmples in Template tags):
 
 You can also place more complex (multi-colored) SVGs in `/assets/images/` and Gulp will compress them. They can be found in `/dist/images/`
 
-### 5.3 Images
+### 5.3 Static images
 
 Put your static images in `/assets/images/` and Gulp will compress them a bit. Refer images in `/dist/images/`.
+
+### 5.4 Image sizes
+
+Image sizes are defined in `functions.php`. Tips for creating image sizes:
+
+  * Base images on commonly used aspect ratios (16:9, 1:1)
+  * Make "medium" half of the text columns and "large" full text column
+  * Add additional sizes for responsive images (for example teaser_lg, teaser_md, teaser_sm)
+
+### 5.5 Embed images
+
+```php
+/**
+ * Get responsive image markup
+ *
+ * @example aucor_starter_get_image(123, 'large')
+ * @example aucor_starter_get_image(123, 'medium', ['class' => 'teaser-img'])
+ * @example aucor_starter_get_image(123, 'medium', ['attr' => ['data-name' => 'data-value']])
+ *
+ * @param int    $attachment_id ID of image
+ * @param string $human_size a easy to understand size of image
+ * @param array  $args list of optional options
+ *
+ * @return html markup for image
+ */
+function aucor_starter_get_image($attachment_id, $human_size = 'large', $args = array())
+```
+
+Theme has its own function for getting image markup that gives the developer control of which responsive sizes should be used and include lazy loading.
+
+After you have setup WordPress image sizes go to `/template-tags/images.php` and setup your "human-sizes" (the sizes you will use as arguments). These human-sizes hold info of the primary image size, supporting sizes and what size the image is displayed.
+
+```php
+switch ($human_size) {
+
+  case 'hero':
+    return array(
+      'primary'    => 'hero_md',
+      'supporting' => ['full', 'hero_xl', 'hero_md', 'hero_sm'],
+      'sizes'      => '100vw'
+    );
+
+  case 'thumbnail':
+    return array(
+      'primary'    => 'thumbnail',
+      'supporting' => ['full', 'thumbnail'],
+      'sizes'      => '250px'
+    );
+
+  default:
+    aucor_starter_debug('Image size error - Missing human readable size {' . $human_size . '}', array('aucor_starter_get_image'));
+
+}
+```
+
+Notice that many "human-sizes" can use same WordPress image sizes. This is useful for example when same image might be displayed different size on different devices so you can pass different "sizes" attributes for browser. [Read more about sizes attribute](https://css-tricks.com/responsive-images-css/#article-header-id-1).
+
+**Protip:** If you use CSS property `object-fit` it needs special handling to work in IE11 and older. Theme has [object-fit-polyfill](https://github.com/constancecchen/object-fit-polyfill) installed and all you need to do is add special data attribute for img tag like `aucor_starter_get_image(123, 'medium', ['attr' => ['data-object-fit' => 'cover']])`
+
+### 5.6 Lazy load
+
+By default the image function has lazy loading on. Lazy loading uses [lazysizes library](https://github.com/aFarkas/lazysizes). When emedding image there's three possibilities:
+
+  * Lazyload from transparent to visible (default): `aucor_starter_get_image(123, 'medium')`
+  * Lazyload from blurry pre-load image to visible: `aucor_starter_get_image(123, 'medium', ['lazyload' => 'animated'])`
+  * No lazyload: `aucor_starter_get_image(123, 'medium', ['lazyload' => false])`
+
+Lazy loading is SEO friendly and function automatically displays `<noscript>` versions for users without JS.
 
 ## 6. Template tags
 
 Template tags `/template-tags/` includes functions to be used in templates. Here's what you get by default. Notice that function prefix is changed to whatever you choose it to be in setup.
 
-### 6.1 Get SVG from SVG sprite
+### 6.1 Buttons
+
+#### Social share buttons
+Function: `aucor_starter_social_share_buttons()`
+
+Displays share buttons (Facebook, Twitter, LinkedIn) with link to their sharer.
+```php
+<?php aucor_starter_social_share_buttons(); ?>
+```
+
+#### Menu toggle btn
+Function: `aucor_starter_menu_toggle_btn($id, $args = array())`
+
+Display hamburger button for menu.
+
+### 6.2 Icons
+
+#### Get SVG from SVG sprite
 
 Function: `aucor_starter_get_svg($icon, $args = array())`
 
@@ -284,23 +378,29 @@ $args = array(
 echo aucor_starter_get_svg('facebook', $args);
 ```
 
-### 6.2 Social share buttons
-Function: `aucor_starter_social_share_buttons()`
+### 6.3 Meta
 
-Displays share buttons (Facebook, Twitter, LinkedIn) with link to their sharer.
-```php
-<?php aucor_starter_social_share_buttons(); ?>
-```
+#### Posted on
+Function: `aucor_starter_posted_on()`
 
-### 6.3 Numeric posts navigation
+Display date when post was published.
+
+#### Entry footer
+Function: `aucor_starter_entry_footer()`
+
+Display categories and tags of single post.
+
+### 6.3 Navigation
+
+#### Numeric posts navigation
 Function: `aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var = null)`
 
 Displays numeric navigation instead of normal "next page, last page" navigation. Can be used with a custom query. You can even change the pagination variable if you need to.
 
 Main query:
 ```php
-if( have_posts() )
-  while ( have_posts() ) : the_post();
+if(have_posts())
+  while (have_posts()) : the_post();
     ...
   endwhile;
   aucor_starter_numeric_posts_nav();
@@ -315,9 +415,9 @@ $args = array(
   'posts_per_page' => 10,
   'paged' => $paged,
 );
-$loop = new WP_Query( $args );
-if( $loop->have_posts() )
-  while ( $loop->have_posts() ) : $loop->the_post();
+$loop = new WP_Query($args);
+if($loop->have_posts())
+  while ($loop->have_posts()) : $loop->the_post();
     ...
   endwhile;
   aucor_starter_numeric_posts_nav($loop);
@@ -332,16 +432,16 @@ $args = array(
   'posts_per_page' => 10,
   'paged' => $paged,
 );
-$loop = new WP_Query( $args );
-if( $loop->have_posts() )
-  while ( $loop->have_posts() ) : $loop->the_post();
+$loop = new WP_Query($args);
+if ($loop->have_posts())
+  while ($loop->have_posts() ) : $loop->the_post();
     ...
   endwhile;
   aucor_starter_numeric_posts_nav($loop, 'current_page');
 endif;
 ```
 
-### 6.4 Sub-pages navigation (pretendable)
+#### Sub-pages navigation (pretendable)
 Function: `aucor_starter_sub_pages_navigation()`
 
 Displays sub-pages for current page in list. If you need to pretend that single post is somewhere in the hierarchy, use global variable pretend_id to display current view to be in certain place in hierarchy
@@ -357,23 +457,20 @@ Pretend to be someone else (place it before calling this function):
 global $pretend_id;
 $pretend_id = 123; // highlight this item as "current_page_item"
 ```
-### 6.5 Posted on
-Function: `aucor_starter_posted_on()`
 
-Display date when post was published.
+### 6.5 Search
 
-### 6.6 Entry footer
-Function: `aucor_starter_entry_footer()`
+#### Search form
 
-Display categories and tags of single post.
-
-### 6.7 Menu toggle btn
-Function: `aucor_starter_menu_toggle_btn($id, $args = array())`
-
-Display hamburger button for menu.
-
-### 6.8 Search
 Function: `aucor_starter_search_form($id, $args = array())`
+
+Display easily customizable search form.
+
+### 6.6 Titles
+
+#### Archive titles
+
+Function: `aucor_starter_get_the_archive_title()`
 
 Display easily customizable search form.
 
@@ -401,34 +498,42 @@ Start off by registering some strings.
 By default you have a few strings there. They are in Finnish by default. You can change them to English by copying and pasting following (we should make this into setup process...)
 
 ```php
-// Menu
+// titles
+'Title: Home'                       => 'Blog',
+'Title: Archives'                   => 'Archives',
+'Title: Search'                     => 'Search',
+'Title: 404'                        => 'Page not found',
+
+// menu
 'Menu: Button label'                => 'Menu',
 'Menu: Primary Menu'                => 'Primary menu',
 'Menu: Social Menu'                 => 'Social media channels',
 
 // 404
-'404: Page not found'               => 'Page not found',
 '404: Page not found description'   => 'The page might have been deleted or moved to different location. Use the search below to find what you are looking for.',
 
-// Search
+// search
 'Search: Title'                      => 'Search: ',
 'Search: Nothing found'              => 'No search results',
 'Search: Nothing found description'  => 'No search results found. Try different words.',
+'Search: Placeholder'                => 'Search...',
+'Search: Screen reader label'        => 'Search from site',
+'Search: Submit'                     => 'Hae',
 
-// Accessibility
+// accessibility
 'Accessibility: Skip to content'     => 'Skip to content',
 
-// Navigation
+// navigation
 'Navigation: Previous'               => 'Previous',
 'Navigation: Next'                   => 'Next',
 
-// Social
+// social
 'Social share: Title'                => 'Share on social media',
-'Social share: Facebook'             => 'Facebook',
-'Social share: Twitter'              => 'Twitter',
-'Social share: LinkedIn'             => 'LinkedIn',
+'Social share: Facebook'             => 'Share on Facebook',
+'Social share: Twitter'              => 'Share on Twitter',
+'Social share: LinkedIn'             => 'Share on LinkedIn',
 
-// Taxonomies
+// taxonomies
 'Taxonomies: Keywords'               => 'Keywords',
 'Taxonomies: Categories'             => 'Categories',
 
@@ -536,7 +641,7 @@ WordPress settings tweaks.
  * Remove all default dashboard widgets
 
 ####  7.3.5 Plugins
-* Lower Yoast metabox
+* Lower Yoast and SEO Framework metabox
 * Remove Yoast notifications
 * Remove "SEO" section from admin bar
 * Grant access to Redirection plugin to users that can publish pages (admins and editors)
@@ -588,17 +693,17 @@ Theme location: `social`
 Optional menu for organization's social media accounts.
 
 How to use:
- * Include template part somewhere `<?php get_template_part('template-parts/menu-social'); ?>`
+ * Include template part somewhere `<?php get_template_part('partials/menu-social'); ?>`
  * Create a new menu in WP admin
  * Add custom link items with url to account and title like "Facebook"
  * Menu item gets SVG icon that is based on url
- * Style menu as needed on `/assets/styles/elements/_menu-social.scss`
+ * Style menu as needed on `/assets/styles/elements/navigation/_menu-social.scss`
 
 **Protip:** If you want to hide titles, do `@include visuallyhidden` for a11y.
 
 ### 8.3 Navigation skeleton
 
-Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/navigation.js` and `/assets/styles/elements/_primary-menu.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
+Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/navigation.js` and `/assets/styles/elements/navigation/_primary-menu.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
 
 Inside `main.js` there is the menu init and a few arguments:
 

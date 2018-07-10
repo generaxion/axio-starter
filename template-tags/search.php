@@ -34,20 +34,20 @@ function aucor_starter_search_form($id, $args = array()) {
   $input_id = $id . '-input';
 
   ?>
-  <form id="<?php echo esc_attr($id); ?>" role="search" method="get" class="<?php echo esc_url($args['class']); ?>" action="<?php echo esc_url($args['action']); ?>">
+  <form id="<?php echo esc_attr($id); ?>" role="search" method="get" class="<?php echo esc_attr($args['class']); ?>" action="<?php echo esc_url($args['action']); ?>">
 
-    <label for="<?php echo esc_attr($input_id); ?>" class="screen-reader-text"><?php echo esc_attr($args['screen-reader-text']); ?></label>
+    <label for="<?php echo esc_attr($input_id); ?>" class="search-form__label screen-reader-text"><?php echo esc_attr($args['screen-reader-text']); ?></label>
 
     <input
       type="search"
-      class="search-field"
+      class="search-form__input"
       id="<?php echo esc_attr($input_id); ?>"
-      name="<?php echo esc_attr($args['s']); ?>"
+      name="<?php echo esc_attr($args['name']); ?>"
       value="<?php echo esc_attr($args['value']); ?>"
       placeholder="<?php echo esc_attr($args['placeholder']); ?>"
     />
 
-    <button type="submit" class="search-submit"><?php echo $args['submit']; ?></button>
+    <button type="submit" class="search-form__submit"><?php echo $args['submit']; ?></button>
 
   </form>
   <?php

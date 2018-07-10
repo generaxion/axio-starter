@@ -1,11 +1,6 @@
 <?php
 /**
- * The template for displaying all pages.
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
+ * Default template for pages.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -14,16 +9,26 @@
 
 get_header(); ?>
 
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+  <?php get_template_part('partials/hero'); ?>
+
+  <div id="primary" class="primary primary--page">
+
+    <main id="main" class="main">
 
       <?php while (have_posts()) : the_post(); ?>
 
-        <?php get_template_part('partials/content', 'page'); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--page'); ?>>
+
+          <div class="entry__content wysiwyg">
+            <?php the_content(); ?>
+          </div>
+
+        </article>
 
       <?php endwhile; ?>
 
     </main><!-- #main -->
+
   </div><!-- #primary -->
 
 <?php

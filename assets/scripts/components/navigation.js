@@ -131,12 +131,23 @@ aucor_navigation = function( menu, options ) {
   };
 
   var open_submenu_with_click = function(e) {
+
+    var li = null;
+    var parent = e.target.parentElement;
+    while(!parent.isEqualNode(menu)) {
+      if(parent.classList.contains('menu-item')) {
+        li = parent;
+        break;
+      }
+      parent = parent.parentElement;
+    }
+
     // toggle .open class to child .sub-menu
-    this.querySelector('.sub-menu').classList.toggle('open');
+    li.querySelector('.sub-menu').classList.toggle('open');
 
     // toggle .active class to this <li>
     if(!is_desktop_menu()) {
-      this.classList.toggle('active');
+      li.classList.toggle('active');
     }
 
     // don't trigger parent(s)
@@ -149,9 +160,16 @@ aucor_navigation = function( menu, options ) {
     item.addEventListener('mouseover', open_sub_menu);
     item.addEventListener('mouseleave', close_sub_menu);
 
-    /* Open sub-menu with click to <li>
-    ----------------------------------------------- */
-    item.addEventListener('click', open_submenu_with_click);
+    var caret = item.querySelector('.js-menu-caret');
+    if (caret) {
+
+      /* Open sub-menu with click to <button>
+      ----------------------------------------------- */
+      caret.addEventListener('click', open_submenu_with_click);
+
+    }
+
+
   }
 
   /* Keyboard (tab)
@@ -202,10 +220,10 @@ aucor_navigation = function( menu, options ) {
   ----------------------------------------------- */
 
   menu_toggle.addEventListener('click', function() {
-    if(menu_toggle.classList.contains('active')) {
+    if(menu_toggle.classList.contains('menu-toggle--active')) {
 
       // remove .active class from hamburger icon
-      menu_toggle.classList.remove('active');
+      menu_toggle.classList.remove('menu-toggle--active');
       menu_toggle.setAttribute('aria-expanded', 'false');
 
       // remove .active class to menu container
@@ -217,7 +235,7 @@ aucor_navigation = function( menu, options ) {
     } else {
 
       // .active class to hamburger icon
-      menu_toggle.classList.add('active');
+      menu_toggle.classList.add('menu-toggle--active');
       menu_toggle.setAttribute('aria-expanded', 'true');
 
       // .active class to menu container

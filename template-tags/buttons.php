@@ -18,23 +18,23 @@ function aucor_starter_social_share_buttons() {
   $title = get_the_title();
 
   ?>
-  <div class="social-share-container">
+  <div class="social-share">
 
-    <span class="h3"><?php ask_e('Social share: Title'); ?></span>
+    <span class="social-share__title h3"><?php ask_e('Social share: Title'); ?></span>
 
-    <a data-social-media="Facebook" href="<?php echo "https://www.facebook.com/sharer/sharer.php?u=$url"; ?>" target="_blank" class="social-share-link social-share-fb">
+    <a href="<?php echo esc_url("https://www.facebook.com/sharer/sharer.php?u=$url"); ?>" target="_blank" class="social-share__link social-share__link--facebook">
       <?php echo aucor_starter_get_svg('facebook'); ?>
-      <span class="social-share-service"><?php ask_e('Social share: Facebook'); ?></span>
+      <span class="social-share__link__label"><?php ask_e('Social share: Facebook'); ?></span>
     </a>
 
-    <a data-social-media="Twitter" href="<?php echo "https://twitter.com/share?url=$url"; ?>" target="_blank" class="social-share-link social-share-twitter">
+    <a href="<?php echo esc_url("https://twitter.com/share?url=$url"); ?>" target="_blank" class="social-share__link social-share__link--twitter">
       <?php echo aucor_starter_get_svg('twitter'); ?>
-      <span class="social-share-service"><?php ask_e('Social share: Twitter'); ?></span>
+      <span class="social-share__link__label"><?php ask_e('Social share: Twitter'); ?></span>
     </a>
 
-    <a data-social-media="LinkedIn" href="<?php echo "https://www.linkedin.com/shareArticle?mini=true&title=$title&url=$url"; ?>" target="_blank" class="social-share-link social-share-linkedin">
+    <a href="<?php echo esc_url("https://www.linkedin.com/shareArticle?mini=true&title=$title&url=$url"); ?>" target="_blank" class="social-share__link social-share__link--linkedin">
       <?php echo aucor_starter_get_svg('linkedin'); ?>
-      <span class="social-share-service"><?php ask_e('Social share: LinkedIn'); ?></span>
+      <span class="social-share__link__label"><?php ask_e('Social share: LinkedIn'); ?></span>
     </a>
 
   </div>
@@ -74,17 +74,17 @@ function aucor_starter_menu_toggle_btn($id, $args = array()) {
   ?>
   <button id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($class); ?>" aria-expanded="false">
     <span class="screen-reader-text"><?php echo esc_html($args['screen-reader-text']); ?></span>
-    <svg class="icon icon-menu-toggle" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100">
-      <g class="svg-menu-toggle">
-        <path class="line line-1" d="M5 13h90v14H5z"/>
-        <path class="line line-2" d="M5 43h90v14H5z"/>
-        <path class="line line-3" d="M5 73h90v14H5z"/>
-        <path class="close-line close-line-1" d="M5 43h90v14H5z"/>
-        <path class="close-line close-line-2" d="M5 43h90v14H5z"/>
+    <svg class="menu-toggle__svg icon" aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100">
+      <g class="menu-toggle__svg__g">
+        <path class="menu-toggle__svg__line menu-toggle__svg__line--1" d="M5 13h90v14H5z"/>
+        <path class="menu-toggle__svg__line menu-toggle__svg__line--2" d="M5 43h90v14H5z"/>
+        <path class="menu-toggle__svg__line menu-toggle__svg__line--3" d="M5 73h90v14H5z"/>
+        <path class="menu-toggle__svg__close-line menu-toggle__svg__close-line--1" d="M5 43h90v14H5z"/>
+        <path class="menu-toggle__svg__close-line menu-toggle__svg__close-line--2" d="M5 43h90v14H5z"/>
       </g>
     </svg>
     <?php if (!empty($args['label'])) : ?>
-      <span class="menu-toggle-label"><?php echo esc_html($args['label']); ?></span>
+      <span class="menu-toggle__label"><?php echo esc_html($args['label']); ?></span>
     <?php endif; ?>
   </button>
   <?php

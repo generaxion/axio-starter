@@ -1,12 +1,12 @@
 /* ==========================================================================
-  Elements - Primary menu
+ elements / navigation / social icons
 ========================================================================== */
 
-#social-navigation {
+.social-navigation {
 
 }
 
-.menu-social-items {
+.social-navigation__items {
   @include list-reset;
   li {
     display: inline-block;
@@ -16,7 +16,7 @@
     height: 1.25rem;
     margin-right: .25rem;
   }
-  .menu-item-label {
+  .social-navigation__item__label {
     //@include visuallyhidden; // show titles only to screen readers
   }
 }

@@ -134,7 +134,7 @@ add_action('admin_init', 'aucor_starter_default_image_link_to_none', 10);
  */
 function aucor_starter_limit_revisions($number, $post_id) {
 
-  return 10;
+  return 5;
 
 }
 add_filter('wp_revisions_to_keep', 'aucor_starter_limit_revisions', 10, 2);
@@ -203,7 +203,7 @@ add_filter('excerpt_more', 'aucor_starter_excerpt_more');
  */
 function aucor_starter_excerpt_length($length) {
 
-  return 25;
+  return 20;
 
 }
 add_filter('excerpt_length', 'aucor_starter_excerpt_length', 999);
@@ -254,6 +254,19 @@ function aucor_starter_move_jquery_into_footer($wp_scripts) {
 }
 add_action('wp_default_scripts', 'aucor_starter_move_jquery_into_footer');
 
+/**
+ * Remove obsolete type attribute from scripts (HTML validator warning)
+ *
+ * @param string $tag the generated <script>
+ *
+ */
+function aucor_starter_cleanup_script_tags($tag) {
+
+  return str_replace(array('type=\'text/javascript\' ', 'type="text/javascript" '), '', $tag);
+
+}
+add_filter('script_loader_tag', 'aucor_starter_cleanup_script_tags');
+
 
 /* =========================================================
   04. Dashboard
@@ -289,16 +302,18 @@ remove_action( 'welcome_panel', 'wp_welcome_panel' );
  ======================================================== */
 
 /**
- * Lower Yoast metabox priority
+ * Lower Yoast/SEO Framework metabox priority
  *
  * @return string metabox priority
  */
-function aucor_starter_wpseo_metabox_prio() {
+function aucor_starter_seo_metabox_prio() {
 
   return 'low';
 
 }
-add_filter('wpseo_metabox_prio', 'aucor_starter_wpseo_metabox_prio');
+add_filter('wpseo_metabox_prio', 'aucor_starter_seo_metabox_prio');
+add_filter('the_seo_framework_metabox_priority', 'aucor_starter_seo_metabox_prio');
+
 
 /**
  * Remove Yoast notifications

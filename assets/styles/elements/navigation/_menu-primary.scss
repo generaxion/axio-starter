@@ -1,15 +1,8 @@
 /* ==========================================================================
-  Elements - Primary menu
+ elements / navigation / menu-primary
 ========================================================================== */
 
-button.menu-toggle {
-  display: none;
-  @include breakpoint($menu-hidden) {
-    display: inline-block;
-  }
-}
-
-#primary-navigation-items {
+.primary-navigation__items {
 
   /* -------------------------------------------------------
     Both navigations
@@ -36,9 +29,9 @@ button.menu-toggle {
     li {
       &.menu-item-has-children {
         position: relative;
-        & > a {
-          display: block;
-          margin-right: 2rem; // room for caret
+        & > span {
+          width: 100%;
+          display: flex;
         }
 
         & > .icon-wrap {
@@ -62,7 +55,25 @@ button.menu-toggle {
     }
 
     // all <a>
-    a {}
+    a {
+      flex-grow: 1;
+    }
+
+    .icon {
+      width: .75em;
+      height: .75em;
+      top: -.125rem;
+      position: relative;
+    }
+
+    // all carets
+    .menu-item__link__caret {
+      @include button-reset;
+      padding: .25rem .5rem;
+      background: $menu-dropdown-color;
+      color: $white;
+      margin-left: 1rem;
+    }
 
     // all .sub-menu
     .sub-menu {
@@ -141,17 +152,30 @@ button.menu-toggle {
     flex-wrap: wrap;
 
     // all <li>
-    li {}
+    li {
+      & > span {
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+    }
 
     // all <a>
     a {
       color: $base-font-color;
       text-decoration: none;
+      flex-grow: 1;
+    }
+
+    // all carets
+    .menu-item__link__caret {
+      @include button-reset;
+      margin-left: .25rem;
+      flex-shrink: 0;
     }
 
     // all <svg>
     .icon {
-      margin-left: .25em;
       width: .75em;
       height: .75em;
       top: -.125rem;
@@ -167,7 +191,7 @@ button.menu-toggle {
       }
 
       // 1st level <a>
-      & > a {
+      & > span > a {
         font-weight: $bold;
       }
 
@@ -188,9 +212,6 @@ button.menu-toggle {
           transform: rotate(-90deg);
         }
       }
-
-
-
 
       // 2nd level <ul class="sub-menu"> [open]
       &:hover > .sub-menu,
@@ -249,8 +270,13 @@ button.menu-toggle {
             display: block;
           }
 
-          // 3rd level <ul class="sub-menu"> [open]
+          // carets 2nd level and below
+          .menu-item__link__caret {
+            padding-left: .75rem;
+            padding-right: .75rem;
+          }
 
+          // 3rd level <ul class="sub-menu"> [open]
           &:hover > .sub-menu,
           & > .sub-menu.open {
             opacity: 1;

@@ -9,6 +9,7 @@
  * Include features
  */
 require_once 'inc/cache.php';                  // cache hooks and functions
+require_once 'inc/debug.php';                  // debug functions
 require_once 'inc/hide-users.php';             // hide users' identities
 require_once 'inc/localization.php';           // localization strings and functions
 require_once 'inc/menus.php';                  // menus
@@ -21,20 +22,53 @@ require_once 'inc/wp-settings.php';            // WP settings and optimization
  */
 require_once 'template-tags/buttons.php';      // buttons & social
 require_once 'template-tags/icons.php';        // icons & SVG
+require_once 'template-tags/images.php';       // images
 require_once 'template-tags/meta.php';         // meta & time
 require_once 'template-tags/navigation.php';   // navigation & hierarchial pages
 require_once 'template-tags/search.php';       // search
+require_once 'template-tags/titles.php';       // titles
+
 
 /**
  * Set up theme defaults and register support for various WordPress features
  */
 function aucor_starter_setup() {
 
-  // enable support for post thumbnails
-  add_theme_support('post-thumbnails');
+  // default image sizes
+  $default_image_sizes = [
+    [
+      'name' => 'thumbnail',
+      'w'    => 250,
+      'h'    => 250,
+    ],
+    [
+      'name' => 'medium',
+      'w'    => 360,
+      'h'    => 720,
+    ],
+    [
+      'name' => 'large',
+      'w'    => 720,
+      'h'    => 1440,
+    ]
+  ];
+
+  foreach ($default_image_sizes as $size) {
+    $existing_w = intval(get_option($size['name'] . '_size_w'));
+    if ($existing_w !== $size['w']) {
+      update_option($size['name'] . '_size_h', $size['h']);
+      update_option($size['name'] . '_size_w', $size['w']);
+    }
+  }
 
   // custom image sizes
-  // add_image_size($name, $width, $height, $crop);
+  add_image_size('lazyload',   14,  8,  true); // small ~16:9
+  add_image_size('hero_xl',  2000, 750, true);  // hero @1,33x 3:1
+  add_image_size('hero_md',  1500, 500, true);  // hero @1x 3:1
+  add_image_size('hero_sm',   800, 500, true);  // hero mobile 8:5
+
+  // enable support for post thumbnails
+  add_theme_support('post-thumbnails');
 
   // automatic document title
   add_theme_support('title-tag');
@@ -46,13 +80,7 @@ function aucor_starter_setup() {
   ));
 
   // use HTML5 markup
-  add_theme_support('html5', array(
-    'search-form',
-    'comment-form',
-    'comment-list',
-    'gallery',
-    'caption',
-  ));
+  add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
 
 }
 add_action('after_setup_theme', 'aucor_starter_setup');
@@ -64,7 +92,7 @@ add_action('after_setup_theme', 'aucor_starter_setup');
  */
 function aucor_starter_content_width() {
 
-  $GLOBALS['content_width'] = apply_filters('aucor_starter_content_width', 640);
+  $GLOBALS['content_width'] = apply_filters('aucor_starter_content_width', 720);
 
 }
 add_action('after_setup_theme', 'aucor_starter_content_width', 0);
@@ -99,7 +127,7 @@ add_action('widgets_init', 'aucor_starter_widgets_init');
 function aucor_starter_tinymce_formats($init) {
 
   // text formats
-  $init['block_formats'] = 'Paragraph=p; Alaotsikko 2=h2; Alaotsikko 3=h3; Alaotsikko 4=h4';
+  $init['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4';
 
   // cache busting
   $init['cache_suffix'] = aucor_starter_last_edited('css');
@@ -122,6 +150,9 @@ function aucor_starter_scripts() {
 
   // main js
   wp_enqueue_script('aucor_starter-js', get_template_directory_uri() . '/dist/scripts/main.js', $js_dependencies, aucor_starter_last_edited('js'), true);
+
+  // critical js
+  wp_enqueue_script('aucor_starter-critical-js', get_template_directory_uri() . '/dist/scripts/critical.js', array(), aucor_starter_last_edited('js'), false);
 
   // comments
   if (is_singular() && comments_open() && get_option('thread_comments')) {

@@ -1,0 +1,150 @@
+/* ==========================================================================
+ elements / typography / text
+========================================================================== */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $base-font-color;
+  font-family: $font-text;
+  font-size: 87.5%; // 14px
+  line-height: $base-line-height;
+  @include breakpoint($m) {
+    font-size: 100%; // 16px
+  }
+}
+
+h1, .h1 {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: $bold;
+  line-height: 1.125;
+  margin: 0 0 2rem;
+}
+
+h2, .h2 {
+  display: block;
+  font-size: 2rem;
+  font-weight: $bold;
+  line-height: 1.333333;
+  margin: 1.5rem 0;
+}
+
+h3, .h3 {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: $bold;
+  line-height: $base-line-height;
+  margin-bottom: 1.5rem;
+}
+
+h4, .h4 {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: $normal;
+  line-height: $base-line-height;
+  margin-bottom: 1.5rem; // 24px
+}
+
+h5, .h5 {
+  display: block;
+  font-size: 1rem;
+  font-weight: $bold;
+  line-height: $base-line-height;
+  margin-bottom: 0;
+}
+
+p, .p {
+  display: block;
+  font-size: 1rem;
+  line-height: $base-line-height;
+  margin: 0 0 1.5rem;
+  &.lead {
+    font-size: 1.25rem; // 20px
+  }
+}
+
+hr {
+  margin: 2rem 0;
+  display: block;
+}
+
+/* WYSIWYG spesific
+----------------------------------------------- */
+
+.wysiwyg {
+  & > :first-child {
+    margin-top: 0;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Lists
+----------------------------------------------- */
+
+ul, ol {
+  margin: 0 0 1rem;
+}
+
+/* Links
+----------------------------------------------- */
+
+a {
+  color: $blue;
+  &:hover, &:active, &:focus {
+  }
+}
+
+/* Text format styles
+----------------------------------------------- */
+
+blockquote {
+  border-left: 2px solid $grey;
+  margin-left: 0;
+  padding-left: 1rem;
+  p {
+    font-size: 1.125rem;
+  }
+}
+
+/* Accessibility
+----------------------------------------------- */
+
+a:focus {
+  outline: 1px dotted;
+}
+
+.screen-reader-text {
+  @include visuallyhidden;
+}
+
+.skip-to-content {
+  background-color: #f1f1f1;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .2);
+  display: block;
+  left: -9999em;
+  outline: none;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  text-transform: none;
+  top: -9999em;
+  &:focus {
+    clip: auto;
+    height: auto;
+    left: .5rem;
+    top: .5rem;
+    width: auto;
+    z-index: 100000;
+  }
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+.social-share-link:focus {
+  outline: 1px dotted;
+  outline-offset: -2px;
+}

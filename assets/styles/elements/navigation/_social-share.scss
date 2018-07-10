@@ -1,5 +1,5 @@
 /* ==========================================================================
-  Elements - Social share buttons
+ elements / navigation / social share
 ========================================================================== */
 
 $blue-facebook:   #3b5998;
@@ -8,12 +8,15 @@ $blue-linkedin:   #007bb6;
 $red-google-plus: #dd4b39;
 $red-pinterest:   #cb2027;
 
-.social-share-container {
+.social-share {
   padding-top: 1.5rem;
-  h3 {
+
+  &__title {
 
   }
-  .social-share-link {
+
+  &__link {
+    @include transition(background);
     display: inline-block;
     color: $white;
     vertical-align: top;
@@ -21,34 +24,39 @@ $red-pinterest:   #cb2027;
     line-height: 0;
     margin: 0 .25rem .5rem 0;
     position: relative;
-    transition: background .2s ease-in-out;
     text-decoration: none;
     .icon-wrap {
       margin-right: .25rem;
     }
-    span {
-
-    }
     &:last-of-type {
       margin-right: 0;
     }
-    &.social-share-fb {
+
+    &--facebook {
       background: $blue-facebook;
       &:hover, &:focus {
         background: darken($blue-facebook, 9);
       }
     }
-    &.social-share-twitter {
+
+    &--twitter {
       background: $blue-twitter;
       &:hover, &:focus {
         background: darken($blue-twitter, 9);
       }
     }
-    &.social-share-linkedin {
+
+    &--linkedin {
       background: $blue-linkedin;
       &:hover, &:focus {
         background: darken($blue-linkedin, 9);
       }
     }
+
+    &__label {
+
+    }
+
   }
+
 }

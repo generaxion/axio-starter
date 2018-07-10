@@ -5,6 +5,8 @@
 default_name="Aucor Starter"
 default_id="aucor_starter"
 default_url="https://aucor_starter.local"
+default_author="Aucor Oy"
+default_authorurl="https://www.aucor.fi"
 default_locale="fi"
 
 # Directories
@@ -62,12 +64,34 @@ else
   url=$default_url
 fi
 
+echo "4) Set author name. (Default: $default_author)"
+read author
+
+# use default if empty
+if test -n "$author"; then
+  echo ""
+else
+  author=$default_author
+fi
+
+echo "5) Set author URL. (Default: $default_authorurl)"
+read authorurl
+
+# use default if empty
+if test -n "$authorurl"; then
+  echo ""
+else
+  authorurl=$default_authorurl
+fi
+
 while true; do
-read -p "4) Is following information correct?
+read -p "5) Is following information correct?
 
 name: ${bold}${pink}$name${txtreset} (Default: $default_name)
 id: ${bold}${pink}$id${txtreset} (Default: $default_id)
 url: ${bold}${pink}$url${txtreset} (Default: $default_url)
+author name: ${bold}${pink}$author${txtreset} (Default: $default_author)
+author url: ${bold}${pink}$authorurl${txtreset} (Default: $default_authorurl)
 
 Proceed to install? [y/N]
 " yn
@@ -111,9 +135,18 @@ find "$basedir" -name 'README.md' -type f -exec perl -p -i -e "s|$default_id|$id
 echo "--> Search & replace id ..... ${green}done${txtreset}"
 
 # manifest.json
-find "$assetsdir" -name 'manifest.json' -type f -exec perl -p -i -e "s|$default_url|$url|g" {} \;
+find "$assetsdir" -name 'manifest.js' -type f -exec perl -p -i -e "s|$default_url|$url|g" {} \;
 
 echo "--> Change url .............. ${green}done${txtreset}"
+# style.css
+find "$basedir" -name 'style.css' -type f -exec perl -p -i -e "s|$default_author|$author|g" {} \;
+
+echo "--> Set author name ......... ${green}done${txtreset}"
+
+# style.css
+find "$basedir" -name 'style.css' -type f -exec perl -p -i -e "s|$default_authorurl|$authorurl|g" {} \;
+
+echo "--> Set author url .......... ${green}done${txtreset}"
 
 echo "--> ${green}Setup complete!${txtreset}"
 

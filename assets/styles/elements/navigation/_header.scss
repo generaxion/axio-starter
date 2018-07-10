@@ -1,0 +1,52 @@
+/* ==========================================================================
+ elements / navigation / header
+========================================================================== */
+
+.site-header {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  @include breakpoint($menu-visible) {
+    display: flex;
+    align-items: center;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+
+  &__container {
+    @include wrap;
+    @include breakpoint($menu-visible) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__branding {
+    @include breakpoint($menu-visible) {
+      width: 8rem;
+      padding-right: 2rem;
+    }
+    @include breakpoint($menu-hidden) {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .site-header__branding__logo {
+        width: 6rem;
+      }
+    }
+
+    &__title {
+      display: block;
+      line-height: 0;
+      a {
+        display: block;
+        line-height: 0;
+      }
+    }
+
+  }
+
+}
+
+
