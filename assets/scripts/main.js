@@ -29,9 +29,14 @@ fitvids();
  */
 if (typeof objectFitPolyfill === "function") {
   document.addEventListener('lazybeforeunveil', function(e){
+
+    // current <img> element
+    var el = e.target;
+
     objectFitPolyfill();
     el.addEventListener('load', function() {
       objectFitPolyfill();
     });
+
   });
 }

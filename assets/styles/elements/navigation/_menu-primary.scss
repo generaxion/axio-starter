@@ -32,23 +32,27 @@
         & > span {
           width: 100%;
           display: flex;
-        }
 
-        & > .icon-wrap {
-          position: absolute;
-          right: 0;
-          top: .15rem;
-          width: 2rem;
-        }
-
-        svg {
-          transition: transform .2s ease-out;
-        }
-
-        &.active {
-          & > .icon-wrap > .icon {
-            transform: rotate(180deg); // flip caret to point up
+          // caret <button>
+          & > .menu-item__link__caret {
+            svg {
+              @include transition;
+            }
           }
+        }
+
+        // <li> is active
+        &.active {
+          & > span {
+
+            & > .menu-item__link__caret {
+              svg {
+                transform: rotate(180deg); // flip caret to point up
+              }
+            }
+
+          }
+
         }
 
       }
@@ -59,6 +63,7 @@
       flex-grow: 1;
     }
 
+    // all <svg>
     .icon {
       width: .75em;
       height: .75em;
@@ -95,14 +100,14 @@
       padding: .25rem 0;
 
       // 1st level <a>
-      & > a {}
+      & > span > a {}
 
         // 2nd level <ul class="sub-menu"> [closed]
         & > ul {
+          @include transition;
           max-height: 0;
           background: $white;
           opacity: 0;
-          transition: all .2s ease-out;
 
           // 2nd level <ul class="sub-menu"> [open]
           &.open {
@@ -116,14 +121,13 @@
           & > li {
 
             // 2nd level <a>
-            & > a {}
+            & > span > a {}
 
             // 3rd level <ul class="sub-menu"> [closed]
             & > ul {
+              @include transition;
               max-height: 0;
               opacity: 0;
-              transition: all .2s ease-out;
-
 
               // 3rd level <ul class="sub-menu"> [open]
               &.open {
@@ -198,7 +202,7 @@
       // all dropdown <li>
       li {
         background: $menu-dropdown-color;
-        a {
+        & > span > a {
           color: $white;
           padding: .5rem .75rem;
           font-size: .875rem;
@@ -252,17 +256,6 @@
 
           &.menu-item-has-children {
             position: relative;
-            & > a {
-              margin-right: 2.5rem; // room for caret
-            }
-            & > .icon-wrap {
-              text-align: center;
-              width: 2.5rem;
-              position: absolute;
-              right: 0;
-              top: 50%;
-              transform: translateY(-50%);
-            }
           }
 
           // 2nd level <a>

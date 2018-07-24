@@ -73,6 +73,7 @@ hr {
 ----------------------------------------------- */
 
 .wysiwyg {
+  @include clearfix;
   & > :first-child {
     margin-top: 0;
   }

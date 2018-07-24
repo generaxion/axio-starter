@@ -18,7 +18,7 @@ document.addEventListener('lazybeforeunveil', function(e){
   el.addEventListener('load', function() {
     // when loaded, animate blurry version
     var sibling = el.nextSibling;
-    if (sibling.nodeType === 1 && sibling !== el && sibling && sibling !== null && sibling !== undefined) {
+    if (sibling && sibling !== el && sibling !== null && sibling !== undefined && sibling.nodeType === 1) {
       if (typeof sibling.classList.contains !== "undefined") {
         if (sibling.classList.contains('lazyload-preload')) {
           sibling.classList.add('lazyload-preload--ready');

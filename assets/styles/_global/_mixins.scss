@@ -5,8 +5,8 @@
 // Wrap outer containers (width, padding, center)
 @mixin wrap {
   width: 100%;
-  max-width: 1000px;
-  max-width: calc(1000px + 2*1.5rem); // include the padding
+  max-width: 1216px;
+  max-width: calc(1216px + 2*1.5rem); // include the padding
   padding: 0 1.5rem;
   margin: 0 auto;
 }
