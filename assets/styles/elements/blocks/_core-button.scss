@@ -1,0 +1,33 @@
+/* ==========================================================================
+ elements / blocks / core-button
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-button,
+.wysiwyg .wp-block-button {
+  margin-bottom: $gap;
+
+  &.aligncenter {
+    text-align: center;
+  }
+
+  &.alignright {
+    text-align: right;
+  }
+
+  &__link {
+    @include button;
+    @include button--big;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+
+/* Only back-end
+----------------------------------------------- */
+

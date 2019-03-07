@@ -1,0 +1,107 @@
+/* ==========================================================================
+ elements / blocks / core-media-text
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-media-text,
+.wysiwyg .wp-block-media-text {
+
+  display: grid;
+  grid-gap: 0;
+  align-items: center;
+  margin-top: $gap-big;
+  margin-bottom: $gap-big;
+
+  // text container
+  &__content {
+    padding: $gap;
+    & > :first-child {
+      margin-top: 0;
+    }
+    & > :last-child {
+      margin-bottom: 0;
+    }
+    & > * {
+      max-width: calc(#{$max-width-l} / 2);
+    }
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  // image
+  &__media {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    @include breakpoint ($m) {
+      padding: 0 $gap 0 0;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      //max-height: 650px;
+      object-fit: cover;
+    }
+  }
+
+  // desktop view
+  @include breakpoint ($m) {
+    grid-template-columns: 50% 50%;
+    &.has-media-on-the-right {
+      .wp-block-media-text__media {
+        order: 1;
+        padding: 0 0 0 $gap;
+      }
+    }
+  }
+
+  // full width
+  &.alignfull {
+    margin: auto;
+
+    @include breakpoint ($m) {
+      margin-left: -$gap;
+      margin-right: -$gap;
+    }
+  }
+
+}
+
+
+/* Only front-end
+----------------------------------------------- */
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-media-text {
+
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4
+  h5,
+  .h5
+  h6,
+  .h6 {
+    font-family: $font-text;
+  }
+
+
+}
+
+.wp-block[data-align="full"] {
+  .wp-block-media-text {
+    p {
+      font-size: 1.25rem;
+      font-weight: $light;
+    }
+
+  }
+}

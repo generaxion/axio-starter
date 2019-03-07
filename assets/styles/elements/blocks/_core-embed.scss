@@ -1,0 +1,48 @@
+/* ==========================================================================
+ elements / blocks / core-embed
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-embed,
+.wysiwyg .wp-block-embed {
+  margin: $gap auto;
+
+  &.alignfull,
+  &.alignwide {
+    margin: $gap-big auto;
+  }
+
+  figcaption {
+    text-align: center;
+    padding: $gap-small;
+    color: $grey-font-color;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-embed.is-type-video {
+  .wp-block-embed__wrapper {
+    height: 0;
+    overflow: hidden;
+    padding-top: 56.25%;
+    position: relative;
+
+    iframe {
+      height: 100%;
+      max-width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}

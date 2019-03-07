@@ -15,7 +15,15 @@
 
     <div class="site-footer__container">
 
-      <?php bloginfo('name'); ?>
+      <div class="site-footer__branding">
+        <span class="site-footer__branding__title">
+          <?php bloginfo('name'); ?>
+        </span>
+      </div>
+
+      <div class="site-footer__social">
+        <?php get_template_part('partials/navigation/menu-social'); ?>
+      </div>
 
     </div>
 

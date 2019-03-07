@@ -1,0 +1,27 @@
+/* ==========================================================================
+ elements / blocks / blocks-colors (generic)
+========================================================================== */
+
+// white
+.has-white-background-color {
+  background: $white;
+}
+.has-white-color {
+  color: $white;
+}
+
+// black
+.has-black-background-color {
+  background: $base-font-color;
+}
+.has-black-color {
+  color: $base-font-color;
+}
+
+// primary
+.has-primary-background-color {
+  background: $primary;
+}
+.has-primary-color {
+  color: $primary;
+}

@@ -1,0 +1,42 @@
+/* ==========================================================================
+ elements / blocks / core-paragraph
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-paragraph,
+.wysiwyg p {
+
+  &.has-drop-cap:not(:focus) {
+    &::first-letter {
+      font-size: 4.5em;
+      line-height: 1;
+      float: left;
+      font-weight: $bold;
+      margin-right: $gap-small;
+      text-transform: uppercase;
+    }
+  }
+
+  &.has-background {
+    display: block;
+    padding: $gap;
+    margin-top: $gap;
+    margin-bottom: $gap;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg p {}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-paragraph {
+  line-height: $line-height;
+}
+

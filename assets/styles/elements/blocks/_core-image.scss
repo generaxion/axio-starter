@@ -1,0 +1,57 @@
+/* ==========================================================================
+ elements / blocks / core-image
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-image,
+.wysiwyg .wp-block-image {
+
+  margin-top: $gap;
+  margin-bottom: $gap;
+  text-align: center;
+
+  img {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  // wide width
+  &.alignwide {
+    figure, img {
+      width: 100%;
+    }
+  }
+
+  // floated to side
+  figure {
+    margin-top: 0;
+    &.alignright {
+      margin-left: $gap;
+      margin-right: -#{$gap};
+    }
+    &.alignleft {
+      margin-right: $gap;
+      margin-left: -#{$gap};
+    }
+  }
+
+  // caption
+  figcaption {
+    color: $grey-font-color;
+    display: block;
+    margin-top: $gap-tiny;
+    margin-bottom: $gap;
+    font-size: .875rem;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+
+/* Only back-end
+----------------------------------------------- */
+

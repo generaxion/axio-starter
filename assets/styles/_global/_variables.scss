@@ -5,20 +5,13 @@
 /* Fonts
 ----------------------------------------------- */
 
-$font-text:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-$font-title: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-
-$base-line-height:  1.5;
-$base-font-color: #333;
-
-$light:   300;
-$normal:  400;
-$bold:    700;
-
+$font-text:  'Montserrat', sans-serif;
+$font-title: 'Montserrat', sans-serif;
 
 /* Colors
 ----------------------------------------------- */
 
+// basic
 $black:       #000;
 $white:       #fff;
 $grey:        #ddd;
@@ -26,28 +19,82 @@ $grey-light:  #eee;
 
 $blue:        #42a0d9;
 
+// usage
+$primary:     #c82986;
+
+// special
+$base-font-color:      #333;
+$grey-font-color:      #888;
+$menu-dropdown-bg:     $base-font-color;
+$menu-dropdown-color:  $white;
+
+// selectors
+$has-dark-background: "
+  .has-light-background,
+  .has-black-background-color,
+  .has-grey-background-color,
+  .has-blue-background-color
+";
+
+$has-light-background: "
+  .has-dark-background,
+  .has-white-background-color,
+  .has-light-grey-background-color
+";
+
+/* Font weights
+----------------------------------------------- */
+
+$light:   300;
+$normal:  400;
+$bold:    700;
+$heavy:   900;
+
+/* Line heights
+----------------------------------------------- */
+
+$line-height:         1.5;
+$line-height-big:     1.75;
+$line-height-small:   1.25;
+
+/* Wrappers
+----------------------------------------------- */
+
+$max-width-m: 45rem; // 720px
+$max-width-l: 76rem; // 1216px
+
+/* Gaps
+----------------------------------------------- */
+
+$gap-big:    3rem;
+$gap:        1.5rem;
+$gap-medium: 1rem;
+$gap-small:  .75rem;
+$gap-tiny:   .5rem;
+
 /* Menu
 ----------------------------------------------- */
 
-$menu-hidden:   max-width 500px; // hamburger
-$menu-visible:  501px;           // no hamburger
-
 $menu-dropdown-width:  12rem;    // desktop dropdown width
-$menu-dropdown-color:  #3b3b3b;
 
 
-/* Breakpoints
+/* Breakpoints (basic)
 ----------------------------------------------- */
 
-$sub-s:  max-width 529px;
-$s:      530px;
+$sub-s:  max-width 34.99rem;
+$s:      35rem; // 560px
 
-$sub-m:  max-width 719px;
-$m:      720px;
+$sub-m:  max-width 44.99rem;
+$m:      45rem; // 720px
 
-$sub-l:  max-width 1119px;
-$l:      1120px;
+$sub-l:  max-width 69.99rem;
+$l:      70rem; // 1120px
 
-$sub-xl: max-width 1439px;
-$xl:     1440px;
+$sub-xl: max-width 89.99rem;
+$xl:     90rem; // 1440 px
 
+/* Breakpoints (special)
+----------------------------------------------- */
+
+$menu-hidden:   max-width 889px; // hamburger
+$menu-visible:  890px;           // no hamburger

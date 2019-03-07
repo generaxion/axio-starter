@@ -1,0 +1,80 @@
+/* ==========================================================================
+ elements / blocks / core-columns
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-columns,
+.wysiwyg .wp-block-columns {
+
+  .wp-block-column {
+    margin: 0 0 $gap;
+
+    & > :first-child {
+      margin-top: 0;
+    }
+
+    & > :last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+  &.alignwide,
+  &.alignfull {
+    margin-top: $gap-big;
+    margin-bottom: $gap-big;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-columns {
+
+  @include breakpoint($s) {
+    display: flex;
+    justify-content: space-between;
+    & > * {
+      width: calc(100% / 2 - #{1/2*$gap});
+    }
+  }
+
+  &.has-3-columns,
+  &.columns-3 {
+    @include breakpoint($s) {
+      & > * {
+        width: calc(100% / 3 - #{2/3*$gap});
+      }
+    }
+  }
+
+  &.has-4-columns,
+  &.columns-4 {
+    @include breakpoint($m) {
+      & > * {
+        width: calc(100% / 4 - #{3/4*$gap});
+      }
+    }
+  }
+
+  &.has-5-columns,
+  &.columns-5 {
+    @include breakpoint($m) {
+      width: calc(100% / 3 - #{2/3*$gap});
+    }
+    @include breakpoint($l) {
+      & > * {
+        width: calc(100% / 5 - #{4/5*$gap});
+      }
+    }
+  }
+
+}
+
+
+/* Only back-end
+----------------------------------------------- */
+

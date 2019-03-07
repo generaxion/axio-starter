@@ -1,12 +1,16 @@
 # Aucor Starter
 
-Superior WordPress starter theme with modern build tools by **[Aucor](https://www.aucor.fi)**. 150+ hours of development over 2 years to make the greatest starting point for WordPress site.
+Superior WordPress starter theme with modern build tools by **[Aucor](https://www.aucor.fi)**. 200+ hours of development over 2,5 years to make the greatest starting point for WordPress site.
+
+**Demo:** [https://starter.aucor.fi](https://starter.aucor.fi)
 
 **For who**: Developers building superb WordPress sites
 
-**A few buzz-words**: Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Responsive images
+**A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Responsive images
 
-![aucor-starter](https://user-images.githubusercontent.com/9577084/42504046-1dce72e0-8443-11e8-9aa7-d10aab7c2ddf.png)
+![aucor-starter](https://user-images.githubusercontent.com/9577084/53933001-1bb2e080-40a5-11e9-90c1-90571243e3b9.jpg)
+
+(Readme needs lots of updates: Gutenerg, file structure, Aucor Core)
 
 ## Table of contents
 
@@ -693,7 +697,7 @@ Theme location: `social`
 Optional menu for organization's social media accounts.
 
 How to use:
- * Include template part somewhere `<?php get_template_part('partials/menu-social'); ?>`
+ * Include template part somewhere `<?php get_template_part('partials/navigation/menu-social'); ?>`
  * Create a new menu in WP admin
  * Add custom link items with url to account and title like "Facebook"
  * Menu item gets SVG icon that is based on url

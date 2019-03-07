@@ -1,5 +1,5 @@
 /* ==========================================================================
-  Main
+  Main (front-end)
 ========================================================================== */
 
 // vendor
@@ -10,32 +10,49 @@
 
 // global
 
-@import "_global/variables";
+@import "_global/fonts";
 @import "_global/mixins";
 @import "_global/normalize";
-@import "_global/layout";
+@import "_global/variables";
 
 // elements
 
-@import "elements/typography/text";
-@import "elements/typography/buttons";
-@import "elements/typography/media";
-@import "elements/typography/tables";
+@import "elements/blocks/blocks-alignment";
+@import "elements/blocks/blocks-colors";
+@import "elements/blocks/core-paragraph";
+@import "elements/blocks/core-table";
+@import "elements/blocks/core-file";
+@import "elements/blocks/core-list";
+@import "elements/blocks/core-quote";
+@import "elements/blocks/core-separator";
+@import "elements/blocks/core-image";
+@import "elements/blocks/core-gallery";
+@import "elements/blocks/core-embed";
+@import "elements/blocks/core-button";
+@import "elements/blocks/core-columns";
+@import "elements/blocks/core-media-text";
 
-@import "elements/navigation/header";
-@import "elements/navigation/menu-toggle";
-@import "elements/navigation/menu-primary";
-@import "elements/navigation/menu-social";
-@import "elements/navigation/numeric-posts-nav";
-@import "elements/navigation/social-share";
-@import "elements/navigation/footer";
 
-@import "elements/content/hero";
 @import "elements/content/entry";
+@import "elements/content/hero";
 @import "elements/content/teaser";
 
 @import "elements/forms/form-basic";
 @import "elements/forms/form-search";
+
+@import "elements/layout/layout";
+
+@import "elements/navigation/footer";
+@import "elements/navigation/header";
+@import "elements/navigation/menu-primary";
+@import "elements/navigation/menu-social";
+@import "elements/navigation/menu-toggle";
+@import "elements/navigation/numeric-posts-nav";
+@import "elements/navigation/social-share";
+
+@import "elements/typography/buttons";
+@import "elements/typography/media";
+@import "elements/typography/text";
 
 // templates
 

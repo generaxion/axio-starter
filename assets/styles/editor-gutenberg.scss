@@ -1,0 +1,70 @@
+/* ==========================================================================
+  Gutenberg Editor (back-end)
+========================================================================== */
+
+// vendor
+
+@import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
+@import "../../node_modules/sass-toolkit/stylesheets/_toolkit.scss";
+@import "../../node_modules/sass-toolkit/stylesheets/toolkit/kickstart";
+
+// global
+
+@import "_global/fonts";
+@import "_global/mixins";
+@import "_global/normalize";
+@import "_global/variables";
+
+.edit-post-visual-editor .editor-block-list__block {
+  font-family: $font-text;
+  @import "elements/typography/text";
+}
+
+@import "elements/blocks/blocks-alignment";
+@import "elements/blocks/blocks-colors";
+@import "elements/blocks/core-file";
+@import "elements/blocks/core-paragraph";
+@import "elements/blocks/core-table";
+@import "elements/blocks/core-list";
+@import "elements/blocks/core-quote";
+@import "elements/blocks/core-separator";
+@import "elements/blocks/core-image";
+@import "elements/blocks/core-gallery";
+@import "elements/blocks/core-embed";
+@import "elements/blocks/core-button";
+@import "elements/blocks/core-columns";
+@import "elements/blocks/core-media-text";
+
+// hide font-size selection
+.components-panel__body.blocks-font-size .components-base-control:first-of-type {
+  display: none;
+}
+
+// editor title
+.editor-post-title__block .editor-post-title__input {
+  font-family: $font-title;
+  min-height: auto;
+  text-align: center;
+}
+
+// main column width
+:root body.gutenberg-editor-page .editor-post-title__block,
+:root body.gutenberg-editor-page .editor-default-block-appender,
+:root body.gutenberg-editor-page .editor-block-list__block {
+  max-width: calc(#{$max-width-m} + 2rem);
+}
+
+// width of "wide" blocks
+:root body.gutenberg-editor-page .editor-block-list__block[data-align="wide"] {
+  max-width: $max-width-l;
+}
+
+// width of "full-wide" blocks
+:root body.gutenberg-editor-page .editor-block-list__block[data-align="full"] {
+  max-width: none;
+}
+
+// for now we need this for overwriting Core line-height
+.editor-rich-text__tinymce.mce-content-body:not(.wp-block-cover-image-text):not(.wp-block-subhead):not(h2):not(h3) {
+  line-height: $line-height;
+}

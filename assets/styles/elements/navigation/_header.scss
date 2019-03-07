@@ -23,16 +23,19 @@
 
   &__branding {
     @include breakpoint($menu-visible) {
-      width: 8rem;
-      padding-right: 2rem;
+      padding-right: $gap;
+      &__logo {
+        width: 5rem;
+      }
+
     }
     @include breakpoint($menu-hidden) {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .site-header__branding__logo {
-        width: 6rem;
+      &__logo {
+        width: 5rem;
       }
     }
 

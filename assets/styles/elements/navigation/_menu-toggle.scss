@@ -5,12 +5,12 @@
 .menu-toggle {
   @include button-reset;
   @include transition;
-  background: $black;
-  color: $white;
+  background: transparent;
+  color: $primary;
   cursor: pointer;
   display: inline-block;
   font-size: .875em;
-  padding: 1em;
+  padding: 0;
   text-transform: uppercase;
   @include breakpoint($menu-visible) {
     display: none;
@@ -30,22 +30,24 @@
   }
 
   &__svg {
-    position: relative;
-    height: 2rem;
-    width: 2rem;
-    top: 0;
+    &.icon {
+      position: relative;
+      height: 2rem;
+      width: 2rem;
+      top: 0;
+    }
 
     &__line {
+      @include transition;
       opacity: 1;
-      transition: .15s ease-in-out;
     }
 
     &__close-line {
+      @include transition;
       left: 0;
       top: 0;
       opacity: 0;
       position: absolute;
-      transition: .15s ease-in-out;
       transform: scale(1.2);
     }
 

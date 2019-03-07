@@ -14,12 +14,25 @@
     @include list-reset;
   }
 
+  li {
+
+    // call to action
+    &.cta {
+      & > span > a {
+        @include button;
+        font-size: .875rem;
+        font-weight: $bold;
+      }
+    }
+
+  }
+
   /* -------------------------------------------------------
     Mobile navigation
   ---------------------------------------------------------*/
 
   @include breakpoint($menu-hidden) {
-    padding: 1rem 0;
+    padding: $gap 0 0;
     display: none;
     .active & {
       display: block;
@@ -27,11 +40,42 @@
 
     // all <li>
     li {
+
+      // all <a>
+      a {
+        font-size: .875rem;
+        flex-grow: 1;
+        color: $base-font-color;
+        text-decoration: none;
+      }
+
+      & > span {
+        display: block;
+        min-height: 2rem;
+        display: flex;
+        align-items: center;
+      }
+
+      // call to action
+      &.cta {
+        border-top: 0;
+        & > span > a {
+          display: block;
+          text-align: center;
+          svg {
+            margin-right: .25rem;
+            top: -.125rem;
+            position: relative;
+          }
+        }
+      }
+
       &.menu-item-has-children {
         position: relative;
         & > span {
           width: 100%;
           display: flex;
+          align-items: center;
 
           // caret <button>
           & > .menu-item__link__caret {
@@ -58,31 +102,30 @@
       }
     }
 
-    // all <a>
-    a {
-      flex-grow: 1;
-    }
-
-    // all <svg>
-    .icon {
-      width: .75em;
-      height: .75em;
-      top: -.125rem;
-      position: relative;
-    }
-
     // all carets
     .menu-item__link__caret {
       @include button-reset;
-      padding: .25rem .5rem;
-      background: $menu-dropdown-color;
+      padding: .5rem .5rem;
+      background: $primary;
       color: $white;
       margin-left: 1rem;
+      .icon {
+        width: 1.25em;
+        height: 1.25em;
+        top: -.125rem;
+        position: relative;
+      }
     }
 
     // all .sub-menu
     .sub-menu {
-      padding-left: 1.25rem;
+      height: 0;
+      overflow: hidden;
+      &.open {
+        padding: $gap-small 0 $gap-small $gap-small;
+        overflow: visible;
+        height: auto;
+      }
 
       // all lower <li>
       li {
@@ -97,7 +140,11 @@
     // 1st level <li>
     & > li {
 
-      padding: .25rem 0;
+      padding: .5rem 0;
+      border-top: 1px solid $grey;
+      &:first-of-type {
+        border-top: 0;
+      }
 
       // 1st level <a>
       & > span > a {}
@@ -154,6 +201,7 @@
 
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 
     // all <li>
     li {
@@ -162,6 +210,7 @@
         display: flex;
         align-items: center;
       }
+
     }
 
     // all <a>
@@ -174,45 +223,55 @@
     // all carets
     .menu-item__link__caret {
       @include button-reset;
-      margin-left: .25rem;
+      margin-left: .125em;
       flex-shrink: 0;
     }
 
     // all <svg>
     .icon {
-      width: .75em;
-      height: .75em;
+      width: 1em;
+      height: 1em;
       top: -.125rem;
       position: relative;
+      &.icon-from-class {
+        margin-right: .5rem;
+        width: 1.25em;
+        height: 1.25em;
+      }
     }
 
     // 1st level <li>
     & > li {
       position: relative;
-      margin-right: 1rem;
+      margin-right: $gap;
       &:last-of-type {
         margin-right: 0;
       }
 
       // 1st level <a>
       & > span > a {
-        font-weight: $bold;
+
+        font-size: .875rem;
+        @include breakpoint($l) {
+          font-size: 1rem;
+        }
+
       }
 
       // all dropdown <li>
       li {
-        background: $menu-dropdown-color;
+        background: $menu-dropdown-bg;
         & > span > a {
-          color: $white;
+          color: $menu-dropdown-color;
           padding: .5rem .75rem;
           font-size: .875rem;
           display: block;
         }
         &:hover, &:focus, &:active {
-          background: lighten($menu-dropdown-color, 6);
+          background: lighten($menu-dropdown-bg, 6);
         }
         .icon {
-          color: $white;
+          color: $menu-dropdown-color;
           transform: rotate(-90deg);
         }
       }
@@ -243,7 +302,7 @@
           height: 0;
           border-style: solid;
           border-width: 0 .4rem .4rem .4rem;
-          border-color: transparent transparent $menu-dropdown-color transparent;
+          border-color: transparent transparent $menu-dropdown-bg transparent;
           position: absolute;
           top: -.4rem;
           left: 50%;

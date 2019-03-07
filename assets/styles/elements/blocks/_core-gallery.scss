@@ -1,0 +1,96 @@
+/* ==========================================================================
+ elements / blocks / core-gallery
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-gallery,
+.wysiwyg .wp-block-gallery {
+  @include list-reset;
+  margin: $gap auto;
+  display: grid;
+  grid-gap: $gap-small;
+  grid-template-columns: repeat(1, 1fr);
+
+  &.alignwide,
+  &.alignfull {
+    grid-gap: $gap;
+  }
+
+  &.columns-2 {
+    @include breakpoint($s) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &.columns-3 {
+    @include breakpoint($s) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &.columns-4 {
+    @include breakpoint($s) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include breakpoint($m) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &.columns-5 {
+    @include breakpoint($s) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include breakpoint($m) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include breakpoint($l) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  .blocks-gallery-item {
+    position: relative;
+
+    figure {
+      height: 100%;
+      margin: 0;
+    }
+
+    figcaption {
+      padding: $gap-tiny;
+    }
+  }
+
+  &.is-cropped .blocks-gallery-item {
+    a,
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+      line-height: 0;
+    }
+    figcaption {
+      padding: $gap-big $gap-tiny $gap-tiny;
+      position: absolute;
+      bottom: 0;
+      display: block;
+      width: 100%;
+      color: white;
+      font-size: .875rem;
+      background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0, 0) );
+    }
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+
+/* Only back-end
+----------------------------------------------- */
+

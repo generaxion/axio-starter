@@ -9,15 +9,17 @@
 
 get_header(); ?>
 
+  <?php get_template_part('partials/content/hero'); ?>
+
   <div id="primary" class="primary primary--single">
 
     <main id="main" class="main">
 
-    <?php while (have_posts()) : the_post(); ?>
+      <?php while (have_posts()) : the_post(); ?>
 
-      <?php get_template_part('partials/entry-post'); ?>
+        <?php get_template_part('partials/content/entry-post'); ?>
 
-    <?php endwhile; ?>
+      <?php endwhile; ?>
 
     </main><!-- #main -->
 

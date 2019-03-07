@@ -448,7 +448,10 @@ gulp.task('clean', require('del').bind(null, [path.base.dist]));
  * See: http://www.browsersync.io
  */
 gulp.task('watch', function() {
-
+  var new_tab = 'local';
+  if(argv.q) {
+    new_tab = false;
+  }
   // browsersync changes
   browsersync.init({
     files: [
@@ -459,7 +462,8 @@ gulp.task('watch', function() {
     snippetOptions: {
       whitelist: ['/wp-admin/admin-ajax.php'],
       blacklist: ['/wp-admin/**']
-    }
+    },
+    open: new_tab
   });
 
   // watch these files

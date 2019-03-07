@@ -14,14 +14,14 @@
 
 get_header(); ?>
 
-  <?php get_template_part('partials/hero'); ?>
+  <?php get_template_part('partials/content/hero'); ?>
 
   <div id="primary" class="primary primary--index">
     <main id="main" class="main">
 
       <?php while (have_posts()) : the_post(); ?>
 
-        <?php get_template_part('partials/teaser'); ?>
+        <?php get_template_part('partials/content/teaser'); ?>
 
       <?php endwhile; ?>
 

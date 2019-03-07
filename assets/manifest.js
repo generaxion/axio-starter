@@ -44,10 +44,17 @@ module.exports = {
       "critical.js": [
 
         // library to lazyload images and iframes that have class "lazyload"
-        "../node_modules/lazysizes/lazysizes.min.js",
+        "../node_modules/lazysizes/lazysizes.js",
 
         // project specific critical js
         "scripts/critical.js"
+
+      ],
+
+      // gutenberg editor specific js
+      "editor.js": [
+
+        "scripts/editor.js"
 
       ]
 
@@ -69,12 +76,16 @@ module.exports = {
         "styles/main.scss"
       ],
 
-      "admin.css": [
-        "styles/admin.scss"
+      "editor-gutenberg.css": [
+        "styles/editor-gutenberg.scss"
       ],
 
-      "editor.css": [
-        "styles/editor.scss"
+      "editor-classic.css": [
+        "styles/editor-classic.scss"
+      ],
+
+      "admin.css": [
+        "styles/admin.scss"
       ],
 
       "wp-login.css": [

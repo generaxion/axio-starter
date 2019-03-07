@@ -1,0 +1,27 @@
+/* ==========================================================================
+ elements / blocks / core-list
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper ul.editor-rich-text__tinymce,
+.editor-styles-wrapper ol.editor-rich-text__tinymce,
+.wysiwyg ul,
+.wysiwyg ol, {
+  margin: 0 auto $gap auto;
+
+  // inner lists
+  ul, ol {
+    margin: $gap-tiny 0;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+
+/* Only back-end
+----------------------------------------------- */
+

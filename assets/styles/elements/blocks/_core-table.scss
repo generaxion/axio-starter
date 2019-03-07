@@ -1,0 +1,62 @@
+/* ==========================================================================
+ elements / blocks / core-table
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-table,
+.wysiwyg table {
+  width: 100%;
+  margin: $gap auto;
+  border: 1px solid $grey;
+  font-size: .875rem;
+  @include breakpoint($s) {
+    font-size: 1rem;
+  }
+
+  &.alignleft,
+  &.alignright {
+    width: auto;
+  }
+
+  thead {
+    background: $primary;
+    color: $white;
+  }
+
+  td {
+    border: 0;
+    border-left: 1px solid $grey;
+    padding: $gap-small $gap-small;
+  }
+
+  tr {
+    border-bottom: 1px solid $grey;
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+
+  &.has-fixed-layout {
+    table-layout: fixed;
+  }
+
+  &.is-style-stripes {
+    tr:nth-child(even) {
+      background-color: $grey-light;
+    }
+    th, td {
+      border-bottom: 0;
+    }
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+
+/* Only back-end
+----------------------------------------------- */
+
