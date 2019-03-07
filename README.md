@@ -4,6 +4,8 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 **Demo:** [https://starter.aucor.fi](https://starter.aucor.fi)
 
+**Some features moved to plugin:** [Aucor Core](https://bitbucket.org/aucor/aucor-core)
+
 **For who**: Developers building superb WordPress sites
 
 **A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Responsive images
