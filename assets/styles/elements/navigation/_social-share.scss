@@ -7,12 +7,14 @@ $blue-twitter:    #00aced;
 $blue-linkedin:   #007bb6;
 $red-google-plus: #dd4b39;
 $red-pinterest:   #cb2027;
+$green-whatsapp:  #36b74d;
 
 .social-share {
   padding-top: 1.5rem;
 
   &__title {
-
+    @extend .h3;
+    margin-bottom: $gap-small;
   }
 
   &__link {
@@ -20,13 +22,17 @@ $red-pinterest:   #cb2027;
     display: inline-block;
     color: $white;
     vertical-align: top;
-    padding: .75rem;
+    padding: $gap-small;
     line-height: 0;
-    margin: 0 .25rem .5rem 0;
+    margin: 0 $gap-tiny $gap-small 0;
     position: relative;
     text-decoration: none;
     .icon-wrap {
       margin-right: .25rem;
+    }
+    .icon {
+      width: 1.125rem;
+      height: 1.125rem;
     }
     &:last-of-type {
       margin-right: 0;
@@ -53,8 +59,15 @@ $red-pinterest:   #cb2027;
       }
     }
 
-    &__label {
+    &--whatsapp {
+      background: $green-whatsapp;
+      &:hover, &:focus {
+        background: darken($green-whatsapp, 9);
+      }
+    }
 
+    &__label {
+      @include visuallyhidden;
     }
 
   }

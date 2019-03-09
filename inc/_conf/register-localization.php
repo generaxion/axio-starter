@@ -43,6 +43,7 @@ add_filter('aucor_core_pll_register_strings', function() {
     'Social share: Facebook'             => 'Jaa Facebookissa',
     'Social share: Twitter'              => 'Jaa Twitterissä',
     'Social share: LinkedIn'             => 'Jaa LinkedInissä',
+    'Social share: WhatsApp'             => 'Jaa WhatsAppissa',
 
     // taxonomies
     'Taxonomies: Keywords'               => 'Avainsanat',
