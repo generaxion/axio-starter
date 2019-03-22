@@ -1,0 +1,66 @@
+/* ==========================================================================
+ elements / content / teaser
+========================================================================== */
+
+.teaser-container {
+  @include narrow-content;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  & > * {
+    flex-shrink: 0;
+    width: 100%;
+    @include breakpoint($m) {
+      width: calc(50% - #{1/2*$gap});
+    }
+  }
+}
+
+.teaser {
+  margin-bottom: $gap;
+  @include breakpoint($teaser-m) {
+    //display: flex;
+    align-items: center;
+  }
+
+  &__thumbnail {
+    margin-bottom: .5rem;
+    img {
+      border-radius: 100%;
+    }
+  }
+
+  &__content {
+
+  }
+
+  &__header {
+    margin-bottom: .75rem;
+    &__title {
+      font-size: 1.25rem;
+      margin: 0;
+      a {
+        text-decoration: none;
+        color: $base-font-color;
+      }
+    }
+    &__date {
+      display: block;
+      font-size: .875rem;
+    }
+
+  }
+
+  &__summary {
+    p {
+      font-size: .875rem;
+    }
+  }
+
+}
+
+
+
+
+

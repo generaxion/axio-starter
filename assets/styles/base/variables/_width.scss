@@ -1,19 +1,16 @@
 /* ==========================================================================
- elements / blocks / core-freeform
+ # Width
 ========================================================================== */
 
-/* Front-end and back-end
+/* Wrappers
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-table,
-.wysiwyg table {
+$max-width-s: 40rem; // 640px
+$max-width-m: 45rem; // 720px
+$max-width-l: 76rem; // 1216px
 
-}
-
-/* Only front-end
+/* Sub-menu width
 ----------------------------------------------- */
 
-
-/* Only back-end
------------------------------------------------ */
+$menu-dropdown-width:  12rem; // desktop dropdown width
 

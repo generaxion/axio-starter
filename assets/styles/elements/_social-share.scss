@@ -10,7 +10,7 @@ $red-pinterest:   #cb2027;
 $green-whatsapp:  #36b74d;
 
 .social-share {
-  padding-top: 1.5rem;
+  margin-top: $gap;
 
   &__title {
     @extend .h3;

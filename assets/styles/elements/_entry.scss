@@ -18,6 +18,12 @@
 
   &__content {}
 
+  &__footer {
+    @include wrap;
+    @include narrow-content;
+    margin-top: $gap;
+  }
+
 }
 
 

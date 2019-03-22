@@ -14,8 +14,8 @@ add_action('after_setup_theme', function() {
   $default_image_sizes = [
     [
       'name' => 'thumbnail',
-      'w'    => 250,
-      'h'    => 250,
+      'w'    => 100,
+      'h'    => 100,
     ],
     [
       'name' => 'medium',
@@ -92,7 +92,7 @@ function aucor_starter_human_image_size_to_wp_sizes($human_size) {
       return array(
         'primary'    => 'thumbnail',
         'supporting' => ['full', 'thumbnail'],
-        'sizes'      => '250px'
+        'sizes'      => '100px'
       );
 
     default:

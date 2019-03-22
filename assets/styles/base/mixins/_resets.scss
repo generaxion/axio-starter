@@ -1,0 +1,52 @@
+/* ==========================================================================
+ # Reset mixins
+========================================================================== */
+
+// reset first and last children margins
+@mixin child-margin-reset {
+  & > :first-child {
+    margin-top: 0;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// reset <a> styles
+@mixin link-reset {
+  color: inherit;
+  text-decoration: none;
+}
+
+// reset <li> styles
+@mixin list-reset {
+  &, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-indent: none;
+  }
+}
+
+// reset <button> styles
+@mixin button-reset {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+}
+
+// reset <input> styles
+@mixin input-reset {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}

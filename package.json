@@ -11,7 +11,7 @@
     }
   ],
   "scripts": {
-    "build": "bower install && gulp",
+    "build": "gulp",
     "jshint": "gulp jshint",
     "jscs": "jscs gulpfile.js assets/scripts/*.js"
   },
@@ -19,12 +19,17 @@
     "node": ">=0.12.0",
     "npm": ">=2.1.5"
   },
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "fitvids": "^2.0.0",
+    "lazysizes": "^4.0.4",
+    "objectFitPolyfill": "^2.1.1",
+    "svgxuse": "^1.2.6"
+  },
   "devDependencies": {
     "beeper": "^1.1.1",
-    "breakpoint-sass": "^2.7.1",
     "browser-sync": "^2.24.5",
     "del": "^3.0.0",
-    "fitvids": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-concat": "^2.6.1",
@@ -45,13 +50,9 @@
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
     "lazypipe": "^1.0.1",
-    "lazysizes": "^4.0.4",
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
-    "objectFitPolyfill": "^2.1.1",
     "run-sequence": "^2.2.1",
-    "sass-toolkit": "^2.10.2",
-    "svgxuse": "^1.2.6",
     "traverse": "^0.6.6"
   }
 }

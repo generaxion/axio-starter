@@ -1,80 +1,28 @@
 /* ==========================================================================
- elements / typography / text
+ # Typography - Text settings in any context and everywhere
 ========================================================================== */
 
 html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: $base-font-color;
   font-family: $font-text;
+  font-size: 100%;
   line-height: $line-height;
-  font-size: 100%; // 16px
+  -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
 }
 
-h1, .h1 {
-  display: block;
-  font-weight: $bold;
-  line-height: 1.125;
-  margin: 0 0 2rem;
-  font-size: 2rem;
-  @include breakpoint($s) {
-    font-size: 2.5rem;
-  }
-}
-
-h2, .h2 {
-  display: block;
-  font-weight: $bold;
-  line-height: 1.333333;
-  margin: 1.5rem 0;
-  font-size: 1.5rem;
-  @include breakpoint($s) {
-    font-size: 2rem;
-  }
-}
-
-h3, .h3 {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: $bold;
-  line-height: $line-height;
-  margin-bottom: 1.5rem;
-  font-size: 1.125rem;
-  @include breakpoint($s) {
-    font-size: 1.5rem;
-  }
-}
-
-h4, .h4 {
-  display: block;
-  font-weight: $normal;
-  line-height: $line-height;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  @include breakpoint($s) {
-    font-size: 1.25rem;
-  }
-}
-
-h5, .h5 {
-  display: block;
-  font-weight: $bold;
-  line-height: $line-height;
-  margin-bottom: 0;
-  font-size: .875rem;
-  @include breakpoint($s) {
-    font-size: 1rem;
-  }
-}
+/* Paragraphs
+----------------------------------------------- */
 
 p, .p {
   display: block;
-  line-height: $line-height;
-  margin: 0 0 1.5rem;
   font-size: .875rem;
   @include breakpoint($s) {
     font-size: 1rem;
   }
+  font-weight: $normal;
+  line-height: $line-height;
+  margin: 0 0 1.5rem;
   &.lead {
     font-size: 1.125rem;
     @include breakpoint($s) {
@@ -83,17 +31,62 @@ p, .p {
   }
 }
 
-/* WYSIWYG spesific
+/* Titles
 ----------------------------------------------- */
 
-.wysiwyg {
-  @include clearfix;
-  & > :first-child {
-    margin-top: 0;
+h1, .h1 {
+  display: block;
+  font-size: 2rem;
+  @include breakpoint($s) {
+    font-size: 2.5rem;
   }
-  & > :last-child {
-    margin-bottom: 0;
+  font-weight: $bold;
+  line-height: 1.125;
+  margin: 0 0 2rem;
+}
+
+h2, .h2 {
+  display: block;
+  font-size: 1.5rem;
+  @include breakpoint($s) {
+    font-size: 2rem;
   }
+  font-weight: $bold;
+  line-height: 1.333333;
+  margin: 1.5rem 0;
+}
+
+h3, .h3 {
+  display: block;
+  font-size: 1.125rem;
+  @include breakpoint($s) {
+    font-size: 1.5rem;
+  }
+  font-weight: $bold;
+  line-height: $line-height;
+  margin-bottom: 1.5rem;
+}
+
+h4, .h4 {
+  display: block;
+  font-size: 1rem;
+  @include breakpoint($s) {
+    font-size: 1.25rem;
+  }
+  font-weight: $normal;
+  line-height: $line-height;
+  margin-bottom: 1.5rem;
+}
+
+h5, .h5 {
+  display: block;
+  font-size: .875rem;
+  @include breakpoint($s) {
+    font-size: 1rem;
+  }
+  font-weight: $bold;
+  line-height: $line-height;
+  margin-bottom: 0;
 }
 
 /* Lists

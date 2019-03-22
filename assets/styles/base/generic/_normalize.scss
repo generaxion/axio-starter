@@ -1,11 +1,11 @@
 /* ==========================================================================
- _global / normalize
+ # Normalize
 ========================================================================== */
 
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -216,4 +216,12 @@ table {
 td,
 th {
   padding: 0;
+}
+
+embed,
+img,
+object,
+video {
+  max-width: 100%;
+  height: auto;
 }

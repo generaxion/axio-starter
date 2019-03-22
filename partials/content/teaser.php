@@ -27,6 +27,9 @@
 
     <header class="teaser__header">
       <?php the_title(sprintf('<h2 class="teaser__header__title"><a href="%s" rel="bookmark">', esc_url(get_permalink())), '</a></h2>'); ?>
+      <?php if (get_post_type() === 'post') : ?>
+        <span class="teaser__header__date"><?php echo aucor_starter_get_posted_on(); ?></span>
+      <?php endif; ?>
     </header>
 
     <div class="teaser__summary">

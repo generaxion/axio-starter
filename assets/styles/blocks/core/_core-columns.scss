@@ -10,14 +10,7 @@
 
   .wp-block-column {
     margin: 0 0 $gap;
-
-    & > :first-child {
-      margin-top: 0;
-    }
-
-    & > :last-child {
-      margin-bottom: 0;
-    }
+    @include child-margin-reset;
 
   }
 
@@ -38,6 +31,7 @@
     display: flex;
     justify-content: space-between;
     & > * {
+      flex-shrink: 0;
       width: calc(100% / 2 - #{1/2*$gap});
     }
   }

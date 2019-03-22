@@ -17,12 +17,7 @@
   // text container
   &__content {
     padding: $gap;
-    & > :first-child {
-      margin-top: 0;
-    }
-    & > :last-child {
-      margin-bottom: 0;
-    }
+    @include child-margin-reset;
     & > * {
       max-width: calc(#{$max-width-l} / 2);
     }

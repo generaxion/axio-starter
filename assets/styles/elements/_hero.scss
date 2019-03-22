@@ -37,6 +37,10 @@ $hero-xl: 1600px;
     }
   }
 
+  &__meta {
+    margin-top: $gap-small;
+  }
+
   &__description {
     margin: 1rem 0 0 0;
     font-size: .875rem;
@@ -96,14 +100,13 @@ $hero-xl: 1600px;
       //  padding-bottom: 525px;
       //}
 
-
     }
     &:after {
       clear: left;
       content: ' ';
       display: table;
     }
-    h1, p {
+    h1, p, span, a {
       color: $white;
       text-shadow: 0 0 1rem rgba(0,0,0,.6);
       @include breakpoint($hero-s) {

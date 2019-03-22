@@ -1,6 +1,11 @@
 /* ==========================================================================
  elements / blocks / core-paragraph
-========================================================================== */
+=============================================================================
+
+Notice: Paragraphs without custom styles won't have identifiable classes on front-end.
+Be careful with paragraph styles as they will be applied by other blocks as well.
+
+*/
 
 /* Front-end and back-end
 ----------------------------------------------- */

@@ -25,6 +25,12 @@ if (is_singular()) {
   $description = get_the_archive_description();
 }
 
+// meta
+$meta = '';
+if (is_singular() && get_post_type() === 'post') {
+  $meta = aucor_starter_get_posted_on();
+}
+
 // background
 $image = '';
 if (is_singular() && has_post_thumbnail()) {
@@ -53,6 +59,10 @@ if (!empty($image)) {
   <div class="hero__container">
 
     <h1 class="hero__title"><?php echo $title; ?></h1>
+
+    <?php if (!empty($meta)) : ?>
+      <div class="hero__meta"><?php echo $meta; ?></div>
+    <?php endif; ?>
 
     <?php if (!empty($description)) : ?>
       <p class="hero__description"><?php echo $description; ?></p>
