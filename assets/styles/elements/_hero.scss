@@ -1,25 +1,20 @@
 /* ==========================================================================
- elements / content / hero
+ # Hero
 ========================================================================== */
 
-$hero-s: 530px;
-$hero-m: 650px;
-$hero-l: 1120px;
-$hero-xl: 1600px;
-
 .hero {
-  position: relative;
+  align-items: center;
   background: $grey-light;
   display: flex;
-  align-items: center;
+  position: relative;
 
   &__container {
     @include wrap;
     max-width: 640px;
-    text-align: center;
     padding-top: 3rem;
     padding-bottom: 3rem;
     position: relative;
+    text-align: center;
     z-index: 4;
   }
 
@@ -52,18 +47,16 @@ $hero-xl: 1600px;
     }
   }
 
-  /* -------------------------------------------------------
-    No background image
-  ---------------------------------------------------------*/
+  /* No background image
+  ----------------------------------------------- */
 
   &--no-background {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
 
-  /* -------------------------------------------------------
-    Has background image
-  ---------------------------------------------------------*/
+  /* Has background image
+  ----------------------------------------------- */
 
   &--has-background {
 
@@ -94,11 +87,6 @@ $hero-xl: 1600px;
       @include breakpoint($hero-l) {
         @include aspect-ratio(3, 1);
       }
-
-      // set upper limit for big screens
-      //@include breakpoint($hero-xl) {
-      //  padding-bottom: 525px;
-      //}
 
     }
     &:after {

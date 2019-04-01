@@ -1,22 +1,12 @@
 /* ==========================================================================
- elements / content / entry
+ # Entry
 ========================================================================== */
 
 .entry {
 
-  &__header {
-    margin: 0 0 2rem;
-    h1, .h1,
-    h2, .h2 {
-      margin: 0 0 1rem;
-      a {
-        color: $base-font-color;
-        text-decoration: none;
-      }
-    }
-  }
+  &__content {
 
-  &__content {}
+  }
 
   &__footer {
     @include wrap;
@@ -25,6 +15,3 @@
   }
 
 }
-
-
-

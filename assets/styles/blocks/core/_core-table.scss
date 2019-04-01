@@ -1,12 +1,12 @@
 /* ==========================================================================
- elements / blocks / core-table
+ # Table block
 ========================================================================== */
 
 /* Front-end and back-end
 ----------------------------------------------- */
 
 .editor-styles-wrapper .wp-block-table,
-.wysiwyg table {
+.wysiwyg .wp-block-table {
   width: 100%;
   margin: $gap auto;
   border: 1px solid $grey;
@@ -56,7 +56,13 @@
 /* Only front-end
 ----------------------------------------------- */
 
+.wysiwyg .wp-block-table {
+
+}
 
 /* Only back-end
 ----------------------------------------------- */
 
+.editor-styles-wrapper .wp-block-table {
+
+}

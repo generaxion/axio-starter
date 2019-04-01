@@ -1,5 +1,5 @@
 /* ==========================================================================
- elements / blocks / core-list
+ # List block
 =============================================================================
 
 Notice: Lists without custom styles won't have identifiable classes on front-end.
@@ -26,7 +26,19 @@ Be careful with title styles as they will be applied by other blocks as well.
 /* Only front-end
 ----------------------------------------------- */
 
+.wysiwyg {
+
+  ul, ol {
+
+  }
+
+}
 
 /* Only back-end
 ----------------------------------------------- */
+
+.editor-styles-wrapper ul.editor-rich-text__tinymce,
+.editor-styles-wrapper ol.editor-rich-text__tinymce {
+
+}
 

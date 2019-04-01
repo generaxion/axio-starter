@@ -1,9 +1,8 @@
 /* ==========================================================================
-  Admin (back-end)
+ # Admin (back-end)
 ========================================================================== */
 
 // Clean up profile view
-
 .profile-php {
   .user-url-wrap,
   .user-description-wrap,
@@ -16,25 +15,21 @@
 }
 
 // Hide "website" from user-new.php
-
 .user-new-php .form-field:nth-of-type(5) {
   display: none;
 }
 
 // Hide update nags in admin footer
-
 #footer-upgrade {
   display: none;
 }
 
 // Hide placeholder for widgets
-
 #dashboard-widgets .empty-container {
   display: none;
 }
 
 // Clean up gallery column options to 1, 2, 3, 4
-
 .setting {
   select.columns {
     option[value="5"],

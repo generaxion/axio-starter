@@ -1,39 +1,60 @@
 /* ==========================================================================
-  Gutenberg Editor (back-end)
+ # Gutenberg Editor (back-end)
 ========================================================================== */
 
-// vendor
+/* Vendors
+----------------------------------------------- */
 
 @import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
-@import "../../node_modules/sass-toolkit/stylesheets/_toolkit.scss";
-@import "../../node_modules/sass-toolkit/stylesheets/toolkit/kickstart";
 
-// global
+/* Variables
+----------------------------------------------- */
 
-@import "_global/fonts";
-@import "_global/mixins";
-@import "_global/normalize";
-@import "_global/variables";
+@import "base/variables/breakpoints";
+@import "base/variables/colors";
+@import "base/variables/fonts";
+@import "base/variables/spacing";
+@import "base/variables/width";
+
+/* Mixins
+----------------------------------------------- */
+
+@import "base/mixins/buttons";
+@import "base/mixins/resets";
+@import "base/mixins/tools";
+@import "base/mixins/wrap";
+
+/* Generic
+----------------------------------------------- */
+
+@import "base/generic/normalize";
+@import "base/generic/all";
+
+/* Blocks
+----------------------------------------------- */
+
+@import "blocks/core/core-button";
+@import "blocks/core/core-columns";
+@import "blocks/core/core-embed";
+@import "blocks/core/core-file";
+@import "blocks/core/core-freeform";
+@import "blocks/core/core-gallery";
+@import "blocks/core/core-heading";
+@import "blocks/core/core-image";
+@import "blocks/core/core-list";
+@import "blocks/core/core-media-text";
+@import "blocks/core/core-paragraph";
+@import "blocks/core/core-quote";
+@import "blocks/core/core-separator";
+@import "blocks/core/core-table";
+
+@import "blocks/settings/blocks-alignment";
+@import "blocks/settings/blocks-colors";
 
 .edit-post-visual-editor .editor-block-list__block {
   font-family: $font-text;
-  @import "elements/typography/text";
+  @import "base/generic/typography";
 }
-
-@import "elements/blocks/blocks-alignment";
-@import "elements/blocks/blocks-colors";
-@import "elements/blocks/core-file";
-@import "elements/blocks/core-paragraph";
-@import "elements/blocks/core-table";
-@import "elements/blocks/core-list";
-@import "elements/blocks/core-quote";
-@import "elements/blocks/core-separator";
-@import "elements/blocks/core-image";
-@import "elements/blocks/core-gallery";
-@import "elements/blocks/core-embed";
-@import "elements/blocks/core-button";
-@import "elements/blocks/core-columns";
-@import "elements/blocks/core-media-text";
 
 // hide font-size selection
 .components-panel__body.blocks-font-size .components-base-control:first-of-type {

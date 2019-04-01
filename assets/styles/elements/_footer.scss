@@ -1,10 +1,10 @@
 /* ==========================================================================
- elements / navigation / footer
+ # Footer
 ========================================================================== */
 
 .site-footer {
-  padding: 2rem 0;
   background: $grey-light;
+  padding: 2rem 0;
 
   &__container {
     @include wrap;

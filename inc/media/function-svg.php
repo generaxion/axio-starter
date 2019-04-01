@@ -24,7 +24,7 @@ function aucor_starter_get_svg($icon, $args = array()) {
 
   // set defaults
   $defaults = array(
-    'wrap'        => true, // wrap in <span>
+    'wrap'        => false, // wrap in <span>
     'class'       => '',
     'title'       => '',
     'desc'        => '',

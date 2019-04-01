@@ -1,5 +1,5 @@
 /* ==========================================================================
- elements / blocks / core-paragraph
+ # Paragraph block
 =============================================================================
 
 Notice: Paragraphs without custom styles won't have identifiable classes on front-end.
@@ -36,7 +36,9 @@ Be careful with paragraph styles as they will be applied by other blocks as well
 /* Only front-end
 ----------------------------------------------- */
 
-.wysiwyg p {}
+.wysiwyg p {
+
+}
 
 /* Only back-end
 ----------------------------------------------- */

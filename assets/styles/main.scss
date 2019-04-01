@@ -1,68 +1,90 @@
 /* ==========================================================================
-  Main (front-end)
+ # Main (front-end)
 ========================================================================== */
 
-// vendor
+/* Vendors
+----------------------------------------------- */
 
 @import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
-@import "../../node_modules/sass-toolkit/stylesheets/_toolkit.scss";
-@import "../../node_modules/sass-toolkit/stylesheets/toolkit/kickstart";
 
-// global
+/* Variables
+----------------------------------------------- */
 
-@import "_global/fonts";
-@import "_global/mixins";
-@import "_global/normalize";
-@import "_global/variables";
+@import "base/variables/breakpoints";
+@import "base/variables/colors";
+@import "base/variables/fonts";
+@import "base/variables/spacing";
+@import "base/variables/width";
 
-// elements
+/* Mixins
+----------------------------------------------- */
 
-@import "elements/blocks/blocks-alignment";
-@import "elements/blocks/blocks-colors";
-@import "elements/blocks/core-paragraph";
-@import "elements/blocks/core-table";
-@import "elements/blocks/core-file";
-@import "elements/blocks/core-list";
-@import "elements/blocks/core-quote";
-@import "elements/blocks/core-separator";
-@import "elements/blocks/core-image";
-@import "elements/blocks/core-gallery";
-@import "elements/blocks/core-embed";
-@import "elements/blocks/core-button";
-@import "elements/blocks/core-columns";
-@import "elements/blocks/core-media-text";
+@import "base/mixins/buttons";
+@import "base/mixins/resets";
+@import "base/mixins/tools";
+@import "base/mixins/wrap";
 
+/* Generic
+----------------------------------------------- */
 
-@import "elements/content/entry";
-@import "elements/content/hero";
-@import "elements/content/teaser";
+@import "base/generic/normalize";
+@import "base/generic/all";
+@import "base/generic/typography";
 
-@import "elements/forms/form-basic";
-@import "elements/forms/form-search";
+/* Blocks
+----------------------------------------------- */
 
-@import "elements/layout/layout";
+@import "blocks/core/core-button";
+@import "blocks/core/core-columns";
+@import "blocks/core/core-embed";
+@import "blocks/core/core-file";
+@import "blocks/core/core-freeform";
+@import "blocks/core/core-gallery";
+@import "blocks/core/core-heading";
+@import "blocks/core/core-image";
+@import "blocks/core/core-list";
+@import "blocks/core/core-media-text";
+@import "blocks/core/core-paragraph";
+@import "blocks/core/core-quote";
+@import "blocks/core/core-separator";
+@import "blocks/core/core-table";
 
-@import "elements/navigation/footer";
-@import "elements/navigation/header";
-@import "elements/navigation/menu-primary";
-@import "elements/navigation/menu-social";
-@import "elements/navigation/menu-toggle";
-@import "elements/navigation/numeric-posts-nav";
-@import "elements/navigation/social-share";
+@import "blocks/settings/blocks-alignment";
+@import "blocks/settings/blocks-colors";
 
-@import "elements/typography/buttons";
-@import "elements/typography/media";
-@import "elements/typography/text";
+/* Elements
+----------------------------------------------- */
 
-// templates
+@import "elements/buttons";
+@import "elements/entry";
+@import "elements/footer";
+@import "elements/forms";
+@import "elements/header";
+@import "elements/hero";
+@import "elements/media";
+@import "elements/menu-primary";
+@import "elements/menu-social";
+@import "elements/menu-toggle";
+@import "elements/numeric-posts-nav";
+@import "elements/social-share";
+@import "elements/teaser";
 
-@import "templates/404";
-@import "templates/front-page";
-@import "templates/index";
-@import "templates/page";
-@import "templates/search";
-@import "templates/single";
+/* Layout
+----------------------------------------------- */
 
-// print
+@import "views/layout/layout";
 
-@import "_global/print";
+/* Templates
+----------------------------------------------- */
+
+@import "views/templates/404";
+@import "views/templates/front-page";
+@import "views/templates/index";
+@import "views/templates/page";
+@import "views/templates/search";
+@import "views/templates/single";
+
+/* Print
+----------------------------------------------- */
+
+@import "base/generic/print";

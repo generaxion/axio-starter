@@ -1,5 +1,5 @@
 /* ==========================================================================
- elements / blocks / core-heading
+ # Heading block
 =============================================================================
 
 Notice: Titles without custom styles won't have identifiable classes on front-end.
@@ -22,7 +22,17 @@ Be careful with heading styles as they will be applied by other blocks as well.
 /* Only front-end
 ----------------------------------------------- */
 
+.wysiwyg {
+  h2, h3, h4, h5 {
+
+  }
+}
 
 /* Only back-end
 ----------------------------------------------- */
 
+.editor-styles-wrapper .wp-block-heading {
+  h2, h3, h4, h5 {
+
+  }
+}

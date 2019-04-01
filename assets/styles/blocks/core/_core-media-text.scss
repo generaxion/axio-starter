@@ -1,5 +1,5 @@
 /* ==========================================================================
- elements / blocks / core-media-text
+ # Media-text block
 ========================================================================== */
 
 /* Front-end and back-end
@@ -70,33 +70,15 @@
 /* Only front-end
 ----------------------------------------------- */
 
+.wysiwyg .wp-block-media-text {
+
+}
+
+
 /* Only back-end
 ----------------------------------------------- */
 
 .editor-styles-wrapper .wp-block-media-text {
 
-  h2,
-  .h2,
-  h3,
-  .h3,
-  h4,
-  .h4
-  h5,
-  .h5
-  h6,
-  .h6 {
-    font-family: $font-text;
-  }
-
-
 }
 
-.wp-block[data-align="full"] {
-  .wp-block-media-text {
-    p {
-      font-size: 1.25rem;
-      font-weight: $light;
-    }
-
-  }
-}

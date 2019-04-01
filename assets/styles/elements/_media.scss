@@ -1,5 +1,5 @@
 /* ==========================================================================
- elements / typography / media
+ # Media
 ========================================================================== */
 
 /* Lazyload
@@ -26,11 +26,11 @@ img.lazyload--animated {
     opacity: 1;
   }
   &.lazyload-preload {
-  z-index: 3;
+  backface-visibility: hidden;
   filter: blur(15px);
   transition: .5s ease-out;
   transform: scale(1.075);
-  backface-visibility: hidden;
+  z-index: 3;
     &.lazyload-preload--ready {
       opacity: 0;
     }
@@ -49,29 +49,30 @@ img.lazyload--animated {
 ----------------------------------------------- */
 
 .wp-caption {
-  font-size: .875rem;
   float: none;
+  font-size: .875rem;
   margin: 0;
 }
 
 .alignnone {
+  height: auto;
   margin-left: 0;
   margin-right: 0;
   max-width: 100%;
-  height: auto;
+
 }
 
 .aligncenter {
   display: block;
-  margin: 1rem auto;
   height: auto;
+  margin: 1rem auto;
 }
 
 .alignleft,
 .alignright {
   display: block;
-  margin-bottom: 1rem;
   height: auto;
+  margin-bottom: 1rem;
 }
 
 @include breakpoint($s) {
@@ -92,8 +93,9 @@ img.lazyload--animated {
   display: inline-block;
   fill: currentColor;
   height: 1em; // match current font-size
-  width:  1em; // match current font-size
   vertical-align: middle;
+  width:  1em; // match current font-size
+
 }
 
 /* Iframe

@@ -12,7 +12,6 @@
   transition: $property .2s ease-in-out;
 }
 
-
 // fix WP admin bar height on sticky menu
 @mixin admin-bar-sticky-fix {
   .admin-bar & {

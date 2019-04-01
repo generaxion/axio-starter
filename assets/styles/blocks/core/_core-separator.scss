@@ -1,12 +1,12 @@
 /* ==========================================================================
- elements / blocks / core-separator
+ # Separator block
 ========================================================================== */
 
 /* Front-end and back-end
 ----------------------------------------------- */
 
 .editor-styles-wrapper .wp-block-separator,
-.site .wp-block-separator,
+.wysiwyg .wp-block-separator,
 .wysiwyg hr {
 
   margin-top: $gap-big;
@@ -22,6 +22,12 @@
 
 /* Only front-end
 ----------------------------------------------- */
+
+.wysiwyg {
+  .wp-block-separator, hr {
+
+  }
+}
 
 
 /* Only back-end

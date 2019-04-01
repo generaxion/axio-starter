@@ -1,5 +1,5 @@
 gulpfile.js
 node_modules/svgxuse/svgxuse.js
 node_modules/fitvids/dist/fitvids.js
-node_modules/lazysizes/lazysizes.min.js
+node_modules/lazysizes/lazysizes.js
 node_modules/objectFitPolyfill/dist/objectFitPolyfill.min.js

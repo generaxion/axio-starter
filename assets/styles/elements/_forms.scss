@@ -1,6 +1,9 @@
 /* ==========================================================================
- elements / forms / basic
+ # Forms
 ========================================================================== */
+
+/* Generic form styles
+----------------------------------------------- */
 
 fieldset {
   padding: 0;
@@ -57,4 +60,17 @@ textarea {
 button,
 input[type="submit"] {
 
+}
+
+/* Search form
+----------------------------------------------- */
+
+.search-form {
+  display: flex;
+  &__input {
+    margin-right: .5rem;
+  }
+  &__submit {
+    @include button;
+  }
 }

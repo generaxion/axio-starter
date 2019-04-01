@@ -1,13 +1,13 @@
 /* ==========================================================================
- elements / navigation / header
+ # Header
 ========================================================================== */
 
 .site-header {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   @include breakpoint($menu-visible) {
-    display: flex;
     align-items: center;
+    display: flex;
     padding-top: 1.75rem;
     padding-bottom: 1.75rem;
   }
@@ -15,8 +15,8 @@
   &__container {
     @include wrap;
     @include breakpoint($menu-visible) {
-      display: flex;
       align-items: center;
+      display: flex;
       justify-content: space-between;
     }
   }
@@ -30,10 +30,10 @@
 
     }
     @include breakpoint($menu-hidden) {
-      width: 100%;
+      align-items: center;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      width: 100%;
       &__logo {
         width: 5rem;
       }
@@ -51,5 +51,3 @@
   }
 
 }
-
-
