@@ -24,6 +24,18 @@
     }
   }
 
+  &.alignfull {
+    margin-left: #{-$gap};
+    margin-right: #{-$gap};
+    figcaption {
+      padding-left: $gap;
+      padding-right: $gap;
+      max-width: $content-default-width;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   // floated to side
   figure {
     margin-top: 0;
