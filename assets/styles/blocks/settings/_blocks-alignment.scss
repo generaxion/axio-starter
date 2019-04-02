@@ -19,10 +19,14 @@
   }
 
   & > .alignfull {
+    margin-top: $gap-big;
+    margin-bottom: $gap-big;
     max-width: none;
   }
 
   & > .alignwide {
+    margin-top: $gap-big;
+    margin-bottom: $gap-big;
     max-width: $max-width-l;
   }
 

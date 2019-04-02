@@ -37,11 +37,21 @@
     }
   }
 
+  &.has-2-columns,
+  &.columns-2 {
+    @include breakpoint($s) {
+      & > * {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   &.has-3-columns,
   &.columns-3 {
     @include breakpoint($s) {
       & > * {
         width: calc(100% / 3 - #{2/3*$gap});
+        margin-bottom: 0;
       }
     }
   }
@@ -51,6 +61,7 @@
     @include breakpoint($m) {
       & > * {
         width: calc(100% / 4 - #{3/4*$gap});
+        margin-bottom: 0;
       }
     }
   }
@@ -63,6 +74,7 @@
     @include breakpoint($l) {
       & > * {
         width: calc(100% / 5 - #{4/5*$gap});
+        margin-bottom: 0;
       }
     }
   }
