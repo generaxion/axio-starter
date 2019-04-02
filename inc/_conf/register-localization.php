@@ -5,6 +5,13 @@
  * @package aucor_starter
  */
 
+/**
+ * Register string to translate
+ *
+ * @uses Aucor Core filter: aucor_core_pll_register_strings
+ *
+ * @return array list of translatabel strings
+ */
 add_filter('aucor_core_pll_register_strings', function() {
 
   return array(

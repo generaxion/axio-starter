@@ -18,8 +18,8 @@
  */
 function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var = null) {
 
-  $next_label = ask__('Navigation: Next');
-  $prev_label = ask__('Navigation: Previous');
+  $next_label = aucor_starter_get_svg('caret-right') . '<span class="screen-reader-text">' . ask__('Navigation: Next') . '</span>';
+  $prev_label = aucor_starter_get_svg('caret-right') . '<span class="screen-reader-text">' . ask__('Navigation: Previous') . '</span>';
 
   global $wp_query;
 
@@ -35,17 +35,17 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
   // remove current paged var from url
   $clean_url = esc_url(remove_query_arg($paged_variable));
 
-  if ( $max_num_pages <= 1 ) {
+  if ($max_num_pages <= 1) {
     return;
   }
 
   if ($has_default_paged_var) {
-    $paged = get_query_var($paged_variable) ? absint( get_query_var($paged_variable) ) : 1;
+    $paged = get_query_var($paged_variable) ? absint(get_query_var($paged_variable)) : 1;
   } else {
     $paged = (isset($_GET[$paged_variable]) && !empty($_GET[$paged_variable])) ? absint($_GET[$paged_variable]) : 1;
   }
 
-  $max = intval($max_num_pages);
+  $max = absint($max_num_pages);
 
   // add current page to the array
   if ($paged >= 1) {
@@ -77,7 +77,7 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
     $active = ($paged === 1) ? 'numeric-navigation__item--active' : '';
     $class = 'class="numeric-navigation__item numeric-navigation__item--pagenum ' . $active . '"';
     if ($has_default_paged_var) {
-      printf('<li %s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link( 1 )), '1');
+      printf('<li %s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link(1)), '1');
     } else {
       printf('<li %s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, $clean_url, '1');
     }
@@ -90,7 +90,7 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
   sort($links);
   foreach ((array) $links as $link) {
     $active = ($paged === $link) ? 'numeric-navigation__item--active' : '';
-    $class = 'class="numeric-navigation__item numeric-navigation__item--pagenum' . $active . '"';
+    $class = 'class="numeric-navigation__item numeric-navigation__item--pagenum ' . $active . '"';
     $url = ($paged_variable === 'paged') ? esc_url(get_pagenum_link($link)) : add_query_arg($paged_variable, $link, $clean_url);
     printf('<li %s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, $url, $link);
   }
@@ -101,7 +101,7 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
     }
 
     $active = ($paged === $max) ? 'numeric-navigation__item--active' : '';
-    $class = 'class="numeric-navigation__item numeric-navigation__item--pagenum' . $active . '"';
+    $class = 'class="numeric-navigation__item numeric-navigation__item--pagenum ' . $active . '"';
     if ($paged_variable === 'paged') {
       printf('<li %s><a itemprop="relatedLink/pagination" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($max)), $max);
     } else {

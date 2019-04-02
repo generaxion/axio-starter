@@ -18,7 +18,7 @@ wp.domReady(function() {
 //  // add lead paragraph style
 //  wp.blocks.registerBlockStyle('core/paragraph', {
 //    name: 'lead',
-//    label: 'Ingressi',
+//    label: 'Lead paragraph',
 //  });
 
 });

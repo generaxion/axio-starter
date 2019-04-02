@@ -12,16 +12,26 @@
 
   &__item {
     display: inline-block;
-    margin: .5rem .25rem;
+    margin: .5rem .125rem;
     a {
+      @include transition;
+      background: $grey-light;
+      color: $base-font-color;
+      display: inline-block;
+      line-height: 1;
+      min-width: 2rem;
+      padding: .5rem;
       text-decoration: none;
       &:hover, &:focus, &:active {
-
+        background: $grey;
       }
     }
 
     &--previous {
-
+      svg {
+        // turn caret othwer way around
+        transform: rotate(180deg);
+      }
     }
 
     &--next {
@@ -33,6 +43,14 @@
     }
 
     &--active {
+
+      a {
+        background: $primary;
+        color: $white;
+        &:hover, &:focus, &:active {
+          background: $primary;
+        }
+      }
 
     }
 
