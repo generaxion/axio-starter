@@ -27,20 +27,6 @@
   // floated to side
   figure {
     margin-top: 0;
-    margin-left: auto;
-    margin-right: auto;
-    &.alignright {
-      @include breakpoint($s) {
-        margin-left: $gap;
-        margin-right: -#{$gap};
-      }
-    }
-    &.alignleft {
-      @include breakpoint($s) {
-        margin-right: $gap;
-        margin-left: -#{$gap};
-      }
-    }
   }
 
   // caption

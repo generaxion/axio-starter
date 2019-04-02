@@ -17,6 +17,11 @@ $sub-l:  max-width 69.9375rem;  // 1119px
 $xl:     90rem;                 // 1440 px
 $sub-xl: max-width 89.9375rem;  // 1399px
 
+/* Content breakpoints
+----------------------------------------------- */
+
+$content-fits: #{$content-default-width + 3*$gap};
+
 /* Menu breakpoints
 ----------------------------------------------- */
 

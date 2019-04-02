@@ -68,28 +68,6 @@ img.lazyload--animated {
   margin: 1rem auto;
 }
 
-.alignleft,
-.alignright {
-  display: block;
-  height: auto;
-  margin-bottom: 1rem;
-  & > img {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@include breakpoint($s) {
-  .alignleft {
-    float: left;
-    margin-right: 1rem;
-  }
-  .alignright {
-    float: right;
-    margin-left: 1rem;
-  }
-}
-
 /* Icons
 ----------------------------------------------- */
 

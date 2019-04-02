@@ -29,6 +29,7 @@
 
   @include breakpoint($s) {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     & > * {
       flex-shrink: 0;
