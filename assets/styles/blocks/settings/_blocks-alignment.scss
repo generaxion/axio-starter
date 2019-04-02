@@ -30,6 +30,7 @@
   .alignleft {
     @include breakpoint($content-fits) {
       float: left;
+      margin-top: 0;
       margin-bottom: $gap;
       margin-left: calc(50% - #{$content-default-width/2});
       margin-right: $gap;
@@ -41,6 +42,7 @@
   .alignright {
     @include breakpoint($content-fits) {
       float: right;
+      margin-top: 0;
       margin-bottom: $gap;
       margin-left: $gap;
       margin-right: calc(50% - #{$content-default-width/2});

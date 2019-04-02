@@ -17,7 +17,9 @@
 
   &.alignleft,
   &.alignright {
-    width: auto;
+    @include breakpoint($content-fits) {
+      max-width: #{$content-default-width/2};
+    }
   }
 
   thead {
