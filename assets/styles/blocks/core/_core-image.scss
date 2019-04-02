@@ -27,13 +27,19 @@
   // floated to side
   figure {
     margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
     &.alignright {
-      margin-left: $gap;
-      margin-right: -#{$gap};
+      @include breakpoint($s) {
+        margin-left: $gap;
+        margin-right: -#{$gap};
+      }
     }
     &.alignleft {
-      margin-right: $gap;
-      margin-left: -#{$gap};
+      @include breakpoint($s) {
+        margin-right: $gap;
+        margin-left: -#{$gap};
+      }
     }
   }
 
@@ -51,8 +57,14 @@
 /* Only front-end
 ----------------------------------------------- */
 
+// image block
 .wysiwyg .wp-block-image {
 
+}
+
+// classic editor images
+.wysiwyg .wp-caption {
+  @extend .wp-block-image;
 }
 
 /* Only back-end

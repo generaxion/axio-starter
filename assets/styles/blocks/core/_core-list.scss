@@ -15,6 +15,12 @@ Be careful with title styles as they will be applied by other blocks as well.
 .wysiwyg ul,
 .wysiwyg ol, {
   margin: 0 auto $gap auto;
+  padding-left: $gap;
+
+  li {
+    margin: .25rem 0;
+    padding: 0;
+  }
 
   // inner lists
   ul, ol {

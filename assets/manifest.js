@@ -36,6 +36,7 @@ module.exports = {
 
         // project specific js
         "scripts/components/navigation.js",
+        "scripts/components/polyfill-classic-editor-markup.js",
         "scripts/main.js"
 
       ],
