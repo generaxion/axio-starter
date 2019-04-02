@@ -5,8 +5,6 @@
  * @package aucor_starter
  */
 
-// @TODO check correct param types
-
 /**
  * Set explicitly allowed blocks (all others are disallowed)
  *
@@ -14,7 +12,7 @@
  * blocks here to appear on Gutenberg. This is to keep the control on what
  * is or is not allowed.
  *
- * @param array $allowed_block_types list of block names
+ * @param bool|array $allowed_block_types list of block names or true for all
  * @param WP_Post $post the current post object
  *
  * @return array $allowed_block_types list of block names
@@ -67,6 +65,11 @@ function aucor_starter_gutenberg_allowed_blocks($allowed_block_types, $post) {
   $blocks[] = 'core-embed/vimeo';
   $blocks[] = 'core-embed/issuu';
   $blocks[] = 'core-embed/slideshare';
+
+  /**
+   * Reusable blocks
+   */
+  $blocks[] = 'core/block';
 
   /**
    * Plugins

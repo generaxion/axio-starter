@@ -20,8 +20,6 @@
  */
 function aucor_starter_get_svg($icon, $args = array()) {
 
-  // @TODO: disable wrapper by default
-
   // set defaults
   $defaults = array(
     'wrap'        => false, // wrap in <span>
