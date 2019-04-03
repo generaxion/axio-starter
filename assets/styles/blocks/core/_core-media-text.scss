@@ -67,12 +67,18 @@
   &.alignwide,
   &.alignfull {
     .wp-block-media-text__content {
+      @include breakpoint($l) {
+        padding: $gap-big;
+      }
+    }
+  }
+
+  // add side padding for full width
+  &.alignfull {
+    .wp-block-media-text__content {
       @include breakpoint($sub-m) {
         padding-left: $gap;
         padding-right: $gap;
-      }
-      @include breakpoint($l) {
-        padding: $gap-big;
       }
     }
   }
