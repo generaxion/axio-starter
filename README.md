@@ -12,8 +12,6 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 ![aucor-starter](https://user-images.githubusercontent.com/9577084/53933001-1bb2e080-40a5-11e9-90c1-90571243e3b9.jpg)
 
-(Readme needs lots of updates: Gutenerg, file structure, Aucor Core)
-
 ## Table of contents
 
 1. [Directory structure](#1-directory-structure)
@@ -38,14 +36,16 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     4. [Image sizes](#54-image-sizes)
     5. [Embed images](#55-embed-images)
     6. [Lazy load](#56-lazy-load)
-6. [Template tags](#6-template-tags)
+    7. [Favicons](#57-favicons)
+6. [Includes](#6-includes)
+    1. [Functions.php](#61-functionsphp)
     1. [Buttons](#61-buttons)
     2. [Icons](#62-icons)
     3. [Meta](#63-meta)
     4. [Navigation](#64-navigation)
     5. [Search](#65-search)
     6. [Titles](#66-titles)
-7. [Includes](#7-includes)
+7. [Gutenberg and Classic Editor](#7-gutenberg-and-classic-editor)
     1. [Localization \(Polylang\)](#71-localization-polylang)
     2. [Menus](#72-menus)
     3. [WP Settings](#73-wp-settings)
@@ -61,7 +61,7 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 ## 1. Directory structure
 
-Directory structure is a mixture between [_underscores](http://underscores.me/) (template structure) and [Sage](https://roots.io/sage/) (Gulp and assets).
+Directory structure was once based a mixture between [_underscores](http://underscores.me/)(template structure) and [Sage](https://roots.io/sage/) (Gulp and assets) It has evolved from there.
 
 `/assets/` includes all JS, SASS, images, SVG and fonts
 
@@ -69,9 +69,7 @@ Directory structure is a mixture between [_underscores](http://underscores.me/) 
 
 `/inc/` has all php files that are not part of template structure
 
-`/partials/` has small templates like menus and contents of pages and search results
-
-`/template-tags/` has small template functions to be used in templates
+`/partials/` has small template parts meant to be used with function `get_template_part`
 
 ## 2. Setup
 
@@ -85,7 +83,7 @@ Project setup is done once in project's lifetime. Do it before modifying anythin
 2. Extract into /wp-content/themes/ and rename for project as `sitename`
 3. Run setup wizard in theme root with bash `sh setup.sh`
     1. **Site name** (Default: "Aucor Starter")
-    2. **Unique id** for your theme. Use only a-z and _. The shorter the better 3-4 characters is the best. (Default: aucor_starter)
+    2. **Unique id** for your theme. Use only a-z and _. The shorter the better. Recommended length is 3-4 characters. (Default: aucor_starter)
     3. **Local development url** is used by Browsersync and can be changed in `/assets/manifest.js` (Default: https://aucor_starter.local)
     4. **Author name** is shown in default style.css (Default: Aucor Oy)
     5. **Author URL** is shown in default style.css (Default: https://www.aucor.fi)
@@ -111,38 +109,33 @@ Do this everythime you start to work with the theme.
 
 **Protip**: You can also run just `gulp` to build all the resources or just some resources with `gulp styles` or `gulp scripts`.
 
+**Protip**: Want to start the watch task but not open the Browsersync? Start watch with quiet mode `qulp watch -q`.
+
 ## 3. Styles
 
-Styles are written in SASS in `/assets/styles`. There's four separate stylesheets that are compiled automatically to `dist/styles`.
+Styles are written in SASS in `/assets/styles`. There's five separate stylesheets that are compiled automatically to `dist/styles`.
 
   * `main.scss` front-end styles of website
-  * `admin.scss` styles for admin views
-  * `editor.scss` text styles for WP text editor
-  * `wp-login.scss` styles for login screen
+  * `admin.scss` back-end styles for admin views
+  * `editor-classic.scss` back-end styles for old TinyMCE based editor
+  * `editor-gutenberg.scss` back-end styles for new Gutenberg editor
+  * `wp-login.scss` front-end styles for login screen
 
 ### 3.1 Directory structure
 
-  * `/_global/` universal styles
-      * `_variables.scss` colors, fonts, breakpoints
-      * `_mixins.scss` a few [SASS mixins](http://sass-lang.com/guide) for wrapping content, reseting styles and a11y
-      * `_normalize.scss` reset base styles for all browsers
-      * `_print.scss` printing styles, hiding elements, page margins
-  * `/elements/` elements and components to be used as part of templates
-      * `/content/` styles for content elements (hero, teaser, entry)
-      * `/forms/` styles for forms (basic, search)
-      * `/navigation/` styles for navigation elements (menus, header, footer, social share)
-      * `/typography/` styles for typography (text, buttons, tables, media)
-  * `/templates/` independent templates (archives, singular, page templates)
-      * `_404.scss` styles for 404 page
-      * `_front-page.scss` styles for front page
-      * `_index.scss` styles for archives
-      * `_page.scss` styles for pages
-      * `_search.scss` styles for search page
-      * `_single.scss` styles for singular (posts)
+  * `/base/` universal styles and utilities
+      * `/variables/` colors, fonts, breakpoints
+      * `/mixins/` all [SASS mixins](http://sass-lang.com/guide)
+      * `/generic/` styles for everywhere and all contexts
+  * `/blocks/` Gutenberg block styles for front-end and back-end
+      * `/core/` supported core blocks
+      * `/settings/` utilities for blocks (alignment, width, color)
+  * `/elements/` small independent elements that can be used in many contexts (forms, buttons, menu etc)
+  * `/views/` layouts and page templates
+      * `/layout/` layouting width, alignment etc.
+      * `/templates/` WP native view templates and custom page templates
   * `@node_modules` vendor packages
-      * `breakpoint-sass` [awesome functions](http://breakpoint-sass.com/) for breakpoints
-      * `singularitygs` [grid system](https://github.com/at-import/Singularity) with SASS (to be replaced with CSS grid)
-      * `sass-toolkit` great collection of [SASS mixins](https://github.com/at-import/toolkit)
+      * `breakpoint-sass` [helper mixins](http://breakpoint-sass.com/) for breakpoints
 
 ### 3.2 Workflow
 
@@ -155,9 +148,11 @@ Styles are written in SASS in `/assets/styles`. There's four separate stylesheet
 
 ### 3.3 Adding new files
 
-  1. Make a new file like `/assets/styles/templates/_template-projects.scss`
+  1. Make a new file like `/assets/styles/elements/_card.scss`
   2. Go edit `main.scss`
-  3. Import the new file with `@import "templates/template-projects";`
+  3. Import the new file with `@import "elements/card";`
+
+**Protip:** If those styles are needed in Gutenberg editor as well, include the file in `editor-gutenberg.scss` as well.
 
 ### 3.4 Naming
 
@@ -185,15 +180,17 @@ BEM in SASS:
 }
 ```
 
+**Protip:** Use your own judgement on how deep you should go. There is no right or wrong way. For example `.entry__footer__categories__item__label` might be better as just `.categories__item__label`.
+
 ### 3.5 Tips
 
  * Setup responsive font sizes by setting fonts in percentages in `html` and change html font size with media queries. All elements use `rem` for font sizes so all the font size changes happen in html.
- * Don't hesitate to create variables if you have repeating values. Put all variable definitions in `_variables.scss` or at the beginning of the file.
+ * Don't hesitate to create variables if you have repeating values. Put all variable definitions in `/base/variables/` or at the beginning of the file.
  * Build mobile-first: more `min-width`, less `max-width`.
 
 ## 4. Scripts
 
-By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/svgxuse), [jQuery-free fitvids](https://www.npmjs.com/package/fitvids) and our framework for navigation (navigation.js).
+By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/svgxuse), [jQuery-free fitvids](https://www.npmjs.com/package/fitvids) and our framework for navigation (navigation.js). Also we synchronize image markup from Classic Editor to Gutenberg in front-end to make styling easier (not critical or some cases even needed).
 
 ### 4.1 Directory structure
 
@@ -237,6 +234,8 @@ First, go to [npmjs.com](https://www.npmjs.com/) and find if your library is ava
 
 Include the script in `/assets/manifest.js`.
 
+Add project libraries in `dependencies` and Gulp libraries in `devDependencies`. Both will go to same `node_modules` but it's much easier to later figure out what goes where.
+
 ```js
 "main.js": [
   "../node_modules/fitvids/dist/fitvids.js",
@@ -271,7 +270,7 @@ Put your static images in `/assets/images/` and Gulp will compress them a bit. R
 
 ### 5.4 Image sizes
 
-Image sizes are defined in `functions.php`. Tips for creating image sizes:
+Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating image sizes:
 
   * Base images on commonly used aspect ratios (16:9, 1:1)
   * Make "medium" half of the text columns and "large" full text column
@@ -337,7 +336,15 @@ By default the image function has lazy loading on. Lazy loading uses [lazysizes 
 
 Lazy loading is SEO friendly and function automatically displays `<noscript>` versions for users without JS.
 
-## 6. Template tags
+### 5.7. Favicons
+
+Add all favicon files to `/assets/favicon/` where they will be moved (and images optimized) to `/dist/favicon/`. Use for example [Real Favicon Generator](https://realfavicongenerator.net/) to make favicon. Add favicon embeds to function `aucor_starter_favicons` in `/inc/_conf/register-assets.php`.
+
+## 6. Includes
+
+### 6.1 Functions.php
+
+The `/functions.php` is the place to require all PHP files that are not part of the current template. This file should only ever have requires and never any
 
 Template tags `/template-tags/` includes functions to be used in templates. Here's what you get by default. Notice that function prefix is changed to whatever you choose it to be in setup.
 
