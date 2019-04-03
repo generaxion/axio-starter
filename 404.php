@@ -18,9 +18,7 @@ get_header(); ?>
 
         <div class="entry__content">
           <p><?php ask_e('404: Page not found description'); ?></p>
-          <div class="search-form search-form--404">
-            <?php aucor_starter_search_form('search-form--404'); ?>
-          </div>
+          <?php aucor_starter_search_form('search-form--404', ['class' => 'search-form--404']); ?>
         </div>
 
       </article><!-- .entry-404 -->

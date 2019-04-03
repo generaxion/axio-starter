@@ -67,10 +67,24 @@ input[type="submit"] {
 
 .search-form {
   display: flex;
+  max-width: 30rem;
   &__input {
+    flex-grow: 1;
     margin-right: .5rem;
   }
   &__submit {
     @include button;
   }
+
+  // 404 search form
+  &--404 {
+    margin: $gap auto 0;
+  }
+
+  // no search results form
+  &--search-empty {
+    margin: $gap auto 0;
+  }
+
 }
+

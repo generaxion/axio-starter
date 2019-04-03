@@ -30,6 +30,11 @@ function aucor_starter_search_form($id, $args = array()) {
   // parse args
   $args = wp_parse_args($args, $defaults);
 
+  // extend classlist instead of replacing it
+  if ($defaults['class'] !== $args['class']) {
+    $args['class'] .= ' ' . $defaults['class'];
+  }
+
   // create ID for input
   $input_id = $id . '-input';
 

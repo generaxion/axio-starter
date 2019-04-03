@@ -17,11 +17,11 @@ get_header(); ?>
 
     <?php if (have_posts()) : ?>
 
-      <?php while (have_posts()) : the_post(); ?>
-
-        <?php get_template_part('partials/content/teaser'); ?>
-
-      <?php endwhile; ?>
+      <div class="teaser-container">
+        <?php while (have_posts()) : the_post(); ?>
+          <?php get_template_part('partials/content/teaser'); ?>
+        <?php endwhile; ?>
+      </div>
 
       <?php aucor_starter_numeric_posts_nav(); ?>
 
@@ -29,15 +29,9 @@ get_header(); ?>
 
       <article class="entry entry--search-empty">
 
-        <header class="entry__header">
-          <h1 class="entry__header__title"><?php ask_e('Search: Nothing found'); ?></h1>
-        </header><!-- .entry__header -->
-
         <div class="entry__content">
           <p><?php ask_e('Search: Nothing found description'); ?></p>
-          <div class="search-form search-form--search-empty">
-            <?php aucor_starter_search_form('search-form--search-empty'); ?>
-          </div>
+            <?php aucor_starter_search_form('search-form--search-empty', ['class' => 'search-form--search-empty']); ?>
         </div>
 
       </article>
