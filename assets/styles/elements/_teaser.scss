@@ -4,10 +4,10 @@
 
 .teaser-container {
   @include narrow-content;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 0 auto;
   & > * {
     flex-shrink: 0;
     width: 100%;
@@ -20,7 +20,6 @@
 .teaser {
   margin-bottom: $gap;
   @include breakpoint($teaser-m) {
-    //display: flex;
     align-items: center;
   }
 

@@ -21,6 +21,8 @@
   & > .alignfull {
     margin-top: $gap-big;
     margin-bottom: $gap-big;
+    margin-left: -$gap;
+    margin-right: -$gap;
     max-width: none;
   }
 
