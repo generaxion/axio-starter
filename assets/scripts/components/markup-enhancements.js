@@ -1,16 +1,44 @@
 /**
- * Synchronize Gutenberg and Classic Editor front-end markup
- *
- * Gutenberg has some differences in HTML markup. Add these
- * new things to old markup.
+ * Content markup enhancements
  */
 
 /**
- * Wrap old images with captions to make alignment work and markup fit Gutenberg style
+ * Make tables responsive
+ */
+var responsive_tables_in_content = function() {
+
+  var tables = document.querySelectorAll('.wysiwyg .wp-block-table');
+  if (tables) {
+    for (i = 0; i < tables.length; i++) {
+
+      // add modifier class to affected table
+      tables[i].classList.add('wp-block-table--responsive');
+
+      // create new wrapper
+      var wrapper = document.createElement('div');
+      wrapper.setAttribute('class', 'wp-block-table__wrapper');
+
+      // wrap all children
+      while(tables[i].firstChild) {
+        wrapper.appendChild(tables[i].firstChild);
+      }
+
+      // append new wrapper
+      tables[i].appendChild(wrapper);
+
+    }
+  }
+
+}
+responsive_tables_in_content();
+
+/**
+ * Classic Editor image markup "polyfill"
  *
+ * Wrap old images with captions to make alignment work and markup fit Gutenberg style
  * <figure class="wp-caption"><img></figure> => <div class="wp-block-image"><figure class="wp-caption"><img></figure></div>
  */
-function wrap_old_images_with_caption() {
+var wrap_old_images_with_caption = function() {
   var figures = document.querySelectorAll('.wysiwyg .wp-caption');
   if (figures.length) {
     for (i = 0; i < figures.length; i++) {
@@ -26,11 +54,12 @@ function wrap_old_images_with_caption() {
 wrap_old_images_with_caption();
 
 /**
- * Wrap old aligned images without caption to make markup fit Gutenberg style
+ * Classic Editor aligned image markup "polyfill"
  *
+ * Wrap old aligned images without caption to make markup fit Gutenberg style
  * <p><img class="alignleft">Text<p> => <div class="wp-block-image"><figure class="alignleft"><img></figure></div><p>Text</p>
  */
-function wrap_old_aligned_images() {
+var wrap_old_aligned_images = function() {
   var aligned_parent;
   var aligned = document.querySelectorAll('.wysiwyg img.alignleft, .wysiwyg img.alignright');
   if (aligned.length) {

@@ -12,13 +12,17 @@
   @include breakpoint($s) {
     font-size: 1rem;
   }
-  display: block; // for responsive tables
   margin: $gap auto;
-  overflow-x: auto; // for responsive tables
   width: 100%;
-  tbody {
-    display: table; // for responsive tables
-    width: 100%; // for responsive tables
+
+  // responsive tables
+  &--responsive {
+    display: block;
+    overflow-x: auto;
+    .wp-block-table__wrapper {
+      display: table;
+      width: 100%;
+    }
   }
 
   &.alignfull {
