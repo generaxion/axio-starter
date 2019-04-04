@@ -20,6 +20,11 @@
     margin-bottom: $gap-big;
   }
 
+  &.alignfull {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 }
 
 /* Only front-end

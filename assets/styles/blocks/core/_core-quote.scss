@@ -36,28 +36,6 @@
     }
   }
 
-  &.is-style-large {
-    border-left: 0;
-    border-top: .125rem solid $grey-light;
-    border-bottom: .125rem solid $grey-light;
-    padding-top: $gap-big;
-    padding-bottom: $gap-big;
-    text-align: center;
-
-    p {
-      font-size: 1rem;
-      @include breakpoint($s) {
-        font-size: 1.25rem;
-      }
-    }
-
-    cite,
-    .wp-block-quote__citation {
-      margin-top: $gap;
-    }
-
-  }
-
 }
 
 /* Only front-end

@@ -67,7 +67,7 @@ add_action('enqueue_block_editor_assets', function() {
   // editor scripts
   wp_enqueue_script(
     'aucor_starter-editor-gutenberg-scripts',
-    get_stylesheet_directory_uri() . '/dist/scripts/editor.js',
+    get_stylesheet_directory_uri() . '/dist/scripts/editor-gutenberg.js',
     ['wp-i18n', 'wp-blocks', 'wp-dom-ready'],
     aucor_starter_last_edited('js'),
     true

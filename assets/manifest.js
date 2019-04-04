@@ -53,9 +53,9 @@ module.exports = {
       ],
 
       // gutenberg editor specific js
-      "editor.js": [
+      "editor-gutenberg.js": [
 
-        "scripts/editor.js"
+        "scripts/editor-gutenberg.js"
 
       ]
 

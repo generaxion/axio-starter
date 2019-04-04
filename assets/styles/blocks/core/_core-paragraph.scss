@@ -13,17 +13,6 @@ Be careful with paragraph styles as they will be applied by other blocks as well
 .editor-styles-wrapper .wp-block-paragraph,
 .wysiwyg p {
 
-  &.has-drop-cap:not(:focus) {
-    &::first-letter {
-      font-size: 4.5em;
-      line-height: 1;
-      float: left;
-      font-weight: $bold;
-      margin-right: $gap-small;
-      text-transform: uppercase;
-    }
-  }
-
   &.has-background {
     display: block;
     padding: $gap;

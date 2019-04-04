@@ -18,7 +18,6 @@
  */
 require_once 'inc/_conf/register-assets.php';
 require_once 'inc/_conf/register-blocks.php';
-require_once 'inc/_conf/register-colors.php';
 require_once 'inc/_conf/register-image-sizes.php';
 require_once 'inc/_conf/register-localization.php';
 require_once 'inc/_conf/register-menus.php';

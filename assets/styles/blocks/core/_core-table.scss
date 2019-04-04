@@ -7,12 +7,18 @@
 
 .editor-styles-wrapper .wp-block-table,
 .wysiwyg .wp-block-table {
-  width: 100%;
-  margin: $gap auto;
   border: 1px solid $grey;
   font-size: .875rem;
   @include breakpoint($s) {
     font-size: 1rem;
+  }
+  display: block; // for responsive tables
+  margin: $gap auto;
+  overflow-x: auto; // for responsive tables
+  width: 100%;
+  tbody {
+    display: table; // for responsive tables
+    width: 100%; // for responsive tables
   }
 
   &.alignleft,
@@ -30,6 +36,7 @@
   td {
     border: 0;
     border-left: 1px solid $grey;
+    min-width: 8rem;  // for responsive tables
     padding: $gap-small $gap-small;
   }
 

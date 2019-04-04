@@ -63,9 +63,7 @@
     }
   }
 
-  // extra padding for bigger versions
-  &.alignwide,
-  &.alignfull {
+  &.alignwide {
     .wp-block-media-text__content {
       @include breakpoint($l) {
         padding: $gap-big;
@@ -76,9 +74,14 @@
   // add side padding for full width
   &.alignfull {
     .wp-block-media-text__content {
-      @include breakpoint($sub-m) {
-        padding-left: $gap;
-        padding-right: $gap;
+      padding-left: $gap;
+      padding-right: $gap;
+      @include breakpoint($m) {
+        padding: $gap-big;
+      }
+      @include breakpoint($xl) {
+        padding-left: calc((50vw - #{$max-width-l / 2}) / 2);
+        padding-right: calc((50vw - #{$max-width-l / 2}) / 2);
       }
     }
   }
