@@ -16,15 +16,16 @@ var responsive_tables_in_content = function() {
 
       // create new wrapper
       var wrapper = document.createElement('div');
-      wrapper.setAttribute('class', 'wp-block-table__wrapper');
 
-      // wrap all children
-      while(tables[i].firstChild) {
-        wrapper.appendChild(tables[i].firstChild);
-      }
+      // take all classes from table
+      wrapper.setAttribute('class', tables[i].getAttribute('class'));
 
-      // append new wrapper
-      tables[i].appendChild(wrapper);
+      // reset table classes
+      tables[i].removeAttribute('class');
+
+      // wrap the table
+      tables[i].parentNode.insertBefore(wrapper, tables[i]);
+      wrapper.appendChild(tables[i]);
 
     }
   }

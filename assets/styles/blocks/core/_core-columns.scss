@@ -88,6 +88,11 @@
     }
   }
 
+  &.alignwide,
+  &.alignfull {
+    margin-bottom: $gap-big;
+  }
+
 }
 
 /* Only back-end

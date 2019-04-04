@@ -15,7 +15,6 @@
   margin: $gap auto;
   width: 100%;
 
-  // responsive tables
   &--responsive {
     display: block;
     overflow-x: auto;
@@ -30,9 +29,8 @@
     background-size: 2.5rem 100%, 2.5rem 100%, .875rem 100%, .875rem 100%;
     background-position: 0 0, 100%, 0 0, 100%;
     background-attachment: local, local, scroll, scroll;
-    .wp-block-table__wrapper {
-      display: table;
-      width: 100%;
+    table {
+      min-width: 100%;
     }
   }
 
@@ -73,7 +71,9 @@
   }
 
   &.has-fixed-layout {
-    table-layout: fixed;
+    &, table {
+      table-layout: fixed;
+    }
   }
 
   &.is-style-stripes {
