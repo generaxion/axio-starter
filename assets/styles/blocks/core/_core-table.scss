@@ -21,6 +21,16 @@
     width: 100%; // for responsive tables
   }
 
+  &.alignfull {
+    margin-left: auto;
+    margin-right: auto;
+    td {
+      @include breakpoint($l) {
+        padding: $gap;
+      }
+    }
+  }
+
   &.alignleft,
   &.alignright {
     @include breakpoint($content-fits) {
