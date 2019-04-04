@@ -11,17 +11,13 @@
 
 <article id="teaser-<?php the_ID(); ?>" <?php post_class('teaser teaser--' . get_post_type()); ?>>
 
-  <div class="teaser__thumbnail">
-
-    <a href="<?php the_permalink(); ?>">
-      <?php if (has_post_thumbnail()) : ?>
+  <?php if (has_post_thumbnail()) : ?>
+    <div class="teaser__thumbnail">
+      <a href="<?php the_permalink(); ?>" tabindex="-1">
         <?php echo aucor_starter_get_image(get_post_thumbnail_id(), 'thumbnail'); ?>
-      <?php else : ?>
-        <div class="teaser__thumbnail__fallback"></div>
-      <?php endif; ?>
-    </a>
-
-  </div>
+      </a>
+    </div>
+  <?php endif; ?>
 
   <div class="teaser__content">
 
