@@ -4,7 +4,7 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 **Demo:** **[starter.aucor.fi](https://starter.aucor.fi)**
 
-**Required plugin:** **[Aucor Core](https://bitbucket.org/aucor/aucor-core)**
+**Required plugin:** **[Aucor Core](https://github.com/aucor/aucor-core)**
 
 **For who**: Developers building superb WordPress sites
 
@@ -205,6 +205,7 @@ The script have very simple structure.
 
   * `/components/` directory for small components
       * `navigation.js` navigation functionality
+      * `markup-enhancements.js` sync old image markup to Gutenberg style, responsive tables
   * `main.js` main js file that is run in footer
   * `critical.js` scripts that should be run in head
 
@@ -821,7 +822,7 @@ How to use:
 
 ### 8.3 Navigation skeleton
 
-Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/navigation.js` and `/assets/styles/elements/navigation/_primary-menu.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
+Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/navigation.js` and `/assets/styles/elements/_primary-menu.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
 
 Inside `main.js` there is the menu init and a few arguments:
 
