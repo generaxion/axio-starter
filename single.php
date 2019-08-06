@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-  <?php get_template_part('partials/content/hero'); ?>
+  <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--single">
 

@@ -23,16 +23,20 @@ require_once 'inc/_conf/register-localization.php';
 require_once 'inc/_conf/register-menus.php';
 
 /**
- * Editor
+ * Components
  */
-require_once 'inc/editor/setup-classic-editor.php';
-require_once 'inc/editor/setup-gutenberg.php';
-require_once 'inc/editor/setup-theme-support.php';
-
-/**
- * Forms
- */
-require_once 'inc/forms/function-search-form.php';
+require_once 'components/component.php';
+require_once 'components/component-hero.php';
+require_once 'components/component-image.php';
+require_once 'components/component-menu-primary.php';
+require_once 'components/component-menu-social.php';
+require_once 'components/component-menu-sub-pages.php';
+require_once 'components/component-menu-toggle.php';
+require_once 'components/component-posts-nav-numeric.php';
+require_once 'components/component-search-form.php';
+require_once 'components/component-share-buttons.php';
+require_once 'components/component-svg.php';
+require_once 'components/component-teaser.php';
 
 /**
  * Helpers
@@ -40,24 +44,13 @@ require_once 'inc/forms/function-search-form.php';
 require_once 'inc/helpers/function-dates.php';
 require_once 'inc/helpers/function-entry-footer.php';
 require_once 'inc/helpers/function-hardcoded-ids.php';
-require_once 'inc/helpers/function-html-attributes.php';
 require_once 'inc/helpers/function-last-edited.php';
-require_once 'inc/helpers/function-titles.php';
-require_once 'inc/helpers/setup-fallbacks.php';
 
 /**
- * Media
+ * Hooks and setup
  */
-require_once 'inc/media/function-image.php';
-require_once 'inc/media/function-svg.php';
-
-/**
- * Navigation
- */
-require_once 'inc/navigation/function-menu-toggle.php';
-require_once 'inc/navigation/function-numeric-posts-nav.php';
-require_once 'inc/navigation/function-share-buttons.php';
-require_once 'inc/navigation/function-sub-pages-nav.php';
-require_once 'inc/navigation/setup-menu-hooks.php';
-
-
+require_once 'inc/setup-classic-editor.php';
+require_once 'inc/setup-fallbacks.php';
+require_once 'inc/setup-gutenberg.php';
+require_once 'inc/setup-menu-hooks.php';
+require_once 'inc/setup-theme-support.php';

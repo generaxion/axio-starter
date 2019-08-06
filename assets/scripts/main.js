@@ -5,7 +5,7 @@
 /**
  * Navigation
  */
-aucor_navigation(document.getElementById('primary-navigation'), {
+aucor_navigation(document.querySelector('.primary-navigation'), {
   desktop_min_width: 890, // min width in pixels
   menu_toggle: '#menu-toggle' // selector for toggle
 });

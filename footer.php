@@ -22,7 +22,7 @@
       </div>
 
       <div class="site-footer__social">
-        <?php get_template_part('partials/navigation/menu-social'); ?>
+        <?php Aucor_Menu_Social::render(); ?>
       </div>
 
     </div>

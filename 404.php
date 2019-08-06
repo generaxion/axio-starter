@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-  <?php get_template_part('partials/content/hero'); ?>
+  <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--404">
     <main id="main" class="main">
@@ -18,10 +18,16 @@ get_header(); ?>
 
         <div class="entry__content">
           <p><?php ask_e('404: Page not found description'); ?></p>
-          <?php aucor_starter_search_form('search-form--404', ['class' => 'search-form--404']); ?>
+          <?php
+            Aucor_Search_Form::render([
+              'attr' => [
+                'class' => ['search-form--404'],
+              ],
+            ]);
+          ?>
         </div>
 
-      </article><!-- .entry-404 -->
+      </article>
 
     </main><!-- #main -->
   </div><!-- #primary -->
