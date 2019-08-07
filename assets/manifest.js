@@ -35,7 +35,7 @@ module.exports = {
         "../node_modules/fitvids/dist/fitvids.js",
 
         // project specific js
-        "scripts/components/navigation.js",
+        "scripts/components/component-menu-primary.js",
         "scripts/components/markup-enhancements.js",
         "scripts/main.js"
 
