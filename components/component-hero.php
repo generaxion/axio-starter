@@ -47,7 +47,7 @@ class Aucor_Hero extends Aucor_Component {
 
       // required (nothing)
 
-      // optioal
+      // optional
       'attr'  => [],
 
       // internal
