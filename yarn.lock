@@ -4634,10 +4634,6 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass-toolkit@^2.10.2:
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/sass-toolkit/-/sass-toolkit-2.10.2.tgz#c290ad71d76f435b068d963226f287e022dc696a"
-
 sax@^1.2.4, sax@~1.2.1, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"

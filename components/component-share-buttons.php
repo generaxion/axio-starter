@@ -53,7 +53,7 @@ class Aucor_Share_Buttons extends Aucor_Component {
       // required (none)
 
       // optioal
-      'attr'           => '',
+      'attr'           => [],
       'post_title'     => '',
       'section_title'  => '',
       'permalink'      => '',
