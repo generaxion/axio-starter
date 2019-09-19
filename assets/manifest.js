@@ -46,6 +46,7 @@ module.exports = {
 
         // library to lazyload images and iframes that have class "lazyload"
         "../node_modules/lazysizes/lazysizes.js",
+        "../node_modules/lazysizes/plugins/aspectratio/ls.aspectratio.min.js",
 
         // project specific critical js
         "scripts/critical.js"
