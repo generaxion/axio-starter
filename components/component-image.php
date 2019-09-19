@@ -115,6 +115,11 @@ class Aucor_Image extends Aucor_Component {
 
     if ($args['lazyload']) {
 
+        // set aspect ratio
+      if (isset($args['attr']['width']) && isset($args['attr']['height'])) {
+        $args['attr']['data-aspectratio'] = $args['attr']['width'] . '/' . $args['attr']['height'];
+      }
+
       // duplicate attributes to no js before adding lazyload values
       $args['attr-nojs'] = $args['attr'];
 
