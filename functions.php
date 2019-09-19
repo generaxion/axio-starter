@@ -38,11 +38,11 @@ require_once 'components/component-share-buttons.php';
 require_once 'components/component-svg.php';
 require_once 'components/component-teaser.php';
 
+require_once 'components/list-terms.php';
 /**
  * Helpers
  */
 require_once 'inc/helpers/function-dates.php';
-require_once 'inc/helpers/function-entry-footer.php';
 require_once 'inc/helpers/function-hardcoded-ids.php';
 require_once 'inc/helpers/function-last-edited.php';
 
