@@ -98,8 +98,9 @@ function aucor_starter_human_image_size_to_wp_sizes($human_size) {
       );
 
     default:
-      aucor_starter_debug('Image size error - Missing human readable size {' . $human_size . '}', array('aucor_starter_get_image'));
-
+      if (function_exists('aucor_core_debug_msg')) {
+        aucor_core_debug_msg('Image size error - Missing human readable size {' . $human_size . '}', array('aucor_starter_get_image'));
+      }
   }
 
 }
