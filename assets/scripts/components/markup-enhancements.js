@@ -9,7 +9,7 @@ var responsive_tables_in_content = function() {
 
   var tables = document.querySelectorAll('.wysiwyg .wp-block-table');
   if (tables) {
-    for (i = 0; i < tables.length; i++) {
+    for (var i = 0; i < tables.length; i++) {
 
       // add modifier class to affected table
       tables[i].classList.add('wp-block-table--responsive');

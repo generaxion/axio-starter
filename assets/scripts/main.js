@@ -31,3 +31,22 @@ if (typeof objectFitPolyfill === "function") {
 
   });
 }
+
+/**
+ * Default lightbox (Tobi.js) support for native gallery.
+ * Requires link to media file from gallery settings.
+ */
+// try to find gallery items (a-tags with the link to the media file), both gutenberg and classic editor
+var wpGallery = document.querySelectorAll('.blocks-gallery-item figure a, .gallery-item .gallery-icon a');
+// if found, add .lightbox class, that Tobi uses as selector, to the items
+if (wpGallery.length) {
+  wpGallery.forEach(function(item) {
+    item.classList.add('lightbox');
+  });
+  // init Tobi
+  try {
+    const tobi = new Tobi();
+  } catch (e) {
+    console.log(e);
+  }
+}

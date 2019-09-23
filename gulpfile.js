@@ -33,6 +33,7 @@ var rename       = require('gulp-rename');
 var svgmin       = require('gulp-svgmin');
 var svgstore     = require('gulp-svgstore');
 var file         = require('gulp-file');
+var babel        = require('gulp-babel');
 
 /**
  * Asset paths
@@ -214,6 +215,18 @@ var jsTasks = function(filename) {
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.init());
     })
+
+    // transpile
+    .pipe(function() {
+      return babel({
+        presets: ["@babel/preset-env"],
+        // override because of use of "this" in IIFE with Babel in Tobi.js: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
+        overrides: [{
+          test: "./node_modules/@rqrauhvmra/tobi/js/tobi.js",
+          sourceType: "script",
+        }],
+      });
+    })
 
     // combine files
     .pipe(concat, filename)

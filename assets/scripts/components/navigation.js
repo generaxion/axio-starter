@@ -11,7 +11,7 @@
  * - works at least with 3 levels (probably more)
  *
  */
-aucor_navigation = function( menu, options ) {
+var aucor_navigation = function( menu, options ) {
 
   var extend = function ( defaults, options ) {
     var extended = {};

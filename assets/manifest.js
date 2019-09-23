@@ -34,6 +34,9 @@ module.exports = {
         // vanilla js version of fitvids, that makes iframe videos responsice (https://www.npmjs.com/package/fitvids)
         "../node_modules/fitvids/dist/fitvids.js",
 
+        // lightweight lightbox script (https://github.com/rqrauhvmra/Tobi)
+        "../node_modules/@rqrauhvmra/tobi/js/tobi.js",
+
         // project specific js
         "scripts/components/navigation.js",
         "scripts/components/markup-enhancements.js",
