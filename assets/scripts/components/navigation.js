@@ -11,7 +11,7 @@
  * - works at least with 3 levels (probably more)
  *
  */
-aucor_navigation = function( menu, options ) {
+var aucor_navigation = function( menu, options ) {
 
   var extend = function ( defaults, options ) {
     var extended = {};
@@ -220,6 +220,7 @@ aucor_navigation = function( menu, options ) {
   ----------------------------------------------- */
 
   menu_toggle.addEventListener('click', function() {
+    var x;
     if(menu_toggle.classList.contains('menu-toggle--active')) {
 
       // remove .active class from hamburger icon
@@ -232,6 +233,9 @@ aucor_navigation = function( menu, options ) {
       // focus out of the menu
       menu_toggle.dispatchEvent(new Event('focus'));
 
+      x = 'menu-active--' + menu.getAttribute('id');
+      document.body.classList.remove(x);
+
     } else {
 
       // .active class to hamburger icon
@@ -240,6 +244,9 @@ aucor_navigation = function( menu, options ) {
 
       // .active class to menu container
       menu.classList.add('active');
+
+      x = 'menu-active--' + menu.getAttribute('id');
+      document.body.classList.add(x);
     }
   });
 
