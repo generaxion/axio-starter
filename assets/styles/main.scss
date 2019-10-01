@@ -6,8 +6,11 @@
 ----------------------------------------------- */
 
 @import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
-@import "../../node_modules/@rqrauhvmra/tobi/css/tobi.min.css";
-@import "base/vendor/tobi/tobi";
+
+@import "../../node_modules/@rqrauhvmra/tobi/scss/_functions.scss";
+@import "../../node_modules/@rqrauhvmra/tobi/scss/_variables.scss";
+@import "../../node_modules/@rqrauhvmra/tobi/scss/tobi.scss";
+@import "elements/vendor/tobi";
 
 /* Variables
 ----------------------------------------------- */

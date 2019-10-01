@@ -61,6 +61,12 @@ add_filter('aucor_core_pll_register_strings', function() {
     'Color: Black'                       => 'Musta',
     'Color: Primary'                     => 'Pääväri',
 
+    // script localization
+    'Tobi: Prev'                        => 'Edellinen',
+    'Tobi: Next'                        => 'Seuraava',
+    'Tobi: Close'                       => 'Sulje',
+    'Tobi: Loading'                     => 'Lataa',
+
   );
 
 });
