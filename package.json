@@ -22,6 +22,7 @@
   "dependencies": {
     "breakpoint-sass": "^2.7.1",
     "fitvids": "^2.0.0",
+    "gulp": "^4.0.2",
     "lazysizes": "^4.0.4",
     "objectFitPolyfill": "^2.1.1",
     "svgxuse": "^1.2.6"
@@ -30,7 +31,6 @@
     "beeper": "^1.1.1",
     "browser-sync": "^2.24.5",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",

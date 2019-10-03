@@ -5,39 +5,39 @@
 /**
  * Site config
  */
-var manifest     = require('./assets/manifest.js');
-var timestamps   = require('./assets/last-edited.json');
+const manifest     = require('./assets/manifest.js');
+const timestamps   = require('./assets/last-edited.json');
 
 /**
  * Global modules
  */
-var argv         = require('minimist')(process.argv.slice(2));
-var autoprefixer = require('gulp-autoprefixer');
-var beeper       = require('beeper');
-var browsersync  = require('browser-sync').create();
-var concat       = require('gulp-concat');
-var flatten      = require('gulp-flatten');
-var gulp         = require('gulp');
-var gulpif       = require('gulp-if');
-var imagemin     = require('gulp-imagemin');
-var jshint       = require('gulp-jshint');
-var lazypipe     = require('lazypipe');
-var merge        = require('merge-stream');
-var cssnano      = require('gulp-cssnano');
-var plumber      = require('gulp-plumber');
-var runsequence  = require('run-sequence');
-var sass         = require('gulp-sass');
-var sourcemaps   = require('gulp-sourcemaps');
-var uglify       = require('gulp-uglify');
-var rename       = require('gulp-rename');
-var svgmin       = require('gulp-svgmin');
-var svgstore     = require('gulp-svgstore');
-var file         = require('gulp-file');
+const argv         = require('minimist')(process.argv.slice(2));
+const autoprefixer = require('gulp-autoprefixer');
+const beeper       = require('beeper');
+const browsersync  = require('browser-sync').create();
+const concat       = require('gulp-concat');
+const flatten      = require('gulp-flatten');
+const { series, paralell }  = require('gulp');
+const gulpif       = require('gulp-if');
+const imagemin     = require('gulp-imagemin');
+const jshint       = require('gulp-jshint');
+const lazypipe     = require('lazypipe');
+const merge        = require('merge-stream');
+const cssnano      = require('gulp-cssnano');
+const plumber      = require('gulp-plumber');
+const runsequence  = require('run-sequence');
+const sass         = require('gulp-sass');
+const sourcemaps   = require('gulp-sourcemaps');
+const uglify       = require('gulp-uglify');
+const rename       = require('gulp-rename');
+const svgmin       = require('gulp-svgmin');
+const svgstore     = require('gulp-svgstore');
+const file         = require('gulp-file');
 
 /**
  * Asset paths
  */
-var path = {
+const path = {
   "base" : {
     "source": "assets/",
     "dist":   "dist/",
@@ -71,7 +71,7 @@ var path = {
 /**
  * Disable or enable features
  */
-var enabled = {
+const enabled = {
 
   // disable source maps when `--production`
   maps: !argv.production,
@@ -92,7 +92,7 @@ var enabled = {
  *
  * Update asset class timestamp to last-edited.json
  */
-var updateTimestamp = function updateTimestamp(stamp) {
+const updateTimestamp = (stamp) => {
 
   timestamps[stamp] = Date.now();
 
@@ -114,10 +114,10 @@ var updateTimestamp = function updateTimestamp(stamp) {
  *   'globs': 'assets/main.scss,assets/print.scss'
  * }
  */
-var buildAssets = function(buildFiles) {
+const buildAssets = (buildFiles) => {
 
-  var result = [];
-  for (var buildFile in buildFiles) {
+  let result = [];
+  for (let buildFile in buildFiles) {
 
     // set correct asset paths
     for (i = 0; i < buildFiles[buildFile].length; i++) {
@@ -133,8 +133,8 @@ var buildAssets = function(buildFiles) {
 
 };
 
-var jsAssets  = buildAssets(manifest.js());
-var cssAssets = buildAssets(manifest.css());
+const jsAssets  = buildAssets(manifest.js());
+const cssAssets = buildAssets(manifest.css());
 
 /**
  * Process: CSS
@@ -145,7 +145,7 @@ var cssAssets = buildAssets(manifest.css());
  *   .pipe(cssTasks('main.css')
  *   .pipe(gulp.dest(path.base.dist + 'styles'))
  */
-var cssTasks = function(filename) {
+const cssTasks = (filename) => {
 
   return lazypipe()
 
@@ -204,7 +204,7 @@ var cssTasks = function(filename) {
  *   .pipe(gulp.dest(path.base.dist + 'scripts'))
  * ```
  */
-var jsTasks = function(filename) {
+const jsTasks = filename => {
 
   updateTimestamp('js');
 
@@ -241,9 +241,9 @@ var jsTasks = function(filename) {
  * By default this task will only log a warning if a precompiler error is
  * raised. If the `--production` flag is set: this task will fail outright.
  */
-gulp.task('styles', [], function() {
+function styles() {
 
-  var merged = merge();
+  const merged = merge();
 
   // update last-edited.json
   updateTimestamp('css');
@@ -251,8 +251,8 @@ gulp.task('styles', [], function() {
   // process all assets
   for (i = 0; i < cssAssets.length; i++) {
 
-    var asset = cssAssets[i];
-    var cssTasksInstance = cssTasks(asset.name);
+    let asset = cssAssets[i];
+    const cssTasksInstance = cssTasks(asset.name);
 
     // handle possible errors
     if (!enabled.failStyleTask) {
@@ -275,24 +275,24 @@ gulp.task('styles', [], function() {
     .pipe(gulp.dest(path.styles.dist))
     .pipe(browsersync.stream({match: '**/*.css'}));
 
-});
+};
 
+exports.styles = styles;
 
 /**
  * Task: Scripts
  *
  * `gulp scripts` - Runs JSHint then compiles, combines, and optimizes JS.
  */
-gulp.task('scripts', ['jshint'], function() {
-
-  var merged = merge();
+function scripts() {
+  const merged = merge();
 
   // process all assets
   for (i = 0; i < jsAssets.length; i++) {
 
-    var asset = jsAssets[i];
+    let asset = jsAssets[i];
 
-    var jsTasksInstance = jsTasks(asset.name);
+    const jsTasksInstance = jsTasks(asset.name);
 
     merged.add(
       gulp.src(asset.globs, {base: 'scripts'})
@@ -309,7 +309,9 @@ gulp.task('scripts', ['jshint'], function() {
     .pipe(gulp.dest(path.scripts.dist))
     .pipe(browsersync.stream({match: '**/*.js'}));
 
-});
+};
+
+exports.scripts = scripts;
 
 /**
  * Task: Fonts
@@ -317,8 +319,7 @@ gulp.task('scripts', ['jshint'], function() {
  * `gulp fonts` - Grabs all the fonts and outputs them in a flattened directory
  * structure. See: https://github.com/armed/gulp-flatten
  */
-gulp.task('fonts', function() {
-
+function fonts() {
   return gulp.src([path.fonts.source + '**/*'])
 
     // flatten directory structures
@@ -330,14 +331,15 @@ gulp.task('fonts', function() {
     // browsersync result
     .pipe(browsersync.stream());
 
-});
+};
+exports.fonts = fonts;
 
 /**
  * Task: Images
  *
  * `gulp images` - Run lossless compression on all the images.
  */
-gulp.task('images', function() {
+function images() {
 
   return gulp.src([path.images.source + '**/*'])
 
@@ -354,14 +356,16 @@ gulp.task('images', function() {
     // browsersync result
     .pipe(browsersync.stream());
 
-});
+};
+
+exports.images = images;
 
 /**
  * Task: Svgstore
  *
  * Create a single sprite.svg file from files in /assets/sprite/.
  */
-gulp.task('svgstore', function () {
+function svgstore() {
 
   updateTimestamp('svg');
 
@@ -380,18 +384,21 @@ gulp.task('svgstore', function () {
   // browsersync result
   .pipe(browsersync.stream());
 
-});
+};
+
+exports.svgstore = svgstore;
 
 /**
  * Task: JSHint
  *
  * `gulp jshint` - Lints configuration JSON and project JS.
  */
-gulp.task('jshint', function() {
 
-  var allJS = [];
+function jshint() {
+
+  let allJS = [];
   for (i = 0; i < jsAssets.length; i++) {
-    var globsArray = jsAssets[i].globs;
+    let globsArray = jsAssets[i].globs;
     for (j = 0; j < globsArray.length; j++) {
       allJS.push(globsArray[j]);
     }
@@ -404,14 +411,16 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
 
-});
+};
+
+exports.jshint = jshint;
 
 /**
  * Task: Favicon
  *
  * `gulp favicon` - Run lossless compression for favicons.
  */
-gulp.task('favicon', function() {
+function favicon {
 
   return gulp.src([path.favicon.source + '**/*'])
 
@@ -429,14 +438,20 @@ gulp.task('favicon', function() {
     // send to /dist/favicon
     .pipe(gulp.dest(path.favicon.dist));
 
-});
+};
+
+exports.favicon = favicon;
 
 /**
  * Task: Clean
  *
  * `gulp clean` - Deletes the build folder entirely.
  */
-gulp.task('clean', require('del').bind(null, [path.base.dist]));
+function clean() {
+  require('del').bind(null, [path.base.dist]));
+}
+
+exports.clean = clean;
 
 /**
  * Task: Watch
@@ -447,35 +462,39 @@ gulp.task('clean', require('del').bind(null, [path.base.dist]));
  * build step for that asset and inject the changes into the page.
  * See: http://www.browsersync.io
  */
-gulp.task('watch', function() {
-  var new_tab = 'local';
-  if(argv.q) {
-    new_tab = false;
-  }
-  // browsersync changes
-  browsersync.init({
-    files: [
-      '{inc,partials,template-tags}/**/*.php',
-      '*.php'
-    ],
-    proxy: manifest.devUrl(),
-    snippetOptions: {
-      whitelist: ['/wp-admin/admin-ajax.php'],
-      blacklist: ['/wp-admin/**']
-    },
-    open: new_tab
-  });
+// function watch() {
+//   const new_tab = 'local';
+//   if(argv.q) {
+//     new_tab = false;
+//   }
+//   // browsersync changes
+//   browsersync.init({
+//     files: [
+//       '{inc,partials,template-tags}/**/*.php',
+//       '*.php'
+//     ],
+//     proxy: manifest.devUrl(),
+//     snippetOptions: {
+//       whitelist: ['/wp-admin/admin-ajax.php'],
+//       blacklist: ['/wp-admin/**']
+//     },
+//     open: new_tab
+//   });
 
-  // watch these files
-  gulp.watch([path.styles.source   + '**/*'], ['styles']);
-  gulp.watch([path.scripts.source  + '**/*'], ['jshint', 'scripts']);
-  gulp.watch([path.fonts.source    + '**/*'], ['fonts']);
-  gulp.watch([path.images.source   + '**/*'], ['images']);
-  gulp.watch([path.sprite.source   +    '*'], ['svgstore']);
-  gulp.watch([path.favicon.source  +    '*'], ['favicon']);
-  gulp.watch(['assets/manifest.js'],          ['build']);
+//   // watch these files
+    watch([path.styles.source   + '**/*'], ['styles']);
+//   gulp.watch([path.scripts.source  + '**/*'], ['jshint', 'scripts']);
+//   gulp.watch([path.fonts.source    + '**/*'], ['fonts']);
+//   gulp.watch([path.images.source   + '**/*'], ['images']);
+//   gulp.watch([path.sprite.source   +    '*'], ['svgstore']);
+//   gulp.watch([path.favicon.source  +    '*'], ['favicon']);
+//   gulp.watch(['assets/manifest.js'],          ['build']);
 
-});
+// });
+
+exports.build = series(clean, parallel(styles, scripts));
+
+// exports.watch = watch;
 
 /**
  * Task: Build
