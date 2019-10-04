@@ -1,0 +1,50 @@
+/* ==========================================================================
+ # Admin (back-end)
+========================================================================== */
+
+// Clean up profile view
+.profile-php {
+  .user-url-wrap,
+  .user-description-wrap,
+  .show-admin-bar,
+  .user-comment-shortcuts-wrap,
+  .user-rich-editing-wrap,
+  #your-profile h2:first-of-type {
+    display: none;
+  }
+}
+
+// Hide "website" from user-new.php
+.user-new-php .form-field:nth-of-type(5) {
+  display: none;
+}
+
+// Hide update nags in admin footer
+#footer-upgrade {
+  display: none;
+}
+
+// Hide placeholder for widgets
+#dashboard-widgets .empty-container {
+  display: none;
+}
+
+// Clean up gallery column options to 1, 2, 3, 4
+.setting {
+  select.columns {
+    option[value="5"],
+    option[value="6"],
+    option[value="7"],
+    option[value="8"],
+    option[value="9"] {
+      display: none;
+    }
+  }
+}
+
+// Remove option to link to post
+select.link-to option[value="post"],
+.setting select[data-setting="link"] option[value="post"] {
+  display: none;
+}
+
