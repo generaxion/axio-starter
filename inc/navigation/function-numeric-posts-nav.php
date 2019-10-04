@@ -36,6 +36,10 @@ function aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var
   $clean_url = esc_url(remove_query_arg($paged_variable));
 
   if ($max_num_pages <= 1) {
+    // reset previous global wp_query
+    if (!empty($wp_query_temp)) {
+      $wp_query = $wp_query_temp;
+    }
     return;
   }
 
