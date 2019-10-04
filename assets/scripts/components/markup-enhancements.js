@@ -9,7 +9,7 @@ var responsive_tables_in_content = function() {
 
   var tables = document.querySelectorAll('.wysiwyg .wp-block-table');
   if (tables) {
-    for (i = 0; i < tables.length; i++) {
+    for (var i = 0; i < tables.length; i++) {
 
       // add modifier class to affected table
       tables[i].classList.add('wp-block-table--responsive');
@@ -30,7 +30,7 @@ var responsive_tables_in_content = function() {
     }
   }
 
-}
+};
 responsive_tables_in_content();
 
 /**
@@ -51,7 +51,7 @@ var wrap_old_images_with_caption = function() {
       }
     }
   }
-}
+};
 wrap_old_images_with_caption();
 
 /**
@@ -96,5 +96,5 @@ var wrap_old_aligned_images = function() {
 
     }
   }
-}
+};
 wrap_old_aligned_images();
