@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-  <?php get_template_part('partials/content/hero'); ?>
+  <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--single">
 
@@ -24,8 +24,19 @@ get_header(); ?>
           </div>
 
           <footer class="entry__footer">
-            <?php aucor_starter_entry_footer(); ?>
-            <?php aucor_starter_social_share_buttons(); ?>
+            <?php
+              Aucor_List_Terms::render([
+                'title'     => ask__('Taxonomies: Categories'),
+                'taxonomy'  => 'category'
+              ]);
+              Aucor_List_Terms::render([
+                'title'     => ask__('Taxonomies: Keywords'),
+                'taxonomy'  => 'post_tag'
+              ]); 
+              Aucor_Share_Buttons::render([
+                'section_title' => ask__('Social share: Title')
+              ]);
+            ?>
           </footer>
 
         </article>

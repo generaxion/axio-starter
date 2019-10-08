@@ -9,7 +9,7 @@
 
 get_header(); ?>
 
-<?php get_template_part('partials/content/hero'); ?>
+  <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--search">
 
@@ -19,11 +19,11 @@ get_header(); ?>
 
       <div class="teaser-container">
         <?php while (have_posts()) : the_post(); ?>
-          <?php get_template_part('partials/content/teaser'); ?>
+          <?php Aucor_Teaser::render(['id' => get_the_ID()]); ?>
         <?php endwhile; ?>
       </div>
 
-      <?php aucor_starter_numeric_posts_nav(); ?>
+      <?php Aucor_Posts_Nav_Numeric::render(); ?>
 
     <?php else : ?>
 
@@ -31,7 +31,13 @@ get_header(); ?>
 
         <div class="entry__content">
           <p><?php ask_e('Search: Nothing found description'); ?></p>
-            <?php aucor_starter_search_form('search-form--search-empty', ['class' => 'search-form--search-empty']); ?>
+          <?php
+            Aucor_Search_Form::render([
+              'attr' => [
+                'class' => ['search-form--no-results'],
+              ],
+            ]);
+          ?>
         </div>
 
       </article>

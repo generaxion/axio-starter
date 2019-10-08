@@ -34,14 +34,14 @@
           </a>
         </span>
 
-        <?php aucor_starter_menu_toggle_btn('menu-toggle'); ?>
+        <?php Aucor_Menu_Toggle::render(['id' => 'menu-toggle']); ?>
 
-      </div><!-- .site-branding -->
+      </div>
 
-      <?php get_template_part('partials/navigation/menu-primary'); ?>
+      <?php Aucor_Menu_Primary::render(); ?>
 
     </div>
 
-  </header><!-- #masthead -->
+  </header>
 
   <div id="content" class="site-content" role="main" itemscope itemprop="mainContentOfPage">

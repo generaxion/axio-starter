@@ -15,21 +15,11 @@ document.addEventListener('lazybeforeunveil', function(e){
    * <img class="lazyload"> <-- actual image
    * <img class="lazyload-preload"> <-- preload image
    */
-  el.addEventListener('load', function() {
-    // when loaded, animate blurry version
-    var sibling = el.nextSibling;
-    if (sibling && sibling !== el && sibling !== null && sibling !== undefined && sibling.nodeType === 1) {
-      if (typeof sibling.classList.contains !== "undefined") {
-        if (sibling.classList.contains('lazyload-preload')) {
-          sibling.classList.add('lazyload-preload--ready');
-        }
-      } else {
-        // legacy browser, skip logic
-        sibling.classList.add('lazyload-preload--ready');
-      }
-
+  el.addEventListener('load', function(e) {
+    var preload = this.parentNode.querySelector('.lazyload-preload');
+    if (preload) {
+      preload.classList.add('lazyload-preload--ready');
     }
-
   });
 
 });

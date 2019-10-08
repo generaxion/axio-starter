@@ -69,10 +69,16 @@
 @import "elements/social-share";
 @import "elements/teaser";
 
+/* Components
+----------------------------------------------- */
+
+@import "components/list-terms";
+
 /* Layout
 ----------------------------------------------- */
 
 @import "views/layout/layout";
+
 
 /* Templates
 ----------------------------------------------- */

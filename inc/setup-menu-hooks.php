@@ -21,7 +21,7 @@ function aucor_starter_dropdown_icon_to_menu_links($item_output, $item, $depth, 
     foreach ($item->classes as $value) {
       if ($value == 'menu-item-has-children') {
         // add caret button. not focusable as tab navigation is handeled without this button
-        $item_output .= '<button tabindex="-1" class="menu-item__link__caret js-menu-caret">' . aucor_starter_get_svg('caret-down') . '</button>';
+        $item_output .= '<button tabindex="-1" class="menu-item__link__caret js-menu-caret">' . Aucor_SVG::get(['name' => 'caret-down']) . '</button>';
       }
     }
   }
@@ -65,7 +65,7 @@ function aucor_starter_social_menu_icons($title, $item, $args, $depth) {
     }
 
     // replace title with svg and <span> wrapped title
-    $title = aucor_starter_get_svg(esc_attr($svg), array('title' => $title)) . '<span class="social-navigation__item__label">' . $title . '</span>';
+    $title = Aucor_SVG::get(['name' => $svg, 'title' => $title]) . '<span class="social-navigation__item__label">' . $title . '</span>';
 
     return $title;
 
@@ -92,7 +92,7 @@ function aucor_starter_icons_from_classes($title, $item, $args, $depth) {
 
   foreach ($item->classes as $value) {
     if (strpos($value, 'icon-') === 0) {
-      $title = aucor_starter_get_svg(str_replace('icon-', '', $value), ['class' => 'icon-from-class']) . $title;
+      $title = Aucor_SVG::get(['name' => str_replace('icon-', '', $value), 'attr' => ['class' => ['icon-from-class']]]) . $title;
     }
   }
   return $title;

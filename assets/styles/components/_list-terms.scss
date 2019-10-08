@@ -1,0 +1,18 @@
+/* ==========================================================================
+ # Component: List Terms
+========================================================================== */
+
+.aucor-list-terms {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  &__title {
+    display: block;
+  }
+  &__term {
+    margin-right: .25rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}

@@ -3,11 +3,12 @@
 ========================================================================== */
 
 /**
- * Navigation
+ * Primary menu
  */
-aucor_navigation(document.getElementById('primary-navigation'), {
-  desktop_min_width: 890, // min width in pixels
-  menu_toggle: '#menu-toggle' // selector for toggle
+var primary_menu = component_primary_menu({
+  desktop_min_width: 890,
+  menu: '.primary-navigation',
+  menu_toggle: '#menu-toggle'
 });
 
 /**
@@ -20,14 +21,9 @@ fitvids();
  */
 if (typeof objectFitPolyfill === "function") {
   document.addEventListener('lazybeforeunveil', function(e){
-
-    // current <img> element
-    var el = e.target;
-
     objectFitPolyfill();
-    el.addEventListener('load', function() {
+    e.target.addEventListener('load', function() {
       objectFitPolyfill();
     });
-
   });
 }

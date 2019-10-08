@@ -14,18 +14,18 @@
 
 get_header(); ?>
 
-  <?php get_template_part('partials/content/hero'); ?>
+  <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--index">
     <main id="main" class="main">
 
       <div class="teaser-container">
         <?php while (have_posts()) : the_post(); ?>
-          <?php get_template_part('partials/content/teaser'); ?>
+          <?php Aucor_Teaser::render(['id' => get_the_ID()]); ?>
         <?php endwhile; ?>
       </div>
 
-      <?php aucor_starter_numeric_posts_nav(); ?>
+      <?php Aucor_Posts_Nav_Numeric::render(); ?>
 
     </main><!-- #main -->
   </div><!-- #primary -->

@@ -35,7 +35,7 @@ module.exports = {
         "../node_modules/fitvids/dist/fitvids.js",
 
         // project specific js
-        "scripts/components/navigation.js",
+        "scripts/components/component-menu-primary.js",
         "scripts/components/markup-enhancements.js",
         "scripts/main.js"
 
@@ -46,6 +46,7 @@ module.exports = {
 
         // library to lazyload images and iframes that have class "lazyload"
         "../node_modules/lazysizes/lazysizes.js",
+        "../node_modules/lazysizes/plugins/aspectratio/ls.aspectratio.min.js",
 
         // project specific critical js
         "scripts/critical.js"
