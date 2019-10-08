@@ -154,10 +154,8 @@ const cssTasks = (filename) => {
     .pipe(concat, filename)
     // autoprefix
     .pipe(autoprefixer, {
-      grid: 'autoplace',
       browsers: [
-        'last 2 versions',
-        'android 4'
+        'last 2 versions'
       ]
     })
     // minify
@@ -279,7 +277,7 @@ gulp.task('scripts', () => {
  * `gulp fonts` - Grabs all the fonts and outputs them in a flattened directory
  * structure. See: https://github.com/armed/gulp-flatten
  */
-gulp.task('fonts', () =>{
+gulp.task('fonts', () => {
   return gulp.src([path.fonts.source + '**/*'])
     // flatten directory structures
     .pipe(flatten())
@@ -365,7 +363,7 @@ gulp.task('jshint', () => {
  *
  * `gulp favicon` - Run lossless compression for favicons.
  */
-gulp.task('favicon', () =>{
+gulp.task('favicon', () => {
   return gulp.src([path.favicon.source + '**/*'])
     // optimize images
     .pipe(imagemin({
