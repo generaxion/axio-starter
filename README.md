@@ -69,7 +69,7 @@ Directory structure was once based a mixture between [_underscores](http://under
 
 `/inc/` has all php files that are not part of template structure
 
-`/partials/` has small template parts meant to be used with function `get_template_part`
+`/components/` has components meant to be used with `Aucor_Components_Name::render()`
 
 ## 2. Setup
 
@@ -84,7 +84,7 @@ Do these theme installation steps before modifying anything.
 3. Run setup wizard in theme root with bash `sh setup.sh`
     1. **Site name** (Default: "Aucor Starter")
     2. **Unique id** for your theme. Use only a-z and _. The shorter the better. Recommended length is 3-4 characters. (Default: aucor_starter)
-    3. **Local development url** is used by Browsersync and can be changed in `/assets/manifest.js` (Default: https://aucor_starter.local)
+    3. **Local development url** is used by Browsersync and can be changed in `/assets/manifest.js` (Default: https://aucor-starter.local)
     4. **Author name** is shown in default style.css (Default: Aucor Oy)
     5. **Author URL** is shown in default style.css (Default: https://www.aucor.fi)
 
@@ -137,7 +137,8 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * `/blocks/` Gutenberg block styles for front-end and back-end
       * `/core/` supported core blocks
       * `/settings/` utilities for blocks (alignment, width, color)
-  * `/elements/` small independent elements that can be used in many contexts (forms, buttons, menu etc)
+  * `/components/` independent components that can be used in many contexts (forms, menu, teaser etc)
+  * `/elements/` html elements (header, footer, button etc)
   * `/views/` layouts and page templates
       * `/layout/` layouting width, alignment etc.
       * `/templates/` WP native view templates and custom page templates
@@ -204,10 +205,11 @@ By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/
 The script have very simple structure.
 
   * `/components/` directory for small components
-      * `navigation.js` navigation functionality
+      * `menu-primary.js` primary menu functionality
       * `markup-enhancements.js` sync old image markup to Gutenberg style, responsive tables
   * `main.js` main js file that is run in footer
   * `critical.js` scripts that should be run in head
+  * `editor-gutenberg.js` modifies gutenberg style variants
 
 ### 4.2 Workflow
 
@@ -231,7 +233,7 @@ Put file in `/assets/scripts/components/my_script.js`. Add script to main.js (or
 **Combine scripts in one file:**
 ```js
 "main.js": [
-  "scripts/components/navigation.js",
+  "scripts/components/menu-primary.js",
   "scripts/main.js"
 ],
 ```
@@ -247,7 +249,7 @@ Add project libraries in `dependencies` and Gulp libraries in `devDependencies`.
 ```js
 "main.js": [
   "../node_modules/fitvids/dist/fitvids.js",
-  "scripts/components/navigation.js",
+  "scripts/components/menu-primary.js",
   "scripts/main.js"
 ],
 ```
@@ -263,7 +265,9 @@ Put all icons to `/assets/sprite/` and Gulp will combine and minify them into `/
 In PHP you can get these images with (more exmples in Template tags):
 
 ```php
-<?php echo aucor_starter_get_svg('facebook'); ?>
+<?php Aucor_SVG::render([
+  'name' => 'facebook'
+]); ?>
 ```
 
 ### 5.2 Single SVG images
@@ -285,20 +289,11 @@ Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating i
 ### 5.5 Embed images
 
 ```php
-/**
- * Get responsive image markup
- *
- * @example aucor_starter_get_image(123, 'large')
- * @example aucor_starter_get_image(123, 'medium', ['class' => 'teaser-img'])
- * @example aucor_starter_get_image(123, 'medium', ['attr' => ['data-name' => 'data-value']])
- *
- * @param int    $attachment_id ID of image
- * @param string $human_size a easy to understand size of image
- * @param array  $args list of optional options
- *
- * @return html markup for image
- */
-function aucor_starter_get_image($attachment_id, $human_size = 'large', $args = array())
+<?php Aucor_Image::render([
+  'id'        => 123, 
+  'size'      => 'large', 
+  'lazyload'  => 'fast'
+]); ?>
 ```
 
 Theme has its own function for getting image markup that gives the developer control of which responsive sizes should be used and include lazy loading.
@@ -330,15 +325,46 @@ switch ($human_size) {
 
 Notice that many "human-sizes" can use same WordPress image sizes. This is useful for example when same image might be displayed different size on different devices so you can pass different "sizes" attributes for browser. [Read more about sizes attribute](https://css-tricks.com/responsive-images-css/#article-header-id-1).
 
-**Protip:** If you use CSS property `object-fit` it needs special handling to work in IE11 and older. Theme has [object-fit-polyfill](https://github.com/constancecchen/object-fit-polyfill) installed and all you need to do is add special data attribute for img tag like `aucor_starter_get_image(123, 'medium', ['attr' => ['data-object-fit' => 'cover']])`
+**Protip:** If you use CSS property `object-fit` it needs special handling to work in IE11 and older. Theme has [object-fit-polyfill](https://github.com/constancecchen/object-fit-polyfill) installed and all you need to do is add special data attribute for img tag like 
+```php
+Aucor_Image::render([
+  'id'    => 123, 
+  'size'  => 'medium', 
+  'attr'  => ['data-object-fit' => 'cover']
+])
+```
 
 ### 5.6 Lazy load
 
 By default the image function has lazy loading on. Lazy loading uses [lazysizes library](https://github.com/aFarkas/lazysizes). When emedding image there's three possibilities:
 
-  * Lazyload from transparent to visible (default): `aucor_starter_get_image(123, 'medium')`
-  * Lazyload from blurry pre-load image to visible: `aucor_starter_get_image(123, 'medium', ['lazyload' => 'animated'])`
-  * No lazyload: `aucor_starter_get_image(123, 'medium', ['lazyload' => false])`
+  * Lazyload from transparent to visible (default): 
+  ```php
+  Aucor_Image::render([
+    'id'    => 123, 
+    'size'  => 'medium'
+  ])
+  ```
+  * Lazyload from blurry pre-load image to visible: 
+  ```php
+  Aucor_Image::render([
+    'id'    => 123, 
+    'size'  => 'medium', 
+    'attr'  => [
+      'lazyload' => 'animated'
+    ]
+  ])
+  ```
+  * No lazyload: 
+  ```php
+  Aucor_Image::render([
+    'id'    => 123, 
+    'size'  => 'medium', 
+    'attr'  => [
+      'lazyload' => 'false'
+    ]
+  ])
+  ```
 
 Lazy loading is SEO friendly and function automatically displays `<noscript>` versions for users without JS.
 
@@ -382,7 +408,14 @@ Directory `/inc/forms/`.
 
 #### Search form
 
-Function: `aucor_starter_search_form($id, $args = array())`
+Function: 
+```php
+Aucor_Search_Form::render([
+  'attr' => [
+    'class' => array()
+  ]
+])
+```
 
 Display easily customizable search form.
 
@@ -397,8 +430,20 @@ Function: `aucor_starter_get_posted_on()`
 Get published date.
 
 #### Entry footer
-
-Function: `aucor_starter_entry_footer()`
+Tags: 
+```php
+Aucor_List_Terms::render([
+  'title'     => 'Tags', 
+  'taxonomy'  => 'post_tag'
+])
+```
+Categories: 
+```php
+Aucor_List_Terms::render([
+  'title'     => 'Categories', 
+  'taxonomy'  => 'category'
+])
+```
 
 Display categories and tags of single post.
 
@@ -464,13 +509,20 @@ Has functions for using images and SVG spirte as described in chapter "SVG and I
 
 #### Get SVG from SVG sprite
 
-Function: `aucor_starter_get_svg($icon, $args = array())`
+Function: 
+```php
+Aucor_SVG::render([
+  'name' => 'facebook'
+])
+```
 
 Theme includes one big SVG sprite `/assets/images/icons.svg` that has by default a caret (dropdown arrow) and a few social icons. Add your own svg icons in `/assets/sprite/` and Gulp will add them to this sprite with id from filename.
 
 Example: Print out SVG `/assets/sprite/facebook.svg`
 ```php
-<?php echo aucor_starter_get_svg('facebook'); ?>
+<?php Aucor_SVG::render([
+  'name' => 'facebook'
+]); ?>
 ```
 
 Example: Print out SVG `/assets/sprite/facebook.svg` with options
@@ -478,14 +530,19 @@ Example: Print out SVG `/assets/sprite/facebook.svg` with options
 <?php
 
 $args = array(
-  'wrap'        => true, // Wrap in <span>
-  'class'       => '',
-  'title'       => '',
-  'desc'        => '',
-  'aria_hidden' => true, // Hide from screen readers.
+  'wrap'         => true, // Wrap in <span>
+  'attr'         => [
+    'class' => array()
+  ],
+  'title'        => '',
+  'desc'         => '',
+  'aria_hidden'  => true, // Hide from screen readers.
 );
 
-echo aucor_starter_get_svg('facebook', $args);
+Aucor_SVG::render([
+  'name' => 'facebook',
+  'attr' => $args
+]);
 ```
 
 ### 6.7 Navigation
@@ -493,11 +550,18 @@ echo aucor_starter_get_svg('facebook', $args);
 Directory `/inc/navigation/` has various function for menus and this that navigate to somewhere.
 
 #### Social share buttons
-Function: `aucor_starter_social_share_buttons()`
+Function: 
+```php
+Aucor_Share_Buttons::render([
+  'section_title' => ask__('Social share: Title')
+])
+```
 
 Displays share buttons (Facebook, Twitter, LinkedIn, WhatsApp) with link to their sharer.
 ```php
-<?php aucor_starter_social_share_buttons(); ?>
+<?php Aucor_Share_Buttons::render([
+  'section_title' => ask__('Social share: Title')
+]); ?>
 ```
 
 #### Numeric posts navigation
@@ -519,9 +583,9 @@ Custom query:
 ```php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
-  'post_type' => 'post',
-  'posts_per_page' => 10,
-  'paged' => $paged,
+  'post_type'       => 'post',
+  'posts_per_page'  => 10,
+  'paged'           => $paged,
 );
 $loop = new WP_Query($args);
 if($loop->have_posts())
@@ -536,9 +600,9 @@ Custom query with your own pagination variable "current_page"
 ```php
 $paged = (isset($_GET['current_page']) && !empty($_GET['current_page'])) ? absint($_GET['current_page']) : 1;
 $args = array(
-  'post_type' => 'post',
-  'posts_per_page' => 10,
-  'paged' => $paged,
+  'post_type'       => 'post',
+  'posts_per_page'  => 10,
+  'paged'           => $paged,
 );
 $loop = new WP_Query($args);
 if ($loop->have_posts())
@@ -551,23 +615,37 @@ endif;
 
 #### Sub-pages navigation (pretendable)
 Function: `aucor_starter_sub_pages_navigation()`
+Function: 
+```php
+Aucor_Menu_Sub_Pages::render() 
+```
 
 Displays sub-pages for current page in list. If you need to pretend that single post is somewhere in the hierarchy, use global variable pretend_id to display current view to be in certain place in hierarchy
 
 Usage:
 ```php
-<?php aucor_starter_sub_pages_navigation(); ?>
+Aucor_Menu_Sub_Pages::render([
+  'id' => $id
+]);
 ```
 
-Pretend to be someone else (place it before calling this function):
+Pretend to be someone else (active_id is the id of someone who to pretend):
 ```php
 // single-post.php etc.
-global $pretend_id;
-$pretend_id = 123; // highlight this item as "current_page_item"
+Aucor_Menu_Sub_Pages::render([
+  'id'        => $id,
+  'active_id' => 321,
+]);
 ```
 
 #### Menu toggle btn
-Function: `aucor_starter_menu_toggle_btn($id, $args = array())`
+Function: 
+```php
+Aucor_Menu_Toggle::render([
+  'id'    => $id, 
+  'attr'  => $args
+])
+```
 
 Display hamburger button for menu.
 
@@ -822,14 +900,15 @@ How to use:
 
 ### 8.3 Navigation skeleton
 
-Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/navigation.js` and `/assets/styles/elements/_primary-menu.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
+Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/menu-primary.js` and `/assets/styles/elements/_menu-primary.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
 
 Inside `main.js` there is the menu init and a few arguments:
 
 ```js
-$('#primary-navigation').aucor_navigation({
-  desktop_min_width:  501,            // min width in pixels (desktop-mode)
-  menu_toggle:        '#menu-toggle'  // selector for toggle
+var primary_menu = component_primary_menu({
+  desktop_min_width: 890,
+  menu: '.primary-navigation',
+  menu_toggle: '#menu-toggle'
 });
 ```
 

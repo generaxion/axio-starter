@@ -38,7 +38,7 @@ module.exports = {
         "../node_modules/@rqrauhvmra/tobi/js/tobi.js",
 
         // project specific js
-        "scripts/components/component-menu-primary.js",
+        "scripts/components/menu-primary.js",
         "scripts/components/markup-enhancements.js",
         "scripts/main.js"
 

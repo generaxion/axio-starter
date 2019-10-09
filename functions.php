@@ -26,18 +26,17 @@ require_once 'inc/_conf/register-menus.php';
  * Components
  */
 require_once 'components/component.php';
-require_once 'components/component-hero.php';
-require_once 'components/component-image.php';
-require_once 'components/component-menu-primary.php';
-require_once 'components/component-menu-social.php';
-require_once 'components/component-menu-sub-pages.php';
-require_once 'components/component-menu-toggle.php';
-require_once 'components/component-posts-nav-numeric.php';
-require_once 'components/component-search-form.php';
-require_once 'components/component-share-buttons.php';
-require_once 'components/component-svg.php';
-require_once 'components/component-teaser.php';
-
+require_once 'components/hero.php';
+require_once 'components/image.php';
+require_once 'components/menu-primary.php';
+require_once 'components/menu-social.php';
+require_once 'components/menu-sub-pages.php';
+require_once 'components/menu-toggle.php';
+require_once 'components/posts-nav-numeric.php';
+require_once 'components/search-form.php';
+require_once 'components/share-buttons.php';
+require_once 'components/svg.php';
+require_once 'components/teaser.php';
 require_once 'components/list-terms.php';
 /**
  * Helpers

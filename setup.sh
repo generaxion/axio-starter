@@ -4,7 +4,7 @@
 # Defaults
 default_name="Aucor Starter"
 default_id="aucor_starter"
-default_url="https://aucor_starter.local"
+default_url="https://aucor-starter.local"
 default_author="Aucor Oy"
 default_authorurl="https://www.aucor.fi"
 default_locale="fi"
