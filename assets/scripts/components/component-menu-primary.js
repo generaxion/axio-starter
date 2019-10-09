@@ -11,7 +11,7 @@
  * - works at least with 3 levels (probably more)
  *
  */
-component_primary_menu = function(args) {
+var component_primary_menu = function(args) {
 
   var extend = function (defaults, args) {
     var extended = {};

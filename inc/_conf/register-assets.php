@@ -40,6 +40,16 @@ add_action('wp_enqueue_scripts', function() {
     true
   );
 
+  // localize scripts
+  $strings = array(
+    // Tobi.js
+    'prev'    => ask__('Tobi: Prev'),
+    'next'    => ask__('Tobi: Next'),
+    'close'   => ask__('Tobi: Close'),
+    'loading' => ask__('Tobi: Loading'),
+  );
+  wp_localize_script('aucor_starter-js', 'aucor_starter_strings', $strings);
+
   // remove gutenberg default stylesheets
   wp_deregister_style('wp-block-library-theme');
   wp_deregister_style('wp-block-library');
