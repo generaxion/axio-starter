@@ -20,44 +20,46 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     2. [Install Aucor Core](#23-install-aucor-core)
     2. [Install build tools](#23-install-build-tools)
     3. [Start working](#24-start-working)
-3. [Styles](#3-styles)
-    1. [Directory structure](#31-directory-structure)
-    2. [Workflow](#32-workflow)
-    3. [Adding new files](#33-adding-new-files)
-    4. [Naming](#34-naming)
-    5. [Tips](#35-tips)
-4. [Scripts](#4-scripts)
+3. [Components](#3-components)
+    1. [Creating new component](#31-creating-new-components)
+4. [Styles](#4-styles)
     1. [Directory structure](#41-directory-structure)
     2. [Workflow](#42-workflow)
     3. [Adding new files](#43-adding-new-files)
-5. [SVG and Images](#5-svg-and-images)
-    1. [SVG sprite](#51-svg-sprite)
-    2. [Single SVG images](#52-single-svg-images)
-    3. [Static Images](#53-static-images)
-    4. [Image sizes](#54-image-sizes)
-    5. [Embed images](#55-embed-images)
-    6. [Lazy load](#56-lazy-load)
-    7. [Favicons](#57-favicons)
-6. [Includes](#6-includes)
-    1. [Functions.php](#61-functionsphp)
-    2. [\_conf](#62-_conf)
-    3. [Icons](#63-icons)
-    4. [Editor](#64-editor)
-    5. [Forms](#65-forms)
-    6. [Helpers](#66-helpers)
-    7. [Media](#67-media)
-    8. [Navigation](#68-navigation)
-7. [Gutenberg and Classic Editor](#7-gutenberg-and-classic-editor)
-    1. [Gutenberg architecture](#71-gutenberg-architecture)
-    2. [Allowed blocks](#72-allowed-blocks)
-    3. [Known Gutenberg issues](#73-known-gutenberg-issues)
-    4. [Classic Editor](#74-classic-editor)
-8. [Menus](#8-menus)
-    1. [Primary menu](#81-primary-menu)
-    2. [Social menu](#82-social-menu)
-    3. [Navigation skeleton](#83-navigation-skeleton)
-9. [Editorconfig](#9-editorconfig)
-10. [Site specific plugin](#10-site-specific-plugin)
+    4. [Naming](#44-naming)
+    5. [Tips](#45-tips)
+5. [Scripts](#5-scripts)
+    1. [Directory structure](#51-directory-structure)
+    2. [Workflow](#52-workflow)
+    3. [Adding new files](#53-adding-new-files)
+6. [SVG and Images](#6-svg-and-images)
+    1. [SVG sprite](#61-svg-sprite)
+    2. [Single SVG images](#62-single-svg-images)
+    3. [Static Images](#63-static-images)
+    4. [Image sizes](#64-image-sizes)
+    5. [Embed images](#65-embed-images)
+    6. [Lazy load](#66-lazy-load)
+    7. [Favicons](#67-favicons)
+7. [Includes](#7-includes)
+    1. [Functions.php](#71-functionsphp)
+    2. [\_conf](#72-_conf)
+    3. [Icons](#73-icons)
+    4. [Editor](#74-editor)
+    5. [Forms](#75-forms)
+    6. [Helpers](#76-helpers)
+    7. [Media](#77-media)
+    8. [Navigation](#78-navigation)
+8. [Gutenberg and Classic Editor](#8-gutenberg-and-classic-editor)
+    1. [Gutenberg architecture](#81-gutenberg-architecture)
+    2. [Allowed blocks](#82-allowed-blocks)
+    3. [Known Gutenberg issues](#83-known-gutenberg-issues)
+    4. [Classic Editor](#84-classic-editor)
+9. [Menus](#9-menus)
+    1. [Primary menu](#91-primary-menu)
+    2. [Social menu](#92-social-menu)
+    3. [Navigation skeleton](#93-navigation-skeleton)
+10. [Editorconfig](#10-editorconfig)
+11. [Site specific plugin](#11-site-specific-plugin)
 
 ## 1. Directory structure
 
@@ -118,7 +120,116 @@ Do this everythime you start to work with the theme.
 
 **Protip**: Want to start the watch task but not open the Browsersync? Start watch with quiet mode `qulp watch -q`.
 
-## 3. Styles
+## 3. Components
+
+Components are independent components that can be used in many contexts (forms, menu, teaser etc).
+Styles of components should be in `/assets/styles/components` and named as `_component-name.scss` and will be compiled automatically to `dist/styles/main.css`.
+
+### 3.1 Creating new components
+
+#### PHP 
+Create `components-name.php` to `/components/`
+```php
+<?php
+/**
+ * Component: Componets name
+ *
+ * @example
+ * Aucor_Components_Name::render([
+ *   'title'        => 'Title',
+ *   'description'  => 'Descriptive text'
+ *   'image'        => 123
+ * ]);
+ *
+ * @package aucor_starter
+ */
+class Aucor_Components_Name extends Aucor_Component {
+  public static function frontend($data) {
+    ?>
+    <div <?php parent::render_attributes($data['attr']); ?>>
+    <?php if (!empty($data['image'])) : ?>
+      <div class="components-name__image">
+        Aucor_Image::render([
+          'id'        => $data['image'], 
+          'size'      => 'large', 
+          'lazyload'  => 'fast'
+        ]);
+      </div>
+    <?php endif; ?>
+      <h3 class="components-name__title">
+        <?php echo $data['title'] ?>
+      </h3>
+      <p class="components-name__description">
+        <?php echo $data['description'] ?>
+      </p>
+    </div>
+    <?php
+  }
+  public static function backend($args = []) {
+    //example defaults
+    $default = [
+      // required
+      'title'       => '',
+      'description' => '',
+      // optional
+      'attr'        => [],
+      'image'       => '',
+    ];
+
+    // Overrides defaults with given args
+    $args = wp_parse_args($args, $default);
+
+    // In example you can make some data validation
+    if (empty($args['title']) || empty($args['description'])) {
+        return parent::error('Missing title or/and description');
+    }
+
+    // Or set attributes like classes
+    $args['attr']['class'][] = 'components-name';
+    
+    // Or make conditioning
+    if (!empty($args['image'])) {
+      $args['attr']['class'][] = 'components-name--has-image';
+    }
+
+    // etc...
+
+    // $args should be so pre-chewed that frontend doesn't have to think anything
+    return $args;
+  }
+}
+```
+Require it in functions.php.
+```php
+/**
+ * Components
+ */
+require_once 'components/components-name.php';
+```
+
+Make sure `gulp watch` is running before continuing.
+
+#### SCSS
+Create `_components-name.scss` to `/assets/styles/components/`.
+
+After creating `_components-name.scss` you can import it to main.scss so it compiles with other .scss files.
+```scss
+/* Components
+----------------------------------------------- */
+
+@import "components/components-name";
+```
+
+#### JS
+If your component will need .js create components-name.js to `/assets/scripts/components/`.
+
+After creating `components-name.js` add it to `/assets/manifest.js` under "project specific js" or anywhere else
+```js
+// project specific js
+"scripts/components/components-name.js",
+```
+
+## 4. Styles
 
 Styles are written in SASS in `/assets/styles`. There's five separate stylesheets that are compiled automatically to `dist/styles`.
 
@@ -128,7 +239,7 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * `editor-gutenberg.scss` back-end styles for new Gutenberg editor
   * `wp-login.scss` front-end styles for login screen
 
-### 3.1 Directory structure
+### 4.1 Directory structure
 
   * `/base/` universal styles and utilities
       * `/variables/` colors, fonts, breakpoints
@@ -145,7 +256,7 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * `@node_modules` vendor packages
       * `breakpoint-sass` [helper mixins](http://breakpoint-sass.com/) for breakpoints
 
-### 3.2 Workflow
+### 4.2 Workflow
 
   * When you begin working, start the gulp with `gulp watch`
   * You get Browsersync URL at `https://localhost:3000` (check yours in console). Here the styles will automatically reload when you save your changes.
@@ -154,7 +265,7 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * There's Autoprefixer that adds prefixes automatically. (If you have to support very old browsers, set browsers in gulpfile.js)
   * In browser developer tools shows what styles is located in which SASS partial file (SASS Maps)
 
-### 3.3 Adding new files
+### 4.3 Adding new files
 
   1. Make a new file like `/assets/styles/elements/_card.scss`
   2. Go edit `main.scss`
@@ -162,7 +273,7 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
 
 **Protip:** If those styles are needed in Gutenberg editor as well, include the file in `editor-gutenberg.scss` as well.
 
-### 3.4 Naming
+### 4.4 Naming
 
 Theme uses [BEM methodology](http://getbem.com/) to organize class names. Quick example:
 
@@ -190,17 +301,17 @@ BEM in SASS:
 
 **Protip:** Use your own judgement on how deep you should go. There is no right or wrong way. For example `.entry__footer__categories__item__label` might be better as just `.categories__item__label`.
 
-### 3.5 Tips
+### 4.5 Tips
 
  * Setup responsive font sizes by setting fonts in percentages in `html` and change html font size with media queries. All elements use `rem` for font sizes so all the font size changes happen in html.
  * Don't hesitate to create variables if you have repeating values. Put all variable definitions in `/base/variables/` or at the beginning of the file.
  * Build mobile-first: more `min-width`, less `max-width`.
 
-## 4. Scripts
+## 5. Scripts
 
 By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/svgxuse), [jQuery-free fitvids](https://www.npmjs.com/package/fitvids) and our framework for navigation (navigation.js). Also we synchronize image markup from Classic Editor to Gutenberg in front-end to make styling easier (not critical or some cases even needed).
 
-### 4.1 Directory structure
+### 5.1 Directory structure
 
 The script have very simple structure.
 
@@ -211,16 +322,16 @@ The script have very simple structure.
   * `critical.js` scripts that should be run in head
   * `editor-gutenberg.js` modifies gutenberg style variants
 
-### 4.2 Workflow
+### 5.2 Workflow
 
   * When you begin working, start the gulp with `gulp watch`
   * You get Browsersync URL at `https://localhost:3000` (check yours in console). Here the styles will automatically reload when you save your changes.
   * If you make a syntax error, a console will send you a notification and tell where the error is. If Gulp stops running, start it again with `gulp watch`.
   * The Gulp updates `/assets/last-edited.json` timestamps for styles and WP assets use it. This means that cache busting is done automatically.
 
-### 4.3 Adding new files
+### 5.3 Adding new files
 
-#### 4.3.1 Add script from file
+#### 5.3.1 Add script from file
 
 Put file in `/assets/scripts/components/my_script.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
 
@@ -238,7 +349,7 @@ Put file in `/assets/scripts/components/my_script.js`. Add script to main.js (or
 ],
 ```
 
-#### 4.3.2 Add script with yarn (node_modules)
+#### 5.3.2 Add script with yarn (node_modules)
 
 First, go to [npmjs.com](https://www.npmjs.com/) and find if your library is avaialble. Add your library in `package.json` devDependencies. Run `yarn upgrade`.
 
@@ -254,11 +365,11 @@ Add project libraries in `dependencies` and Gulp libraries in `devDependencies`.
 ],
 ```
 
-## 5. SVG and Images
+## 6. SVG and Images
 
 Gulp will automatically minify images and combine SVG images in one sprite.
 
-### 5.1 SVG sprite
+### 6.1 SVG sprite
 
 Put all icons to `/assets/sprite/` and Gulp will combine and minify them into `/dist/sprite/sprite.svg`.
 
@@ -270,15 +381,15 @@ In PHP you can get these images with (more exmples in Template tags):
 ]); ?>
 ```
 
-### 5.2 Single SVG images
+### 6.2 Single SVG images
 
 You can also place more complex (multi-colored) SVGs in `/assets/images/` and Gulp will compress them. They can be found in `/dist/images/`
 
-### 5.3 Static images
+### 6.3 Static images
 
 Put your static images in `/assets/images/` and Gulp will compress them a bit. Refer images in `/dist/images/`.
 
-### 5.4 Image sizes
+### 6.4 Image sizes
 
 Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating image sizes:
 
@@ -286,7 +397,7 @@ Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating i
   * Make "medium" half of the text columns and "large" full text column
   * Add additional sizes for responsive images (for example teaser_lg, teaser_md, teaser_sm)
 
-### 5.5 Embed images
+### 6.5 Embed images
 
 ```php
 <?php Aucor_Image::render([
@@ -334,7 +445,7 @@ Aucor_Image::render([
 ])
 ```
 
-### 5.6 Lazy load
+### 6.6 Lazy load
 
 By default the image function has lazy loading on. Lazy loading uses [lazysizes library](https://github.com/aFarkas/lazysizes). When emedding image there's three possibilities:
 
@@ -368,11 +479,11 @@ By default the image function has lazy loading on. Lazy loading uses [lazysizes 
 
 Lazy loading is SEO friendly and function automatically displays `<noscript>` versions for users without JS.
 
-### 5.7. Favicons
+### 6.7. Favicons
 
 Add all favicon files to `/assets/favicon/` where they will be moved (and images optimized) to `/dist/favicon/`. Use for example [Real Favicon Generator](https://realfavicongenerator.net/) to make favicon. Add favicon embeds to function `aucor_starter_favicons` in `/inc/_conf/register-assets.php`.
 
-## 6. Includes
+## 7. Includes
 
 Includes is place for all PHP files that are not part of templates. So all filters, actions and functions.
 
@@ -382,11 +493,11 @@ All the functions, hooks and setup should be on their own filer organized at /in
   * `setup-` configures existing settings and assets
   * `function-` adds functions to be used in templates
 
-### 6.1 Functions.php
+### 7.1 Functions.php
 
 The `/functions.php` is the place to require all PHP files that are not part of the current template. This file should only ever have requires and nothing else.
 
-### 6.2 \_conf
+### 7.2 \_conf
 
 The `/inc/_conf/` directory has some essential settings for theme that you basically want to review in every project and probably will return many times during development.
 
@@ -396,13 +507,13 @@ The `/inc/_conf/` directory has some essential settings for theme that you basic
   * `register-localization.php` add all translatable strings for Polylang.
   * `register-menus.php` define all menu positions.
 
-### 6.3 Editor
+### 7.3 Editor
 
 Directory `/inc/editor/`.
 
 All tweaks and settings for editors and theme supports.
 
-### 6.4 Forms
+### 7.4 Forms
 
 Directory `/inc/forms/`.
 
@@ -419,7 +530,7 @@ Aucor_Search_Form::render([
 
 Display easily customizable search form.
 
-### 6.5 Helpers
+### 7.5 Helpers
 
 Directory `/inc/helpers/`.
 
@@ -481,27 +592,18 @@ Used in template:
 
 **Notice:** Avoid hardcoding ids if possible. If you really need to do it, centralize them into this function.
 
-#### Build HTML attributes
-
-Function: `aucor_starter_build_attributes($attr)`
-
-Get valid HTML element attributes from key-value array. Returns a string like `key="value" class="test"`.
-
 #### Last edited
 
 Function: `aucor_starter_last_edited($asset)`
 
 Get last edited timestamp from asset files. Timestamps are saved in `/assets/last-edited.json`.
 
-#### Archive titles
-
-Function: `aucor_starter_get_the_archive_title()`
 
 #### Setup fallbacks
 
 Include fallback function in case critical plugin is not active.
 
-### 6.6 Media
+### 7.6 Media
 
 Directory `/inc/media/`.
 
@@ -545,7 +647,7 @@ Aucor_SVG::render([
 ]);
 ```
 
-### 6.7 Navigation
+### 7.7 Navigation
 
 Directory `/inc/navigation/` has various function for menus and this that navigate to somewhere.
 
@@ -663,7 +765,7 @@ We add social icons SVG to menu items in social menu. There's a few most used su
 
 You can add icons to primary menu by adding class `icon-{name-of-the-icon}` like `icon-facebook`.
 
-### 6.8 Localization (Polylang)
+### 7.8 Localization (Polylang)
 
 In depth about file: `/inc/_conf/register-localization.php` (and `/inc/helpers/setup-fallbacks.php`)
 
@@ -780,11 +882,11 @@ Debugging is the greatest benefit of using our string localization functions ins
 
 So there's really no excuse to forget to register your strings no more.
 
-## 7. Gutenberg and Classic Editor
+## 8. Gutenberg and Classic Editor
 
 Aucor Starter supports both Gutenberg and Classic Editor though Gutenberg is preferred.
 
-### 7.1 Gutenberg architecture
+### 8.1 Gutenberg architecture
 
 #### Styles
 
@@ -811,7 +913,7 @@ In Gutenberg world, each block will define its own width as there can be wide bl
 
 Many blocks support alignment and different widths. Generic styles for these are located in `/assets/styles/blocks/settings/` and will be enough for most cases. If you have similar features that many blocks use, add them to settings to keep your code clean.
 
-### 7.2 Allowed blocks
+### 8.2 Allowed blocks
 
 Set allowed blocks in `/inc/_conf/register-blocks.php`.
 
@@ -859,7 +961,7 @@ Aucor Starter supports these blocks by default:
 
 **Notice:** All blocks that are not explicitly allowed are disabled. This means that if you install a plugin that has new blocks, those blocks are not shown before you allow them. Gutenberg will provide an UI for this in future and we will drop this feature then.
 
-### 7.3 Known Gutenberg issues
+### 8.3 Known Gutenberg issues
 
 Gutenberg has still many improvements and bugfixes on the way. These are some issues at the moment:
 
@@ -871,21 +973,21 @@ Gutenberg has still many improvements and bugfixes on the way. These are some is
 
 Gutenberg development is moving fast and there are a lot of people working hard to improve Gutenberg.
 
-### 7.4 Classic Editor
+### 8.4 Classic Editor
 
 You can still use Classic Editor in some post types or all if you like. If you want to completely disable Gutenberg, you might want to re-organize the styles a bit as some styles are shared in `/assets/styles/blocks/`.
 
-## 8. Menus
+## 9. Menus
 
 By default the starter theme has two menu locations: Primary menu and Social menu.
 
-### 8.1 Primary menu
+### 9.1 Primary menu
 
 Theme location: `primary`
 
 Theme's main navigation in header that is build to handle multiple levels.
 
-### 8.2 Social menu
+### 9.2 Social menu
 
 Theme location: `social`
 
@@ -898,7 +1000,7 @@ How to use:
  * Menu item gets SVG icon that is based on url
  * Style menu as needed on `/assets/styles/elements/_menu-social.scss`
 
-### 8.3 Navigation skeleton
+### 9.3 Navigation skeleton
 
 Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/menu-primary.js` and `/assets/styles/elements/_menu-primary.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
 
@@ -914,7 +1016,7 @@ var primary_menu = component_primary_menu({
 
 **Protip:** The `desktop_min_width` option will disable or enable some ways to interact with the menu. For example the hover stuff is disabled on "mobile mode".
 
-## 9. Editorconfig
+## 10. Editorconfig
 
 Theme has an `.editorconfig` file that sets your code editor settings accordingly. Never used Editorconfig? [Download the extension](http://editorconfig.org/#download) to your editor. The settings will automatically be applied when you edit code when you have the extension.
 
@@ -928,6 +1030,6 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 ```
 
-## 10. Site specific plugin
+## 11. Site specific plugin
 
 It is recommended to create also site specific plugin to store custom post types, custom taxonomies, shortcodes, ACF fields etc information architecture. There is nothing stopping you from defining them into theme, but we find it better to isolate information architecture outside of theme as those post types and taxonomies will remain when theme gets rebuild.
