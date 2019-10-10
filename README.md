@@ -21,7 +21,8 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     2. [Install build tools](#23-install-build-tools)
     3. [Start working](#24-start-working)
 3. [Components](#3-components)
-    1. [Creating new component](#31-creating-new-components)
+    1. [Component.php](#31-componentphp)
+    2. [Creating new component](#32-creating-new-components)
 4. [Styles](#4-styles)
     1. [Directory structure](#41-directory-structure)
     2. [Workflow](#42-workflow)
@@ -125,7 +126,11 @@ Do this everythime you start to work with the theme.
 Components are independent components that can be used in many contexts (forms, menu, teaser etc).
 Styles of components should be in `/assets/styles/components` and named as `_component-name.scss` and will be compiled automatically to `dist/styles/main.css`.
 
-### 3.1 Creating new components
+### 3.1 Component.php
+Abstract Class Component that keeps in the structure and required functionality for each component.
+Every component should inherit this class.
+
+### 3.2 Creating new components
 
 #### PHP 
 Create `components-name.php` to `/components/`
