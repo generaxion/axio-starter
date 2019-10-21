@@ -195,7 +195,10 @@ const jsTasks = (filename) => {
         presets: ["@babel/preset-env"],
         // override because of use of "this" in IIFE with Babel in Tobi.js: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
         overrides: [{
-          test: "./node_modules/@rqrauhvmra/tobi/js/tobi.js",
+          test: [
+            "./node_modules/@rqrauhvmra/tobi/js/tobi.js",
+            "./node_modules/axios/dist/axios.min.js",
+          ],
           sourceType: "script",
         }],
       });

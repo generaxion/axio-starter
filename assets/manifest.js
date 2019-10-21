@@ -40,8 +40,8 @@ module.exports = {
         // project specific js
         "scripts/components/menu-primary.js",
         "scripts/components/markup-enhancements.js",
-        "scripts/main.js"
-
+        "scripts/main.js",
+        "../node_modules/axios/dist/axios.min.js",
       ],
 
       // critical js to be loaded in <head>
