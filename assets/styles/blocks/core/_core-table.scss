@@ -51,6 +51,14 @@
     }
   }
 
+  figure {
+    margin: 0;
+  }
+
+  table {
+    width: 100%;
+  }
+
   thead {
     background: $primary;
     color: $white;
@@ -61,6 +69,9 @@
     border-left: 1px solid $grey;
     min-width: 8rem;  // for responsive tables
     padding: $gap-small $gap-small;
+    &:first-of-type {
+      border-left: 0;
+    }
   }
 
   tr {
@@ -83,6 +94,18 @@
     th, td {
       border-bottom: 0;
     }
+  }
+
+  .has-text-align-center {
+    text-align: center;
+  }
+
+  .has-text-align-right {
+    text-align: right;
+  }
+
+  .has-text-align-left {
+    text-align: left;
   }
 
 }
