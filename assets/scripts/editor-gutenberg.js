@@ -35,6 +35,13 @@ wp.hooks.addFilter(
 
     switch(name) {
 
+      case 'core/embed':
+      case 'core-embed/facebook':
+      case 'core-embed/flickr':
+      case 'core-embed/instagram':
+      case 'core-embed/soundcloud':
+      case 'core-embed/spotify':
+      case 'core-embed/twitter':
       case 'core/file':
       case 'core/freeform':
       case 'core/heading':
@@ -51,6 +58,10 @@ wp.hooks.addFilter(
 
       case 'core/gallery':
       case 'core/table':
+      case 'core/embed/issuu':
+      case 'core/embed/slideshare':
+      case 'core/embed/vimeo':
+      case 'core/embed/youtube':
         align = ['wide'];
         break;
 
