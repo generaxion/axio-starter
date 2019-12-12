@@ -56,6 +56,7 @@ wp.hooks.addFilter(
         align = ['center'];
         break;
 
+      case 'core/columns':
       case 'core/gallery':
       case 'core/table':
       case 'core/embed/issuu':
