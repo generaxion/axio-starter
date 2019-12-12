@@ -13,9 +13,6 @@ add_action('after_setup_theme', function() {
   // support wide width
   add_theme_support('align-wide');
 
-  // support responsive embeds
-  add_theme_support('responsive-embeds');
-
   // disable custom color picker
   add_theme_support('disable-custom-colors');
 

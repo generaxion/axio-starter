@@ -1,0 +1,32 @@
+/* ==========================================================================
+ # Group block
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-group,
+.wysiwyg .wp-block-group {
+
+  background: $grey-light;
+
+  &__inner-container {
+    @include child-margin-reset;
+    padding: $gap;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-group {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-group {
+
+}

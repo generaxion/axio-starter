@@ -51,8 +51,8 @@ add_action('wp_enqueue_scripts', function() {
   wp_localize_script('aucor_starter-js', 'aucor_starter_strings', $strings);
 
   // remove gutenberg default stylesheets
-  wp_deregister_style('wp-block-library-theme');
-  wp_deregister_style('wp-block-library');
+  // wp_deregister_style('wp-block-library-theme');
+  // wp_deregister_style('wp-block-library');
 
   // comments
   if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -84,12 +84,12 @@ add_action('enqueue_block_editor_assets', function() {
   );
 
   // overwrite Core block styles with empty styles
-  wp_deregister_style('wp-block-library' );
-  wp_register_style('wp-block-library', '' );
+  // wp_deregister_style('wp-block-library' );
+  // wp_register_style('wp-block-library', '' );
 
   // overwrite Core theme styles with empty styles
-  wp_deregister_style('wp-block-library-theme');
-  wp_register_style('wp-block-library-theme', '');
+  // wp_deregister_style('wp-block-library-theme');
+  // wp_register_style('wp-block-library-theme', '');
 
 }, 10);
 
