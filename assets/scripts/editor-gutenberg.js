@@ -35,19 +35,33 @@ wp.hooks.addFilter(
 
     switch(name) {
 
-      case 'core/gallery':
-      case 'core/table':
-        align = ['wide', 'full'];
-        break;
-
       case 'core/file':
+      case 'core/freeform':
+      case 'core/heading':
+      case 'core/list':
+      case 'core/paragraph':
       case 'core/quote':
+      case 'core/separator':
         align = false;
         break;
 
       case 'core/button':
         align = ['center'];
         break;
+
+      case 'core/gallery':
+      case 'core/table':
+        align = ['wide'];
+        break;
+
+      case 'core/group':
+      case 'core/media-text':
+        align = ['wide', 'full'];
+        break;
+
+      case 'core/image':
+        align = ['left', 'center', 'right', 'wide'];
+      break;
 
       default:
         return settings;
