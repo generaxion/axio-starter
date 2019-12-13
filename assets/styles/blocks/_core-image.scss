@@ -8,8 +8,7 @@
 .editor-styles-wrapper .wp-block-image,
 .wysiwyg .wp-block-image {
 
-  margin-top: $gap;
-  margin-bottom: $gap;
+  line-height: 0;
   text-align: center;
 
   img {
@@ -25,8 +24,6 @@
   }
 
   &.alignfull {
-    margin-top: $gap-big;
-    margin-bottom: $gap-big;
     figcaption {
       padding-left: $gap;
       padding-right: $gap;
@@ -45,6 +42,7 @@
   figcaption {
     color: $grey-font-color;
     display: block;
+    line-height: $line-height;
     margin-top: $gap-tiny;
     margin-bottom: $gap;
     font-size: .875rem;

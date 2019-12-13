@@ -11,50 +11,34 @@
 @import "../../node_modules/@rqrauhvmra/tobi/scss/tobi.scss";
 @import "elements/vendor-tobi";
 
-/* Variables
+/* Base
 ----------------------------------------------- */
 
-@import "base/variables/width";
-@import "base/variables/spacing";
-@import "base/variables/breakpoints";
-@import "base/variables/colors";
-@import "base/variables/fonts";
-
-/* Mixins
------------------------------------------------ */
-
-@import "base/mixins/buttons";
-@import "base/mixins/resets";
-@import "base/mixins/tools";
-@import "base/mixins/wrap";
-
-/* Generic
------------------------------------------------ */
-
-@import "base/generic/normalize";
-@import "base/generic/all";
-@import "base/generic/typography";
+@import "base/variables";
+@import "base/mixins";
+@import "base/normalize";
+@import "base/typography";
 
 /* Blocks
 ----------------------------------------------- */
 
-@import "blocks/core/core-button";
-@import "blocks/core/core-columns";
-@import "blocks/core/core-embed";
-@import "blocks/core/core-file";
-@import "blocks/core/core-freeform";
-@import "blocks/core/core-gallery";
-@import "blocks/core/core-group";
-@import "blocks/core/core-heading";
-@import "blocks/core/core-image";
-@import "blocks/core/core-list";
-@import "blocks/core/core-media-text";
-@import "blocks/core/core-paragraph";
-@import "blocks/core/core-quote";
-@import "blocks/core/core-separator";
-@import "blocks/core/core-table";
-@import "blocks/settings/blocks-alignment";
-@import "blocks/settings/blocks-colors";
+@import "blocks/core-button";
+@import "blocks/core-columns";
+@import "blocks/core-embed";
+@import "blocks/core-file";
+@import "blocks/core-freeform";
+@import "blocks/core-gallery";
+@import "blocks/core-group";
+@import "blocks/core-heading";
+@import "blocks/core-image";
+@import "blocks/core-list";
+@import "blocks/core-media-text";
+@import "blocks/core-paragraph";
+@import "blocks/core-quote";
+@import "blocks/core-separator";
+@import "blocks/core-table";
+@import "blocks/settings-alignment";
+@import "blocks/settings-colors";
 
 /* Elements
 ----------------------------------------------- */
@@ -78,22 +62,18 @@
 @import "components/social-share";
 @import "components/teaser";
 
-/* Layout
------------------------------------------------ */
-
-@import "views/layout/layout";
-
 /* Templates
 ----------------------------------------------- */
 
-@import "views/templates/404";
-@import "views/templates/front-page";
-@import "views/templates/index";
-@import "views/templates/page";
-@import "views/templates/search";
-@import "views/templates/single";
+@import "views/layout";
+@import "views/404";
+@import "views/front-page";
+@import "views/index";
+@import "views/page";
+@import "views/search";
+@import "views/single";
 
 /* Print
 ----------------------------------------------- */
 
-@import "base/generic/print";
+@import "base/print";

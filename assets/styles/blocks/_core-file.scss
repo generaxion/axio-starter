@@ -1,25 +1,22 @@
 /* ==========================================================================
- # Button block
+ # File block
 ========================================================================== */
 
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-button,
-.wysiwyg .wp-block-button {
-  margin-bottom: $gap;
+.editor-styles-wrapper .wp-block-file,
+.wysiwyg .wp-block-file {
 
-  &.aligncenter {
-    text-align: center;
+  // multiple files
+  & + .wp-block-file {
+    margin-top: $gap-small;
   }
 
-  &.alignright {
-    text-align: right;
-  }
-
-  &__link {
+  // extra download button
+  &__button {
     @include button;
-    @include button--big;
+    margin-left: $gap-small;
   }
 
 }
@@ -27,13 +24,13 @@
 /* Only front-end
 ----------------------------------------------- */
 
-.wysiwyg .wp-block-button {
+.wysiwyg .wp-block-file {
 
 }
 
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-button {
+.editor-styles-wrapper .wp-block-file {
 
 }

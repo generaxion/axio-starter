@@ -12,7 +12,27 @@
 
   &__inner-container {
     @include child-margin-reset;
-    padding: $gap;
+    @include spacing(padding-top, padding-bottom);
+    padding-left: $gap;
+    padding-right: $gap;
+  }
+
+  &.alignwide {
+    .wp-block-group__inner-container {
+      @include spacing-m(padding-top, padding-bottom);
+    }
+  }
+
+  &.alignfull {
+    &.is-first-block {
+      margin-top: 0;
+    }
+    &.is-last-block {
+      margin-bottom: 0;
+    }
+    .wp-block-group__inner-container {
+      @include spacing-l(padding-top, padding-bottom);
+    }
   }
 
 }

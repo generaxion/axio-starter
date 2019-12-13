@@ -2,6 +2,19 @@
  # Normalize
 ========================================================================== */
 
+// box-sizning border-box everywhere
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+// remove focus outline for mouse users, see: https://twitter.com/LeaVerou/status/1045768279753666562
+:focus:not(:focus-visible) {
+  outline: none
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;

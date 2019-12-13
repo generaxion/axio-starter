@@ -87,15 +87,6 @@
     }
   }
 
-  &.is-style-stripes {
-    tr:nth-child(even) {
-      background-color: $grey-light;
-    }
-    th, td {
-      border-bottom: 0;
-    }
-  }
-
   .has-text-align-center {
     text-align: center;
   }
