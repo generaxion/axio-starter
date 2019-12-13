@@ -8,11 +8,23 @@
   @include breakpoint($menu-visible) {
     align-items: center;
     display: flex;
-    padding-top: 1.75rem;
-    padding-bottom: 1.75rem;
+    flex-direction: column;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
-  &__container {
+  &__upper {
+    @include wrap;
+    display: none;
+    @include breakpoint($menu-visible) {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: .75rem;
+    }
+  }
+
+  &__main {
     @include wrap;
     @include breakpoint($menu-visible) {
       align-items: center;
@@ -25,7 +37,7 @@
     @include breakpoint($menu-visible) {
       padding-right: $gap;
       &__logo {
-        width: 5rem;
+        width: 6rem;
       }
 
     }
@@ -50,4 +62,14 @@
 
   }
 
+}
+
+.mobile-menu {
+  display: none;
+  padding: $gap;
+  @include breakpoint($menu-hidden) {
+    .is-active-menu & {
+      display: block;
+    }
+  }
 }

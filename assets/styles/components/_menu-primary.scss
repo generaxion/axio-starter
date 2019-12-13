@@ -30,10 +30,10 @@
   ----------------------------------------------- */
 
   @include breakpoint($menu-hidden) {
-    display: none;
     padding: $gap 0 0;
-    .active & {
-      display: block;
+    display: block;
+    .desktop-menu & {
+      display: none;
     }
 
     // all <li>

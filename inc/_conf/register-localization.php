@@ -25,6 +25,7 @@ add_filter('aucor_core_pll_register_strings', function() {
     // menu
     'Menu: Button label'                => 'Menu',
     'Menu: Primary Menu'                => 'Päävalikko',
+    'Menu: Upper Menu'                  => 'Lisävalikko',
     'Menu: Social Menu'                 => 'Sosiaalisen median kanavat',
 
     // 404

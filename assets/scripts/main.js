@@ -3,13 +3,23 @@
 ========================================================================== */
 
 /**
- * Primary menu
+ * Init menus
  */
-var primary_menu = component_primary_menu({
-  desktop_min_width: 890,
-  menu: '.primary-navigation',
-  menu_toggle: '#menu-toggle'
-});
+var menus = document.querySelectorAll('.js-navigation');
+for (var i = 0; i < menus.length; i++) {
+  component_dropdown_menu({
+    desktop_min_width: 890,
+    menu: menus[i]
+  });
+}
+
+/**
+ * Init menu-toggles
+ */
+var menu_toggles = document.querySelectorAll('.js-menu-toggle');
+for (var i = 0; i < menu_toggles.length; i++) {
+  component_toggle(menu_toggles[i]);
+}
 
 /**
  * Responsive videos

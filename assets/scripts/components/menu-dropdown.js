@@ -11,7 +11,7 @@
  * - works at least with 3 levels (probably more)
  *
  */
-var component_primary_menu = function(args) {
+var component_dropdown_menu = function(args) {
 
   var extend = function (defaults, args) {
     var extended = {};
@@ -32,19 +32,17 @@ var component_primary_menu = function(args) {
   // Default settings
   var defaults = {
     desktop_min_width: 501,
-    menu: '.primary-navigation',
-    menu_toggle: '#menu-toggle',
+    menu: document.querySelector('.primary-navigation')
   };
 
   var settings          = extend(args),
       desktop_min_width = settings.desktop_min_width, // match this to $menu-visible SASS variable
-      menu    = document.querySelector(settings.menu),
-      menu_toggle       = document.querySelector(settings.menu_toggle),
+      menu              = settings.menu,
       screen_w,
       hover_timer,
       focus_timer;
 
-  if (!menu|| !menu_toggle) {
+  if (!menu) {
     console.log('Invalid menu or menu_toggle');
     return;
   }
@@ -221,33 +219,6 @@ var component_primary_menu = function(args) {
     link.addEventListener('focus', on_link_focus);
     link.addEventListener('blur', on_link_blur);
   }
-
-  /* Toggle menu (hamburger)
-  ----------------------------------------------- */
-
-  menu_toggle.addEventListener('click', function() {
-    if (menu_toggle.classList.contains('menu-toggle--active')) {
-
-      // remove .active class from hamburger icon
-      menu_toggle.classList.remove('menu-toggle--active');
-      menu_toggle.setAttribute('aria-expanded', 'false');
-
-      // remove .active class to menu container
-      menu.classList.remove('active');
-
-      // focus out of the menu
-      menu_toggle.dispatchEvent(new Event('focus'));
-
-    } else {
-
-      // .active class to hamburger icon
-      menu_toggle.classList.add('menu-toggle--active');
-      menu_toggle.setAttribute('aria-expanded', 'true');
-
-      // .active class to menu container
-      menu.classList.add('active');
-    }
-  });
 
   /* Empty links "#": open sub-menu
   ----------------------------------------------- */

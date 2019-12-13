@@ -38,7 +38,8 @@ module.exports = {
         "../node_modules/@rqrauhvmra/tobi/js/tobi.js",
 
         // project specific js
-        "scripts/components/menu-primary.js",
+        "scripts/components/menu-dropdown.js",
+        "scripts/components/menu-toggle.js",
         "scripts/components/markup-enhancements.js",
         "scripts/main.js",
         "../node_modules/axios/dist/axios.min.js",

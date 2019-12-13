@@ -23,7 +23,11 @@
 
   <header id="masthead" class="site-header" itemscope itemtype="http://schema.org/WPHeader">
 
-    <div class="site-header__container">
+    <div class="site-header__upper desktop-menu">
+      <?php Aucor_Menu_Upper::render(); ?>
+    </div>
+
+    <div class="site-header__main desktop-menu">
 
       <div class="site-header__branding">
 
@@ -43,5 +47,10 @@
     </div>
 
   </header>
+
+  <div class="site-header__mobile-menu mobile-menu">
+    <?php Aucor_Menu_Primary::render(); ?>
+    <?php Aucor_Menu_Upper::render(); ?>
+  </div>
 
   <div id="content" class="site-content" role="main" itemscope itemprop="mainContentOfPage">

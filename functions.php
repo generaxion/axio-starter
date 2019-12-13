@@ -32,6 +32,7 @@ require_once 'components/menu-primary.php';
 require_once 'components/menu-social.php';
 require_once 'components/menu-sub-pages.php';
 require_once 'components/menu-toggle.php';
+require_once 'components/menu-upper.php';
 require_once 'components/posts-nav-numeric.php';
 require_once 'components/search-form.php';
 require_once 'components/share-buttons.php';
