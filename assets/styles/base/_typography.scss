@@ -34,58 +34,28 @@ p, .p {
 /* Titles
 ----------------------------------------------- */
 
-h1, .h1 {
-  display: block;
-  font-size: 2rem;
-  @include breakpoint($s) {
-    font-size: 2.5rem;
-  }
-  font-weight: $bold;
-  line-height: 1.125;
+h1 {
+  @include heading(xl);
   margin: 0 0 2rem;
 }
 
-h2, .h2 {
-  display: block;
-  font-size: 1.5rem;
-  @include breakpoint($s) {
-    font-size: 2rem;
-  }
-  font-weight: $bold;
-  line-height: 1.333333;
+h2 {
+  @include heading(l);
   margin: 1.5rem 0;
 }
 
-h3, .h3 {
-  display: block;
-  font-size: 1.125rem;
-  @include breakpoint($s) {
-    font-size: 1.5rem;
-  }
-  font-weight: $bold;
-  line-height: $line-height;
+h3 {
+  @include heading(m);
   margin-bottom: 1.5rem;
 }
 
 h4, .h4 {
-  display: block;
-  font-size: 1rem;
-  @include breakpoint($s) {
-    font-size: 1.25rem;
-  }
-  font-weight: $normal;
-  line-height: $line-height;
+  @include heading(s);
   margin-bottom: 1.5rem;
 }
 
 h5, .h5 {
-  display: block;
-  font-size: .875rem;
-  @include breakpoint($s) {
-    font-size: 1rem;
-  }
-  font-weight: $bold;
-  line-height: $line-height;
+  @include heading(xs);
   margin-bottom: 0;
 }
 

@@ -13,7 +13,7 @@ $green-whatsapp:  #36b74d;
   margin-top: $gap;
 
   &__title {
-    @extend .h3;
+    @include heading(m);
     margin-bottom: $gap-small;
   }
 
