@@ -3,6 +3,25 @@
  */
 
 /**
+ * Add identifiers for first and last block
+ */
+var gutenberg_content = document.querySelector('.wysiwyg');
+if (gutenberg_content) {
+  for (var i = 0; i < gutenberg_content.childNodes.length; i++) {
+    if (gutenberg_content.childNodes[i].nodeType !== 3 && gutenberg_content.childNodes[i].classList !== "undefined") {
+      gutenberg_content.childNodes[i].classList.add('is-first-block');
+      break;
+    }
+  }
+  for (var i = (gutenberg_content.childNodes.length - 1); i >= 0; i--) {
+    if (gutenberg_content.childNodes[i].nodeType !== 3 && gutenberg_content.childNodes[i].classList !== "undefined") {
+      gutenberg_content.childNodes[i].classList.add('is-last-block');
+      break;
+    }
+  }
+}
+
+/**
  * Make tables responsive
  */
 var responsive_tables_in_content = function() {
