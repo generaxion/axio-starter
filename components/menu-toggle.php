@@ -66,12 +66,6 @@ class Aucor_Menu_Toggle extends Aucor_Component {
     $args['attr']['class'][] = 'js-menu-toggle';
     $args['attr']['class'][] = 'menu-toggle';
 
-    // id
-    if (empty($args['id'])) {
-      $args['id'] = 'menu-toggle-' . wp_unique_id();
-    }
-    $args['attr']['id'] = $args['id'];
-
     return $args;
 
   }

@@ -22,6 +22,16 @@ for (var i = 0; i < menu_toggles.length; i++) {
 }
 
 /**
+ * Mobile menu out-of-bounds
+ */
+var menu_out_of_bounds = document.querySelector('.js-mobile-menu__close');
+if (menu_out_of_bounds && menu_toggles.length) {
+  menu_out_of_bounds.addEventListener('click', function(e) {
+    menu_toggles[0].click();
+  });
+}
+
+/**
  * Responsive videos
  */
 fitvids();

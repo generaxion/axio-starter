@@ -2,6 +2,7 @@
  * Toggle button
  */
 
+
 var component_toggle = function(toggle) {
 
   toggle.addEventListener('click', function() {
@@ -17,7 +18,11 @@ var component_toggle = function(toggle) {
       }
 
       // remove .active class to menu container
-      document.body.classList.remove('is-active-menu');
+      document.body.classList.add('is-closing-menu');
+      setTimeout(function(){
+        document.body.classList.remove('is-active-menu');
+        document.body.classList.remove('is-closing-menu');
+       }, 250);
 
       // focus out of the menu
       toggle.dispatchEvent(new Event('focus'));
@@ -31,6 +36,7 @@ var component_toggle = function(toggle) {
 
       // .active class to menu container
       document.body.classList.add('is-active-menu');
+
     }
   });
 

@@ -38,7 +38,7 @@
           </a>
         </span>
 
-        <?php Aucor_Menu_Toggle::render(['id' => 'menu-toggle']); ?>
+        <?php Aucor_Menu_Toggle::render(); ?>
 
       </div>
 
@@ -49,8 +49,20 @@
   </header>
 
   <div class="site-header__mobile-menu mobile-menu">
-    <?php Aucor_Menu_Primary::render(); ?>
-    <?php Aucor_Menu_Upper::render(); ?>
+    <div class="mobile-menu__nav">
+      <?php Aucor_Menu_Toggle::render(); ?>
+      <div class="mobile-menu__nav__inner">
+        <?php Aucor_Menu_Primary::render(); ?>
+        <?php Aucor_Menu_Upper::render(); ?>
+      </div>
+    </div>
+    <div class="mobile-menu__overlay">
+      <button class="js-mobile-menu__overlay__close mobile-menu__overlay__close">
+        <span class="screen-reader-text">
+          <?php ask_e('Menu: Close'); ?>
+        </span>
+      </button>
+    </div>
   </div>
 
   <div id="content" class="site-content" role="main" itemscope itemprop="mainContentOfPage">

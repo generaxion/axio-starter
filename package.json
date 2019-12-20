@@ -23,6 +23,7 @@
     "@rqrauhvmra/tobi": "^1.9.0",
     "breakpoint-sass": "^2.7.1",
     "fitvids": "^2.0.0",
+    "focus-trap": "^5.1.0",
     "gulp": "^4.0.2",
     "lazysizes": "^4.0.4",
     "objectFitPolyfill": "^2.1.1",
