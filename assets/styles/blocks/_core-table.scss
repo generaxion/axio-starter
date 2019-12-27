@@ -64,11 +64,15 @@
     color: $white;
   }
 
+  td, th {
+    text-align: left;
+    min-width: 8rem;  // for responsive tables
+    padding: $gap-small $gap-small;
+  }
+
   td {
     border: 0;
     border-left: 1px solid $grey;
-    min-width: 8rem;  // for responsive tables
-    padding: $gap-small $gap-small;
     &:first-of-type {
       border-left: 0;
     }
