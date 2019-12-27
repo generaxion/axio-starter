@@ -33,9 +33,6 @@ img.lazyload--animated {
     &.lazyload-preload--ready {
       opacity: 0;
     }
-    &.ls-is-cached {
-      opacity: 0;
-    }
   }
 }
 

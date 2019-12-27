@@ -35,7 +35,8 @@ class Aucor_Search_Form extends Aucor_Component {
       />
 
       <button type="submit" class="search-form__submit">
-        <?php echo $data['submit']; ?>
+        <?php Aucor_SVG::render(['name' => 'search']); ?>
+        <span class="screen-reader-text"><?php echo $data['submit']; ?></span>
       </button>
 
     </form>

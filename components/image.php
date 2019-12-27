@@ -103,6 +103,11 @@ class Aucor_Image extends Aucor_Component {
     // height
     $args['attr']['height'] = $generated_sizes[$possible_sizes['primary']]['height'];
 
+    // alt
+    if (!isset($args['attr']['alt'])) {
+      $args['attr']['alt'] = $args['alt'];
+    }
+
     // srcset
     $srcset = array();
     foreach ($possible_sizes['supporting'] as $key => $possible_size) {
