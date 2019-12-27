@@ -26,6 +26,11 @@
     background: darken($primary, 5);
     transform: translateY(-.125rem);
   }
+  &:focus {
+    border-radius: 0;
+    outline: 1px dotted;
+    outline-offset: -2px;
+  }
 }
 
 // button variaton: big
@@ -38,7 +43,7 @@
 
 @mixin heading($size: m) {
 
-  @if $size == xl {
+  @if ($size == xl) {
 
     font-size: 2rem;
     @include breakpoint($s) {
@@ -47,7 +52,7 @@
     font-weight: $bold;
     line-height: 1.125;
 
-  } @if $size == l {
+  } @else if ($size == l) {
 
     font-size: 1.5rem;
     @include breakpoint($s) {
@@ -56,15 +61,15 @@
     font-weight: $bold;
     line-height: 1.333333;
 
-  } @if $size == s {
+  } @else if ($size == s) {
 
-    font-size: 1.125rem;
+    font-size: 1rem;
     @include breakpoint($s) {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
     font-weight: $bold;
 
-  } @if $size == xs {
+  } @else if ($size == xs) {
 
     font-size: .875rem;
     @include breakpoint($s) {
@@ -112,7 +117,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  text-indent: none;
+  text-indent: 0;
 }
 
 // reset <button> styles

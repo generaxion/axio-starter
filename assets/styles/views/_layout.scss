@@ -35,6 +35,7 @@
   &--search {
 
     @include wrap;
+    @include spacing-m(margin-top, margin-bottom);
 
   }
 
@@ -45,6 +46,7 @@
   &--index {
 
     @include wrap;
+    @include spacing-m(margin-top, margin-bottom);
 
   }
 
@@ -55,6 +57,7 @@
   &--404 {
 
     @include wrap;
+    @include spacing-m(margin-top, margin-bottom);
 
     .main {
       max-width: 40rem;

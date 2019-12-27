@@ -119,6 +119,18 @@ var wrap_old_aligned_images = function() {
 wrap_old_aligned_images();
 
 /**
+ * Add body class .has-no-hero-background
+ */
+var body_hero_background_indicator = function() {
+
+  if (document.querySelector('.hero--no-background')) {
+    document.body.classList.add('has-no-hero-background');
+  }
+
+}
+body_hero_background_indicator();
+
+/**
  * Lightbox (Tobi.js) support for native gallery and images
  * Requires link to media file from gallery/image settings.
  *

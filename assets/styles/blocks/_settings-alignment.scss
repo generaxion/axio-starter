@@ -13,6 +13,9 @@
 
   & > .is-first-block {
     @include spacing-l(margin-top);
+    .has-no-hero-background & {
+      @include spacing-m(margin-top);
+    }
   }
 
   & > .is-last-block {

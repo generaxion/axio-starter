@@ -3,41 +3,46 @@
 ========================================================================== */
 
 .site-header {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  @include breakpoint($menu-visible) {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  &__upper {
+  &__inner {
     @include wrap;
-    display: none;
-    @include breakpoint($menu-visible) {
-      align-items: center;
-      display: flex;
-      justify-content: flex-end;
-      padding-bottom: .75rem;
-    }
-  }
-
-  &__main {
-    @include wrap;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
     @include breakpoint($menu-visible) {
       align-items: center;
       display: flex;
       justify-content: space-between;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
     }
+  }
+
+  &__menus {
+    display: none;
+    @include breakpoint($menu-visible) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__upper {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+  }
+
+  &__main {
+    flex-grow: 1;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
   }
 
   &__branding {
     @include breakpoint($menu-visible) {
       padding-right: $gap;
       &__logo {
-        width: 6rem;
+        width: 7rem;
       }
 
     }
@@ -52,9 +57,7 @@
     }
 
     &__title {
-      display: block;
-      line-height: 0;
-      a {
+      &, a {
         display: block;
         line-height: 0;
       }

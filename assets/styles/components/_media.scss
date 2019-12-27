@@ -26,12 +26,14 @@ img.lazyload--animated {
     opacity: 1;
   }
   &.lazyload-preload {
-  backface-visibility: hidden;
-  filter: blur(15px);
-  transition: .5s ease-out;
-  transform: scale(1.075);
-  z-index: 3;
+    backface-visibility: hidden;
+    filter: url('#svg-effects-blur');
+    transition: .5s ease-out;
+    z-index: 3;
     &.lazyload-preload--ready {
+      opacity: 0;
+    }
+    &.ls-is-cached {
       opacity: 0;
     }
   }

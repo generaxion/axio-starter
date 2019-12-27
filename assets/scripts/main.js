@@ -3,41 +3,34 @@
 ========================================================================== */
 
 /**
- * Init menus
+ * Init dropdown-menus
  */
-var menus = document.querySelectorAll('.js-navigation');
-for (var i = 0; i < menus.length; i++) {
+var dropdown_menus = document.querySelectorAll('.js-navigation');
+for (var i = 0; i < dropdown_menus.length; i++) {
   component_dropdown_menu({
     desktop_min_width: 890,
-    menu: menus[i]
+    menu: dropdown_menus[i]
   });
 }
 
 /**
- * Init menu-toggles
+ * Init mobile menu
  */
-var menu_toggles = document.querySelectorAll('.js-menu-toggle');
-for (var i = 0; i < menu_toggles.length; i++) {
-  component_toggle(menu_toggles[i]);
-}
+
+component_mobile_menu({
+  menu:     document.querySelector('.js-mobile-menu'),
+  site:     document.querySelector('.js-page'),
+  toggles:  document.querySelectorAll('.js-menu-toggle')
+});
+
 
 /**
- * Mobile menu out-of-bounds
- */
-var menu_out_of_bounds = document.querySelector('.js-mobile-menu__close');
-if (menu_out_of_bounds && menu_toggles.length) {
-  menu_out_of_bounds.addEventListener('click', function(e) {
-    menu_toggles[0].click();
-  });
-}
-
-/**
- * Responsive videos
+ * Init Responsive videos
  */
 fitvids();
 
 /**
- * Polyfill object-fit for lazyloaded
+ * Init polyfill object-fit for lazyloaded
  */
 if (typeof objectFitPolyfill === "function") {
   document.addEventListener('lazybeforeunveil', function(e){
@@ -49,12 +42,11 @@ if (typeof objectFitPolyfill === "function") {
 }
 
 /**
- * Lightbox
+ * Init lightbox
  */
-if(document.querySelectorAll('.lightbox').length) {
-  // init Tobi
+if (document.querySelectorAll('.lightbox').length) {
   try {
-    const tobi = new Tobi({
+    new Tobi({
       // variables from script localization in register-assets.php
       navLabel: [aucor_starter_strings.prev, aucor_starter_strings.next],
       closeLabel: aucor_starter_strings.close,
@@ -62,7 +54,7 @@ if(document.querySelectorAll('.lightbox').length) {
       captionsSelector: 'self',
       captionAttribute: 'data-caption',
       zoom: false,
-  });
+    });
   } catch (e) {
     console.log(e);
   }

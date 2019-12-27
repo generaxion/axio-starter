@@ -21,7 +21,11 @@ function aucor_starter_dropdown_icon_to_menu_links($item_output, $item, $depth, 
     foreach ($item->classes as $value) {
       if ($value == 'menu-item-has-children') {
         // add caret button. not focusable as tab navigation is handeled without this button
-        $item_output .= '<button tabindex="-1" class="menu-item__link__caret js-menu-caret">' . Aucor_SVG::get(['name' => 'caret-down']) . '</button>';
+        $item_output .= '<button class="menu-item__caret js-menu-caret">' .
+                          Aucor_SVG::get(['name' => 'caret-down']) .
+                          '<span class="menu-item__caret__text-open">' . ask__('Menu: Open Sub-menu') . '</span>' .
+                          '<span class="menu-item__caret__text-close">' . ask__('Menu: Close Sub-menu') . '</span>' .
+                        '</button>';
       }
     }
   }
@@ -92,7 +96,7 @@ function aucor_starter_icons_from_classes($title, $item, $args, $depth) {
 
   foreach ($item->classes as $value) {
     if (strpos($value, 'icon-') === 0) {
-      $title = Aucor_SVG::get(['name' => str_replace('icon-', '', $value), 'attr' => ['class' => ['icon-from-class']]]) . $title;
+      $title = Aucor_SVG::get(['name' => str_replace('icon-', '', $value), 'attr' => ['class' => ['icon-from-class']]]) . trim($title);
     }
   }
   return $title;

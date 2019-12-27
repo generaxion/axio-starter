@@ -11,7 +11,8 @@
   &__footer {
     @include wrap;
     @include narrow-content;
-    margin-top: $gap;
+    @include child-margin-reset;
+    @include spacing-m(margin-bottom);
   }
 
 }

@@ -34,28 +34,61 @@ p, .p {
 /* Titles
 ----------------------------------------------- */
 
-h1 {
-  @include heading(xl);
+h1, .h1 {
+  display: block;
+  font-size: 2rem;
+  @include breakpoint($s) {
+    font-size: 2.5rem;
+  }
+  font-weight: $bold;
+  line-height: 1.125;
   margin: 0 0 2rem;
+
+  // @todo
+  // @include heading()
 }
 
-h2 {
-  @include heading(l);
+h2, .h2 {
+  display: block;
+  font-size: 1.5rem;
+  @include breakpoint($s) {
+    font-size: 2rem;
+  }
+  font-weight: $bold;
+  line-height: 1.333333;
   margin: 1.5rem 0;
 }
 
-h3 {
-  @include heading(m);
+h3, .h3 {
+  display: block;
+  font-size: 1.125rem;
+  @include breakpoint($s) {
+    font-size: 1.5rem;
+  }
+  font-weight: $bold;
+  line-height: $line-height;
   margin-bottom: 1.5rem;
 }
 
 h4, .h4 {
-  @include heading(s);
+  display: block;
+  font-size: 1rem;
+  @include breakpoint($s) {
+    font-size: 1.25rem;
+  }
+  font-weight: $normal;
+  line-height: $line-height;
   margin-bottom: 1.5rem;
 }
 
 h5, .h5 {
-  @include heading(xs);
+  display: block;
+  font-size: .875rem;
+  @include breakpoint($s) {
+    font-size: 1rem;
+  }
+  font-weight: $bold;
+  line-height: $line-height;
   margin-bottom: 0;
 }
 
@@ -81,13 +114,6 @@ a {
   }
 }
 
-/* Effects
------------------------------------------------ */
-
-.svg-effects {
-  @include visuallyhidden;
-}
-
 /* Accessibility
 ----------------------------------------------- */
 
@@ -100,13 +126,12 @@ a:focus {
 }
 
 .skip-to-content {
-  background: $primary;
-  color: $white;
-  display: inline-block;
+  background-color: #f1f1f1;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, .2);
+  display: block;
   left: -9999em;
   outline: none;
   padding: 1rem 1.5rem;
-  position: absolute;
   text-decoration: none;
   text-transform: none;
   top: -9999em;

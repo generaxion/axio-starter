@@ -28,6 +28,7 @@
 
       // all <a>
       a {
+        @include transition;
         color: $base-font-color;
         flex-grow: 1;
         font-size: .875rem;
@@ -79,9 +80,19 @@
 
     // all <a>
     a {
-      color: $base-font-color;
+      @include transition;
+      color: $grey-font-color;
       text-decoration: none;
       flex-grow: 1;
+      font-weight: $bold;
+      text-transform: uppercase;
+      font-size: .8125rem;
+      @include breakpoint($l) {
+        font-size: .875rem;
+      }
+      &:hover, &:focus, &:active {
+        color: $base-font-color;
+      }
     }
 
     // 1st level <li>
@@ -91,19 +102,7 @@
       &:last-of-type {
         margin-right: 0;
       }
-
-      // 1st level <a>
-      & > span > a {
-        color: $grey-font-color;
-        font-weight: $bold;
-        text-transform: uppercase;
-        font-size: .8125rem;
-        @include breakpoint($l) {
-          font-size: .875rem;
-        }
-
-      }
-
     }
+
   }
 }

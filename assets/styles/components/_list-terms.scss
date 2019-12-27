@@ -2,12 +2,13 @@
  # Component: List Terms
 ========================================================================== */
 
-.aucor-list-terms {
+.list-terms {
   margin-top: 1rem;
   margin-bottom: 1rem;
   position: relative;
   &__title {
-    display: block;
+    @include heading(s);
+    margin-bottom: .5rem;
   }
   &__term {
     margin-right: .25rem;

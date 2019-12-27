@@ -13,7 +13,7 @@
  *  'title'     => 'Categories',
  *  'taxonomy'  => 'category'
  * ]);
- * 
+ *
  * @example fixed id
  * Aucor_List_Terms::render([
  *  'title'     => 'Fixed ID categories,
@@ -26,21 +26,23 @@
 
 class Aucor_List_Terms extends Aucor_Component {
   public static function frontend($data) {
+
     if (empty($data['terms'])) {
-        return;
-    } ?>
+      return;
+    }
+    ?>
 
     <div <?php parent::render_attributes($data['attr']); ?>>
       <?php if (!empty($data['title'])) : ?>
-        <span class="aucor-list-terms__title"><?php echo $data['title'] ?></span>
+        <span class="list-terms__title"><?php echo $data['title'] ?></span>
       <?php endif; ?>
-      <?php for ($i = 0; $i < count($data['terms']); $i++) : ?>
-        <a href="<?php echo get_term_link($data['terms'][$i]) ?>" class="aucor-list-terms__term"><?php echo $data['terms'][$i]->name ?></a>
-      <?php endfor; ?>
+      <?php foreach ($data['terms'] as $term) : ?>
+        <a href="<?php echo get_term_link($term) ?>" class="list-terms__term"><?php echo $term->name ?></a>
+      <?php endforeach; ?>
     </div>
     <?php
   }
-  
+
   public static function backend($args = []) {
     $placeholders = [
       'id'              => get_the_ID(),
@@ -49,7 +51,7 @@ class Aucor_List_Terms extends Aucor_Component {
       'terms'           => [],
       'attr'            => [],
     ];
-  
+
     $args = wp_parse_args($args, $placeholders);
 
     // validate required fields

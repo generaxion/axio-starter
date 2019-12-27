@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@rqrauhvmra/tobi": "^1.9.0",
+    "a11y-dialog": "^5.2.0",
     "breakpoint-sass": "^2.7.1",
     "fitvids": "^2.0.0",
     "focus-trap": "^5.1.0",
