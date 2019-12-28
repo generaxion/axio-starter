@@ -57,8 +57,10 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     4. [Classic Editor](#84-classic-editor)
 9. [Menus](#9-menus)
     1. [Primary menu](#91-primary-menu)
-    2. [Social menu](#92-social-menu)
-    3. [Navigation skeleton](#93-navigation-skeleton)
+    2. [Upper menu](#92-upper-menu)
+    3. [Social menu](#93-social-menu)
+    4. [Dropdown menus](#94-dropdown-menus)
+    5. [Mobile menu](#95-mobile-menu)
 10. [Editorconfig](#10-editorconfig)
 11. [Site specific plugin](#11-site-specific-plugin)
 
@@ -132,7 +134,7 @@ Every component should inherit this class.
 
 ### 3.2 Creating new components
 
-#### PHP 
+#### PHP
 Create `components-name.php` to `/components/`
 ```php
 <?php
@@ -155,8 +157,8 @@ class Aucor_Components_Name extends Aucor_Component {
     <?php if (!empty($data['image'])) : ?>
       <div class="components-name__image">
         Aucor_Image::render([
-          'id'        => $data['image'], 
-          'size'      => 'large', 
+          'id'        => $data['image'],
+          'size'      => 'large',
           'lazyload'  => 'fast'
         ]);
       </div>
@@ -191,7 +193,7 @@ class Aucor_Components_Name extends Aucor_Component {
 
     // Or set attributes like classes
     $args['attr']['class'][] = 'components-name';
-    
+
     // Or make conditioning
     if (!empty($args['image'])) {
       $args['attr']['class'][] = 'components-name--has-image';
@@ -406,8 +408,8 @@ Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating i
 
 ```php
 <?php Aucor_Image::render([
-  'id'        => 123, 
-  'size'      => 'large', 
+  'id'        => 123,
+  'size'      => 'large',
   'lazyload'  => 'fast'
 ]); ?>
 ```
@@ -441,11 +443,11 @@ switch ($human_size) {
 
 Notice that many "human-sizes" can use same WordPress image sizes. This is useful for example when same image might be displayed different size on different devices so you can pass different "sizes" attributes for browser. [Read more about sizes attribute](https://css-tricks.com/responsive-images-css/#article-header-id-1).
 
-**Protip:** If you use CSS property `object-fit` it needs special handling to work in IE11 and older. Theme has [object-fit-polyfill](https://github.com/constancecchen/object-fit-polyfill) installed and all you need to do is add special data attribute for img tag like 
+**Protip:** If you use CSS property `object-fit` it needs special handling to work in IE11 and older. Theme has [object-fit-polyfill](https://github.com/constancecchen/object-fit-polyfill) installed and all you need to do is add special data attribute for img tag like
 ```php
 Aucor_Image::render([
-  'id'    => 123, 
-  'size'  => 'medium', 
+  'id'    => 123,
+  'size'  => 'medium',
   'attr'  => ['data-object-fit' => 'cover']
 ])
 ```
@@ -454,28 +456,28 @@ Aucor_Image::render([
 
 By default the image function has lazy loading on. Lazy loading uses [lazysizes library](https://github.com/aFarkas/lazysizes). When emedding image there's three possibilities:
 
-  * Lazyload from transparent to visible (default): 
+  * Lazyload from transparent to visible (default):
   ```php
   Aucor_Image::render([
-    'id'    => 123, 
+    'id'    => 123,
     'size'  => 'medium'
   ])
   ```
-  * Lazyload from blurry pre-load image to visible: 
+  * Lazyload from blurry pre-load image to visible:
   ```php
   Aucor_Image::render([
-    'id'    => 123, 
-    'size'  => 'medium', 
+    'id'    => 123,
+    'size'  => 'medium',
     'attr'  => [
       'lazyload' => 'animated'
     ]
   ])
   ```
-  * No lazyload: 
+  * No lazyload:
   ```php
   Aucor_Image::render([
-    'id'    => 123, 
-    'size'  => 'medium', 
+    'id'    => 123,
+    'size'  => 'medium',
     'attr'  => [
       'lazyload' => 'false'
     ]
@@ -524,7 +526,7 @@ Directory `/inc/forms/`.
 
 #### Search form
 
-Function: 
+Function:
 ```php
 Aucor_Search_Form::render([
   'attr' => [
@@ -546,17 +548,17 @@ Function: `aucor_starter_get_posted_on()`
 Get published date.
 
 #### Entry footer
-Tags: 
+Tags:
 ```php
 Aucor_List_Terms::render([
-  'title'     => 'Tags', 
+  'title'     => 'Tags',
   'taxonomy'  => 'post_tag'
 ])
 ```
-Categories: 
+Categories:
 ```php
 Aucor_List_Terms::render([
-  'title'     => 'Categories', 
+  'title'     => 'Categories',
   'taxonomy'  => 'category'
 ])
 ```
@@ -616,7 +618,7 @@ Has functions for using images and SVG spirte as described in chapter "SVG and I
 
 #### Get SVG from SVG sprite
 
-Function: 
+Function:
 ```php
 Aucor_SVG::render([
   'name' => 'facebook'
@@ -657,7 +659,7 @@ Aucor_SVG::render([
 Directory `/inc/navigation/` has various function for menus and this that navigate to somewhere.
 
 #### Social share buttons
-Function: 
+Function:
 ```php
 Aucor_Share_Buttons::render([
   'section_title' => ask__('Social share: Title')
@@ -722,9 +724,9 @@ endif;
 
 #### Sub-pages navigation (pretendable)
 Function: `aucor_starter_sub_pages_navigation()`
-Function: 
+Function:
 ```php
-Aucor_Menu_Sub_Pages::render() 
+Aucor_Menu_Sub_Pages::render()
 ```
 
 Displays sub-pages for current page in list. If you need to pretend that single post is somewhere in the hierarchy, use global variable pretend_id to display current view to be in certain place in hierarchy
@@ -746,10 +748,10 @@ Aucor_Menu_Sub_Pages::render([
 ```
 
 #### Menu toggle btn
-Function: 
+Function:
 ```php
 Aucor_Menu_Toggle::render([
-  'id'    => $id, 
+  'id'    => $id,
   'attr'  => $args
 ])
 ```
@@ -895,10 +897,10 @@ Aucor Starter supports both Gutenberg and Classic Editor though Gutenberg is pre
 
 #### Styles
 
-Aucor Starter disables default Gutenberg styles on front-end. This makes developing both easier and harder:
+Aucor Starter includes default Gutenberg styles on front-end and overrides them with from theme. This makes developing both easier and harder:
 
-  * 👍 No overriding bad styles and wrong breakpoints. No surprise new styles from Gutenberg updates.
-  * 👎 You have to re-implement some Gutenberg features like alignment and colors.
+  * 👍 Makes site more future-proof as Gutenberg will have breaking changes in future where some features will not work properly without correct styles (and default styles will take care of them to some degree).
+  * 👎 You have to override some opinionated defaults.
 
 In Gutenberg editor, there are still lots of default styles so there might be a few inconsistensies between front-end and back-end. This will get better in future versions of Gutenberg and Aucor Starter.
 
@@ -914,9 +916,11 @@ In Gutenberg world, each block will define its own width as there can be wide bl
 
 **Protip:** Avoid resetting left and right margins if you are not sure what you are doing. You can easily make an element stick to left side of screen by adding `margin: 0` instead of `margin-top: 0`.
 
+**Protip 2:** Use the mixins `@include spacing-s(margin-top)`, `@include spacing-m(margin-top)` or `@include spacing-l(margin-top)` to have responsive and unified margins.
+
 #### Avoid repeating code
 
-Many blocks support alignment and different widths. Generic styles for these are located in `/assets/styles/blocks/settings/` and will be enough for most cases. If you have similar features that many blocks use, add them to settings to keep your code clean.
+Many blocks support alignment and different widths. Generic styles for these are located in `/assets/styles/_settings-*` and will be enough for most cases. If you have similar features that many blocks use, add them to settings to keep your code clean.
 
 ### 8.2 Allowed blocks
 
@@ -984,7 +988,7 @@ You can still use Classic Editor in some post types or all if you like. If you w
 
 ## 9. Menus
 
-By default the starter theme has two menu locations: Primary menu and Social menu.
+By default the starter theme has three menu locations: Primary menu, Upper menu and Social menu.
 
 ### 9.1 Primary menu
 
@@ -992,7 +996,13 @@ Theme location: `primary`
 
 Theme's main navigation in header that is build to handle multiple levels.
 
-### 9.2 Social menu
+### 9.2 Upper menu
+
+Theme location: `upper`
+
+Additional navigation items that are not as important as in primary menu. By default, it will only show 1st level and dropdown menus are not supported. If you will need them, take a look st primary menu styles and `main.js`.
+
+### 9.3 Social menu
 
 Theme location: `social`
 
@@ -1005,21 +1015,24 @@ How to use:
  * Menu item gets SVG icon that is based on url
  * Style menu as needed on `/assets/styles/elements/_menu-social.scss`
 
-### 9.3 Navigation skeleton
+### 9.4 Dropdown menus
 
-Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/menu-primary.js` and `/assets/styles/elements/_menu-primary.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
+Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/dropdown-menu.js` and `/assets/styles/components/_menu-primary.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
 
 Inside `main.js` there is the menu init and a few arguments:
 
 ```js
-var primary_menu = component_primary_menu({
+component_dropdown_menu({
   desktop_min_width: 890,
-  menu: '.primary-navigation',
-  menu_toggle: '#menu-toggle'
+  menu: document.querySelector('.primary-navigation'),
 });
 ```
 
 **Protip:** The `desktop_min_width` option will disable or enable some ways to interact with the menu. For example the hover stuff is disabled on "mobile mode".
+
+### 9.5 Mobile menu
+
+@todo
 
 ## 10. Editorconfig
 
