@@ -330,7 +330,7 @@ var component_dropdown_menu = function(args) {
     // setup touch hooks (parent menu-item a)
     var menu_item_a = menu.querySelectorAll('.menu-item-has-children a');
     for (var m = 0; m < menu_item_a.length; m++) {
-      menu_item_a[l].addEventListener('touchstart', menu_item_parent_a_touch_event, false);
+      menu_item_a[m].addEventListener('touchstart', menu_item_parent_a_touch_event, false);
     }
 
   }
