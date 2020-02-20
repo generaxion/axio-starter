@@ -17,31 +17,31 @@ get_header(); ?>
 
       <?php while (have_posts()) : the_post(); ?>
 
-    <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--post'); ?>>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--post'); ?>>
 
-      <div class="entry__content wysiwyg">
-        <?php the_content(); ?>
-      </div>
+          <div class="entry__content wysiwyg">
+            <?php the_content(); ?>
+          </div>
 
-      <footer class="entry__footer">
-        <?php
-          Aucor_List_Terms::render([
-            'title'     => ask__('Taxonomies: Categories'),
-            'taxonomy'  => 'category'
-          ]);
-          Aucor_List_Terms::render([
-            'title'     => ask__('Taxonomies: Keywords'),
-            'taxonomy'  => 'post_tag'
-          ]);
-          Aucor_Share_Buttons::render([
-            'section_title' => ask__('Social share: Title')
-          ]);
-        ?>
-      </footer>
+          <footer class="entry__footer">
+            <?php
+              Aucor_List_Terms::render([
+                'title'     => ask__('Taxonomies: Categories'),
+                'taxonomy'  => 'category'
+              ]);
+              Aucor_List_Terms::render([
+                'title'     => ask__('Taxonomies: Keywords'),
+                'taxonomy'  => 'post_tag'
+              ]);
+              Aucor_Share_Buttons::render([
+                'section_title' => ask__('Social share: Title')
+              ]);
+            ?>
+          </footer>
 
-    </article>
+        </article>
 
-  <?php endwhile; ?>
+      <?php endwhile; ?>
 
     </main><!-- #main -->
 

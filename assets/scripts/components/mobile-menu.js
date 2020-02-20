@@ -22,7 +22,7 @@ var component_mobile_menu = function(args) {
 
    document.body.classList.add('is-active-menu');
 
-  }
+  };
 
   // tasks to close menu visually
   var close_menu = function() {
@@ -33,7 +33,7 @@ var component_mobile_menu = function(args) {
       document.body.classList.remove('is-closing-menu');
      }, 200);
 
-  }
+  };
 
   // hooks
   dialog.on('show', function (element, event) {
@@ -51,7 +51,7 @@ var component_mobile_menu = function(args) {
     } else {
       dialog.show();
     }
-  }
+  };
 
   for (var i = 0; i < toggles.length; i++) {
     toggles[i].addEventListener('click', handle_toggle, false);

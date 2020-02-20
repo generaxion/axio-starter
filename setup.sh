@@ -44,7 +44,7 @@ else
   id=$default_name
 fi
 
-echo "2) Set unique id for your theme. Use only a-z and _. (Default: $default_id)"
+echo "2) Set unique id for your theme for prefixes etc. Use only a-z and _. (Default: $default_id)"
 read id
 
 # use default if empty

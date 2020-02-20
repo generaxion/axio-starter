@@ -3,9 +3,18 @@
  */
 
 /**
+ * Manifest
+ *
+ * Requires manifest.js file
+ */
+function get_manifest() {
+  return require('./assets/manifest.js');
+}
+
+/**
  * Site config
  */
-var manifest = get_manifest();
+var manifest       = get_manifest();
 const timestamps   = require('./assets/last-edited.json');
 
 /**
@@ -24,7 +33,7 @@ const imagemin     = require('gulp-imagemin');
 const jshint       = require('gulp-jshint');
 const lazypipe     = require('lazypipe');
 const merge        = require('merge-stream');
-const cssnano      = require('gulp-cssnano');
+const cleancss     = require('gulp-clean-css');
 const plumber      = require('gulp-plumber');
 const sass         = require('gulp-sass');
 const sourcemaps   = require('gulp-sourcemaps');
@@ -154,15 +163,9 @@ const cssTasks = (filename) => {
     // combine files
     .pipe(concat, filename)
     // autoprefix
-    .pipe(autoprefixer, {
-      browsers: [
-        'last 2 versions'
-      ]
-    })
+    .pipe(autoprefixer, {})
     // minify
-    .pipe(cssnano, {
-      safe: true
-    })
+    .pipe(cleancss, {})
     // build sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.write('.', {
@@ -219,15 +222,6 @@ const jsTasks = (filename) => {
       }));
     })();
 };
-
-/**
- * Manifest
- * 
- * Requires manifest.js file
- */
-function get_manifest() {
-  return require('./assets/manifest.js');
-}
 
 /**
  * Task: Styles
@@ -416,17 +410,17 @@ gulp.task('clean', () => {
  */
 gulp.task('watch', () => {
   var new_tab = 'local';
-  if(argv.q) {
+  if (argv.q) {
     new_tab = false;
   }
   var sonic = false;
-  if(argv.s) {
+  if (argv.s) {
     sonic = true;
   }
   // browsersync changes
   browsersync.init({
     files: [
-      '{inc,partials,template-tags}/**/*.php',
+      '{inc,components,blocks,partials}/**/*.php',
       '*.php'
     ],
     proxy: manifest.devUrl(),
@@ -454,7 +448,7 @@ gulp.task('watch', () => {
  * Generally you should be running `gulp` instead of `gulp build`.
  */
 gulp.task('build', gulp.series(
-  gulp.parallel('styles','jshint', 'scripts'), 
+  gulp.parallel('styles','jshint', 'scripts'),
   gulp.parallel('fonts', 'images', 'svgstore', 'favicon')
 ));
 

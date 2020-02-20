@@ -150,7 +150,7 @@ var component_dropdown_menu = function(args) {
   function toggle_menu_item(li) {
 
     if (li) {
-      if (li.getAttribute('aria-expanded') == 'false') {
+      if (li.getAttribute('aria-expanded') === 'false') {
         activate_menu_item(li);
       } else {
         deactivate_menu_item(li);
@@ -196,7 +196,7 @@ var component_dropdown_menu = function(args) {
 
     }
 
-  };
+  }
 
   /**
    * Event: Handle mouseleave hover
@@ -243,6 +243,23 @@ var component_dropdown_menu = function(args) {
    }
 
   /**
+   * Event: Touch outside menu after menu has been opened with single tap
+   *
+   * Closes menus if touch is outside of menus
+   */
+  function outside_menu_touch_event(e) {
+
+    // if the target of the tap isn't menu nor a descendant of menu
+    if (is_desktop_menu() && !is_element_inside_menu(e.currentTarget)) {
+      reset_menu_items();
+    }
+
+    // remove this event listener
+    document.removeEventListener('ontouchstart', outside_menu_touch_event, false);
+
+  }
+
+  /**
    * Event: Menu item parent a touched
    *
    * In desktop mode, open sub-menu with first click and navigate
@@ -281,24 +298,6 @@ var component_dropdown_menu = function(args) {
     }
 
    }
-
-  /**
-   * Event: Touch outside menu after menu has been opened with single tap
-   *
-   * Closes menus if touch is outside of menus
-   */
-    // maybe close menu after it has been opened by tap
-  function outside_menu_touch_event(e) {
-
-    // if the target of the tap isn't menu nor a descendant of menu
-    if (is_desktop_menu() && !is_element_inside_menu(e.currentTarget)) {
-      reset_menu_items();
-    }
-
-    // remove this event listener
-    document.removeEventListener('ontouchstart', outside_menu_touch_event, false);
-
-  }
 
   /**
    * Init

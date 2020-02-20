@@ -20,7 +20,9 @@ get_header(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--page'); ?>>
 
           <div class="entry__content wysiwyg">
+
             <?php the_content(); ?>
+
           </div>
 
         </article>

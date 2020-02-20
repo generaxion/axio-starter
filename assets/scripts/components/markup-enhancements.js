@@ -127,7 +127,7 @@ var body_hero_background_indicator = function() {
     document.body.classList.add('has-no-hero-background');
   }
 
-}
+};
 body_hero_background_indicator();
 
 /**
