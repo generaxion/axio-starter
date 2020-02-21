@@ -27,9 +27,7 @@
     transform: translateY(-.125rem);
   }
   &:focus {
-    border-radius: 0;
     outline: 1px dotted;
-    outline-offset: -2px;
   }
 }
 

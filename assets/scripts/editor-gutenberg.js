@@ -32,7 +32,8 @@ wp.hooks.addFilter(
   'aucor-starter/filters',
   function(settings, name) {
 
-    var align;
+    var align,
+        default_align;
 
     switch(name) {
 
@@ -57,19 +58,28 @@ wp.hooks.addFilter(
         align = ['center'];
         break;
 
+      case 'core/table':
+        align = ['wide'];
+      break;
+
       case 'core/columns':
       case 'core/gallery':
-      case 'core/table':
       case 'core/embed/issuu':
       case 'core/embed/slideshare':
       case 'core/embed/vimeo':
       case 'core/embed/youtube':
         align = ['wide'];
+        default_align = 'wide';
+        break;
+
+      case 'core/media-text':
+        align = ['wide', 'full'];
+        default_align = 'wide';
         break;
 
       case 'core/group':
-      case 'core/media-text':
         align = ['wide', 'full'];
+        default_align = 'full';
         break;
 
       case 'core/image':
@@ -84,6 +94,11 @@ wp.hooks.addFilter(
     return lodash.assign({}, settings, {
       supports: lodash.assign({}, settings.supports, {
         align: align,
+      }),
+      attributes: lodash.assign({}, settings.attributes, {
+        align: lodash.assign({}, settings.attributes.align, {
+          default: default_align,
+        })
       }),
     });
 
