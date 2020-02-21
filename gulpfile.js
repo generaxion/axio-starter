@@ -195,7 +195,7 @@ const jsTasks = (filename) => {
     // transpile
     .pipe(function() {
       return babel({
-        presets: ["@babel/preset-env"],
+        presets: ["@babel/preset-env", "@babel/preset-react"],
         // override because of use of "this" in IIFE with Babel in Tobi.js: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
         overrides: [{
           test: [
