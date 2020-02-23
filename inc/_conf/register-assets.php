@@ -83,14 +83,6 @@ add_action('enqueue_block_editor_assets', function() {
     true
   );
 
-  // overwrite Core block styles with empty styles
-  // wp_deregister_style('wp-block-library' );
-  // wp_register_style('wp-block-library', '' );
-
-  // overwrite Core theme styles with empty styles
-  // wp_deregister_style('wp-block-library-theme');
-  // wp_register_style('wp-block-library-theme', '');
-
 }, 10);
 
 /**
