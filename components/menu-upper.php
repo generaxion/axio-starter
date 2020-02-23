@@ -57,7 +57,6 @@ class Aucor_Menu_Upper extends Aucor_Component {
     $args['attr']['class'][] = 'upper-navigation';
     $args['attr']['class'][] = 'header-navigation';
 
-
     // a11y
     $args['attr']['aria-label'] = ask__('Menu: Upper Menu');
 

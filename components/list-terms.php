@@ -34,10 +34,10 @@ class Aucor_List_Terms extends Aucor_Component {
 
     <div <?php parent::render_attributes($data['attr']); ?>>
       <?php if (!empty($data['title'])) : ?>
-        <span class="list-terms__title"><?php echo $data['title'] ?></span>
+        <span class="list-terms__title"><?php echo $data['title']; ?></span>
       <?php endif; ?>
       <?php foreach ($data['terms'] as $term) : ?>
-        <a href="<?php echo get_term_link($term) ?>" class="list-terms__term"><?php echo $term->name ?></a>
+        <a href="<?php echo esc_attr(get_term_link($term)); ?>" class="list-terms__term"><?php echo $term->name; ?></a>
       <?php endforeach; ?>
     </div>
     <?php

@@ -151,8 +151,6 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
       ];
     }
 
-
-
     // last page
     if (!in_array($max, $links)) {
 
