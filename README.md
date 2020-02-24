@@ -22,7 +22,8 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     3. [Start working](#25-start-working)
 3. [Components](#3-components)
     1. [Component.php](#31-componentphp)
-    2. [Creating new component](#32-creating-new-components)
+    2. [Using components](#32-using-components)
+    3. [Creating new component](#33-creating-new-components)
 4. [Styles](#4-styles)
     1. [Directory structure](#41-directory-structure)
     2. [Workflow](#42-workflow)
@@ -45,12 +46,9 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 7. [Includes](#7-includes)
     1. [Functions.php](#71-functionsphp)
     2. [\_conf](#72-_conf)
-    3. [Icons](#73-icons)
-    4. [Editor](#74-editor)
-    5. [Forms](#75-forms)
-    6. [Helpers](#76-helpers)
-    7. [Media](#77-media)
-    8. [Navigation](#78-navigation)
+    3. [Helpers](#73-helpers)
+    4. [Navigation](#74-navigation)
+    5. [Localization (Polylang)](#75-localization-polylang)
 8. [Gutenberg and Classic Editor](#8-gutenberg-and-classic-editor)
     1. [Gutenberg architecture](#81-gutenberg-architecture)
     2. [Allowed blocks](#82-allowed-blocks)
@@ -131,11 +129,34 @@ Do this everythime you start to work with the theme.
 Components are independent components that can be used in many contexts (forms, menu, teaser etc).
 Styles of components should be in `/assets/styles/elements` and named as `_component-name.scss` and will be compiled to `dist/styles/main.css`.
 
+**But why?** WordPress doesn't offer by default a way to make partials where you can pass arguments. This becomes a problem when same partials are used with various contexts and with multiple variations. You can of course make functions but it easily leads you having some partials as functions and others as template-parts. This component structure makes it possible to have partials with and without arguments in a way that is easy to use from project to project.
+
 ### 3.1 Component.php
 
 Abstract Class Component that keeps in the structure and required functionality for each component. Every component should inherit this class.
 
-### 3.2 Creating new components
+### 3.2 Using components
+
+There are two basic ways to use component:
+
+```
+Aucor_Teaser::render();
+Aucor_Teaser::get();
+```
+
+The render function prints out the HTML markup of the component and get will return it. You can pass arguments in an array like so:
+
+```
+Aucor_Teaser::render(['id' => 123]);
+Aucor_Teaser::render([
+  'id'          => 123
+  'hide_image'  => true,
+]);
+```
+
+All components can be interacted with the same way. It is up to the component to validate the given args and pick what to do with what argument.
+
+### 3.3 Creating new components
 
 #### PHP
 Create `components-name.php` to `inc/components/`
@@ -160,12 +181,14 @@ class Aucor_Components_Name extends Aucor_Component {
     <div <?php parent::render_attributes($data['attr']); ?>>
 
       <?php if (!empty($data['image'])) : ?>
+
         <div class="components-name__image">
           Aucor_Image::render([
             'id'        => $data['image'],
             'size'      => 'large',
           ]);
         </div>
+
       <?php endif; ?>
 
       <h3 class="components-name__title">
@@ -200,7 +223,7 @@ class Aucor_Components_Name extends Aucor_Component {
 
     // in example you can make some data validation
     if (empty($args['title']) || empty($args['description'])) {
-        return parent::error('Missing title or/and description');
+      return parent::error('Missing title or/and description');
     }
 
     // or set attributes like classes
@@ -242,7 +265,7 @@ If your component will need .js create components-name.js to `/assets/scripts/co
 After creating `components-name.js` add it to `/assets/manifest.js` under "project specific js" or anywhere else. Make sure `gulp watch` is running or run it manually with `gulp scripts`.
 ```js
 // project specific js
-"scripts/components/components-name.js",
+"scripts/lib/components-name.js",
 ```
 
 ## 4. Styles
@@ -253,9 +276,7 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * `admin.scss` back-end styles for admin views
   * `editor-classic.scss` back-end styles for old TinyMCE based editor
   * `editor-gutenberg.scss` back-end styles for new Gutenberg editor
-  * `wp-login.scss` front-end styles for login screen
 
-@todo
 ### 4.1 Directory structure
 
   * `/base/` universal styles and utilities
@@ -328,7 +349,9 @@ BEM in SASS:
 
 ## 5. Scripts
 
-By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/svgxuse), [jQuery-free fitvids](https://www.npmjs.com/package/fitvids) and our framework for navigation (navigation.js). Also we synchronize image markup from Classic Editor to Gutenberg in front-end to make styling easier (not critical or some cases even needed).
+By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/svgxuse), [jQuery-free fitvids](https://www.npmjs.com/package/fitvids) and our framework for navigation. There is [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) for accessible overlay menu. Also we synchronize image markup from Classic Editor to Gutenberg in front-end to make styling easier (not critical or some cases even needed).
+
+**Protip:** If you are using jQuery, take into account that Aucor Core moves jQuery to the bottom of the document as a speed optimization. If it causes a problem for you, add a filter `add_filter('aucor_core_speed_move_jquery', '__return_false');`.
 
 
 ### 5.1 Directory structure
@@ -402,6 +425,15 @@ Put all icons to `/assets/sprite/` and Gulp will combine and minify them into `/
 
 In PHP you can get these images with (more exmples in Template tags):
 
+```php
+<?php Aucor_SVG::render([
+  'name' => 'facebook'
+]); ?>
+```
+
+Theme includes one big SVG sprite `/assets/images/icons.svg` that has by default a caret (dropdown arrow) and a few social icons. Add your own svg icons in `/assets/sprite/` and Gulp will add them to this sprite with id from filename.
+
+Example: Print out SVG `/assets/sprite/facebook.svg`
 ```php
 <?php Aucor_SVG::render([
   'name' => 'facebook'
@@ -591,53 +623,9 @@ Get last edited timestamp from asset files. Timestamps are saved in `/assets/las
 
 Include fallback function in case critical plugin is not active.
 
-### 7.6 Media
+### 7.4 Navigation
 
-Directory `/inc/media/`.
-
-Has functions for using images and SVG spirte as described in chapter "SVG and Images".
-
-#### Get SVG from SVG sprite
-
-Function:
-```php
-Aucor_SVG::render([
-  'name' => 'facebook'
-])
-```
-
-Theme includes one big SVG sprite `/assets/images/icons.svg` that has by default a caret (dropdown arrow) and a few social icons. Add your own svg icons in `/assets/sprite/` and Gulp will add them to this sprite with id from filename.
-
-Example: Print out SVG `/assets/sprite/facebook.svg`
-```php
-<?php Aucor_SVG::render([
-  'name' => 'facebook'
-]); ?>
-```
-
-Example: Print out SVG `/assets/sprite/facebook.svg` with options
-```php
-<?php
-
-$args = array(
-  'wrap'         => true, // Wrap in <span>
-  'attr'         => [
-    'class' => array()
-  ],
-  'title'        => '',
-  'desc'         => '',
-  'aria_hidden'  => true, // Hide from screen readers.
-);
-
-Aucor_SVG::render([
-  'name' => 'facebook',
-  'attr' => $args
-]);
-```
-
-### 7.7 Navigation
-
-Directory `/inc/navigation/` has various function for menus and this that navigate to somewhere.
+Directory `/inc/components/` has various components for menus and navigation things.
 
 #### Social share buttons
 Function:
@@ -665,7 +653,7 @@ if(have_posts())
   while (have_posts()) : the_post();
     ...
   endwhile;
-  aucor_starter_numeric_posts_nav();
+  Aucor_Posts_Nav_Numeric::render();
 endif;
 ```
 
@@ -682,7 +670,7 @@ if($loop->have_posts())
   while ($loop->have_posts()) : $loop->the_post();
     ...
   endwhile;
-  aucor_starter_numeric_posts_nav($loop);
+  Aucor_Posts_Nav_Numeric::render(['wp_query' => $loop]);
 endif;
 ```
 
@@ -699,12 +687,14 @@ if ($loop->have_posts())
   while ($loop->have_posts() ) : $loop->the_post();
     ...
   endwhile;
-  aucor_starter_numeric_posts_nav($loop, 'current_page');
+  aucor_starter_numeric_posts_nav([
+    'wp_query'  => $loop,
+    'paged_var' => 'current_page',
+  ]);
 endif;
 ```
 
 #### Sub-pages navigation (pretendable)
-Function: `aucor_starter_sub_pages_navigation()`
 Function:
 ```php
 Aucor_Menu_Sub_Pages::render()
@@ -753,7 +743,7 @@ We add social icons SVG to menu items in social menu. There's a few most used su
 
 You can add icons to primary menu by adding class `icon-{name-of-the-icon}` like `icon-facebook`.
 
-### 7.8 Localization (Polylang)
+### 7.5 Localization (Polylang)
 
 In depth about file: `/inc/_conf/register-localization.php` (and `/inc/helpers/setup-fallbacks.php`)
 
@@ -1012,7 +1002,15 @@ component_dropdown_menu({
 
 ### 9.5 Mobile menu
 
-@todo
+Shows and hides the mobile menu. The mobile menu component is essentially a wrapper for [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) that makes the mobile menu more accessible by trapping the focus inside the menu when it's opened.
+
+```js
+component_mobile_menu({
+  menu:     document.querySelector('.js-mobile-menu'),
+  site:     document.querySelector('.js-page'),
+  toggles:  document.querySelectorAll('.js-menu-toggle')
+});
+```
 
 ## 10. Editorconfig
 
