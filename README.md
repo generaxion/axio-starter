@@ -10,7 +10,7 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 **A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Babel, Responsive images
 
-![aucor-starter](https://user-images.githubusercontent.com/9577084/75163668-4bc91880-5728-11ea-9302-76842515b5aa.png)
+![aucor-starter](https://user-images.githubusercontent.com/9577084/75164116-f3dee180-5728-11ea-9eab-e2bfa89805cf.png)
 
 ## Table of contents
 
