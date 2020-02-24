@@ -6,8 +6,6 @@
  * Aucor_SVG::render(['name' => 'plus']);
  */
 
- // @todo get new svgs
-
 class Aucor_SVG extends Aucor_Component {
 
   /**
