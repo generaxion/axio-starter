@@ -17,7 +17,6 @@ get_header(); ?>
   <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--index">
-    <main id="main" class="main">
 
       <div class="teaser-container">
         <?php while (have_posts()) : the_post(); ?>
@@ -27,7 +26,6 @@ get_header(); ?>
 
       <?php Aucor_Posts_Nav_Numeric::render(); ?>
 
-    </main><!-- #main -->
   </div><!-- #primary -->
 
 <?php

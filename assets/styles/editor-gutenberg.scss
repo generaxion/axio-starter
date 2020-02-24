@@ -2,7 +2,7 @@
  # Gutenberg Editor (back-end)
 ========================================================================== */
 
-/* Vendors
+/* Vendor (external)
 ----------------------------------------------- */
 
 @import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
@@ -13,6 +13,8 @@
 @import "base/variables";
 @import "base/mixins";
 @import "base/normalize";
+@import "base/media";
+@import "base/forms";
 
 /* Blocks
 ----------------------------------------------- */
@@ -34,6 +36,20 @@
 @import "blocks/core-table";
 @import "blocks/settings-alignment";
 @import "blocks/settings-colors";
+
+/* Elements
+----------------------------------------------- */
+
+@import "elements/forms-search";
+@import "elements/hero";
+@import "elements/list-terms";
+@import "elements/menu-primary";
+@import "elements/menu-social";
+@import "elements/menu-toggle";
+@import "elements/menu-upper";
+@import "elements/numeric-posts-nav";
+@import "elements/social-share";
+@import "elements/teaser";
 
 .edit-post-visual-editor .editor-block-list__block {
   font-family: $font-text;

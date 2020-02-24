@@ -25,20 +25,20 @@ require_once 'inc/_conf/register-menus.php';
 /**
  * Components
  */
-require_once 'components/component.php';
-require_once 'components/hero.php';
-require_once 'components/image.php';
-require_once 'components/menu-primary.php';
-require_once 'components/menu-social.php';
-require_once 'components/menu-sub-pages.php';
-require_once 'components/menu-toggle.php';
-require_once 'components/menu-upper.php';
-require_once 'components/posts-nav-numeric.php';
-require_once 'components/search-form.php';
-require_once 'components/share-buttons.php';
-require_once 'components/svg.php';
-require_once 'components/teaser.php';
-require_once 'components/list-terms.php';
+require_once 'inc/components/component.php';
+require_once 'inc/components/hero.php';
+require_once 'inc/components/image.php';
+require_once 'inc/components/menu-primary.php';
+require_once 'inc/components/menu-social.php';
+require_once 'inc/components/menu-sub-pages.php';
+require_once 'inc/components/menu-toggle.php';
+require_once 'inc/components/menu-upper.php';
+require_once 'inc/components/posts-nav-numeric.php';
+require_once 'inc/components/search-form.php';
+require_once 'inc/components/share-buttons.php';
+require_once 'inc/components/svg.php';
+require_once 'inc/components/teaser.php';
+require_once 'inc/components/list-terms.php';
 /**
  * Helpers
  */
@@ -52,5 +52,5 @@ require_once 'inc/helpers/function-last-edited.php';
 require_once 'inc/setup-classic-editor.php';
 require_once 'inc/setup-fallbacks.php';
 require_once 'inc/setup-gutenberg.php';
-require_once 'inc/setup-menu-hooks.php';
+require_once 'inc/hooks-menu.php';
 require_once 'inc/setup-theme-support.php';

@@ -14,8 +14,6 @@ abstract class Aucor_Component {
    */
   public static function render($args = []) {
 
-    // @todo: cache
-
     $data = static::backend($args);
 
     // bail if errors on backend

@@ -106,6 +106,18 @@ function aucor_starter_human_image_size_to_wp_sizes($human_size) {
 }
 
 /**
+ * Set the content width in pixels, based on the theme's design and stylesheet
+ *
+ * @global int $content_width the max width of content in pixels
+ */
+function aucor_starter_content_width() {
+
+  $GLOBALS['content_width'] = 720;
+
+}
+add_action('after_setup_theme', 'aucor_starter_content_width', 0);
+
+/**
  * Set wide image sizes attribute
  *
  * Gutenberg has at the moment a bit lacking logic for sizes attributes.

@@ -1,24 +1,30 @@
 <?php
 /**
- * Component: Menu Primary
+ * Component: Menu Upper
  *
  * @example
- * Aucor_Menu_Primary::render();
+ * Aucor_Menu_Upper::render();
  *
  * @package aucor_starter
  */
-class Aucor_Menu_Primary extends Aucor_Component {
+class Aucor_Menu_Upper extends Aucor_Component {
 
   public static function frontend($data) {
+
+    if (!$data['has_menu']) {
+      return;
+    }
+
     ?>
 
     <nav <?php parent::render_attributes($data['attr']); ?>>
 
       <?php
         wp_nav_menu([
-          'theme_location' => 'primary',
+          'theme_location' => 'upper',
           'container'      => '',
-          'menu_class'     => 'primary-navigation__items',
+          'menu_class'     => 'upper-navigation__items',
+          'depth'          => 1,
           'link_before'    => '',
           'link_after'     => '',
           'fallback_cb'    => '',
@@ -37,6 +43,9 @@ class Aucor_Menu_Primary extends Aucor_Component {
       // optional
       'attr' => [],
 
+      // internal
+      'has_menu' => has_nav_menu('upper')
+
     ];
     $args = wp_parse_args($args, $placeholders);
 
@@ -45,15 +54,15 @@ class Aucor_Menu_Primary extends Aucor_Component {
       $args['attr']['class'] = [];
     }
     $args['attr']['class'][] = 'js-navigation';
-    $args['attr']['class'][] = 'primary-navigation';
+    $args['attr']['class'][] = 'upper-navigation';
     $args['attr']['class'][] = 'header-navigation';
 
     // a11y
-    $args['attr']['aria-label'] = ask__('Menu: Primary Menu');
+    $args['attr']['aria-label'] = ask__('Menu: Upper Menu');
 
     // Schema.org
     $args['attr']['itemscope'] = null;
-    $args['attr']['itemtype']  = 'http://schema.org/SiteNavigationElement';
+    $args['attr']['itemtype']  = 'https://schema.org/SiteNavigationElement';
 
     return $args;
 

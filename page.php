@@ -13,8 +13,6 @@ get_header(); ?>
 
   <div id="primary" class="primary primary--page">
 
-    <main id="main" class="main">
-
       <?php while (have_posts()) : the_post(); ?>
 
         <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--page'); ?>>
@@ -28,8 +26,6 @@ get_header(); ?>
         </article>
 
       <?php endwhile; ?>
-
-    </main><!-- #main -->
 
   </div><!-- #primary -->
 

@@ -1,19 +1,14 @@
 /* ==========================================================================
  # List block
-=============================================================================
-
-Notice: Lists without custom styles won't have identifiable classes on front-end.
-Be careful with lists styles as they will be applied by other blocks as well.
-
-*/
+========================================================================== */
 
 /* Front-end and back-end
 ----------------------------------------------- */
 
 .editor-styles-wrapper ul.editor-rich-text__tinymce,
 .editor-styles-wrapper ol.editor-rich-text__tinymce,
-.wysiwyg ul,
-.wysiwyg ol {
+.wysiwyg .wp-block-list {
+
   padding-left: $gap;
 
   li {
@@ -33,7 +28,7 @@ Be careful with lists styles as they will be applied by other blocks as well.
 
 .wysiwyg {
 
-  ul, ol {
+  .wp-block-list {
 
   }
 

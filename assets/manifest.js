@@ -41,9 +41,9 @@ module.exports = {
         "../node_modules/@rqrauhvmra/tobi/js/tobi.js",
 
         // project specific js
-        "scripts/components/dropdown-menu.js",
-        "scripts/components/markup-enhancements.js",
-        "scripts/components/mobile-menu.js",
+        "scripts/lib/dropdown-menu.js",
+        "scripts/lib/markup-enhancements.js",
+        "scripts/lib/mobile-menu.js",
         "scripts/main.js"
       ],
 
@@ -94,10 +94,6 @@ module.exports = {
 
       "admin.css": [
         "styles/admin.scss"
-      ],
-
-      "wp-login.css": [
-        "styles/wp-login.scss"
       ]
 
     }

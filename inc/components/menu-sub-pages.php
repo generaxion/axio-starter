@@ -26,7 +26,7 @@ class Aucor_Menu_Sub_Pages extends Aucor_Component {
 
     ?>
 
-    <nav class="sub-pages" itemscope itemtype="http://schema.org/SiteNavigationElement/">
+    <nav class="sub-pages" itemscope itemtype="https://schema.org/SiteNavigationElement/">
 
       <span class="<?php echo esc_attr(implode(' ', $data['parent_class'])); ?>">
         <a href="<?php echo esc_url($data['permalink']); ?>"><?php echo $data['post_title']; ?></a>

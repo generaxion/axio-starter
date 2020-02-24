@@ -26,17 +26,3 @@ function aucor_starter_tinymce_formats($init) {
 
 }
 add_filter('tiny_mce_before_init', 'aucor_starter_tinymce_formats');
-
-
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet
- *
- * @global int $content_width the max width of content in pixels
- */
-function aucor_starter_content_width() {
-
-  $GLOBALS['content_width'] = 720;
-
-}
-add_action('after_setup_theme', 'aucor_starter_content_width', 0);

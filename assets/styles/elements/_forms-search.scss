@@ -25,44 +25,31 @@ label {
   max-width: 100%;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-  margin: .25rem 0 0;
-  line-height: normal;
-}
-
 select,
 textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"] {
+input {
   max-width: 100%;
   padding: .5rem 1rem;
   color: $base-font-color;
   background: $white;
 }
 
+input[type="radio"],
+input[type="checkbox"] {
+  margin: .25rem 0 0;
+  line-height: normal;
+}
+
 textarea {
-  height: 180px;
+  height: 15rem;
 }
 
-button,
+form button,
 input[type="submit"] {
-
+  @include button;
 }
 
-/* Search form
+/* Search form ($todo => _forms-search.scss
 ----------------------------------------------- */
 
 .search-form {

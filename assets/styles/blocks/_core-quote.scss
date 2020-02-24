@@ -7,7 +7,7 @@
 
 .editor-styles-wrapper .wp-block-quote,
 .wysiwyg .wp-block-quote,
-.wysiwyg blockquote {
+.wysiwyg blockquote:not([class]) {
 
   border-left: .25rem solid $primary;
   margin: $gap auto;
@@ -43,7 +43,7 @@
 
 .wysiwyg {
 
-  .wp-block-quote, blockquote {
+  .wp-block-quote, blockquote:not([class]) {
 
   }
 

@@ -7,6 +7,11 @@
     @include wrap;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
+    @include breakpoint($menu-hidden) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     @include breakpoint($menu-visible) {
       align-items: center;
       display: flex;
@@ -41,28 +46,21 @@
   &__branding {
     @include breakpoint($menu-visible) {
       padding-right: $gap;
-      &__logo {
-        width: 7rem;
-      }
-
     }
+  }
+
+  &__title {
+    &, a {
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  &__logo {
+    width: 7rem;
     @include breakpoint($menu-hidden) {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      &__logo {
-        width: 5rem;
-      }
+      width: 5rem;
     }
-
-    &__title {
-      &, a {
-        display: block;
-        line-height: 0;
-      }
-    }
-
   }
 
 }

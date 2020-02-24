@@ -12,7 +12,6 @@ get_header(); ?>
   <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--404">
-    <main id="main" class="main">
 
       <article class="entry entry--404">
 
@@ -29,7 +28,6 @@ get_header(); ?>
 
       </article>
 
-    </main><!-- #main -->
   </div><!-- #primary -->
 
 <?php

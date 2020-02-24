@@ -10,10 +10,6 @@
 
   &--page {
 
-    .main {
-      //@include narrow-content;
-    }
-
   }
 
   /* -------------------------------------------------------
@@ -21,10 +17,6 @@
   ---------------------------------------------------------*/
 
   &--single {
-
-    .main {
-      //@include narrow-content;
-    }
 
   }
 
@@ -59,12 +51,6 @@
 
     @include wrap;
     @include spacing-m(margin-bottom);
-
-    .main {
-      max-width: 30rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
 
   }
 

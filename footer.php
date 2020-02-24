@@ -11,7 +11,7 @@
 
   </div><!-- #content -->
 
-  <footer id="colophon" class="site-footer" itemscope itemtype="http://schema.org/WPFooter">
+  <footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
 
     <div class="site-footer__container">
 
@@ -28,7 +28,7 @@
     </div>
 
 
-  </footer><!-- #colophon -->
+  </footer>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

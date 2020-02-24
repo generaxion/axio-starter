@@ -1,13 +1,13 @@
 <?php
 /**
- * Component: Menu Social
+ * Component: Menu Primary
  *
  * @example
- * Aucor_Menu_Social::render();
+ * Aucor_Menu_Primary::render();
  *
  * @package aucor_starter
  */
-class Aucor_Menu_Social extends Aucor_Component {
+class Aucor_Menu_Primary extends Aucor_Component {
 
   public static function frontend($data) {
     ?>
@@ -16,10 +16,9 @@ class Aucor_Menu_Social extends Aucor_Component {
 
       <?php
         wp_nav_menu([
-          'theme_location' => 'social',
+          'theme_location' => 'primary',
           'container'      => '',
-          'menu_class'     => 'social-navigation__items',
-          'depth'          => 1,
+          'menu_class'     => 'primary-navigation__items',
           'link_before'    => '',
           'link_after'     => '',
           'fallback_cb'    => '',
@@ -45,14 +44,16 @@ class Aucor_Menu_Social extends Aucor_Component {
     if (!isset($args['attr']['class'])) {
       $args['attr']['class'] = [];
     }
-    $args['attr']['class'][] = 'social-navigation';
+    $args['attr']['class'][] = 'js-navigation';
+    $args['attr']['class'][] = 'primary-navigation';
+    $args['attr']['class'][] = 'header-navigation';
 
     // a11y
-    $args['attr']['aria-label'] = ask__('Menu: Social Menu');
+    $args['attr']['aria-label'] = ask__('Menu: Primary Menu');
 
     // Schema.org
     $args['attr']['itemscope'] = null;
-    $args['attr']['itemtype']  = 'http://schema.org/SiteNavigationElement';
+    $args['attr']['itemtype']  = 'https://schema.org/SiteNavigationElement';
 
     return $args;
 

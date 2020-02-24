@@ -13,8 +13,6 @@ get_header(); ?>
 
   <div id="primary" class="primary primary--search">
 
-    <main id="main" class="main">
-
     <?php if (have_posts()) : ?>
 
       <div class="teaser-container">
@@ -50,8 +48,6 @@ get_header(); ?>
       </article>
 
     <?php endif; ?>
-
-    </main><!-- #main -->
 
   </div><!-- #primary -->
 

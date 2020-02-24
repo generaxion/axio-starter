@@ -2,14 +2,13 @@
  # Main (front-end)
 ========================================================================== */
 
-/* Vendors
+/* Vendor (external)
 ----------------------------------------------- */
 
 @import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
 @import "../../node_modules/@rqrauhvmra/tobi/scss/_functions.scss";
 @import "../../node_modules/@rqrauhvmra/tobi/scss/_variables.scss";
 @import "../../node_modules/@rqrauhvmra/tobi/scss/tobi.scss";
-@import "vendor/tobi-lightbox";
 
 /* Base
 ----------------------------------------------- */
@@ -18,6 +17,14 @@
 @import "base/mixins";
 @import "base/normalize";
 @import "base/typography";
+@import "base/media";
+@import "base/forms";
+
+/* Vendor (modifications)
+----------------------------------------------- */
+
+@import "vendor/lazysizes";
+@import "vendor/tobi-lightbox";
 
 /* Blocks
 ----------------------------------------------- */
@@ -43,36 +50,29 @@
 /* Elements
 ----------------------------------------------- */
 
-@import "elements/buttons";
-@import "elements/entry";
-@import "elements/footer";
-@import "elements/header";
+@import "elements/forms-search";
+@import "elements/hero";
+@import "elements/list-terms";
+@import "elements/menu-primary";
+@import "elements/menu-social";
+@import "elements/menu-toggle";
+@import "elements/menu-upper";
+@import "elements/numeric-posts-nav";
+@import "elements/social-share";
+@import "elements/teaser";
 
-/* Components
+/* Layout
 ----------------------------------------------- */
 
-@import "components/list-terms";
-@import "components/forms";
-@import "components/hero";
-@import "components/media";
-@import "components/menu-primary";
-@import "components/menu-social";
-@import "components/menu-toggle";
-@import "components/menu-upper";
-@import "components/numeric-posts-nav";
-@import "components/social-share";
-@import "components/teaser";
-
-/* Templates
------------------------------------------------ */
-
-@import "views/layout";
-@import "views/404";
-@import "views/front-page";
-@import "views/index";
-@import "views/page";
-@import "views/search";
-@import "views/single";
+@import "layout/layout";
+@import "layout/404";
+@import "layout/index";
+@import "layout/footer";
+@import "layout/front-page";
+@import "layout/header";
+@import "layout/page";
+@import "layout/search";
+@import "layout/single";
 
 /* Print
 ----------------------------------------------- */

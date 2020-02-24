@@ -30,20 +30,6 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-embed.is-type-video {
-  .wp-block-embed__wrapper {
-    height: 0;
-    overflow: hidden;
-    padding-top: 56.25%;
-    position: relative;
+.editor-styles-wrapper .wp-block-embed {
 
-    iframe {
-      height: 100%;
-      max-width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
-  }
 }
