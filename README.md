@@ -8,9 +8,9 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 **For who**: Developers building superb WordPress sites
 
-**A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Responsive images
+**A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Babel, Responsive images
 
-![aucor-starter](https://user-images.githubusercontent.com/9577084/55552772-043c3700-56e7-11e9-9f19-5ec11eefbb91.png)
+![aucor-starter](https://user-images.githubusercontent.com/9577084/75163668-4bc91880-5728-11ea-9302-76842515b5aa.png)
 
 ## Table of contents
 
@@ -18,8 +18,8 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 2. [Setup](#2-setup)
     1. [Install Aucor Starter](#21-install-aucor-starter)
     2. [Install Aucor Core](#23-install-aucor-core)
-    2. [Install build tools](#23-install-build-tools)
-    3. [Start working](#24-start-working)
+    2. [Install build tools](#24-install-build-tools)
+    3. [Start working](#25-start-working)
 3. [Components](#3-components)
     1. [Component.php](#31-componentphp)
     2. [Creating new component](#32-creating-new-components)
@@ -33,6 +33,7 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     1. [Directory structure](#51-directory-structure)
     2. [Workflow](#52-workflow)
     3. [Adding new files](#53-adding-new-files)
+    4. [JavaScript syntax](#54-javascript-syntax)
 6. [SVG and Images](#6-svg-and-images)
     1. [SVG sprite](#61-svg-sprite)
     2. [Single SVG images](#62-single-svg-images)
@@ -70,11 +71,11 @@ Directory structure was once based a mixture between [_underscores](http://under
 
 `/assets/` includes all JS, SASS, images, SVG and fonts
 
+`/blocks/` custom Gutenberg blocks
+
 `/dist/` has processed, combined and optimized assets ready to be included to theme
 
 `/inc/` has all php files that are not part of template structure
-
-`/components/` has components meant to be used with `Aucor_Components_Name::render()`
 
 ## 2. Setup
 
@@ -99,7 +100,9 @@ Some of the functionality of Aucor Starter require plugin Aucor Core. The plugin
 
 Aucor Core is open source so you can take parts of it and add them to your theme or create your own plugin. You shouldn't make modifications to Aucor Core directly as your changes will be overridden with future updates.
 
-[Download Aucor Core from Github](https://github.com/aucor/aucor-core) and activate.
+Download Aucor Core from [WordPress.org](https://wordpress.org/plugins/aucor-core/) or [Github](https://github.com/aucor/aucor-core) and activate.
+
+**Protip**: If you are using composer: `composer require wpackagist-plugin/aucor-core` or WP-CLI: `wp plugin install aucor-core`.
 
 ### 2.3 Install build tools
 
@@ -126,16 +129,16 @@ Do this everythime you start to work with the theme.
 ## 3. Components
 
 Components are independent components that can be used in many contexts (forms, menu, teaser etc).
-Styles of components should be in `/assets/styles/components` and named as `_component-name.scss` and will be compiled automatically to `dist/styles/main.css`.
+Styles of components should be in `/assets/styles/elements` and named as `_component-name.scss` and will be compiled to `dist/styles/main.css`.
 
 ### 3.1 Component.php
-Abstract Class Component that keeps in the structure and required functionality for each component.
-Every component should inherit this class.
+
+Abstract Class Component that keeps in the structure and required functionality for each component. Every component should inherit this class.
 
 ### 3.2 Creating new components
 
 #### PHP
-Create `components-name.php` to `/components/`
+Create `components-name.php` to `inc/components/`
 ```php
 <?php
 /**
@@ -151,59 +154,67 @@ Create `components-name.php` to `/components/`
  * @package aucor_starter
  */
 class Aucor_Components_Name extends Aucor_Component {
+
   public static function frontend($data) {
     ?>
     <div <?php parent::render_attributes($data['attr']); ?>>
-    <?php if (!empty($data['image'])) : ?>
-      <div class="components-name__image">
-        Aucor_Image::render([
-          'id'        => $data['image'],
-          'size'      => 'large',
-          'lazyload'  => 'fast'
-        ]);
-      </div>
-    <?php endif; ?>
+
+      <?php if (!empty($data['image'])) : ?>
+        <div class="components-name__image">
+          Aucor_Image::render([
+            'id'        => $data['image'],
+            'size'      => 'large',
+          ]);
+        </div>
+      <?php endif; ?>
+
       <h3 class="components-name__title">
         <?php echo $data['title'] ?>
       </h3>
+
       <p class="components-name__description">
         <?php echo $data['description'] ?>
       </p>
+
     </div>
+
     <?php
   }
+
   public static function backend($args = []) {
-    //example defaults
+
     $default = [
+
       // required
       'title'       => '',
       'description' => '',
+
       // optional
       'attr'        => [],
       'image'       => '',
+
     ];
 
-    // Overrides defaults with given args
+    // overrides defaults with given args
     $args = wp_parse_args($args, $default);
 
-    // In example you can make some data validation
+    // in example you can make some data validation
     if (empty($args['title']) || empty($args['description'])) {
         return parent::error('Missing title or/and description');
     }
 
-    // Or set attributes like classes
+    // or set attributes like classes
     $args['attr']['class'][] = 'components-name';
 
-    // Or make conditioning
+    // or make conditioning
     if (!empty($args['image'])) {
       $args['attr']['class'][] = 'components-name--has-image';
     }
 
-    // etc...
-
     // $args should be so pre-chewed that frontend doesn't have to think anything
     return $args;
   }
+
 }
 ```
 Require it in functions.php.
@@ -214,12 +225,10 @@ Require it in functions.php.
 require_once 'components/components-name.php';
 ```
 
-Make sure `gulp watch` is running before continuing.
-
 #### SCSS
 Create `_components-name.scss` to `/assets/styles/components/`.
 
-After creating `_components-name.scss` you can import it to main.scss so it compiles with other .scss files.
+After creating `_components-name.scss` you can import it to main.scss so it compiles with other .scss files. Make sure `gulp watch` is running or run it manually with `gulp styles`.
 ```scss
 /* Components
 ----------------------------------------------- */
@@ -230,7 +239,7 @@ After creating `_components-name.scss` you can import it to main.scss so it comp
 #### JS
 If your component will need .js create components-name.js to `/assets/scripts/components/`.
 
-After creating `components-name.js` add it to `/assets/manifest.js` under "project specific js" or anywhere else
+After creating `components-name.js` add it to `/assets/manifest.js` under "project specific js" or anywhere else. Make sure `gulp watch` is running or run it manually with `gulp scripts`.
 ```js
 // project specific js
 "scripts/components/components-name.js",
@@ -246,20 +255,23 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * `editor-gutenberg.scss` back-end styles for new Gutenberg editor
   * `wp-login.scss` front-end styles for login screen
 
+@todo
 ### 4.1 Directory structure
 
   * `/base/` universal styles and utilities
-      * `/variables/` colors, fonts, breakpoints
-      * `/mixins/` all [SASS mixins](http://sass-lang.com/guide)
-      * `/generic/` styles for everywhere and all contexts
+      * `_variables.scss` colors, fonts, breakpoints
+      * `_mixins.scss` all [SASS mixins](http://sass-lang.com/guide)
+      * `_normalize.scss` set unifiend base styles to html elements for all browsers
+      * `_typography.scss` base styles for typography elements (h1, h2, h3, p, ul, ol, blockquote etc.)
+      * `_media.scss` base styles for media elements (img, iframe, svg etc.)
+      * `_forms.scss` base styles for forms
+      * `_print.scss` styles for printing out the page
   * `/blocks/` Gutenberg block styles for front-end and back-end
-      * `/core/` supported core blocks
-      * `/settings/` utilities for blocks (alignment, width, color)
-  * `/components/` independent components that can be used in many contexts (forms, menu, teaser etc)
-  * `/elements/` html elements (header, footer, button etc)
-  * `/views/` layouts and page templates
-      * `/layout/` layouting width, alignment etc.
-      * `/templates/` WP native view templates and custom page templates
+      * `_core-` supported core blocks
+      * `_settings-` utilities for blocks (alignment, width, color)
+  * `/elements/` small components that can be used in many contexts (forms, menu, teaser etc)
+  * `/layout/` layouts and page templates
+  * `/vendor/` styles for external libraries or WP plugins
   * `@node_modules` vendor packages
       * `breakpoint-sass` [helper mixins](http://breakpoint-sass.com/) for breakpoints
 
@@ -306,7 +318,7 @@ BEM in SASS:
 }
 ```
 
-**Protip:** Use your own judgement on how deep you should go. There is no right or wrong way. For example `.entry__footer__categories__item__label` might be better as just `.categories__item__label`.
+**Protip:** Use your own judgement on how deep you should go. There is no right or wrong way. For example `.entry__footer__categories__item__label` might be better as just `.categories__label`.
 
 ### 4.5 Tips
 
@@ -318,16 +330,18 @@ BEM in SASS:
 
 By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/svgxuse), [jQuery-free fitvids](https://www.npmjs.com/package/fitvids) and our framework for navigation (navigation.js). Also we synchronize image markup from Classic Editor to Gutenberg in front-end to make styling easier (not critical or some cases even needed).
 
+
 ### 5.1 Directory structure
 
 The script have very simple structure.
 
-  * `/components/` directory for small components
+  * `/lib/` directory for small components
       * `menu-primary.js` primary menu functionality
       * `markup-enhancements.js` sync old image markup to Gutenberg style, responsive tables
+      * `mobile-menu.js` logic for mobile menu
   * `main.js` main js file that is run in footer
   * `critical.js` scripts that should be run in head
-  * `editor-gutenberg.js` modifies gutenberg style variants
+  * `editor-gutenberg.js` modifies gutenberg editor
 
 ### 5.2 Workflow
 
@@ -340,7 +354,7 @@ The script have very simple structure.
 
 #### 5.3.1 Add script from file
 
-Put file in `/assets/scripts/components/my_script.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
+Put file in `/assets/scripts/lib/my_script.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
 
 ```js
 "main.js": [
@@ -351,7 +365,7 @@ Put file in `/assets/scripts/components/my_script.js`. Add script to main.js (or
 **Combine scripts in one file:**
 ```js
 "main.js": [
-  "scripts/components/menu-primary.js",
+  "scripts/lib/menu-primary.js",
   "scripts/main.js"
 ],
 ```
@@ -367,10 +381,16 @@ Add project libraries in `dependencies` and Gulp libraries in `devDependencies`.
 ```js
 "main.js": [
   "../node_modules/fitvids/dist/fitvids.js",
-  "scripts/components/menu-primary.js",
+  "scripts/lib/menu-primary.js",
   "scripts/main.js"
 ],
 ```
+
+**Protip**: Gulp uses [Babel](https://babeljs.io/) to compile ES6 and React syntax to be compatible to older browsers. In some cases this may mess up older scripts from node_modules. If you have problems with the script, add it to babel exclusions at `gulpfile.js`.
+
+### 5.4 JavaScript syntax
+
+We use [Babel](https://babeljs.io/) to compile the JS. You can use ES6 or React syntax with theme's or Gutenberg's code and it will be compiled to be compatible with older browsers.
 
 ## 6. SVG and Images
 
@@ -410,7 +430,6 @@ Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating i
 <?php Aucor_Image::render([
   'id'        => 123,
   'size'      => 'large',
-  'lazyload'  => 'fast'
 ]); ?>
 ```
 
@@ -514,30 +533,7 @@ The `/inc/_conf/` directory has some essential settings for theme that you basic
   * `register-localization.php` add all translatable strings for Polylang.
   * `register-menus.php` define all menu positions.
 
-### 7.3 Editor
-
-Directory `/inc/editor/`.
-
-All tweaks and settings for editors and theme supports.
-
-### 7.4 Forms
-
-Directory `/inc/forms/`.
-
-#### Search form
-
-Function:
-```php
-Aucor_Search_Form::render([
-  'attr' => [
-    'class' => array()
-  ]
-])
-```
-
-Display easily customizable search form.
-
-### 7.5 Helpers
+### 7.3 Helpers
 
 Directory `/inc/helpers/`.
 
@@ -547,21 +543,6 @@ Function: `aucor_starter_get_posted_on()`
 
 Get published date.
 
-#### Entry footer
-Tags:
-```php
-Aucor_List_Terms::render([
-  'title'     => 'Tags',
-  'taxonomy'  => 'post_tag'
-])
-```
-Categories:
-```php
-Aucor_List_Terms::render([
-  'title'     => 'Categories',
-  'taxonomy'  => 'category'
-])
-```
 
 Display categories and tags of single post.
 
@@ -597,7 +578,7 @@ function aucor_starter_get_hardcoded_id($key = '') {
 Used in template:
 `aucor_starter_get_hardcoded_id('some-id')`
 
-**Notice:** Avoid hardcoding ids if possible. If you really need to do it, centralize them into this function.
+**Protip:** Avoid hardcoding ids if possible. If you really need to do it, centralize them into this function.
 
 #### Last edited
 
@@ -900,7 +881,7 @@ Aucor Starter supports both Gutenberg and Classic Editor though Gutenberg is pre
 Aucor Starter includes default Gutenberg styles on front-end and overrides them with from theme. This makes developing both easier and harder:
 
   * 👍 Makes site more future-proof as Gutenberg will have breaking changes in future where some features will not work properly without correct styles (and default styles will take care of them to some degree).
-  * 👎 You have to override some opinionated defaults.
+  * 👎 You may have to override some opinionated defaults.
 
 In Gutenberg editor, there are still lots of default styles so there might be a few inconsistensies between front-end and back-end. This will get better in future versions of Gutenberg and Aucor Starter.
 
@@ -946,6 +927,7 @@ Aucor Starter supports these blocks by default:
 'core/button'
 'core/media-text'
 'core/columns'
+'core/group'
 'core/separator'
 
 // widgets
@@ -975,10 +957,8 @@ Aucor Starter supports these blocks by default:
 Gutenberg has still many improvements and bugfixes on the way. These are some issues at the moment:
 
   * You cannot disable Inline Image block because it comes from Paragraph block [#12680](https://github.com/WordPress/gutenberg/issues/12680)
-  * Wide images are blurry because they still use the global content width to base their image sizes [#6131](https://github.com/WordPress/gutenberg/issues/6131)
   * Many features can't be disabled like paragraph drop caps.
   * Colors can't be scoped to specific blocks. If you register colors for Gutenberg, they will become available to every block that supports colors.
-  * Selecting blocks like columns is still akward and trial and error as it's unclear where to click.
 
 Gutenberg development is moving fast and there are a lot of people working hard to improve Gutenberg.
 
