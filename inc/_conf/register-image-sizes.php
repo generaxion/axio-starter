@@ -104,3 +104,38 @@ function aucor_starter_human_image_size_to_wp_sizes($human_size) {
   }
 
 }
+
+/**
+ * Set wide image sizes attribute
+ *
+ * Gutenberg has at the moment a bit lacking logic for sizes attributes.
+ * This fixes some issues where big images appear low-res.
+ *
+ * @see https://github.com/WordPress/gutenberg/issues/6131
+ *
+ * @param string $html the rendered markup
+ * @param array  $args the options
+ *
+ * @return string $html
+ */
+add_filter('render_block', function ($html, $args) {
+
+  if (isset($args['attrs']['align'])) {
+
+    $base_width = (isset($GLOBALS['content_width'])) ? absint($GLOBALS['content_width']) : 720;
+
+    if ($args['blockName'] === 'core/image' && $args['attrs']['align'] === 'wide') {
+
+      $wide_width = absint(1.5 * $base_width);
+      $html = str_replace('<img ', '<img sizes="(min-width: ' . $wide_width . 'px) ' . $wide_width . 'px, 100vw"', $html);
+
+    } elseif ($args['blockName'] === 'core/media-text' && $args['attrs']['align'] === 'full') {
+
+      $html = str_replace('<img ', '<img sizes="(min-width: ' . $base_width . 'px) 50vw, 100vw"', $html);
+
+    }
+
+  }
+  return $html;
+
+}, 10, 2);
