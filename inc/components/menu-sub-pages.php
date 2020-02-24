@@ -83,7 +83,7 @@ class Aucor_Menu_Sub_Pages extends Aucor_Component {
     setup_postdata($post);
 
     // find list parent
-    $hierarchy_pos = count($post->ancestors);
+    $hierarchy_pos = is_countable($post->ancestors) ? count($post->ancestors) : 0;
     if ($hierarchy_pos > 3) {
       $great_grand_parent = wp_get_post_parent_id($post->post_parent);
       $grand_parent       = wp_get_post_parent_id($great_grand_parent);
