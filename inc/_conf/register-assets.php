@@ -48,7 +48,7 @@ add_action('wp_enqueue_scripts', function() {
     'close'   => ask__('Tobi: Close'),
     'loading' => ask__('Tobi: Loading'),
   );
-  wp_localize_script('aucor_starter-js', 'aucor_starter_strings', $strings);
+  wp_localize_script('aucor_starter-js', 'theme_strings', $strings);
 
   // comments
   if (is_singular() && comments_open() && get_option('thread_comments')) {

@@ -48,10 +48,11 @@ if (document.querySelectorAll('.lightbox').length) {
   try {
     new Tobi({
       // variables from script localization in register-assets.php
-      navLabel: [aucor_starter_strings.prev, aucor_starter_strings.next],
-      closeLabel: aucor_starter_strings.close,
-      loadingIndicatorLabel: aucor_starter_strings.loading,
+      navLabel: [theme_strings.prev, theme_strings.next],
+      closeLabel: theme_strings.close,
+      loadingIndicatorLabel: theme_strings.loading,
       captionsSelector: 'self',
+
       captionAttribute: 'data-caption',
       zoom: false,
     });
