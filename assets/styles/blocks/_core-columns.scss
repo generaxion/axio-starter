@@ -9,7 +9,7 @@
 .wysiwyg .wp-block-columns {
 
   .wp-block-column {
-    margin: 0 0 $gap;
+    margin-bottom: $gap;
     @include child-margin-reset;
 
   }
