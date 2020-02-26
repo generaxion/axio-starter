@@ -136,6 +136,11 @@ add_filter('render_block', function ($html, $args) {
 
     $base_width = (isset($GLOBALS['content_width'])) ? absint($GLOBALS['content_width']) : 720;
 
+    if ($args['blockName'] === 'core/image' && $args['attrs']['align'] === 'full') {
+
+      $html = str_replace('<img ', '<img sizes="100vw"', $html);
+
+    }
     if ($args['blockName'] === 'core/image' && $args['attrs']['align'] === 'wide') {
 
       $wide_width = absint(1.5 * $base_width);
