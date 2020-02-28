@@ -775,6 +775,11 @@ By default you have a few strings there. They are in Finnish by default. You can
 'Menu: Button label'                => 'Menu',
 'Menu: Primary Menu'                => 'Primary menu',
 'Menu: Social Menu'                 => 'Social media channels',
+'Menu: Upper Menu'                  => 'Additional menu',
+'Menu: Open'                        => 'Open menu',
+'Menu: Close'                       => 'Close menu',
+'Menu: Open Sub-menu'               => 'Open submenu',
+'Menu: Close Sub-menu'              => 'Close submenu',
 
 // 404
 '404: Page not found description'   => 'The page might have been deleted or moved to different location. Use the search below to find what you are looking for.',
@@ -785,7 +790,7 @@ By default you have a few strings there. They are in Finnish by default. You can
 'Search: Nothing found description'  => 'No search results found. Try different words.',
 'Search: Placeholder'                => 'Search...',
 'Search: Screen reader label'        => 'Search from site',
-'Search: Submit'                     => 'Hae',
+'Search: Submit'                     => 'Search',
 
 // accessibility
 'Accessibility: Skip to content'     => 'Skip to content',
@@ -799,10 +804,22 @@ By default you have a few strings there. They are in Finnish by default. You can
 'Social share: Facebook'             => 'Share on Facebook',
 'Social share: Twitter'              => 'Share on Twitter',
 'Social share: LinkedIn'             => 'Share on LinkedIn',
+'Social share: WhatsApp'             => 'Share on  WhatsApp',
 
 // taxonomies
 'Taxonomies: Keywords'               => 'Keywords',
 'Taxonomies: Categories'             => 'Categories',
+
+// colors
+'Color: White'                       => 'White',
+'Color: Black'                       => 'Black',
+'Color: Primary'                     => 'Primary color',
+
+// script localization
+'Tobi: Prev'                        => 'Previous',
+'Tobi: Next'                        => 'Next',
+'Tobi: Close'                       => 'Close',
+'Tobi: Loading'                     => 'Loading',
 
 ```
 
