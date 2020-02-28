@@ -13,8 +13,8 @@ $green-whatsapp:  #36b74d;
   margin-top: $gap;
 
   &__title {
-    @extend .h3;
-    margin-bottom: $gap-small;
+    @include heading(s);
+    margin-bottom: .25rem;
   }
 
   &__link {
@@ -24,7 +24,7 @@ $green-whatsapp:  #36b74d;
     vertical-align: top;
     padding: $gap-small;
     line-height: 0;
-    margin: 0 $gap-tiny $gap-small 0;
+    margin: $gap-tiny $gap-tiny 0 0;
     position: relative;
     text-decoration: none;
     .icon {

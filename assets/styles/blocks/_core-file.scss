@@ -1,0 +1,36 @@
+/* ==========================================================================
+ # File block
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-file,
+.wysiwyg .wp-block-file {
+
+  // multiple files
+  & + .wp-block-file {
+    margin-top: $gap-small;
+  }
+
+  // extra download button
+  &__button {
+    @include button;
+    margin-left: $gap-small;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-file {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-file {
+
+}

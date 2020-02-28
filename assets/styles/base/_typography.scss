@@ -1,0 +1,130 @@
+/* ==========================================================================
+ # Typography - Text settings in any context and everywhere
+========================================================================== */
+
+html {
+  color: $base-font-color;
+  font-family: $font-text;
+  font-size: 100%;
+  line-height: $line-height;
+  -moz-osx-font-smoothing: grayscale;
+   -webkit-font-smoothing: antialiased;
+}
+
+/* Paragraphs
+----------------------------------------------- */
+
+p, .p {
+  display: block;
+  font-size: .875rem;
+  @include breakpoint($s) {
+    font-size: 1rem;
+  }
+  font-weight: $normal;
+  line-height: $line-height;
+  margin: 0 0 1.5rem;
+  &.lead {
+    font-size: 1.125rem;
+    @include breakpoint($s) {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+/* Titles
+----------------------------------------------- */
+
+h1 {
+  @include heading(xl);
+  margin: 0 0 2rem;
+}
+
+h2 {
+  @include heading(l);
+  margin: 1.5rem 0;
+}
+
+h3 {
+  @include heading(m);
+  margin-bottom: 1.5rem;
+}
+
+h4, .h4 {
+  @include heading(s);
+  margin-bottom: 1.5rem;
+}
+
+h5, .h5 {
+  @include heading(xs);
+  margin-bottom: 0;
+}
+
+/* Lists
+----------------------------------------------- */
+
+ul, ol {
+  margin: 0 0 1rem;
+  li {
+    font-size: .875rem;
+    @include breakpoint($s) {
+      font-size: 1rem;
+    }
+  }
+}
+
+/* Links
+----------------------------------------------- */
+
+a {
+  color: $blue;
+  &:hover, &:active, &:focus {
+  }
+}
+
+/* Effects
+----------------------------------------------- */
+
+.svg-effects {
+  @include visuallyhidden;
+}
+
+/* Accessibility
+----------------------------------------------- */
+
+a:focus {
+  outline: 1px dotted;
+}
+
+.screen-reader-text {
+  @include visuallyhidden;
+}
+
+.skip-to-content {
+  background: $primary;
+  color: $white;
+  display: inline-block;
+  left: -9999em;
+  outline: none;
+  padding: 1rem 1.5rem;
+  position: absolute;
+  text-decoration: none;
+  text-transform: none;
+  top: -9999em;
+  &:focus {
+    clip: auto;
+    height: auto;
+    left: .5rem;
+    top: .5rem;
+    width: auto;
+    z-index: 100000;
+  }
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+.social-share-link:focus {
+  outline: 1px dotted;
+  outline-offset: -2px;
+}

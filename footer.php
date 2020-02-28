@@ -11,7 +11,7 @@
 
   </div><!-- #content -->
 
-  <footer id="colophon" class="site-footer" itemscope itemtype="http://schema.org/WPFooter">
+  <footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
 
     <div class="site-footer__container">
 
@@ -22,13 +22,13 @@
       </div>
 
       <div class="site-footer__social">
-        <?php get_template_part('partials/navigation/menu-social'); ?>
+        <?php Aucor_Menu_Social::render(); ?>
       </div>
 
     </div>
 
 
-  </footer><!-- #colophon -->
+  </footer>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

@@ -4,7 +4,7 @@
 # Defaults
 default_name="Aucor Starter"
 default_id="aucor_starter"
-default_url="https://aucor_starter.local"
+default_url="https://aucor-starter.local"
 default_author="Aucor Oy"
 default_authorurl="https://www.aucor.fi"
 default_locale="fi"
@@ -44,7 +44,7 @@ else
   id=$default_name
 fi
 
-echo "2) Set unique id for your theme. Use only a-z and _. (Default: $default_id)"
+echo "2) Set unique id for your theme for prefixes etc. Use only a-z and _. (Default: $default_id)"
 read id
 
 # use default if empty

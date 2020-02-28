@@ -40,9 +40,15 @@ add_action('wp_enqueue_scripts', function() {
     true
   );
 
-  // remove gutenberg default stylesheets
-  wp_deregister_style('wp-block-library-theme');
-  wp_deregister_style('wp-block-library');
+  // localize scripts
+  $strings = array(
+    // Tobi.js
+    'prev'    => ask__('Tobi: Prev'),
+    'next'    => ask__('Tobi: Next'),
+    'close'   => ask__('Tobi: Close'),
+    'loading' => ask__('Tobi: Loading'),
+  );
+  wp_localize_script('aucor_starter-js', 'theme_strings', $strings);
 
   // comments
   if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -73,14 +79,6 @@ add_action('enqueue_block_editor_assets', function() {
     true
   );
 
-  // overwrite Core block styles with empty styles
-  wp_deregister_style('wp-block-library' );
-  wp_register_style('wp-block-library', '' );
-
-  // overwrite Core theme styles with empty styles
-  wp_deregister_style('wp-block-library-theme');
-  wp_register_style('wp-block-library-theme', '');
-
 }, 10);
 
 /**
@@ -92,21 +90,6 @@ add_action('admin_enqueue_scripts', function() {
   wp_enqueue_style(
     'aucor_starter-admin-css',
     get_template_directory_uri() . '/dist/styles/admin.css',
-    [],
-    aucor_starter_last_edited('css')
-  );
-
-});
-
-/**
- * Assets for login screen
- */
-add_action('login_enqueue_scripts', function() {
-
-  // wp-login.css
-  wp_enqueue_style(
-    'aucor_starter-login-styles',
-    get_stylesheet_directory_uri() . '/dist/styles/wp-login.css',
     [],
     aucor_starter_last_edited('css')
   );

@@ -1,0 +1,30 @@
+/* ==========================================================================
+ # Button block
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-button,
+.wysiwyg .wp-block-button {
+
+  &__link {
+    @include button;
+    @include button--big;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-button {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-button {
+
+}

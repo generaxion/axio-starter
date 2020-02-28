@@ -8,6 +8,7 @@
 *.bak
 *.swp
 *.tmp
+.vscode
 
 bower_components/*
 !bower_components/.gitkeep

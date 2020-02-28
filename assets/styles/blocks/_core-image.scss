@@ -1,0 +1,72 @@
+/* ==========================================================================
+ # Image block
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-image,
+.wysiwyg .wp-block-image {
+
+  line-height: 0;
+  text-align: center;
+
+  img {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  // wide width
+  &.alignwide {
+    figure, img {
+      width: 100%;
+    }
+  }
+
+  &.alignfull {
+    figcaption {
+      padding-left: $gap;
+      padding-right: $gap;
+      max-width: $content-default-width;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // floated to side
+  figure {
+    margin-top: 0;
+  }
+
+  // caption
+  figcaption {
+    color: $grey-font-color;
+    display: block;
+    line-height: $line-height;
+    margin-top: $gap-tiny;
+    margin-bottom: $gap;
+    font-size: .875rem;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+// image block
+.wysiwyg .wp-block-image {
+
+}
+
+// classic editor images
+.wysiwyg .wp-caption {
+  @extend .wp-block-image;
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-image {
+
+}
+

@@ -1,0 +1,18 @@
+/* ==========================================================================
+ # Single
+========================================================================== */
+
+.single {
+
+  .entry {
+
+    &__footer {
+      @include wrap;
+      @include narrow-content;
+      @include child-margin-reset;
+      @include spacing-m(margin-bottom);
+    }
+
+  }
+
+}

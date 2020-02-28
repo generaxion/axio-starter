@@ -4,7 +4,6 @@
 
 .hero {
   align-items: center;
-  background: $grey-light;
   display: flex;
   position: relative;
 
@@ -51,8 +50,12 @@
   ----------------------------------------------- */
 
   &--no-background {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    .hero__container {
+      padding-top: $gap;
+      padding-bottom: $gap;
+    }
   }
 
   /* Has background image
@@ -122,12 +125,7 @@
         left: 50%;
         top: 50%;
 
-        // scale preload image
-        &.lazyload-preload {
-          transform: scale(1.1);
-          left: 0;
-          top: 0;
-        }
+
       }
 
     }

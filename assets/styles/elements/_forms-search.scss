@@ -1,0 +1,40 @@
+/* ==========================================================================
+ # Search forms
+========================================================================== */
+
+.search-form {
+  display: flex;
+  max-width: 30rem;
+  position: relative;
+  &__input {
+    flex-grow: 1;
+    padding: 1rem 2.75rem 1rem 1rem !important;
+    border-radius: 5rem;
+    border: 2px solid $grey;
+    &:focus {
+      border-color: $primary;
+      outline: 0;
+    }
+  }
+  &__submit {
+    @include button-reset;
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .icon {
+      fill: $primary;
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+  }
+
+  // 404 search form
+  &--404,
+  &--search-empty {
+    margin: 2rem auto 5rem;
+  }
+
+}
+

@@ -4,7 +4,6 @@
 
 .menu-toggle {
   @include button-reset;
-  @include transition;
   background: transparent;
   color: $primary;
   cursor: pointer;
@@ -38,7 +37,6 @@
     }
 
     &__line {
-      @include transition;
       opacity: 1;
     }
 
@@ -53,7 +51,17 @@
 
   }
 
-  &--active {
+  &__label-open {
+    @include visuallyhidden;
+  }
+
+  &__label-close {
+    @include visuallyhidden;
+    display: none;
+  }
+
+
+  .is-active-menu & {
     .menu-toggle__svg__close-line {
       opacity: 1;
       transform-origin: 50% 50%;
@@ -67,6 +75,12 @@
     .menu-toggle__svg__line {
       opacity: 0;
       transform: scale(.8);
+    }
+    .menu-toggle__label-open {
+      display: none;
+    }
+    .menu-toggle__label-close {
+      display: block;
     }
   }
 

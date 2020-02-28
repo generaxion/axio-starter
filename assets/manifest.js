@@ -8,7 +8,7 @@ module.exports = {
    * URL for BrowserSync to mirror
    */
   devUrl: function() {
-    return "https://aucor_starter.local";
+    return "https://aucor-starter.local";
   },
 
   /**
@@ -31,14 +31,20 @@ module.exports = {
         // polyfill for object-fit
         "../node_modules/objectFitPolyfill/dist/objectFitPolyfill.min.js",
 
+        // a11y dialog helpers (https://github.com/edenspiekermann/a11y-dialog)
+        "../node_modules/a11y-dialog/a11y-dialog.js",
+
         // vanilla js version of fitvids, that makes iframe videos responsice (https://www.npmjs.com/package/fitvids)
         "../node_modules/fitvids/dist/fitvids.js",
 
-        // project specific js
-        "scripts/components/navigation.js",
-        "scripts/components/markup-enhancements.js",
-        "scripts/main.js"
+        // lightweight lightbox script (https://github.com/rqrauhvmra/Tobi)
+        "../node_modules/@rqrauhvmra/tobi/js/tobi.js",
 
+        // project specific js
+        "scripts/lib/dropdown-menu.js",
+        "scripts/lib/markup-enhancements.js",
+        "scripts/lib/mobile-menu.js",
+        "scripts/main.js"
       ],
 
       // critical js to be loaded in <head>
@@ -46,6 +52,7 @@ module.exports = {
 
         // library to lazyload images and iframes that have class "lazyload"
         "../node_modules/lazysizes/lazysizes.js",
+        "../node_modules/lazysizes/plugins/aspectratio/ls.aspectratio.min.js",
 
         // project specific critical js
         "scripts/critical.js"
@@ -87,10 +94,6 @@ module.exports = {
 
       "admin.css": [
         "styles/admin.scss"
-      ],
-
-      "wp-login.css": [
-        "styles/wp-login.scss"
       ]
 
     }

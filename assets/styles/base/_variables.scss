@@ -1,0 +1,160 @@
+/* ==========================================================================
+ # Variables
+========================================================================== */
+
+/* Colors
+----------------------------------------------- */
+
+// basic colors
+$black:                #000;
+$white:                #fff;
+$grey:                 #ddd;
+$grey-light:           #eee;
+$blue:                 #42a0d9;
+
+// context colors
+$primary:              #c82986;
+
+// text colors
+$base-font-color:      #333;
+$grey-font-color:      #888;
+
+// special colors
+$menu-dropdown-bg:     $base-font-color;
+$menu-dropdown-color:  $white;
+
+/* Spacing
+----------------------------------------------- */
+
+// gaps
+$gap-big:    3rem;
+$gap:        1.5rem;
+$gap-medium: 1rem;
+$gap-small:  .75rem;
+$gap-tiny:   .5rem;
+
+// wrappers
+$max-width-s: 40rem; // 640px
+$max-width-m: 45rem; // 720px
+$max-width-l: 76rem; // 1216px
+
+// content width
+$content-default-width: $max-width-m;
+
+// sub-menu width
+$menu-dropdown-width:  12rem; // desktop dropdown width
+
+/* Breakpoints
+----------------------------------------------- */
+
+// generic breakpoints
+$s:      560px;
+$sub-s:  max-width 559px;
+$m:      720px;
+$sub-m:  max-width 719px;
+$l:      1120px;
+$sub-l:  max-width 1119px;
+$xl:     1440px;
+$sub-xl: max-width 1399px;
+
+// content breakpoints
+$content-fits: #{$content-default-width + 3*$gap};
+
+// menu breakpoints
+$menu-hidden:  max-width 889px; // hamburger
+$menu-visible: 890px;           // no hamburger
+
+// hero breakpoints
+$hero-s:  530px;
+$hero-m:  650px;
+$hero-l:  1120px;
+$hero-xl: 1600px;
+
+// teaser breakpoints
+$teaser-s: $s;
+$teaser-m: $m;
+$teaser-l: $l;
+
+/* Fonts
+----------------------------------------------- */
+
+// font families
+$font-text:  'Montserrat', sans-serif;
+$font-title: 'Montserrat', sans-serif;
+
+// font weights
+$light:   300;
+$normal:  400;
+$bold:    700;
+$heavy:   900;
+
+// line heights
+$line-height-small:   1.25;
+$line-height:         1.5;
+$line-height-big:     1.75;
+
+// font faces
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/montserrat-v12-latin-300.eot');
+  src: local('Montserrat Light'), local('Montserrat-Light'),
+       url('../fonts/montserrat-v12-latin-300.eot?#iefix')     format('embedded-opentype'),
+       url('../fonts/montserrat-v12-latin-300.woff2')          format('woff2'),
+       url('../fonts/montserrat-v12-latin-300.woff')           format('woff'),
+       url('../fonts/montserrat-v12-latin-300.ttf')            format('truetype'),
+       url('../fonts/montserrat-v12-latin-300.svg#Montserrat') format('svg');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/montserrat-v12-latin-regular.eot');
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+       url('../fonts/montserrat-v12-latin-regular.eot?#iefix')     format('embedded-opentype'),
+       url('../fonts/montserrat-v12-latin-regular.woff2')          format('woff2'),
+       url('../fonts/montserrat-v12-latin-regular.woff')           format('woff'),
+       url('../fonts/montserrat-v12-latin-regular.ttf')            format('truetype'),
+       url('../fonts/montserrat-v12-latin-regular.svg#Montserrat') format('svg');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/montserrat-v12-latin-italic.eot');
+  src: local('Montserrat Italic'), local('Montserrat-Italic'),
+       url('../fonts/montserrat-v12-latin-italic.eot?#iefix')     format('embedded-opentype'),
+       url('../fonts/montserrat-v12-latin-italic.woff2')          format('woff2'),
+       url('../fonts/montserrat-v12-latin-italic.woff')           format('woff'),
+       url('../fonts/montserrat-v12-latin-italic.ttf')            format('truetype'),
+       url('../fonts/montserrat-v12-latin-italic.svg#Montserrat') format('svg');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/montserrat-v12-latin-700.eot');
+  src: local('Montserrat Bold'), local('Montserrat-Bold'),
+       url('../fonts/montserrat-v12-latin-700.eot?#iefix')     format('embedded-opentype'),
+       url('../fonts/montserrat-v12-latin-700.woff2')          format('woff2'),
+       url('../fonts/montserrat-v12-latin-700.woff')           format('woff'),
+       url('../fonts/montserrat-v12-latin-700.ttf')            format('truetype'),
+       url('../fonts/montserrat-v12-latin-700.svg#Montserrat') format('svg');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/montserrat-v12-latin-900.eot');
+  src: local('Montserrat Black'), local('Montserrat-Black'),
+       url('../fonts/montserrat-v12-latin-900.eot?#iefix')      format('embedded-opentype'),
+       url('../fonts/montserrat-v12-latin-900.woff2')           format('woff2'),
+       url('../fonts/montserrat-v12-latin-900.woff')            format('woff'),
+       url('../fonts/montserrat-v12-latin-900.ttf')             format('truetype'),
+       url('../fonts/montserrat-v12-latin-900.svg#Montserrat')  format('svg');
+}

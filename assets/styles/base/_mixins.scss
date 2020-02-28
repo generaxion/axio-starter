@@ -1,0 +1,248 @@
+/* ==========================================================================
+ # Mixins
+========================================================================== */
+
+/* Buttons
+----------------------------------------------- */
+
+// basic button styles
+@mixin button {
+  @include button-reset;
+  @include transition;
+  background: $primary;
+  border-radius: 5rem;
+  color: $white;
+  display: inline-block;
+  font-size: .875rem;
+  @include breakpoint($s) {
+    font-size: 1rem;
+  }
+  font-weight: $bold;
+  line-height: 1.25;
+  padding: $gap-small $gap;
+  text-decoration: none;
+  vertical-align: baseline;
+  &:hover, &:focus, &:active {
+    background: darken($primary, 5);
+    transform: translateY(-.125rem);
+  }
+  &:focus {
+    outline: 1px dotted;
+  }
+}
+
+// button variaton: big
+@mixin button--big {
+  padding: $gap-medium $gap;
+}
+
+/* Headings
+----------------------------------------------- */
+
+@mixin heading($size: m) {
+
+  @if ($size == xl) {
+
+    font-size: 2rem;
+    @include breakpoint($s) {
+      font-size: 2.5rem;
+    }
+    font-weight: $bold;
+    line-height: 1.125;
+
+  } @else if ($size == l) {
+
+    font-size: 1.5rem;
+    @include breakpoint($s) {
+      font-size: 2rem;
+    }
+    font-weight: $bold;
+    line-height: 1.333333;
+
+  } @else if ($size == s) {
+
+    font-size: 1rem;
+    @include breakpoint($s) {
+      font-size: 1.25rem;
+    }
+    font-weight: $bold;
+
+  } @else if ($size == xs) {
+
+    font-size: .875rem;
+    @include breakpoint($s) {
+      font-size: 1rem;
+    }
+    font-weight: $bold;
+    line-height: $line-height;
+
+  } @else {
+
+    font-size: 1.125rem;
+    @include breakpoint($s) {
+      font-size: 1.5rem;
+    }
+    font-weight: $bold;
+    line-height: $line-height;
+
+  }
+
+  display: block;
+
+}
+
+/* Resets
+----------------------------------------------- */
+
+// reset first and last children margins
+@mixin child-margin-reset {
+  & > :first-child {
+    margin-top: 0;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// reset <a> styles
+@mixin link-reset {
+  color: inherit;
+  text-decoration: none;
+}
+
+// reset <li> styles
+@mixin list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+}
+
+// reset <button> styles
+@mixin button-reset {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+}
+
+// reset <input> styles
+@mixin input-reset {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Spacing
+----------------------------------------------- */
+
+@mixin spacing($property, $property2: null) {
+  #{$property}: 1.5rem;
+  @if ($property2) {
+    #{$property2}: 1.5rem;
+  }
+}
+
+@mixin spacing-m($property, $property2: null) {
+  #{$property}: 1.5rem;
+  @if ($property2) {
+    #{$property2}: 1.5rem;
+  }
+  @include breakpoint($s) {
+    #{$property}: 3rem;
+    @if ($property2) {
+      #{$property2}: 3rem;
+    }
+  }
+}
+
+@mixin spacing-l($property, $property2: null) {
+  #{$property}: 1.5rem;
+  @if ($property2) {
+    #{$property2}: 1.5rem;
+  }
+  @include breakpoint($s) {
+    #{$property}: 3rem;
+    @if ($property2) {
+      #{$property2}: 3rem;
+    }
+  }
+  @include breakpoint($l) {
+    #{$property}: 4rem;
+    @if ($property2) {
+      #{$property2}: 4rem;
+    }
+  }
+}
+
+/* Tools
+----------------------------------------------- */
+
+// aspect ratio
+@mixin aspect-ratio($width, $height) {
+  padding-bottom: percentage($height / $width);
+}
+
+// unified transition for theme
+@mixin transition($property:all) {
+  transition: $property .2s ease-in-out;
+}
+
+// fix WP admin bar height on sticky menu
+@mixin admin-bar-sticky-fix {
+  .admin-bar & {
+    top: 46px;
+    @media screen and (min-width: 783px) {
+      top: 32px;
+    }
+  }
+}
+
+// show text to screen readers only
+@mixin visuallyhidden {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal;
+}
+
+// fix float overflow
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+/* Wrap
+----------------------------------------------- */
+
+// wrap outer containers (width, padding, center)
+@mixin wrap {
+  max-width: #{$max-width-l + 2*$gap};
+  padding-left:  $gap;
+  padding-right: $gap;
+  margin-left:  auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+// narrow content
+@mixin narrow-content {
+  max-width: #{$max-width-m + 2*$gap};
+}

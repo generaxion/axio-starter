@@ -9,30 +9,37 @@
 
 get_header(); ?>
 
-  <?php get_template_part('partials/content/hero'); ?>
+  <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--single">
 
-    <main id="main" class="main">
+    <?php while (have_posts()) : the_post(); ?>
 
-      <?php while (have_posts()) : the_post(); ?>
+      <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--post'); ?>>
 
-        <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--post'); ?>>
+        <div class="entry__content wysiwyg">
+          <?php the_content(); ?>
+        </div>
 
-          <div class="entry__content wysiwyg">
-            <?php the_content(); ?>
-          </div>
+        <footer class="entry__footer">
+          <?php
+            Aucor_List_Terms::render([
+              'title'     => ask__('Taxonomies: Categories'),
+              'taxonomy'  => 'category'
+            ]);
+            Aucor_List_Terms::render([
+              'title'     => ask__('Taxonomies: Keywords'),
+              'taxonomy'  => 'post_tag'
+            ]);
+            Aucor_Share_Buttons::render([
+              'section_title' => ask__('Social share: Title')
+            ]);
+          ?>
+        </footer>
 
-          <footer class="entry__footer">
-            <?php aucor_starter_entry_footer(); ?>
-            <?php aucor_starter_social_share_buttons(); ?>
-          </footer>
+      </article>
 
-        </article>
-
-      <?php endwhile; ?>
-
-    </main><!-- #main -->
+    <?php endwhile; ?>
 
   </div><!-- #primary -->
 

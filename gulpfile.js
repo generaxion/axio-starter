@@ -3,41 +3,50 @@
  */
 
 /**
+ * Manifest
+ *
+ * Requires manifest.js file
+ */
+function get_manifest() {
+  return require('./assets/manifest.js');
+}
+
+/**
  * Site config
  */
-var manifest     = require('./assets/manifest.js');
-var timestamps   = require('./assets/last-edited.json');
+var manifest       = get_manifest();
+const timestamps   = require('./assets/last-edited.json');
 
 /**
  * Global modules
  */
-var argv         = require('minimist')(process.argv.slice(2));
-var autoprefixer = require('gulp-autoprefixer');
-var beeper       = require('beeper');
-var browsersync  = require('browser-sync').create();
-var concat       = require('gulp-concat');
-var flatten      = require('gulp-flatten');
-var gulp         = require('gulp');
-var gulpif       = require('gulp-if');
-var imagemin     = require('gulp-imagemin');
-var jshint       = require('gulp-jshint');
-var lazypipe     = require('lazypipe');
-var merge        = require('merge-stream');
-var cssnano      = require('gulp-cssnano');
-var plumber      = require('gulp-plumber');
-var runsequence  = require('run-sequence');
-var sass         = require('gulp-sass');
-var sourcemaps   = require('gulp-sourcemaps');
-var uglify       = require('gulp-uglify');
-var rename       = require('gulp-rename');
-var svgmin       = require('gulp-svgmin');
-var svgstore     = require('gulp-svgstore');
-var file         = require('gulp-file');
+const argv         = require('minimist')(process.argv.slice(2));
+const autoprefixer = require('gulp-autoprefixer');
+const beeper       = require('beeper');
+const browsersync  = require('browser-sync').create();
+const concat       = require('gulp-concat');
+const flatten      = require('gulp-flatten');
+const gulp         = require('gulp');
+const del          = require('del');
+const gulpif       = require('gulp-if');
+const imagemin     = require('gulp-imagemin');
+const jshint       = require('gulp-jshint');
+const lazypipe     = require('lazypipe');
+const merge        = require('merge-stream');
+const cleancss     = require('gulp-clean-css');
+const plumber      = require('gulp-plumber');
+const sass         = require('gulp-sass');
+const sourcemaps   = require('gulp-sourcemaps');
+const uglify       = require('gulp-uglify');
+const rename       = require('gulp-rename');
+const svgstore     = require('gulp-svgstore');
+const file         = require('gulp-file');
+const babel        = require('gulp-babel');
 
 /**
  * Asset paths
  */
-var path = {
+const path = {
   "base" : {
     "source": "assets/",
     "dist":   "dist/",
@@ -71,20 +80,15 @@ var path = {
 /**
  * Disable or enable features
  */
-var enabled = {
-
+const enabled = {
   // disable source maps when `--production`
   maps: !argv.production,
-
   // fail styles task on error when `--production`
   failStyleTask: argv.production,
-
   // fail due to JSHint warnings only when `--production`
   failJSHint: argv.production,
-
   // strip debug statments from javascript when `--production`
   stripJSDebug: argv.production
-
 };
 
 /**
@@ -92,17 +96,14 @@ var enabled = {
  *
  * Update asset class timestamp to last-edited.json
  */
-var updateTimestamp = function updateTimestamp(stamp) {
-
+const updateTimestamp = (stamp) => {
   timestamps[stamp] = Date.now();
-
   return file(
     'last-edited.json',
     JSON.stringify(timestamps, null, 2),
     {src: true}
   )
   .pipe(gulp.dest('./assets'));
-
 };
 
 /**
@@ -114,27 +115,22 @@ var updateTimestamp = function updateTimestamp(stamp) {
  *   'globs': 'assets/main.scss,assets/print.scss'
  * }
  */
-var buildAssets = function(buildFiles) {
-
-  var result = [];
-  for (var buildFile in buildFiles) {
-
+const buildAssets = (buildFiles) => {
+  let result = [];
+  for (let buildFile in buildFiles) {
     // set correct asset paths
     for (i = 0; i < buildFiles[buildFile].length; i++) {
       buildFiles[buildFile][i] = path.base.source + buildFiles[buildFile][i];
     }
-
     result.push({
       'name': buildFile,
       'globs': buildFiles[buildFile],
     });
   }
   return result;
-
 };
-
-var jsAssets  = buildAssets(manifest.js());
-var cssAssets = buildAssets(manifest.css());
+const jsAssets  = buildAssets(manifest.js());
+const cssAssets = buildAssets(manifest.css());
 
 /**
  * Process: CSS
@@ -145,20 +141,16 @@ var cssAssets = buildAssets(manifest.css());
  *   .pipe(cssTasks('main.css')
  *   .pipe(gulp.dest(path.base.dist + 'styles'))
  */
-var cssTasks = function(filename) {
-
+const cssTasks = (filename) => {
   return lazypipe()
-
     // catch syntax errors (don't break pipe)
     .pipe(function() {
       return gulpif(!enabled.failStyleTask, plumber());
     })
-
     // init sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.init());
     })
-
     // sass
     .pipe(function() {
       return gulpif('*.scss', sass({
@@ -168,30 +160,18 @@ var cssTasks = function(filename) {
         errLogToConsole: !enabled.failStyleTask
       }));
     })
-
     // combine files
     .pipe(concat, filename)
-
     // autoprefix
-    .pipe(autoprefixer, {
-      browsers: [
-        'last 2 versions',
-        'android 4'
-      ]
-    })
-
+    .pipe(autoprefixer, {})
     // minify
-    .pipe(cssnano, {
-      safe: true
-    })
-
+    .pipe(cleancss, {})
     // build sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.write('.', {
         sourceRoot: path.styles.source
       }));
     })();
-
 };
 
 /**
@@ -204,34 +184,43 @@ var cssTasks = function(filename) {
  *   .pipe(gulp.dest(path.base.dist + 'scripts'))
  * ```
  */
-var jsTasks = function(filename) {
-
+const jsTasks = (filename) => {
   updateTimestamp('js');
-
   return lazypipe()
-
     // init sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.init());
     })
 
+    // transpile
+    .pipe(function() {
+      return babel({
+        presets: ["@babel/preset-env", "@babel/preset-react"],
+        // override because of use of "this" in IIFE with Babel in Tobi.js: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
+        overrides: [{
+          test: [
+            "./node_modules/@rqrauhvmra/tobi/js/tobi.js",
+            "./node_modules/axios/dist/axios.min.js",
+          ],
+          sourceType: "script",
+        }],
+      });
+    })
+
     // combine files
     .pipe(concat, filename)
-
     // minify
     .pipe(uglify, {
       compress: {
         'drop_debugger': enabled.stripJSDebug
       }
     })
-
     // build sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.write('.', {
         sourceRoot: path.scripts.source
       }));
     })();
-
 };
 
 /**
@@ -241,19 +230,14 @@ var jsTasks = function(filename) {
  * By default this task will only log a warning if a precompiler error is
  * raised. If the `--production` flag is set: this task will fail outright.
  */
-gulp.task('styles', [], function() {
-
-  var merged = merge();
-
+gulp.task('styles', () => {
+  const merged = merge();
   // update last-edited.json
   updateTimestamp('css');
-
   // process all assets
   for (i = 0; i < cssAssets.length; i++) {
-
-    var asset = cssAssets[i];
-    var cssTasksInstance = cssTasks(asset.name);
-
+    let asset = cssAssets[i];
+    const cssTasksInstance = cssTasks(asset.name);
     // handle possible errors
     if (!enabled.failStyleTask) {
       cssTasksInstance.on('error', function(err) {
@@ -261,46 +245,34 @@ gulp.task('styles', [], function() {
         this.emit('end');
       });
     }
-
     // merge
     merged.add(gulp.src(asset.globs, {base: 'styles'})
       .pipe(cssTasksInstance));
-
   }
-
   return merged
     .on('error', function(err) {
       beeper();
     })
     .pipe(gulp.dest(path.styles.dist))
     .pipe(browsersync.stream({match: '**/*.css'}));
-
 });
-
 
 /**
  * Task: Scripts
  *
  * `gulp scripts` - Runs JSHint then compiles, combines, and optimizes JS.
  */
-gulp.task('scripts', ['jshint'], function() {
-
-  var merged = merge();
-
+gulp.task('scripts', () => {
+  const merged = merge();
   // process all assets
   for (i = 0; i < jsAssets.length; i++) {
-
-    var asset = jsAssets[i];
-
-    var jsTasksInstance = jsTasks(asset.name);
-
+    let asset = jsAssets[i];
+    const jsTasksInstance = jsTasks(asset.name);
     merged.add(
       gulp.src(asset.globs, {base: 'scripts'})
         .pipe(jsTasksInstance)
     );
-
   }
-
   return merged
     .on('error', function(err) {
       beeper();
@@ -308,7 +280,6 @@ gulp.task('scripts', ['jshint'], function() {
     })
     .pipe(gulp.dest(path.scripts.dist))
     .pipe(browsersync.stream({match: '**/*.js'}));
-
 });
 
 /**
@@ -317,19 +288,14 @@ gulp.task('scripts', ['jshint'], function() {
  * `gulp fonts` - Grabs all the fonts and outputs them in a flattened directory
  * structure. See: https://github.com/armed/gulp-flatten
  */
-gulp.task('fonts', function() {
-
+gulp.task('fonts', () => {
   return gulp.src([path.fonts.source + '**/*'])
-
     // flatten directory structures
     .pipe(flatten())
-
     // send to /dist/fonts/
     .pipe(gulp.dest(path.fonts.dist))
-
     // browsersync result
     .pipe(browsersync.stream());
-
 });
 
 /**
@@ -337,23 +303,21 @@ gulp.task('fonts', function() {
  *
  * `gulp images` - Run lossless compression on all the images.
  */
-gulp.task('images', function() {
-
-  return gulp.src([path.images.source + '**/*'])
-
+gulp.task('images', () => {
+  return gulp
+    .src([path.images.source + '**/*'])
     // optimize images
-    .pipe(imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}, {removeDimensions: true}]
-    }))
-
+    .pipe(
+      imagemin({
+        progressive: true,
+        interlaced: true,
+        svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}, {removeDimensions: true}]
+      })
+    )
     // send to /dist/images
     .pipe(gulp.dest(path.images.dist))
-
     // browsersync result
     .pipe(browsersync.stream());
-
 });
 
 /**
@@ -361,25 +325,27 @@ gulp.task('images', function() {
  *
  * Create a single sprite.svg file from files in /assets/sprite/.
  */
-gulp.task('svgstore', function () {
-
+gulp.task('svgstore', () => {
   updateTimestamp('svg');
-
   return gulp.src(path.sprite.source + '*.svg')
-
   // rename SVG IDs by "icon-filename"
   .pipe(rename({prefix: 'icon-'}))
-
   // optimize SVG
-  .pipe(svgmin())
-
+  .pipe(imagemin([
+    imagemin.svgo({
+      plugins: [
+        {
+          removeViewBox: false,
+          collapseGroups: true
+        }
+      ]
+    })
+  ]))
   // store SVG into sprite
   .pipe(svgstore())
   .pipe(gulp.dest(path.sprite.dist))
-
   // browsersync result
   .pipe(browsersync.stream());
-
 });
 
 /**
@@ -387,23 +353,20 @@ gulp.task('svgstore', function () {
  *
  * `gulp jshint` - Lints configuration JSON and project JS.
  */
-gulp.task('jshint', function() {
-
-  var allJS = [];
+gulp.task('jshint', () => {
+  let allJS = [];
   for (i = 0; i < jsAssets.length; i++) {
-    var globsArray = jsAssets[i].globs;
+    let globsArray = jsAssets[i].globs;
     for (j = 0; j < globsArray.length; j++) {
       allJS.push(globsArray[j]);
     }
   }
-
   return gulp.src([
     'gulpfile.js'
   ].concat(allJS))
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
-
 });
 
 /**
@@ -411,10 +374,8 @@ gulp.task('jshint', function() {
  *
  * `gulp favicon` - Run lossless compression for favicons.
  */
-gulp.task('favicon', function() {
-
+gulp.task('favicon', () => {
   return gulp.src([path.favicon.source + '**/*'])
-
     // optimize images
     .pipe(imagemin({
       progressive: true,
@@ -425,10 +386,8 @@ gulp.task('favicon', function() {
         {removeDimensions: true}
       ]
     }))
-
     // send to /dist/favicon
     .pipe(gulp.dest(path.favicon.dist));
-
 });
 
 /**
@@ -436,7 +395,9 @@ gulp.task('favicon', function() {
  *
  * `gulp clean` - Deletes the build folder entirely.
  */
-gulp.task('clean', require('del').bind(null, [path.base.dist]));
+gulp.task('clean', () => {
+  return del(path.base.dist);
+});
 
 /**
  * Task: Watch
@@ -447,15 +408,19 @@ gulp.task('clean', require('del').bind(null, [path.base.dist]));
  * build step for that asset and inject the changes into the page.
  * See: http://www.browsersync.io
  */
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   var new_tab = 'local';
-  if(argv.q) {
+  if (argv.q) {
     new_tab = false;
+  }
+  var sonic = false;
+  if (argv.s) {
+    sonic = true;
   }
   // browsersync changes
   browsersync.init({
     files: [
-      '{inc,partials,template-tags}/**/*.php',
+      '{inc,components,blocks,partials}/**/*.php',
       '*.php'
     ],
     proxy: manifest.devUrl(),
@@ -467,14 +432,13 @@ gulp.task('watch', function() {
   });
 
   // watch these files
-  gulp.watch([path.styles.source   + '**/*'], ['styles']);
-  gulp.watch([path.scripts.source  + '**/*'], ['jshint', 'scripts']);
-  gulp.watch([path.fonts.source    + '**/*'], ['fonts']);
-  gulp.watch([path.images.source   + '**/*'], ['images']);
-  gulp.watch([path.sprite.source   +    '*'], ['svgstore']);
-  gulp.watch([path.favicon.source  +    '*'], ['favicon']);
-  gulp.watch(['assets/manifest.js'],          ['build']);
-
+  gulp.watch(path.styles.source   + '**/*', gulp.task('styles'));
+  gulp.watch(path.scripts.source  + '**/*', gulp.task('scripts'));
+  gulp.watch(path.fonts.source    + '**/*', gulp.task('fonts'));
+  gulp.watch(path.images.source   + '**/*', gulp.task('images'));
+  gulp.watch(path.sprite.source   +    '*', gulp.task('svgstore'));
+  gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
+  gulp.watch('assets/manifest.js'         , get_manifest(), gulp.parallel(gulp.task('scripts'),gulp.task('styles')));
 });
 
 /**
@@ -483,25 +447,14 @@ gulp.task('watch', function() {
  * `gulp build` - Run all the build tasks but don't clean up beforehand.
  * Generally you should be running `gulp` instead of `gulp build`.
  */
-gulp.task('build', function(callback) {
-
-  runsequence(
-    'styles',
-    'scripts',
-    ['fonts', 'images', 'svgstore'],
-    'favicon',
-    callback
-  );
-
-});
+gulp.task('build', gulp.series(
+  gulp.parallel('styles','jshint', 'scripts'),
+  gulp.parallel('fonts', 'images', 'svgstore', 'favicon')
+));
 
 /**
  * Task: Default
  *
  * `gulp` - Run a complete build. To compile for production run `gulp --production`.
  */
-gulp.task('default', ['clean'], function() {
-
-  gulp.start('build');
-
-});
+gulp.task('default', gulp.series('clean', 'build'));

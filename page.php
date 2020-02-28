@@ -9,25 +9,23 @@
 
 get_header(); ?>
 
-  <?php get_template_part('partials/content/hero'); ?>
+  <?php Aucor_Hero::render(); ?>
 
   <div id="primary" class="primary primary--page">
-
-    <main id="main" class="main">
 
       <?php while (have_posts()) : the_post(); ?>
 
         <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--page'); ?>>
 
           <div class="entry__content wysiwyg">
+
             <?php the_content(); ?>
+
           </div>
 
         </article>
 
       <?php endwhile; ?>
-
-    </main><!-- #main -->
 
   </div><!-- #primary -->
 

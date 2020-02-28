@@ -23,41 +23,34 @@ require_once 'inc/_conf/register-localization.php';
 require_once 'inc/_conf/register-menus.php';
 
 /**
- * Editor
+ * Components
  */
-require_once 'inc/editor/setup-classic-editor.php';
-require_once 'inc/editor/setup-gutenberg.php';
-require_once 'inc/editor/setup-theme-support.php';
-
-/**
- * Forms
- */
-require_once 'inc/forms/function-search-form.php';
-
+require_once 'inc/components/component.php';
+require_once 'inc/components/hero.php';
+require_once 'inc/components/image.php';
+require_once 'inc/components/menu-primary.php';
+require_once 'inc/components/menu-social.php';
+require_once 'inc/components/menu-sub-pages.php';
+require_once 'inc/components/menu-toggle.php';
+require_once 'inc/components/menu-upper.php';
+require_once 'inc/components/posts-nav-numeric.php';
+require_once 'inc/components/search-form.php';
+require_once 'inc/components/share-buttons.php';
+require_once 'inc/components/svg.php';
+require_once 'inc/components/teaser.php';
+require_once 'inc/components/list-terms.php';
 /**
  * Helpers
  */
 require_once 'inc/helpers/function-dates.php';
-require_once 'inc/helpers/function-entry-footer.php';
 require_once 'inc/helpers/function-hardcoded-ids.php';
-require_once 'inc/helpers/function-html-attributes.php';
 require_once 'inc/helpers/function-last-edited.php';
-require_once 'inc/helpers/function-titles.php';
-require_once 'inc/helpers/setup-fallbacks.php';
 
 /**
- * Media
+ * Hooks and setup
  */
-require_once 'inc/media/function-image.php';
-require_once 'inc/media/function-svg.php';
-
-/**
- * Navigation
- */
-require_once 'inc/navigation/function-menu-toggle.php';
-require_once 'inc/navigation/function-numeric-posts-nav.php';
-require_once 'inc/navigation/function-share-buttons.php';
-require_once 'inc/navigation/function-sub-pages-nav.php';
-require_once 'inc/navigation/setup-menu-hooks.php';
-
-
+require_once 'inc/setup-classic-editor.php';
+require_once 'inc/setup-fallbacks.php';
+require_once 'inc/setup-gutenberg.php';
+require_once 'inc/hooks-menu.php';
+require_once 'inc/setup-theme-support.php';

@@ -1,0 +1,57 @@
+/* ==========================================================================
+ # Quote block
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-quote,
+.wysiwyg .wp-block-quote,
+.wysiwyg blockquote:not([class]) {
+
+  border-left: .25rem solid $primary;
+  margin: $gap auto;
+  padding-left: $gap;
+
+  p {
+    font-size: .875rem;
+    @include breakpoint($s) {
+      font-size: 1rem;
+    }
+    @include breakpoint($m) {
+      font-size: 1.125rem;
+    }
+    margin: 0;
+  }
+
+  cite,
+  .wp-block-quote__citation {
+    display: block;
+    font-style: normal;
+    margin-top: $gap-small;
+    color: $grey-font-color;
+    font-size: .875rem;
+    @include breakpoint($s) {
+      font-size: 1rem;
+    }
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg {
+
+  .wp-block-quote, blockquote:not([class]) {
+
+  }
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-quote {
+
+}

@@ -1,0 +1,47 @@
+/* ==========================================================================
+ # Gallery block
+========================================================================== */
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-gallery,
+.wysiwyg .wp-block-gallery {
+
+  @include list-reset;
+  margin: $gap auto;
+
+  &.alignwide,
+  &.alignfull {
+    grid-gap: $gap;
+  }
+
+  &.is-cropped .blocks-gallery-item {
+    figcaption {
+      padding: $gap-big $gap-tiny $gap-tiny;
+      position: absolute;
+      bottom: 0;
+      display: block;
+      width: 100%;
+      color: $white;
+      font-size: .875rem;
+      background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0, 0));
+    }
+  }
+
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-gallery {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-gallery {
+
+}
