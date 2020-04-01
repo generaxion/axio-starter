@@ -8,6 +8,13 @@
 .editor-styles-wrapper .wp-block-media-text,
 .wysiwyg .wp-block-media-text {
 
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-media-text {
+
   align-items: center;
   display: flex;
   flex-wrap: wrap;
@@ -87,22 +94,10 @@
 
 }
 
-/* Only front-end
------------------------------------------------ */
-
-.wysiwyg .wp-block-media-text {
-
-}
-
 /* Only back-end
 ----------------------------------------------- */
 
 .editor-styles-wrapper .wp-block-media-text {
-
-  display: grid;
-  @include breakpoint($m) {
-    grid-template-columns: 50% 50%;
-  }
 
 }
 

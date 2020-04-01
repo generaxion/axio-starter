@@ -7,7 +7,6 @@
 
 .editor-styles-wrapper .wp-block-table,
 .wysiwyg .wp-block-table {
-  border: 1px solid $grey;
   font-size: .875rem;
   @include breakpoint($s) {
     font-size: 1rem;
@@ -15,47 +14,12 @@
   margin: $gap auto;
   width: 100%;
 
-  &--responsive {
-    display: block;
-    overflow-x: auto;
-    // scroll indicator, @see https://www.smashingmagazine.com/2019/01/table-design-patterns-web/#style-the-scroll
-    background:
-        linear-gradient(to right, $white 30%, rgba(255,255,255,0)),
-        linear-gradient(to right, rgba(255,255,255,0), $white 70%) 0 100%,
-        radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)),
-        radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
-    background-repeat: no-repeat;
-    background-color: $white;
-    background-size: 2.5rem 100%, 2.5rem 100%, .875rem 100%, .875rem 100%;
-    background-position: 0 0, 100%, 0 0, 100%;
-    background-attachment: local, local, scroll, scroll;
-    table {
-      min-width: 100%;
-    }
-  }
-
-  &.alignfull {
-    margin-left: auto;
-    margin-right: auto;
-    td {
-      @include breakpoint($l) {
-        padding: $gap;
-      }
-    }
-  }
-
-  &.alignleft,
-  &.alignright {
-    @include breakpoint($content-fits) {
-      max-width: #{$content-default-width/2};
-    }
-  }
-
   figure {
     margin: 0;
   }
 
   table {
+    border: 1px solid $grey;
     width: 100%;
   }
 
@@ -85,22 +49,52 @@
     }
   }
 
+  figcaption {
+    margin-top: 1rem;
+  }
+
+  &--responsive {
+    display: block;
+    overflow-x: auto;
+    border: 1px solid $grey;
+    // scroll indicator, @see https://www.smashingmagazine.com/2019/01/table-design-patterns-web/#style-the-scroll
+    background:
+        linear-gradient(to right, $white 30%, rgba(255,255,255,0)),
+        linear-gradient(to right, rgba(255,255,255,0), $white 70%) 0 100%,
+        radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)),
+        radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: $white;
+    background-size: 2.5rem 100%, 2.5rem 100%, .875rem 100%, .875rem 100%;
+    background-position: 0 0, 100%, 0 0, 100%;
+    background-attachment: local, local, scroll, scroll;
+    table {
+      min-width: 100%;
+      border: 0;
+    }
+  }
+
+  &.alignfull {
+    margin-left: auto;
+    margin-right: auto;
+    td {
+      @include breakpoint($l) {
+        padding: $gap;
+      }
+    }
+  }
+
+  &.alignleft,
+  &.alignright {
+    @include breakpoint($content-fits) {
+      max-width: #{$content-default-width/2};
+    }
+  }
+
   &.has-fixed-layout {
     &, table {
       table-layout: fixed;
     }
-  }
-
-  .has-text-align-center {
-    text-align: center;
-  }
-
-  .has-text-align-right {
-    text-align: right;
-  }
-
-  .has-text-align-left {
-    text-align: left;
   }
 
 }

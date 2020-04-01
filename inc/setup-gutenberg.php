@@ -19,6 +19,12 @@ add_action('after_setup_theme', function() {
   // disable font size selection
   add_theme_support('disable-custom-font-sizes');
 
+  // disable gradients
+  add_theme_support('__experimental-editor-gradient-presets', []);
+  add_theme_support('__experimental-disable-custom-gradients', true);
+  add_theme_support('editor-gradient-presets', []);
+  add_theme_support('disable-custom-gradients', true);
+
   // remove font size options
   add_theme_support('editor-font-sizes', []);
 

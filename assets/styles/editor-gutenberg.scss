@@ -50,41 +50,31 @@
 @import "elements/social-share";
 @import "elements/teaser";
 
-.edit-post-visual-editor .editor-block-list__block {
-  font-family: $font-text;
-  @import "base/typography";
-}
+.block-editor {
 
-// hide font-size selection
-.components-panel__body.blocks-font-size .components-base-control:first-of-type {
-  display: none;
-}
+  .editor-post-title {
+    &__input {
+      font-family: $font-title;
+      text-align: center;
+    }
+  }
 
-// editor title
-.editor-post-title__block .editor-post-title__input {
-  font-family: $font-title;
-  min-height: auto;
-  text-align: center;
-}
+  .wp-block {
+    font-family: $font-text;
+    @import "base/typography";
+    max-width: $max-width-m;
 
-// main column width
-:root body.gutenberg-editor-page .editor-post-title__block,
-:root body.gutenberg-editor-page .editor-default-block-appender,
-:root body.gutenberg-editor-page .editor-block-list__block {
-  max-width: calc(#{$max-width-m} + 2rem);
-}
+    &[data-align="wide"] {
+      max-width: $max-width-l;
+    }
 
-// width of "wide" blocks
-:root body.gutenberg-editor-page .editor-block-list__block[data-align="wide"] {
-  max-width: $max-width-l;
-}
+    &[data-align="full"] {
+      max-width: none;
+    }
+  }
 
-// width of "full-wide" blocks
-:root body.gutenberg-editor-page .editor-block-list__block[data-align="full"] {
-  max-width: none;
-}
+  .block-editor-writing-flow__click-redirect {
+    min-height: 0 !important;
+  }
 
-// for now we need this for overwriting Core line-height
-.editor-rich-text__tinymce.mce-content-body:not(.wp-block-cover-image-text):not(.wp-block-subhead):not(h2):not(h3) {
-  line-height: $line-height;
 }

@@ -5,6 +5,11 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
+.editor-styles-wrapper .wp-block-buttons,
+.wysiwyg .wp-block-buttons {
+
+}
+
 .editor-styles-wrapper .wp-block-button,
 .wysiwyg .wp-block-button {
 
@@ -18,12 +23,20 @@
 /* Only front-end
 ----------------------------------------------- */
 
+.wysiwyg .wp-block-buttons {
+
+}
+
 .wysiwyg .wp-block-button {
 
 }
 
 /* Only back-end
 ----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-buttons {
+
+}
 
 .editor-styles-wrapper .wp-block-button {
 

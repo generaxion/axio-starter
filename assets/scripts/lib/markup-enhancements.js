@@ -26,7 +26,7 @@ if (gutenberg_content) {
  */
 var responsive_tables_in_content = function() {
 
-  var tables = document.querySelectorAll('.wysiwyg .wp-block-table');
+  var tables = document.querySelectorAll('.wysiwyg .wp-block-table table');
   if (tables) {
     for (var i = 0; i < tables.length; i++) {
 

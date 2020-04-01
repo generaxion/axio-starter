@@ -23,4 +23,3 @@ document.addEventListener('lazybeforeunveil', function(e){
   });
 
 });
-

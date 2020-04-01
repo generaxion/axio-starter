@@ -16,13 +16,11 @@ for (var i = 0; i < dropdown_menus.length; i++) {
 /**
  * Init mobile menu
  */
-
 component_mobile_menu({
   menu:     document.querySelector('.js-mobile-menu'),
   site:     document.querySelector('.js-page'),
   toggles:  document.querySelectorAll('.js-menu-toggle')
 });
-
 
 /**
  * Init Responsive videos
@@ -52,7 +50,6 @@ if (document.querySelectorAll('.lightbox').length) {
       closeLabel: theme_strings.close,
       loadingIndicatorLabel: theme_strings.loading,
       captionsSelector: 'self',
-
       captionAttribute: 'data-caption',
       zoom: false,
     });

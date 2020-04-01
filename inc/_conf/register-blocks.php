@@ -42,6 +42,7 @@ function aucor_starter_gutenberg_allowed_blocks($allowed_block_types, $post) {
    * Layout
    */
   $blocks[] = 'core/button';
+  $blocks[] = 'core/buttons';
   $blocks[] = 'core/media-text';
   $blocks[] = 'core/columns';
   $blocks[] = 'core/group';
