@@ -5,13 +5,12 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-columns,
+.block-editor .wp-block[data-type="core/columns"] .wp-block-columns,
 .wysiwyg .wp-block-columns {
 
   .wp-block-column {
     margin-bottom: $gap;
     @include child-margin-reset;
-
   }
 
   &.alignfull {
@@ -36,6 +35,6 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-columns {
+.block-editor .wp-block[data-type="core/columns"] .wp-block-columns {
 
 }

@@ -5,7 +5,7 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-quote,
+.block-editor .wp-block-quote,
 .wysiwyg .wp-block-quote,
 .wysiwyg blockquote:not([class]) {
 
@@ -52,6 +52,6 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-quote {
+.block-editor .wp-block-quote {
 
 }

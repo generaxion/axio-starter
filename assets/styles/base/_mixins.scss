@@ -151,6 +151,13 @@
   }
 }
 
+@mixin negative-spacing($property, $property2: null) {
+  #{$property}: -1.5rem;
+  @if ($property2) {
+    #{$property2}: -1.5rem;
+  }
+}
+
 @mixin spacing-m($property, $property2: null) {
   #{$property}: 1.5rem;
   @if ($property2) {
@@ -160,6 +167,18 @@
     #{$property}: 3rem;
     @if ($property2) {
       #{$property2}: 3rem;
+    }
+  }
+}
+@mixin negative-spacing-m($property, $property2: null) {
+  #{$property}: -1.5rem;
+  @if ($property2) {
+    #{$property2}: -1.5rem;
+  }
+  @include breakpoint($s) {
+    #{$property}: -3rem;
+    @if ($property2) {
+      #{$property2}: -3rem;
     }
   }
 }
@@ -179,6 +198,24 @@
     #{$property}: 4rem;
     @if ($property2) {
       #{$property2}: 4rem;
+    }
+  }
+}
+@mixin negative-spacing-l($property, $property2: null) {
+  #{$property}: -1.5rem;
+  @if ($property2) {
+    #{$property2}: -1.5rem;
+  }
+  @include breakpoint($s) {
+    #{$property}: -3rem;
+    @if ($property2) {
+      #{$property2}: -3rem;
+    }
+  }
+  @include breakpoint($l) {
+    #{$property}: -4rem;
+    @if ($property2) {
+      #{$property2}: -4rem;
     }
   }
 }

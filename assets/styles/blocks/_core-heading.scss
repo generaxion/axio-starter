@@ -5,7 +5,7 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-heading,
+.block-editor .wp-block[data-type="core/heading"] > *,
 .wysiwyg .wp-block-heading {
 
 }
@@ -20,6 +20,6 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-heading {
+.block-editor .wp-block[data-type="core/heading"] > * {
 
 }

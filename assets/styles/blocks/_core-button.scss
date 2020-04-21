@@ -5,17 +5,14 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-buttons,
+.block-editor .wp-block[data-type="core/buttons"] > *,
 .wysiwyg .wp-block-buttons {
 
-}
-
-.editor-styles-wrapper .wp-block-button,
-.wysiwyg .wp-block-button {
-
-  &__link {
-    @include button;
-    @include button--big;
+  .wp-block-button {
+    &__link {
+      @include button;
+      @include button--big;
+    }
   }
 
 }
@@ -25,19 +22,19 @@
 
 .wysiwyg .wp-block-buttons {
 
-}
+  .wp-block-button {
 
-.wysiwyg .wp-block-button {
+  }
 
 }
 
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-buttons {
+.block-editor .wp-block[data-type="core/buttons"] > * {
 
-}
+  .wp-block-button {
 
-.editor-styles-wrapper .wp-block-button {
+  }
 
 }

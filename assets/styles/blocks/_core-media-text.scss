@@ -5,48 +5,24 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-media-text,
+.block-editor .wp-block[data-type="core/media-text"],
 .wysiwyg .wp-block-media-text {
-
-}
-
-/* Only front-end
------------------------------------------------ */
-
-.wysiwyg .wp-block-media-text {
-
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  grid-gap: 0;
-
-  // text container
-  &__content {
-    @include child-margin-reset;
-    width: 100%;
-    margin-top: $gap;
-    padding: 0;
-    @include breakpoint ($m) {
-      width: 50%;
-      margin-top: 0;
-      padding: $gap;
-    }
-    & > * {
-      max-width: calc(#{$max-width-l} / 2);
-    }
-    h2 {
-      font-size: 1.75rem;
+  background: $grey-light;
+  h2, h3, h4 {
+    @include heading(m);
+    margin-bottom: $gap-medium;
+  }
+  &.alignfull,
+  &[data-align="full"] {
+    h2, h3, h4 {
+      @include heading(l);
+      @include spacing(margin-bottom);
     }
   }
-
-  // image
-  &__media {
+  .wp-block-media-text__media {
     margin: 0;
     padding: 0;
-    @include breakpoint ($m) {
-      width: 50%;
-      flex-shrink: 0;
-    }
+    align-self: stretch;
     img {
       display: block;
       height: 100%;
@@ -54,9 +30,38 @@
       width: 100%;
     }
   }
+  .wp-block-media-text__content {
+    @include child-margin-reset;
+    padding: $gap-big;
+  }
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-media-text {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 0;
+  &__content {
+    width: 100%;
+    @include breakpoint ($m) {
+      width: 50%;
+    }
+    & > * {
+      max-width: calc(#{$max-width-l} / 2);
+    }
+  }
+  &__media {
+    @include breakpoint ($m) {
+      width: 50%;
+      flex-shrink: 0;
+    }
+  }
 
   // alignment right
-  @include breakpoint ($m) {
+  @include breakpoint($m) {
     &.has-media-on-the-right {
       .wp-block-media-text__media {
         order: 1;
@@ -70,25 +75,30 @@
   }
 
   &.alignwide {
+    @include breakpoint ($sub-m) {
+      margin-left: -$gap;
+      margin-right: -$gap;
+    }
     .wp-block-media-text__content {
       @include breakpoint($l) {
         padding: $gap-big;
       }
+    }
+    & + .wp-block-media-text.alignwide {
+      @include negative-spacing-m(margin-top);
     }
   }
 
   // add side padding for full width
   &.alignfull {
     .wp-block-media-text__content {
-      padding-left: $gap;
-      padding-right: $gap;
-      @include breakpoint($m) {
-        padding: $gap-big;
-      }
       @include breakpoint($xl) {
         padding-left: calc((50vw - #{$max-width-l / 2}) / 2);
         padding-right: calc((50vw - #{$max-width-l / 2}) / 2);
       }
+    }
+    & + .wp-block-media-text.alignfull {
+      @include negative-spacing-l(margin-top);
     }
   }
 
@@ -97,7 +107,7 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-media-text {
+.block-editor .wp-block-media-text {
 
 }
 
