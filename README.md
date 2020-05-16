@@ -8,7 +8,7 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 **For who**: Developers building superb WordPress sites
 
-**A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Lazyload, BEM, Babel, Responsive images
+**A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Native lazyload, BEM, Babel, Responsive images
 
 ![aucor-starter](https://user-images.githubusercontent.com/9577084/75164116-f3dee180-5728-11ea-9eab-e2bfa89805cf.png)
 
@@ -475,7 +475,7 @@ switch ($human_size) {
   case 'hero':
     return [
       'primary'    => 'hero_md',
-      'supporting' => ['full', 'hero_lg', 'hero_md', 'hero_sm'],
+      'supporting' => ['hero_lg', 'hero_md', 'hero_sm'],
       'sizes'      => '100vw'
     ];
 
@@ -505,37 +505,25 @@ Aucor_Image::render([
 
 ### 6.6 Lazy load
 
-By default the image function has lazy loading on. Lazy loading uses [lazysizes library](https://github.com/aFarkas/lazysizes). When emedding image there's three possibilities:
+By default the image function has lazy loading on. Lazy loading uses HTML's native `loading` attribute When emedding image there's three possibilities:
 
-  * Lazyload from transparent to visible (default):
+  * Default: Use lazyload `loading="lazy"`
   ```php
   Aucor_Image::render([
     'id'    => 123,
     'size'  => 'medium'
   ])
   ```
-  * Lazyload from blurry pre-load image to visible:
-  ```php
-  Aucor_Image::render([
-    'id'    => 123,
-    'size'  => 'medium',
-    'attr'  => [
-      'lazyload' => 'animated'
-    ]
-  ])
-  ```
   * No lazyload:
   ```php
   Aucor_Image::render([
-    'id'    => 123,
-    'size'  => 'medium',
-    'attr'  => [
-      'lazyload' => 'false'
-    ]
+    'id'      => 123,
+    'size'    => 'medium',
+    'loading' => 'eager',
   ])
   ```
 
-Lazy loading is SEO friendly and function automatically displays `<noscript>` versions for users without JS.
+Native lazy loading is automatically backwards compatible with old browsers and users without JS. This theme won't add lazy load for images inside Gutenberg as this will be done by core some day.
 
 ### 6.7. Favicons
 
@@ -775,7 +763,7 @@ By default you have a few strings there. They are in Finnish by default. You can
 'Menu: Button label'                => 'Menu',
 'Menu: Primary Menu'                => 'Primary menu',
 'Menu: Social Menu'                 => 'Social media channels',
-'Menu: Upper Menu'                  => 'Additional menu',
+'Menu: Additional Menu'             => 'Additional menu',
 'Menu: Open'                        => 'Open menu',
 'Menu: Close'                       => 'Close menu',
 'Menu: Open Sub-menu'               => 'Open submenu',
@@ -796,8 +784,11 @@ By default you have a few strings there. They are in Finnish by default. You can
 'Accessibility: Skip to content'     => 'Skip to content',
 
 // navigation
-'Navigation: Previous'               => 'Previous',
-'Navigation: Next'                   => 'Next',
+'Navigation: Numeric pagination'     => 'Show more',
+'Navigation: Go to page x'           => 'Go to page %s',
+'Navigation: Current page x'         => 'Current page, page %s',
+'Navigation: Previous'               => 'Previous page',
+'Navigation: Next'                   => 'Next page',
 
 // social
 'Social share: Title'                => 'Share on social media',
@@ -959,6 +950,8 @@ Aucor Starter supports these blocks by default:
 
 **Notice:** All blocks that are not explicitly allowed are disabled. This means that if you install a plugin that has new blocks, those blocks are not shown before you allow them. Gutenberg will provide an UI for this in future and we will drop this feature then.
 
+You can add new blocks by simply finding out their name like `acf/your-custom-block` or `some-plugin/some-block`.
+
 ### 8.3 Known Gutenberg issues
 
 Gutenberg has still many improvements and bugfixes on the way. These are some issues at the moment:
@@ -983,9 +976,9 @@ Theme location: `primary`
 
 Theme's main navigation in header that is build to handle multiple levels.
 
-### 9.2 Upper menu
+### 9.2 Additional menu
 
-Theme location: `upper`
+Theme location: `additional`
 
 Additional navigation items that are not as important as in primary menu. By default, it will only show 1st level and dropdown menus are not supported. If you will need them, take a look st primary menu styles and `main.js`.
 
