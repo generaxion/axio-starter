@@ -56,7 +56,6 @@ class Aucor_SVG extends Aucor_Component {
       'attr'         => [],
       'title'        => '',
       'desc'         => '',
-      'aria_hidden'  => true,
 
     ];
     $args = wp_parse_args($args, $placeholders);
@@ -65,10 +64,8 @@ class Aucor_SVG extends Aucor_Component {
       return parent::error('Missing icon name ($args[\'name\'])');
     }
 
-    $args['attr']['aria-labelledby'] = ($args['title'] && $args['desc']) ? 'title desc' : '';
-
-    if ($args['aria_hidden'] && !isset($args['attr']['aria-hidden'])) {
-      $args['attr']['aria-hidden'] = 'true';
+    if (!empty($args['title'])) {
+      $args['attr']['aria-labelledby'] = 'title';
     }
 
     if (!isset($args['attr']['class'])) {
