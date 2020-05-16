@@ -33,7 +33,7 @@ get_header(); ?>
 
         <div class="entry__content">
 
-          <p><?php ask_e('Search: Nothing found description'); ?></p>
+          <p role="status"><?php ask_e('Search: Nothing found description'); ?></p>
 
           <?php
             Aucor_Search_Form::render([
