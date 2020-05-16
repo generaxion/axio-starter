@@ -14,27 +14,12 @@ class Aucor_SVG extends Aucor_Component {
   public static function frontend($data) {
     ?>
 
-    <?php if ($data['wrap']) : ?>
-      <span class="icon-wrap">
-    <?php endif; ?>
-
     <svg <?php parent::render_attributes($data['attr']); ?>>
-
       <?php if ($data['title']) : ?>
         <title><?php echo esc_html($data['title']); ?></title>
       <?php endif; ?>
-
-      <?php if ($data['desc']) : ?>
-        <desc><?php echo esc_html($data['desc']); ?></desc>
-      <?php endif; ?>
-
       <use xlink:href="<?php echo esc_attr(get_template_directory_uri() . '/dist/sprite/sprite.svg?ver=' . aucor_starter_last_edited('svg') . '#icon-' . esc_html($data['name'])); ?>"></use>
-
     </svg>
-
-    <?php if ($data['wrap']) : ?>
-      </span>
-    <?php endif; ?>
 
     <?php
   }
@@ -52,10 +37,8 @@ class Aucor_SVG extends Aucor_Component {
       'name'         => null,
 
       // optional
-      'wrap'         => false,
       'attr'         => [],
       'title'        => '',
-      'desc'         => '',
 
     ];
     $args = wp_parse_args($args, $placeholders);
@@ -66,6 +49,8 @@ class Aucor_SVG extends Aucor_Component {
 
     if (!empty($args['title'])) {
       $args['attr']['aria-labelledby'] = 'title';
+    } else {
+      $args['attr']['aria-hidden'] = 'true';
     }
 
     if (!isset($args['attr']['class'])) {
