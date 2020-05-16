@@ -34,27 +34,28 @@
   <a class="skip-to-content" href="#content"><?php ask_e('Accessibility: Skip to content'); ?></a>
 
   <header id="masthead" class="site-header" itemscope itemtype="https://schema.org/WPHeader">
+
     <div class="site-header__inner">
 
-    <div class="site-header__branding">
-      <a href="<?php echo esc_url(home_url('/')); ?>" class="site-header__title" rel="home" itemprop="headline">
-        <span class="screen-reader-text"><?php bloginfo('name'); ?></span>
-        <img class="site-header__logo" width="150" height="80" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/images/logo.svg" loading="lazy" />
-      </a>
-    </div>
-
-    <?php Aucor_Menu_Toggle::render(); ?>
-
-    <div class="site-header__menus">
-      <div class="site-header__upper desktop-menu">
-        <?php Aucor_Menu_Upper::render(); ?>
+      <div class="site-header__branding">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="site-header__title" rel="home" itemprop="headline">
+          <img class="site-header__logo" width="150" height="80" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/images/logo.svg" loading="lazy" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" />
+        </a>
       </div>
-      <div class="site-header__main desktop-menu">
-        <?php Aucor_Menu_Primary::render(); ?>
+
+      <?php Aucor_Menu_Toggle::render(); ?>
+
+      <div class="site-header__menus">
+        <div class="site-header__upper desktop-menu">
+          <?php Aucor_Menu_Upper::render(); ?>
+        </div>
+        <div class="site-header__main desktop-menu">
+          <?php Aucor_Menu_Primary::render(); ?>
+        </div>
       </div>
-    </div>
 
     </div>
+
   </header>
 
   <div id="content" class="site-content" role="main" itemscope itemprop="mainContentOfPage">
