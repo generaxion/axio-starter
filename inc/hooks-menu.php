@@ -22,7 +22,7 @@ function aucor_starter_dropdown_icon_to_menu_links($item_output, $item, $depth, 
       if ($value == 'menu-item-has-children') {
         // add caret button. not focusable as tab navigation is handeled without this button
         $item_output .= '<button class="menu-item__caret js-menu-caret">' .
-                          Aucor_SVG::get(['name' => 'caret-down']) .
+                          Aucor_SVG::get(['name' => 'chevron-down']) .
                           '<span class="menu-item__caret__text-open">' . ask__('Menu: Open Sub-menu') . '</span>' .
                           '<span class="menu-item__caret__text-close">' . ask__('Menu: Close Sub-menu') . '</span>' .
                         '</button>';
@@ -69,7 +69,7 @@ function aucor_starter_social_menu_icons($title, $item, $args, $depth) {
     }
 
     // replace title with svg and <span> wrapped title
-    $title = Aucor_SVG::get(['name' => $svg, 'title' => $title]) . '<span class="social-navigation__item__label">' . $title . '</span>';
+    $title = Aucor_SVG::get(['name' => $svg]) . '<span class="social-navigation__item__label">' . $title . '</span>';
 
     return $title;
 

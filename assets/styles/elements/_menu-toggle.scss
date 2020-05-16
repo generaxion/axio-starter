@@ -9,18 +9,11 @@
   cursor: pointer;
   display: inline-block;
   font-size: .875em;
+  line-height: 0;
   padding: 0;
   text-transform: uppercase;
   @include breakpoint($menu-visible) {
     display: none;
-  }
-  &:hover {
-    .menu-toggle__svg__line--1 {
-      transform: translateY(-.25em);
-    }
-    .menu-toggle__svg__line--3 {
-      transform: translateY(.25em);
-    }
   }
 
   &:focus {
@@ -28,27 +21,35 @@
     outline-offset: -2px;
   }
 
-  &__svg {
-    &.icon {
-      position: relative;
-      height: 2rem;
-      width: 2rem;
-      top: 0;
+  &:hover, &:focus, &:active {
+    svg {
+      transform: scale(.95);
     }
+  }
 
-    &__line {
-      opacity: 1;
-    }
-
-    &__close-line {
+  &__icon {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 0;
+    position: relative;
+    svg {
       @include transition;
+      display: block;
+      position: absolute;
       left: 0;
       top: 0;
-      opacity: 0;
-      position: absolute;
-      transform: scale(1.2);
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
     }
-
+    .icon-open {
+      opacity: 1;
+    }
+    .icon-close {
+      opacity: 0;
+    }
   }
 
   &__label-open {
@@ -62,25 +63,11 @@
 
 
   .is-active-menu & {
-    .menu-toggle__svg__close-line {
-      opacity: 1;
-      transform-origin: 50% 50%;
-      &--1 {
-        transform: scale(1) rotate(45deg);
-      }
-      &--2 {
-        transform: scale(1) rotate(-45deg);
-      }
-    }
-    .menu-toggle__svg__line {
+    .icon-menu {
       opacity: 0;
-      transform: scale(.8);
     }
-    .menu-toggle__label-open {
-      display: none;
-    }
-    .menu-toggle__label-close {
-      display: block;
+    .icon-close {
+      opacity: 1;
     }
   }
 
