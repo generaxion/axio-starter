@@ -438,7 +438,14 @@ gulp.task('watch', () => {
   gulp.watch(path.images.source   + '**/*', gulp.task('images'));
   gulp.watch(path.sprite.source   +    '*', gulp.task('svgstore'));
   gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
-  gulp.watch('assets/manifest.js'         , get_manifest(), gulp.parallel(gulp.task('scripts'),gulp.task('styles')));
+  gulp.watch([
+    'gulpfile.js',
+    'assets/manifest.js'
+  ], () => {
+    console.error("\n⚠️  Congifuration files modified. Restart gulp. ⚠️\n");
+    beeper();
+    process.exit();
+  });
 });
 
 /**
