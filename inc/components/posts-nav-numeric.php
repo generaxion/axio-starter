@@ -20,12 +20,12 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
   public static function frontend($data) {
     ?>
 
-    <nav class="navigation numeric-navigation">
+    <nav <?php parent::render_attributes($data['attr']); ?>>
       <ul itemscope itemtype="https://schema.org/SiteNavigationElement/Pagination">
         <?php foreach ($data['items'] as $item) : ?>
-          <li class="<?php echo esc_attr(implode(' ', $item['class'])); ?>">
+          <li <?php parent::render_attributes($item['attr']); ?>>
             <?php if (!empty($item['url'])) : ?>
-              <a href="<?php echo esc_url($item['url']); ?>">
+              <a <?php parent::render_attributes($item['sub-attr']); ?>>
                 <?php echo $item['label']; ?>
               </a>
             <?php else : ?>
@@ -71,6 +71,8 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
       $args['attr']['class'] = [];
     }
     $args['attr']['class'][] = 'numeric-navigation';
+    $args['attr']['role'] = 'navigation';
+    $args['attr']['aria-label'] = ask__('Navigation: Numeric pagination');
 
     $paged_variable        = (empty($args['paged_var'])) ? 'paged' : $args['paged_var'];
     $has_default_paged_var = ($paged_variable === 'paged') ? true : false;
@@ -122,24 +124,27 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
     }
     if (!empty($prev_page_url)) {
       $args['items'][] = [
-        'url'   => $prev_page_url,
-        'label' => $args['label_prev'],
-        'class' => ['numeric-navigation__item--previous']
+        'url'     => $prev_page_url,
+        'label'   => $args['label_prev'],
+        'type'    => 'previous',
+        'active'  => false,
       ];
     }
 
     // first page
     if (!in_array(1, $links)) {
       $args['items'][] = [
-        'url'   => ($has_default_paged_var) ? get_pagenum_link(1) : $clean_url,
-        'label' => '1',
-        'class' => ($paged === 1) ? ['numeric-navigation__item--pagenum', 'numeric-navigation__item--active'] : ['numeric-navigation__item--pagenum'],
+        'url'     => ($has_default_paged_var) ? get_pagenum_link(1) : $clean_url,
+        'label'   => '1',
+        'type'    => 'pagenum',
+        'active'  => ($paged === 1),
       ];
       if (!in_array(2, $links)) {
         $args['items'][] = [
-          'url'   => '',
-          'label' => '…',
-          'class' => ['numeric-navigation__item--separator'],
+          'url'     => '',
+          'label'   => '…',
+          'type'    => 'separator',
+          'active'  => false,
         ];
       }
     }
@@ -149,9 +154,10 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
 
     foreach ((array) $links as $page_nmb) {
       $args['items'][] = [
-        'url'   => ($has_default_paged_var) ? get_pagenum_link($page_nmb) : add_query_arg($paged_variable, $page_nmb, $clean_url),
-        'label' => $page_nmb,
-        'class' => ($paged === $page_nmb) ? ['numeric-navigation__item--pagenum', 'numeric-navigation__item--active'] : ['numeric-navigation__item--pagenum'],
+        'url'     => ($has_default_paged_var) ? get_pagenum_link($page_nmb) : add_query_arg($paged_variable, $page_nmb, $clean_url),
+        'label'   => $page_nmb,
+        'type'    => 'pagenum',
+        'active'  => ($paged === $page_nmb),
       ];
     }
 
@@ -162,14 +168,16 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
         $args['items'][] = [
           'url'   => '',
           'label' => '…',
-          'class' => ['numeric-navigation__item--separator'],
+          'type'    => 'separator',
+          'active'  => false,
         ];
       }
 
       $args['items'][] = [
-        'url'   => ($has_default_paged_var) ? get_pagenum_link($max) : add_query_arg($paged_variable, $max, $clean_url),
-        'label' => $max,
-        'class' => ($paged === $max) ? ['numeric-navigation__item--pagenum', 'numeric-navigation__item--active'] : ['numeric-navigation__item--pagenum'],
+        'url'     => ($has_default_paged_var) ? get_pagenum_link($max) : add_query_arg($paged_variable, $max, $clean_url),
+        'label'   => $max,
+        'type'    => 'pagenum',
+        'active'  => ($paged === $max),
       ];
 
     }
@@ -185,8 +193,44 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
       $args['items'][] = [
         'url'   => $next_page_url,
         'label' => $args['label_next'],
-        'class' => ['numeric-navigation__item--next']
+        'type'    => 'next',
+        'active'  => false,
       ];
+    }
+
+    // add meta attributes to items
+    foreach ($args['items'] as $key => $item) {
+
+      $attr = [];
+      $attr['class'] = [];
+
+      $sub_attr = [];
+      $sub_attr['class'] = [];
+
+      $attr['class'][] = 'numeric-navigation__item';
+      $attr['class'][] = 'numeric-navigation__item--' . $item['type'];
+
+      if ($item['active']) {
+        $attr['class'][] = 'numeric-navigation__item--active';
+        $sub_attr['aria-current'] = 'true';
+      }
+
+      if ($item['type'] === 'pagenum') {
+        if ($item['active']) {
+          $sub_attr['aria-label'] = sprintf(ask__('Navigation: Current page x'), $item['label']);
+        } else {
+          $sub_attr['aria-label'] = sprintf(ask__('Navigation: Go to page x'), $item['label']);
+        }
+      }
+
+      if (!empty($item['url'])) {
+        $sub_attr['href'] = $item['url'];
+      }
+
+      $args['items'][$key]['attr'] = $attr;
+      $args['items'][$key]['sub-attr'] = $sub_attr;
+
+
     }
 
     // reset previous global wp_query
