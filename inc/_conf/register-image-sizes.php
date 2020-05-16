@@ -38,12 +38,11 @@ add_action('after_setup_theme', function() {
   }
 
   // custom image sizes
-  add_image_size('lazyload',   14,    8,  true); // (default starter) small ~16:9
-  add_image_size('hero_xl',  2000,  750, true);  // (default starter) hero @1,33x 3:1
-  add_image_size('hero_md',  1500,  500, true);  // (default starter) hero @1x 3:1
-  add_image_size('hero_sm',   800,  500, true);  // (default starter) hero mobile 8:5
-  add_image_size('wide',     1216, 2432, false); // (default starter) gutenberg wide, relational to large
-  add_image_size('wide_xl',  1824, 3648, false); // (default starter) gutenberg wide, relational to large
+  add_image_size('hero_lg',  2000,  750, true);  // hero @1,33x 3:1
+  add_image_size('hero_md',  1500,  500, true);  // hero @1x 3:1
+  add_image_size('hero_sm',   800,  500, true);  // hero mobile 8:5
+  add_image_size('wide_md',  1216, 2432, false); // gutenberg wide, relational to large
+  add_image_size('wide_lg',  1824, 3648, false); // gutenberg wide, relational to large
 
   // enable support for post thumbnails
   add_theme_support('post-thumbnails');
@@ -65,7 +64,7 @@ function aucor_starter_human_image_size_to_wp_sizes($human_size) {
     case 'hero':
       return array(
         'primary'    => 'hero_md',
-        'supporting' => ['full', 'hero_xl', 'hero_md', 'hero_sm'],
+        'supporting' => ['full', 'hero_lg', 'hero_md', 'hero_sm'],
         'sizes'      => '100vw'
       );
 

@@ -475,7 +475,7 @@ switch ($human_size) {
   case 'hero':
     return array(
       'primary'    => 'hero_md',
-      'supporting' => ['full', 'hero_xl', 'hero_md', 'hero_sm'],
+      'supporting' => ['full', 'hero_lg', 'hero_md', 'hero_sm'],
       'sizes'      => '100vw'
     );
 
