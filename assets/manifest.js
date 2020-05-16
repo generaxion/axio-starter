@@ -43,18 +43,8 @@ module.exports = {
         // project specific js
         "scripts/lib/dropdown-menu.js",
         "scripts/lib/mobile-menu.js",
-        "scripts/main.js"
-      ],
-
-      // critical js to be loaded in <head>
-      "critical.js": [
-
-        // modify HTML markup
         "scripts/lib/markup-enhancements.js",
-
-        // project specific critical js
-        "scripts/critical.js"
-
+        "scripts/main.js"
       ],
 
       // gutenberg editor specific js

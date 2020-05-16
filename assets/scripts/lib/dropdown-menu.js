@@ -293,7 +293,7 @@ var component_dropdown_menu = function(args) {
       activate_menu_item(li);
 
       // add event listener to click outside menu
-      document.addEventListener('touchstart', outside_menu_touch_event, false);
+      document.addEventListener('touchstart', outside_menu_touch_event, {passive: true});
 
     }
 
@@ -329,7 +329,7 @@ var component_dropdown_menu = function(args) {
     // setup touch hooks (parent menu-item a)
     var menu_item_a = menu.querySelectorAll('.menu-item-has-children a');
     for (var m = 0; m < menu_item_a.length; m++) {
-      menu_item_a[m].addEventListener('touchstart', menu_item_parent_a_touch_event, false);
+      menu_item_a[m].addEventListener('touchstart', menu_item_parent_a_touch_event, {passive: true});
     }
 
   }

@@ -22,19 +22,10 @@ add_action('wp_enqueue_scripts', function() {
     aucor_starter_last_edited('css')
   );
 
-  // critical js
-  wp_enqueue_script(
-    'aucor_starter-critical-js',
-    get_template_directory_uri() . '/dist/scripts/critical.js#async',
-    [],
-    aucor_starter_last_edited('js'),
-    false
-  );
-
   // main js
   wp_enqueue_script(
     'aucor_starter-js',
-    get_template_directory_uri() . '/dist/scripts/main.js#defer',
+    get_template_directory_uri() . '/dist/scripts/main.js',
     [],
     aucor_starter_last_edited('js'),
     true
@@ -136,20 +127,3 @@ function aucor_starter_favicons() {
 add_action('wp_head',    'aucor_starter_favicons');
 add_action('admin_head', 'aucor_starter_favicons');
 add_action('login_head', 'aucor_starter_favicons');
-
-/**
- * Async assets via #async in url
- *
- * @see https://stackoverflow.com/a/18945175
- */
-add_filter('clean_url', function ($url) {
-
-  if (strpos($url, '#async') !== false && !is_admin()) {
-    $url = str_replace('#async', '', $url) . "' async='async";
-  }
-  if (strpos($url, '#defer') !== false && !is_admin()) {
-    $url = str_replace('#defer', '', $url) . "' defer='defer";
-  }
-  return $url;
-
-}, 11, 1);
