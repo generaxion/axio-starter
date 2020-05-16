@@ -76,7 +76,9 @@ ul, ol {
 ----------------------------------------------- */
 
 a {
-  color: $blue;
+
+  color: $link;
+
   &:hover, &:active, &:focus {
   }
 }
