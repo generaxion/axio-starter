@@ -9,9 +9,32 @@
 }
 
 .teaser {
-  display: flex;
-  justify-content: space-between;
+
+  position: relative;
   margin-bottom: $gap;
+
+  &__link {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &:hover, &:focus, &:active {
+      & + .teaser__card {
+        .teaser__title {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__card {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+  }
 
   &__thumbnail {
     flex-shrink: 0;
@@ -27,31 +50,23 @@
   }
 
   &__content {
+    @include child-margin-reset;
+    align-self: center;
     flex-grow: 1;
   }
 
   &__header {
-    margin-bottom: .75rem;
-    &__title {
-      font-size: 1.25rem;
-      margin: 0;
-      a {
-        text-decoration: none;
-        color: $base-font-color;
-      }
-    }
-    &__date {
-      display: block;
-      font-size: .875rem;
-    }
+    @include child-margin-reset;
+    margin-bottom: .5rem;
+  }
 
+  &__title {
+    font-size: 1.25rem;
+    margin: 0;
   }
 
   &__summary {
     @include child-margin-reset;
-    p {
-      font-size: .875rem;
-    }
   }
 
 }

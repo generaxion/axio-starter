@@ -21,36 +21,39 @@ class Aucor_Teaser extends Aucor_Component {
 
     <article <?php parent::render_attributes($data['attr']); ?>>
 
-      <?php if (!empty($data['attachment_id'])) : ?>
-        <div class="teaser__thumbnail">
-          <a href="<?php echo esc_url($data['permalink']); ?>" tabindex="-1">
+      <a class="teaser__link" href="<?php echo esc_url($data['permalink']); ?>">
+        <span class="screen-reader-text"><?php echo $data['post_title']; ?></a>
+      </a>
+
+      <div class="teaser__card">
+
+        <?php if (!empty($data['attachment_id'])) : ?>
+          <div class="teaser__thumbnail">
             <?php
               Aucor_Image::render([
                 'id'   => $data['attachment_id'],
-                'size' => 'thumbnail',
+                'size' => 'teaser',
               ]);
             ?>
-          </a>
-        </div>
-      <?php endif; ?>
+          </div>
+        <?php endif; ?>
 
-      <div class="teaser__content">
+        <div class="teaser__content">
 
-        <header class="teaser__header">
-          <h2 class="teaser__header__title">
-            <a href="<?php echo esc_url($data['permalink']); ?>">
-              <?php echo $data['post_title']; ?>
-            </a>
-          </h2>
-        </header>
+          <header class="teaser__header">
+            <h3 class="teaser__title"><?php echo $data['post_title']; ?></h2>
+          </header>
 
-        <div class="teaser__summary">
-          <?php echo $data['post_excerpt']; ?>
+          <div class="teaser__summary">
+            <?php echo $data['post_excerpt']; ?>
+          </div>
+
         </div>
 
       </div>
 
     </article>
+
     <?php
   }
 
@@ -102,6 +105,10 @@ class Aucor_Teaser extends Aucor_Component {
     $args['post_title']     = get_the_title($args['post']);
     $args['post_type']      = $args['post']->post_type;
     $args['post_excerpt']   = get_the_excerpt($args['post']);
+
+    if (!empty($args['post_excerpt'])) {
+      $args['post_excerpt'] = wpautop($args['post_excerpt']);
+    }
 
     // setup html attributes
     if (!isset($args['attr']['class'])) {

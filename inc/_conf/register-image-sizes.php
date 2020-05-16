@@ -71,7 +71,7 @@ function aucor_starter_human_image_size_to_wp_sizes($human_size) {
     case 'teaser':
       return [
         'primary'    => 'thumbnail',
-        'supporting' => ['full', 'thumbnail'],
+        'supporting' => ['thumbnail'],
         'sizes'      => '250px'
       ];
 
