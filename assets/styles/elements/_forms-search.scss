@@ -22,6 +22,11 @@
     right: 1.25rem;
     top: 50%;
     transform: translateY(-50%);
+    &:hover, &:focus, &:active {
+      background: transparent;
+      transform: translateY(-50%);
+      outline-offset: 4px;
+    }
 
     .icon {
       fill: $primary;
