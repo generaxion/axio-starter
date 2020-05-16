@@ -14,7 +14,7 @@
  */
 add_filter('aucor_core_pll_register_strings', function() {
 
-  return array(
+  return [
 
     // titles
     'Title: Home'                       => 'Blogi',
@@ -72,6 +72,6 @@ add_filter('aucor_core_pll_register_strings', function() {
     'Tobi: Close'                       => 'Sulje',
     'Tobi: Loading'                     => 'Lataa',
 
-  );
+  ];
 
 });

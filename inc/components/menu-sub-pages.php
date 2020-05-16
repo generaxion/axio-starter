@@ -154,13 +154,13 @@ class Aucor_Walker_Page_With_Pretendable_Active_Item extends Walker_Page {
    * @param stdClass $args an object of wp_nav_menu() arguments
    * @param int      $current_page current item ID
    */
-  function start_el(&$output, $page, $depth = 0, $args = array(), $current_page = 0) {
+  function start_el(&$output, $page, $depth = 0, $args = [], $current_page = 0) {
 
     // get currently pretended ID
     global $pretend_id;
 
     // item css classes
-    $css_class = array();
+    $css_class = [];
 
     if (isset($args['pages_with_children'][$page->ID])) {
       $css_class[] = 'page_item_has_children';

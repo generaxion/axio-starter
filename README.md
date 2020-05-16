@@ -473,21 +473,21 @@ After you have setup WordPress image sizes go to `/inc/_conf/register-image-size
 switch ($human_size) {
 
   case 'hero':
-    return array(
+    return [
       'primary'    => 'hero_md',
       'supporting' => ['full', 'hero_lg', 'hero_md', 'hero_sm'],
       'sizes'      => '100vw'
-    );
+    ];
 
   case 'thumbnail':
-    return array(
+    return [
       'primary'    => 'thumbnail',
       'supporting' => ['full', 'thumbnail'],
       'sizes'      => '250px'
-    );
+    ];
 
   default:
-    aucor_starter_debug('Image size error - Missing human readable size {' . $human_size . '}', array('aucor_starter_get_image'));
+    aucor_starter_debug('Image size error - Missing human readable size {' . $human_size . '}', ['aucor_starter_get_image']);
 
 }
 ```
@@ -660,11 +660,11 @@ endif;
 Custom query:
 ```php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$args = array(
+$args = [
   'post_type'       => 'post',
   'posts_per_page'  => 10,
   'paged'           => $paged,
-);
+];
 $loop = new WP_Query($args);
 if($loop->have_posts())
   while ($loop->have_posts()) : $loop->the_post();
@@ -677,11 +677,11 @@ endif;
 Custom query with your own pagination variable "current_page"
 ```php
 $paged = (isset($_GET['current_page']) && !empty($_GET['current_page'])) ? absint($_GET['current_page']) : 1;
-$args = array(
+$args = [
   'post_type'       => 'post',
   'posts_per_page'  => 10,
   'paged'           => $paged,
-);
+];
 $loop = new WP_Query($args);
 if ($loop->have_posts())
   while ($loop->have_posts() ) : $loop->the_post();

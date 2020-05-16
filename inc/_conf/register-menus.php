@@ -7,10 +7,10 @@
 
 add_action('after_setup_theme', function() {
 
-  register_nav_menus(array(
+  register_nav_menus([
     'primary' => ask__('Menu: Primary Menu'),
     'upper'   => ask__('Menu: Upper Menu'),
     'social'  => ask__('Menu: Social Menu'),
-  ));
+  ]);
 
 });

@@ -62,43 +62,43 @@ function aucor_starter_human_image_size_to_wp_sizes($human_size) {
   switch ($human_size) {
 
     case 'hero':
-      return array(
+      return [
         'primary'    => 'hero_md',
         'supporting' => ['full', 'hero_lg', 'hero_md', 'hero_sm'],
         'sizes'      => '100vw'
-      );
+      ];
 
     case 'teaser':
-      return array(
+      return [
         'primary'    => 'thumbnail',
         'supporting' => ['full', 'thumbnail'],
         'sizes'      => '250px'
-      );
+      ];
 
     case 'large':
-      return array(
+      return [
         'primary'    => 'large',
         'supporting' => ['full', 'large', 'medium'],
         'sizes'      => '(min-width: 720px) 720px, 100vw'
-      );
+      ];
 
     case 'medium':
-      return array(
+      return [
         'primary'    => 'medium',
         'supporting' => ['full', 'large', 'medium'],
         'sizes'      => '(min-width: 360px) 360px, 100vw'
-      );
+      ];
 
     case 'thumbnail':
-      return array(
+      return [
         'primary'    => 'thumbnail',
         'supporting' => ['thumbnail'],
         'sizes'      => '100px'
-      );
+      ];
 
     default:
       if (function_exists('aucor_core_debug_msg')) {
-        aucor_core_debug_msg('Image size error - Missing human readable size {' . $human_size . '}', array('aucor_starter_get_image'));
+        aucor_core_debug_msg('Image size error - Missing human readable size {' . $human_size . '}', ['aucor_starter_get_image']);
       }
   }
 

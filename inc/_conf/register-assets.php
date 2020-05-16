@@ -41,13 +41,13 @@ add_action('wp_enqueue_scripts', function() {
   );
 
   // localize scripts
-  $strings = array(
+  $strings = [
     // Tobi.js
     'prev'    => ask__('Tobi: Prev'),
     'next'    => ask__('Tobi: Next'),
     'close'   => ask__('Tobi: Close'),
     'loading' => ask__('Tobi: Loading'),
-  );
+  ];
   wp_localize_script('aucor_starter-js', 'theme_strings', $strings);
 
   // comments

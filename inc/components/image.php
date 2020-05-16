@@ -36,7 +36,7 @@ class Aucor_Image extends Aucor_Component {
       'size'         => 'large',
 
       // optional
-      'attr'         => array(),
+      'attr'         => [],
       'alt'          => '',
       'loading'     => 'lazy',
 
@@ -62,10 +62,10 @@ class Aucor_Image extends Aucor_Component {
 
     // get WP generated image sizes
     $generated_sizes = $image['sizes'];
-    $generated_sizes['full'] = array(
+    $generated_sizes['full'] = [
       'width'  => $image['width'],
       'height' => $image['height'],
-    );
+    ];
 
     // get desired sizes for image
     $desired_sizes = aucor_starter_human_image_size_to_wp_sizes($args['size']);
@@ -97,7 +97,7 @@ class Aucor_Image extends Aucor_Component {
     }
 
     // srcset
-    $srcset = array();
+    $srcset = [];
     foreach ($possible_sizes['supporting'] as $key => $possible_size) {
       $srcset[] = self::get_image_url($args['id'], $possible_size) . ' ' . $generated_sizes[$possible_size]['width'] . 'w';
     }
@@ -120,7 +120,7 @@ class Aucor_Image extends Aucor_Component {
    */
   public static function get_possible_image_sizes($desired_sizes, $generated_sizes) {
 
-    $real_sizes = array();
+    $real_sizes = [];
 
     // get primary size
     if (isset($generated_sizes[$desired_sizes['primary']])) {
@@ -142,7 +142,7 @@ class Aucor_Image extends Aucor_Component {
     }
 
     // collect possible supporting sizes
-    $real_sizes['supporting'] = array();
+    $real_sizes['supporting'] = [];
     foreach ($desired_sizes['supporting'] as $key => $desired_size) {
       if (isset($generated_sizes[$desired_size])) {
         $real_sizes['supporting'][] = $desired_size;
