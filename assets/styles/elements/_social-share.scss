@@ -2,12 +2,6 @@
  # Social share
 ========================================================================== */
 
-$blue-facebook:   #3b5998;
-$blue-twitter:    #00aced;
-$blue-linkedin:   #007bb6;
-$red-google-plus: #dd4b39;
-$red-pinterest:   #cb2027;
-$green-whatsapp:  #36b74d;
 
 .social-share {
   margin-top: $gap;
@@ -18,49 +12,20 @@ $green-whatsapp:  #36b74d;
   }
 
   &__link {
-    @include transition(background);
+    @include transition;
     display: inline-block;
-    color: $white;
+    color: $link;
     vertical-align: top;
-    padding: $gap-small;
     line-height: 0;
     margin: $gap-tiny $gap-tiny 0 0;
     position: relative;
     text-decoration: none;
     .icon {
-      width: 1.125rem;
-      height: 1.125rem;
+      width: 1.75rem;
+      height: 1.75rem;
     }
     &:last-of-type {
       margin-right: 0;
-    }
-
-    &--facebook {
-      background: $blue-facebook;
-      &:hover, &:focus {
-        background: darken($blue-facebook, 9);
-      }
-    }
-
-    &--twitter {
-      background: $blue-twitter;
-      &:hover, &:focus {
-        background: darken($blue-twitter, 9);
-      }
-    }
-
-    &--linkedin {
-      background: $blue-linkedin;
-      &:hover, &:focus {
-        background: darken($blue-linkedin, 9);
-      }
-    }
-
-    &--whatsapp {
-      background: $green-whatsapp;
-      &:hover, &:focus {
-        background: darken($green-whatsapp, 9);
-      }
     }
 
     &__label {
