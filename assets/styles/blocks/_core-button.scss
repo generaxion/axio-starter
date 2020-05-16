@@ -6,7 +6,8 @@
 ----------------------------------------------- */
 
 .block-editor .wp-block[data-type="core/buttons"] > *,
-.wysiwyg .wp-block-buttons {
+.wysiwyg .wp-block-buttons,
+.wysiwyg .wp-block-button {
 
   .wp-block-button {
     &__link {
