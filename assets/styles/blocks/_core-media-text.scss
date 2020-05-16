@@ -43,7 +43,6 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 0;
   &__content {
     width: 100%;
     @include breakpoint ($m) {

@@ -160,10 +160,12 @@ const cssTasks = (filename) => {
         errLogToConsole: !enabled.failStyleTask
       }));
     })
+    // autoprefix
+    .pipe(autoprefixer, {
+      "grid": "no-autoplace"
+    })
     // combine files
     .pipe(concat, filename)
-    // autoprefix
-    .pipe(autoprefixer, {})
     // minify
     .pipe(cleancss, {})
     // build sourcemaps
