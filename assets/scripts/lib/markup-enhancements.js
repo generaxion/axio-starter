@@ -5,28 +5,33 @@
 /**
  * Add identifiers for first and last block
  */
-var gutenberg_content = document.querySelector('.wysiwyg');
-if (gutenberg_content) {
-  for (var i = 0; i < gutenberg_content.childNodes.length; i++) {
-    if (gutenberg_content.childNodes[i].nodeType !== 3 && gutenberg_content.childNodes[i].classList !== "undefined") {
-      gutenberg_content.childNodes[i].classList.add('is-first-block');
-      break;
+let tag_first_and_last_block = function() {
+
+  let gutenberg_content = document.querySelector('.wysiwyg');
+  if (gutenberg_content) {
+    for (let i = 0; i < gutenberg_content.childNodes.length; i++) {
+      if (gutenberg_content.childNodes[i].nodeType !== 3 && gutenberg_content.childNodes[i].classList !== "undefined") {
+        gutenberg_content.childNodes[i].classList.add('is-first-block');
+        break;
+      }
+    }
+    for (let i = (gutenberg_content.childNodes.length - 1); i >= 0; i--) {
+      if (gutenberg_content.childNodes[i].nodeType !== 3 && gutenberg_content.childNodes[i].classList !== "undefined") {
+        gutenberg_content.childNodes[i].classList.add('is-last-block');
+        break;
+      }
     }
   }
-  for (var i = (gutenberg_content.childNodes.length - 1); i >= 0; i--) {
-    if (gutenberg_content.childNodes[i].nodeType !== 3 && gutenberg_content.childNodes[i].classList !== "undefined") {
-      gutenberg_content.childNodes[i].classList.add('is-last-block');
-      break;
-    }
-  }
+
 }
+
 
 /**
  * Make tables responsive
  */
-var responsive_tables_in_content = function() {
+let responsive_tables_in_content = function() {
 
-  var tables = document.querySelectorAll('.wysiwyg .wp-block-table table');
+  const tables = document.querySelectorAll('.wysiwyg .wp-block-table table');
   if (tables) {
     for (var i = 0; i < tables.length; i++) {
 
@@ -50,7 +55,6 @@ var responsive_tables_in_content = function() {
   }
 
 };
-responsive_tables_in_content();
 
 /**
  * Classic Editor image markup "polyfill"
@@ -58,12 +62,12 @@ responsive_tables_in_content();
  * Wrap old images with captions to make alignment work and markup fit Gutenberg style
  * <figure class="wp-caption"><img></figure> => <div class="wp-block-image"><figure class="wp-caption"><img></figure></div>
  */
-var wrap_old_images_with_caption = function() {
-  var figures = document.querySelectorAll('.wysiwyg .wp-caption');
+let wrap_old_images_with_caption = function() {
+  let figures = document.querySelectorAll('.wysiwyg .wp-caption');
   if (figures.length) {
-    for (var i = 0; i < figures.length; i++) {
+    for (let i = 0; i < figures.length; i++) {
       if (!figures[i].parentNode.classList.contains('wp-block-image')) {
-        var wrapper = document.createElement('div');
+        let wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'wp-block-image');
         figures[i].parentNode.insertBefore(wrapper, figures[i]);
         wrapper.appendChild(figures[i]);
@@ -79,9 +83,9 @@ wrap_old_images_with_caption();
  * Wrap old aligned images without caption to make markup fit Gutenberg style
  * <p><img class="alignleft">Text<p> => <div class="wp-block-image"><figure class="alignleft"><img></figure></div><p>Text</p>
  */
-var wrap_old_aligned_images = function() {
-  var aligned_parent;
-  var aligned = document.querySelectorAll('.wysiwyg img.alignleft, .wysiwyg img.alignright');
+let wrap_old_aligned_images = function() {
+  let aligned_parent;
+  let aligned = document.querySelectorAll('.wysiwyg img.alignleft, .wysiwyg img.alignright');
   if (aligned.length) {
     for (var i = 0; i < aligned.length; i++) {
 
@@ -142,30 +146,45 @@ body_hero_background_indicator();
  *   classic images without caption and with no or center align,
  *   classic images without caption and with left or right align
  */
-var imgItems = document.querySelectorAll('.blocks-gallery-item > figure > a, .gallery-item > .gallery-icon > a, .wp-block-image a, p > a > img, p > a > .wp-block-image');
-// if found, add .lightbox class that Tobi uses as selector to the items
-if (imgItems.length) {
-  imgItems.forEach(function(item) {
-    var formats = ['.jpg', '.png', '.jpeg'];
-    // check (3 first selectors) href to verify media link
-    if (item.href) {
-      if (formats.some(el => item.href.includes(el))) {
-        item.classList.add('lightbox');
-      }
-      // check for figcaption (images and gutenberg gallery) and add it to a data attribute
-      if (item.nextElementSibling) {
-        if (item.nextElementSibling.nodeName.toLowerCase() === 'figcaption') {
-          item.dataset.caption = item.nextElementSibling.innerText;
+let init_lightboxes_in_content = function() {
+  var imgItems = document.querySelectorAll('.blocks-gallery-item > figure > a, .gallery-item > .gallery-icon > a, .wp-block-image a, p > a > img, p > a > .wp-block-image');
+  // if found, add .lightbox class that Tobi uses as selector to the items
+  if (imgItems.length) {
+    imgItems.forEach(function(item) {
+      var formats = ['.jpg', '.png', '.jpeg', '.gif'];
+      // check (3 first selectors) href to verify media link
+      if (item.href) {
+        if (formats.some(el => item.href.includes(el))) {
+          item.classList.add('lightbox');
         }
-      } else if (item.parentNode.nextElementSibling) { // classic gallery
-        if (item.parentNode.nextElementSibling.nodeName.toLowerCase() === 'figcaption') {
-          item.dataset.caption = item.parentNode.nextElementSibling.innerText;
+        // check for figcaption (images and gutenberg gallery) and add it to a data attribute
+        if (item.nextElementSibling) {
+          if (item.nextElementSibling.nodeName.toLowerCase() === 'figcaption') {
+            item.dataset.caption = item.nextElementSibling.innerText;
+          }
+        } else if (item.parentNode.nextElementSibling) { // classic gallery
+          if (item.parentNode.nextElementSibling.nodeName.toLowerCase() === 'figcaption') {
+            item.dataset.caption = item.parentNode.nextElementSibling.innerText;
+          }
+        }
+      } else if (item.parentNode.href) { // check (2 last selectors) href to verify media link
+        if (formats.some(el => item.parentNode.href.includes(el))) {
+          item.parentNode.classList.add('lightbox');
         }
       }
-    } else if (item.parentNode.href) { // check (2 last selectors) href to verify media link
-      if (formats.some(el => item.parentNode.href.includes(el))) {
-        item.parentNode.classList.add('lightbox');
-      }
-    }
-  });
+    });
+  }
 }
+
+
+/**
+ * Run
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  tag_first_and_last_block();
+  responsive_tables_in_content();
+  wrap_old_images_with_caption();
+  wrap_old_aligned_images();
+  body_hero_background_indicator();
+  init_lightboxes_in_content();
+});

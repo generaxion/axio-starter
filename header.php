@@ -31,14 +31,6 @@
 
 <div id="page" class="site js-page">
 
-  <svg class="svg-effects" aria-hidden="true">
-    <filter id="svg-effects-blur">
-      <feGaussianBlur stdDeviation="10"></feGaussianBlur>
-      <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 9 0"></feColorMatrix>
-      <feComposite in2="SourceGraphic" operator="in"></feComposite>
-    </filter>
-  </svg>
-
   <a class="skip-to-content" href="#content"><?php ask_e('Accessibility: Skip to content'); ?></a>
 
   <header id="masthead" class="site-header" itemscope itemtype="https://schema.org/WPHeader">

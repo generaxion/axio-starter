@@ -55,6 +55,9 @@ add_action('wp_enqueue_scripts', function() {
     wp_enqueue_script('comment-reply');
   }
 
+  // wp-embed
+  wp_deregister_script('wp-embed');
+
 });
 
 /**

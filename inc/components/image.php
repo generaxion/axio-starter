@@ -17,15 +17,7 @@ class Aucor_Image extends Aucor_Component {
   public static function frontend($data) {
     ?>
 
-    <?php if ($data['lazyload']) : ?>
-      <noscript><img <?php parent::render_attributes($data['attr-nojs']); ?> /></noscript>
-    <?php endif; ?>
-
     <img <?php parent::render_attributes($data['attr']); ?> />
-
-    <?php if ($data['lazyload'] === 'animated') : ?>
-      <img <?php parent::render_attributes($data['attr-preload']); ?> />
-    <?php endif; ?>
 
     <?php
   }
@@ -46,19 +38,10 @@ class Aucor_Image extends Aucor_Component {
       // optional
       'attr'         => array(),
       'alt'          => '',
-      'lazyload'     => 'fast',   // 'fast', 'animated', false
-
-      // internal
-      'attr-nojs'    => array(),
-      'attr-preload' => array(),
+      'loading'     => 'lazy',
 
     ];
     $args = wp_parse_args($args, $placeholders);
-
-    // diable lazyload in admin
-    if (is_admin()) {
-      $args['lazyload'] = false;
-    }
 
     if (empty($args['id'])) {
       return parent::error('Missing attachment_id ($args[\'id\'])');
@@ -108,6 +91,11 @@ class Aucor_Image extends Aucor_Component {
       $args['attr']['alt'] = $args['alt'];
     }
 
+    // loading
+    if (!isset($args['attr']['loading'])) {
+      $args['attr']['loading'] = $args['loading'];
+    }
+
     // srcset
     $srcset = array();
     foreach ($possible_sizes['supporting'] as $key => $possible_size) {
@@ -116,89 +104,6 @@ class Aucor_Image extends Aucor_Component {
     if (!empty($srcset)) {
       $args['attr']['srcset'] = implode(', ', $srcset);
       $args['attr']['sizes'] = $desired_sizes['sizes'];
-    }
-
-    if ($args['lazyload']) {
-
-        // set aspect ratio
-      if (isset($args['attr']['width']) && isset($args['attr']['height'])) {
-        $args['attr']['data-aspectratio'] = $args['attr']['width'] . '/' . $args['attr']['height'];
-      }
-
-      // duplicate attributes to no js before adding lazyload values
-      $args['attr-nojs'] = $args['attr'];
-
-      // add lazyload class
-      if (!isset($args['attr']['class'])) {
-        $args['attr']['class'] = [];
-      }
-      $args['attr']['class'][] = 'lazyload';
-
-      if ($args['lazyload'] === 'fast') {
-        $args['attr']['class'][] = 'lazyload--fast';
-      } elseif ($args['lazyload'] === 'animated') {
-        $args['attr']['class'][] = 'lazyload--animated';
-      }
-
-      // prefix src attributes
-      $lazy_attributes = ['src', 'srcset', 'sizes'];
-      foreach ($lazy_attributes as $lazy_attribute) {
-        if (isset($args['attr'][$lazy_attribute])) {
-          $args['attr']['data-' . $lazy_attribute] = $args['attr'][$lazy_attribute];
-          /**
-           * Show primary image for browsers that can't handle srcsets
-           *
-           * @see https://github.com/aFarkas/lazysizes#modern-transparent-srcset-pattern
-           */
-          if ($lazy_attribute !== 'src') {
-            unset($args['attr'][$lazy_attribute]);
-          }
-        }
-      }
-
-      // transparent base image
-      $args['attr']['srcset'] = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-
-    }
-
-    // blurry preload image
-    if ($args['lazyload'] == 'animated') {
-
-      // add blurry preload image inlined
-      $base64 = '';
-      $image_preload = wp_get_attachment_image_src($args['id'], 'lazyload');
-
-      // make sure preload image exists and is reasonable size (WP fallbacks to full size if not found)
-      if (is_array($image_preload) && $image_preload[1] < 50 && $image_preload[2] < 50) {
-
-        // make preload path from full size path as there is no function to get preload image size path
-        $image_full_size_path = get_attached_file($args['id']);
-        $image_preload_path = str_replace(basename($image_full_size_path), basename($image_preload[0]), $image_full_size_path);
-
-        if (file_exists($image_preload_path)) {
-          $image_base64_content = base64_encode(file_get_contents($image_preload_path));
-          $extension = substr(strrchr($image_preload_path, '.'), 1);
-          if (!empty($image_base64_content)) {
-            $base64 = 'data:image/' . $extension . ';base64,' . $image_base64_content;
-          }
-        }
-      }
-      if (empty($base64)) {
-        $base64 = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-      }
-
-      if (!isset($args['attr']['class'])) {
-        $preload_class = [];
-      } else {
-        $preload_class = $args['attr']['class'];
-      }
-      $preload_class[] = 'lazyload-preload';
-
-      $args['attr-preload'] = [
-        'alt'   => null,
-        'class' => $preload_class,
-        'src'   => $base64
-      ];
     }
 
     return $args;

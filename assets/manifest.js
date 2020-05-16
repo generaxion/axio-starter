@@ -42,7 +42,6 @@ module.exports = {
 
         // project specific js
         "scripts/lib/dropdown-menu.js",
-        "scripts/lib/markup-enhancements.js",
         "scripts/lib/mobile-menu.js",
         "scripts/main.js"
       ],
@@ -50,9 +49,8 @@ module.exports = {
       // critical js to be loaded in <head>
       "critical.js": [
 
-        // library to lazyload images and iframes that have class "lazyload"
-        "../node_modules/lazysizes/lazysizes.js",
-        "../node_modules/lazysizes/plugins/aspectratio/ls.aspectratio.min.js",
+        // modify HTML markup
+        "scripts/lib/markup-enhancements.js",
 
         // project specific critical js
         "scripts/critical.js"

@@ -68,7 +68,11 @@ abstract class Aucor_Component {
       if (!empty($value) || is_numeric($value)) {
         $return[] = esc_attr($key) . '="' . esc_attr($value) . '"';
       } else {
-        $return[] = esc_attr($key);
+        if ($key === 'alt') {
+          $return[] = esc_attr($key) . '=""';
+        } else {
+          $return[] = esc_attr($key);
+        }
       }
     }
     echo implode(' ', $return);

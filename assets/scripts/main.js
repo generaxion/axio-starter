@@ -30,14 +30,14 @@ fitvids();
 /**
  * Init polyfill object-fit for lazyloaded
  */
-if (typeof objectFitPolyfill === "function") {
-  document.addEventListener('lazybeforeunveil', function(e){
-    objectFitPolyfill();
-    e.target.addEventListener('load', function() {
-      objectFitPolyfill();
-    });
-  });
-}
+// if (typeof objectFitPolyfill === "function") {
+//   document.addEventListener('lazybeforeunveil', function(e){
+//     objectFitPolyfill();
+//     e.target.addEventListener('load', function() {
+//       objectFitPolyfill();
+//     });
+//   });
+// }
 
 /**
  * Init lightbox
