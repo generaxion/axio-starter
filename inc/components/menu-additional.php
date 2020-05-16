@@ -3,11 +3,11 @@
  * Component: Menu Upper
  *
  * @example
- * Aucor_Menu_Upper::render();
+ * Aucor_Menu_Additional::render();
  *
  * @package aucor_starter
  */
-class Aucor_Menu_Upper extends Aucor_Component {
+class Aucor_Menu_Additional extends Aucor_Component {
 
   public static function frontend($data) {
 
@@ -21,9 +21,9 @@ class Aucor_Menu_Upper extends Aucor_Component {
 
       <?php
         wp_nav_menu([
-          'theme_location' => 'upper',
+          'theme_location' => 'additional',
           'container'      => '',
-          'menu_class'     => 'upper-navigation__items',
+          'menu_class'     => 'additional-navigation__items',
           'depth'          => 1,
           'link_before'    => '',
           'link_after'     => '',
@@ -44,7 +44,7 @@ class Aucor_Menu_Upper extends Aucor_Component {
       'attr' => [],
 
       // internal
-      'has_menu' => has_nav_menu('upper')
+      'has_menu' => has_nav_menu('additional')
 
     ];
     $args = wp_parse_args($args, $placeholders);
@@ -54,11 +54,11 @@ class Aucor_Menu_Upper extends Aucor_Component {
       $args['attr']['class'] = [];
     }
     $args['attr']['class'][] = 'js-navigation';
-    $args['attr']['class'][] = 'upper-navigation';
+    $args['attr']['class'][] = 'additional-navigation';
     $args['attr']['class'][] = 'header-navigation';
 
     // a11y
-    $args['attr']['aria-label'] = ask__('Menu: Upper Menu');
+    $args['attr']['aria-label'] = ask__('Menu: Additional Menu');
 
     // Schema.org
     $args['attr']['itemscope'] = null;

@@ -23,7 +23,7 @@
     <?php Aucor_Menu_Toggle::render(); ?>
     <div class="mobile-menu__nav__inner">
       <?php Aucor_Menu_Primary::render(); ?>
-      <?php Aucor_Menu_Upper::render(); ?>
+      <?php Aucor_Menu_Additional::render(); ?>
     </div>
   </div>
   <div class="mobile-menu__overlay" data-a11y-dialog-hide tabindex="-1"></div>
@@ -46,12 +46,22 @@
       <?php Aucor_Menu_Toggle::render(); ?>
 
       <div class="site-header__menus">
-        <div class="site-header__upper desktop-menu">
-          <?php Aucor_Menu_Upper::render(); ?>
-        </div>
-        <div class="site-header__main desktop-menu">
-          <?php Aucor_Menu_Primary::render(); ?>
-        </div>
+        <?php
+          Aucor_Menu_Additional::render([
+            'attr' => [
+              'class' => ['site-header__additional', 'desktop-menu']
+            ]
+          ]);
+        ?>
+
+        <?php
+          Aucor_Menu_Primary::render([
+            'attr' => [
+              'class' => ['site-header__main', 'desktop-menu']
+            ]
+          ]);
+        ?>
+
       </div>
 
     </div>
