@@ -12,6 +12,8 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 ![aucor-starter](https://user-images.githubusercontent.com/9577084/75164116-f3dee180-5728-11ea-9eab-e2bfa89805cf.png)
 
+![Google Chrome performance audit](https://user-images.githubusercontent.com/9577084/82218626-d8990200-9924-11ea-8060-263426cde897.png)
+
 ## Table of contents
 
 1. [Directory structure](#1-directory-structure)
