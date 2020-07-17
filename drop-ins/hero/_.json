@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "title": "hero",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php"
+    ]
+  },
+  "scss": {
+    "main": [],
+    "admin": [],
+    "gutenberg": []
+  },
+  "js": {
+    "main": [],
+    "gutenberg": []
+  },
+  "img": [],
+  "sprite": []
+}

@@ -9,7 +9,11 @@
 
 get_header(); ?>
 
-  <?php Aucor_Hero::render(); ?>
+  <?php
+    if (!has_block('acf/hero')) {
+      Aucor_Hero::render();
+    }
+  ?>
 
   <div id="primary" class="primary primary--page">
 

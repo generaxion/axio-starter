@@ -33,6 +33,7 @@
 @import "blocks/core-quote";
 @import "blocks/core-separator";
 @import "blocks/core-table";
+@import "blocks/acf-hero";
 @import "blocks/settings-alignment";
 @import "blocks/settings-colors";
 
@@ -54,8 +55,13 @@
 
   .editor-post-title {
     &__input {
+      @include heading(xl);
       font-family: $font-title;
       text-align: center;
+      .post-type-page & {
+        text-align: left;
+        font-size: 1.125rem;
+      }
     }
   }
 

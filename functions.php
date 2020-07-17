@@ -35,7 +35,6 @@ require_once 'inc/components/menu-toggle.php';
 require_once 'inc/components/menu-additional.php';
 require_once 'inc/components/posts-nav-numeric.php';
 require_once 'inc/components/search-form.php';
-require_once 'inc/components/share-buttons.php';
 require_once 'inc/components/svg.php';
 require_once 'inc/components/teaser.php';
 require_once 'inc/components/list-terms.php';
@@ -54,3 +53,23 @@ require_once 'inc/setup-fallbacks.php';
 require_once 'inc/setup-gutenberg.php';
 require_once 'inc/hooks-menu.php';
 require_once 'inc/setup-theme-support.php';
+
+
+/**
+ * Drop-in PHP autoloader
+ *
+ * You can disable a drop-in by starting directory with underscore
+ */
+foreach (glob(__DIR__ . '/drop-ins/*', GLOB_ONLYDIR) as $dir) {
+  if (!strstr($dir, '/drop-ins/_') && file_exists($dir . '/_.json')) {
+    $parts = json_decode(file_get_contents($dir . '/_.json'), true);
+    if (isset($parts['php']) && isset($parts['php']['inc'])) {
+      foreach ($parts['php']['inc'] as $file) {
+        if (!strstr($file, '..')) {
+          require_once $dir . '/' . $file;
+        }
+      }
+    }
+  }
+}
+

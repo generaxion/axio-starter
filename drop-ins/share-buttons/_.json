@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "share-buttons",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php",
+      "setup.php"
+    ]
+  },
+  "scss": {
+    "main": [
+      "assets/_share-buttons.scss"
+    ],
+    "admin": [],
+    "gutenberg": []
+  },
+  "js": {
+    "main": [],
+    "gutenberg": []
+  },
+  "img": [],
+  "sprite": [
+    "assets/facebook.svg",
+    "assets/instagram.svg",
+    "assets/linkedin.svg",
+    "assets/whatsapp.svg"
+  ]
+}

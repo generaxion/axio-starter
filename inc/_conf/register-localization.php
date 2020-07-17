@@ -53,13 +53,6 @@ add_filter('aucor_core_pll_register_strings', function() {
     'Navigation: Previous'               => 'Edellinen sivu',
     'Navigation: Next'                   => 'Seuraava sivu',
 
-    // social
-    'Social share: Title'                => 'Jaa sosiaalisessa mediassa',
-    'Social share: Facebook'             => 'Jaa Facebookissa',
-    'Social share: Twitter'              => 'Jaa Twitterissä',
-    'Social share: LinkedIn'             => 'Jaa LinkedInissä',
-    'Social share: WhatsApp'             => 'Jaa WhatsAppissa',
-
     // taxonomies
     'Taxonomies: Keywords'               => 'Avainsanat',
     'Taxonomies: Categories'             => 'Kategoriat',

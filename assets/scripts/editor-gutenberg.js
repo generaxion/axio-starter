@@ -99,6 +99,11 @@ wp.hooks.addFilter(
         align = ['left', 'center', 'right', 'wide'];
       break;
 
+      case 'acf/hero':
+        align = ['full'];
+        default_align = 'full';
+      break;
+
       default:
         return settings;
 
