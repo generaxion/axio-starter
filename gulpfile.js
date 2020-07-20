@@ -43,6 +43,9 @@ const svgstore     = require('gulp-svgstore');
 const file         = require('gulp-file');
 const babel        = require('gulp-babel');
 
+const fs           = require('fs');
+const path_module  = require('path');
+
 /**
  * Asset paths
  */
@@ -74,6 +77,9 @@ const path = {
   "favicon" : {
     "source": "assets/favicon/",
     "dist":   "dist/favicon/",
+  },
+  "drop_ins" : {
+    "source": "drop-ins/",
   }
 };
 
@@ -107,6 +113,50 @@ const updateTimestamp = (stamp) => {
 };
 
 /**
+ * getDropInJsons helper function for collecting all drop-ins _.json files
+ */
+const getDropInJsons = () => {  
+  let jsons = [];
+  let drop_ins_dir = './drop-ins/';
+  let drop_ins = fs.readdirSync(drop_ins_dir)
+                  .filter(function(file) {
+                    return fs.statSync(path_module.join(drop_ins_dir, file)).isDirectory();
+                  });
+
+  for (let i = 0; i < drop_ins.length; i++) {
+    if (fs.existsSync('./drop-ins/' + drop_ins[i] + '/_.json')) {
+      jsons.push({
+        'name': drop_ins[i],
+        'json': require('./drop-ins/' + drop_ins[i] + '/_.json'),
+      });
+    } 
+  }
+  return jsons;
+}
+
+const getAssets = () => {
+  let manifest_json = {
+    'js': manifest.js(),
+    'css': manifest.css(),
+  }
+
+  getDropInJsons().forEach(drop_in => {
+    Object.entries(drop_in.json.css).forEach(([key, value]) => {
+      if (typeof value !== 'undefined' && value.length > 0) {
+        manifest_json.css[key].push('drop-ins/' + drop_in.name + '/' + value);
+      }
+    });
+    Object.entries(drop_in.json.js).forEach(([key, value]) => {
+      if (typeof value !== 'undefined' && value.length > 0) {
+        manifest_json.js[key].push('drop-ins/' + drop_in.name + '/' + value);
+      }
+    });
+  });
+
+  return manifest_json;
+}
+
+/**
  * Build variable for assets
  *
  * Create array with information of assets:
@@ -119,9 +169,9 @@ const buildAssets = (buildFiles) => {
   let result = [];
   for (let buildFile in buildFiles) {
     // set correct asset paths
-    for (i = 0; i < buildFiles[buildFile].length; i++) {
+    /*for (i = 0; i < buildFiles[buildFile].length; i++) {
       buildFiles[buildFile][i] = path.base.source + buildFiles[buildFile][i];
-    }
+    }*/
     result.push({
       'name': buildFile,
       'globs': buildFiles[buildFile],
@@ -129,8 +179,8 @@ const buildAssets = (buildFiles) => {
   }
   return result;
 };
-const jsAssets  = buildAssets(manifest.js());
-const cssAssets = buildAssets(manifest.css());
+const jsAssets  = buildAssets(getAssets().js);
+const cssAssets = buildAssets(getAssets().css);
 
 /**
  * Process: CSS
@@ -194,10 +244,10 @@ const jsTasks = (filename) => {
       return gulpif(enabled.maps, sourcemaps.init());
     })
 
-    // transpile
-    .pipe(function() {
-      return babel({
-        presets: ["@babel/preset-env", "@babel/preset-react"],
+    // transpile
+    .pipe(function() {
+      return babel({
+        presets: ["@babel/preset-env", "@babel/preset-react"],
         // override because of use of "this" in IIFE with Babel in Tobi.js: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
         overrides: [{
           test: [
@@ -206,8 +256,8 @@ const jsTasks = (filename) => {
           ],
           sourceType: "script",
         }],
-      });
-    })
+      });
+    })
 
     // combine files
     .pipe(concat, filename)
@@ -247,9 +297,12 @@ gulp.task('styles', () => {
         this.emit('end');
       });
     }
+    
     // merge
-    merged.add(gulp.src(asset.globs, {base: 'styles'})
-      .pipe(cssTasksInstance));
+    merged.add(
+      gulp.src(asset.globs, {base: 'styles'})
+        .pipe(cssTasksInstance)
+    );
   }
   return merged
     .on('error', function(err) {
@@ -270,6 +323,8 @@ gulp.task('scripts', () => {
   for (i = 0; i < jsAssets.length; i++) {
     let asset = jsAssets[i];
     const jsTasksInstance = jsTasks(asset.name);
+    
+    //merge
     merged.add(
       gulp.src(asset.globs, {base: 'scripts'})
         .pipe(jsTasksInstance)
@@ -435,6 +490,7 @@ gulp.task('watch', () => {
 
   // watch these files
   gulp.watch(path.styles.source   + '**/*', gulp.task('styles'));
+  gulp.watch(path.drop_ins.source + '*/assets/*.scss', gulp.task('styles')); 
   gulp.watch(path.scripts.source  + '**/*', gulp.task('scripts'));
   gulp.watch(path.fonts.source    + '**/*', gulp.task('fonts'));
   gulp.watch(path.images.source   + '**/*', gulp.task('images'));
@@ -456,6 +512,7 @@ gulp.task('watch', () => {
  * `gulp build` - Run all the build tasks but don't clean up beforehand.
  * Generally you should be running `gulp` instead of `gulp build`.
  */
+
 gulp.task('build', gulp.series(
   gulp.parallel('styles','jshint', 'scripts'),
   gulp.parallel('fonts', 'images', 'svgstore', 'favicon')

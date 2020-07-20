@@ -9,16 +9,16 @@
       "setup.php"
     ]
   },
-  "scss": {
-    "main": [
-      "assets/_share-buttons.scss"
+  "css": {
+    "main.css": [
+      "assets/share-buttons.scss"
     ],
-    "admin": [],
-    "gutenberg": []
+    "admin.css": [],
+    "editor-gutenberg.css": []
   },
   "js": {
-    "main": [],
-    "gutenberg": []
+    "main.js": [],
+    "editor-gutenberg.js": []
   },
   "img": [],
   "sprite": [

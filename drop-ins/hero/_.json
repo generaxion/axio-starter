@@ -8,14 +8,14 @@
       "setup.php"
     ]
   },
-  "scss": {
-    "main": [],
-    "admin": [],
-    "gutenberg": []
+  "css": {
+    "main.css": [],
+    "admin.css": [],
+    "editor-gutenberg.css": []
   },
   "js": {
-    "main": [],
-    "gutenberg": []
+    "main.js": [],
+    "editor-gutenberg.js": []
   },
   "img": [],
   "sprite": []

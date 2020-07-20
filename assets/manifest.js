@@ -26,31 +26,31 @@ module.exports = {
       "main.js": [
 
         // polyfill for external x:link svg (https://github.com/Keyamoon/svgxuse)
-        "../node_modules/svgxuse/svgxuse.js",
+        "node_modules/svgxuse/svgxuse.js",
 
         // polyfill for object-fit
-        "../node_modules/objectFitPolyfill/dist/objectFitPolyfill.min.js",
+        "node_modules/objectFitPolyfill/dist/objectFitPolyfill.min.js",
 
         // a11y dialog helpers (https://github.com/edenspiekermann/a11y-dialog)
-        "../node_modules/a11y-dialog/a11y-dialog.js",
+        "node_modules/a11y-dialog/a11y-dialog.js",
 
         // vanilla js version of fitvids, that makes iframe videos responsice (https://www.npmjs.com/package/fitvids)
-        "../node_modules/fitvids/dist/fitvids.js",
+        "node_modules/fitvids/dist/fitvids.js",
 
         // lightweight lightbox script (https://github.com/rqrauhvmra/Tobi)
-        "../node_modules/@rqrauhvmra/tobi/js/tobi.js",
+        "node_modules/@rqrauhvmra/tobi/js/tobi.js",
 
         // project specific js
-        "scripts/lib/dropdown-menu.js",
-        "scripts/lib/mobile-menu.js",
-        "scripts/lib/markup-enhancements.js",
-        "scripts/main.js"
+        "assets/scripts/lib/dropdown-menu.js",
+        "assets/scripts/lib/mobile-menu.js",
+        "assets/scripts/lib/markup-enhancements.js",
+        "assets/scripts/main.js"
       ],
 
       // gutenberg editor specific js
       "editor-gutenberg.js": [
 
-        "scripts/editor-gutenberg.js"
+        "assets/scripts/editor-gutenberg.js"
 
       ]
 
@@ -69,19 +69,19 @@ module.exports = {
     return {
 
       "main.css": [
-        "styles/main.scss"
+        "assets/styles/main.scss"
       ],
 
       "editor-gutenberg.css": [
-        "styles/editor-gutenberg.scss"
+        "assets/styles/editor-gutenberg.scss"
       ],
 
       "editor-classic.css": [
-        "styles/editor-classic.scss"
+        "assets/styles/editor-classic.scss"
       ],
 
       "admin.css": [
-        "styles/admin.scss"
+        "assets/styles/admin.scss"
       ]
 
     }
