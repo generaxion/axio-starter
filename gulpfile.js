@@ -361,8 +361,19 @@ gulp.task('fonts', () => {
  * `gulp images` - Run lossless compression on all the images.
  */
 gulp.task('images', () => {
+
+  // Gather all image sources to one array
+  let image_sources = [path.images.source + '**/*'];
+  getDropInJsons().forEach(drop_in => {
+    if(drop_in.json.img != undefined && drop_in.json.img.length > 0) {
+      drop_in.json.img.forEach(image => {
+        image_sources.push('drop-ins/' + drop_in.name + '/' + image);
+      });
+    }
+  });
+
   return gulp
-    .src([path.images.source + '**/*'])
+    .src(image_sources)
     // optimize images
     .pipe(
       imagemin({
@@ -384,7 +395,36 @@ gulp.task('images', () => {
  */
 gulp.task('svgstore', () => {
   updateTimestamp('svg');
-  return gulp.src(path.sprite.source + '*.svg')
+  
+  // Gather all svg sources to one array
+  let sprite_sources = [];
+
+  // Get names of icons in /assets/sprite/ directory for later name comparison
+  fs.readdirSync(path.sprite.source).forEach(sprite => {
+    sprite_sources.push(path.sprite.source + sprite);
+  });
+
+  // Add Drop-in sprites to sprite_sources if icon with the same name is not found
+  let same_icon_found = false;
+  getDropInJsons().forEach(drop_in => {
+    if(drop_in.json.sprite != undefined && drop_in.json.sprite.length > 0) {
+      drop_in.json.sprite.forEach(sprite => {
+        for (let i=sprite_sources.length; i--;) {
+          if (sprite_sources[i].indexOf(sprite.replace(/^.*[\\\/]/, ''))>=0) {
+            console.log("Ignoring " + sprite + " from drop-in " + drop_in.name + ":  An icon with the same name already exists.");
+            same_icon_found = true;
+            break;
+          } 
+          same_icon_found = false;
+        }
+        if(!same_icon_found) {
+          sprite_sources.push('drop-ins/' + drop_in.name + '/' + sprite);  
+        }
+      });
+    }
+  });
+
+  return gulp.src(sprite_sources)
   // rename SVG IDs by "icon-filename"
   .pipe(rename({prefix: 'icon-'}))
   // optimize SVG
@@ -490,15 +530,25 @@ gulp.task('watch', () => {
 
   // watch these files
   gulp.watch(path.styles.source   + '**/*', gulp.task('styles'));
-  gulp.watch(path.drop_ins.source + '*/assets/*.scss', gulp.task('styles')); 
   gulp.watch(path.scripts.source  + '**/*', gulp.task('scripts'));
   gulp.watch(path.fonts.source    + '**/*', gulp.task('fonts'));
   gulp.watch(path.images.source   + '**/*', gulp.task('images'));
   gulp.watch(path.sprite.source   +    '*', gulp.task('svgstore'));
   gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
+
+  // Drop ins
+  gulp.watch(path.drop_ins.source + '*/assets/*.scss', gulp.task('styles')); 
+  gulp.watch(path.drop_ins.source +   '*/assets/*.js', gulp.task('scripts')); 
+  gulp.watch(path.drop_ins.source + '*/assets/*.jpeg', gulp.task('images')); 
+  gulp.watch(path.drop_ins.source +  '*/assets/*.jpg', gulp.task('images')); 
+  gulp.watch(path.drop_ins.source +  '*/assets/*.png', gulp.task('images')); 
+  gulp.watch(path.drop_ins.source +  '*/assets/*.svg', gulp.task('images')); 
+  gulp.watch(path.drop_ins.source +  '*/assets/*.svg', gulp.task('svgstore')); 
+
   gulp.watch([
     'gulpfile.js',
-    'assets/manifest.js'
+    'assets/manifest.js',
+    path.drop_ins.source + '*/_.json'
   ], () => {
     console.error("\n⚠️  Congifuration files modified. Restart gulp. ⚠️\n");
     beeper();
