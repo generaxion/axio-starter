@@ -536,14 +536,23 @@ gulp.task('watch', () => {
   gulp.watch(path.sprite.source   +    '*', gulp.task('svgstore'));
   gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
 
-  // Drop ins
+  // Drop-ins
   gulp.watch(path.drop_ins.source + '*/assets/*.scss', gulp.task('styles')); 
   gulp.watch(path.drop_ins.source +   '*/assets/*.js', gulp.task('scripts')); 
-  gulp.watch(path.drop_ins.source + '*/assets/*.jpeg', gulp.task('images')); 
-  gulp.watch(path.drop_ins.source +  '*/assets/*.jpg', gulp.task('images')); 
-  gulp.watch(path.drop_ins.source +  '*/assets/*.png', gulp.task('images')); 
-  gulp.watch(path.drop_ins.source +  '*/assets/*.svg', gulp.task('images')); 
-  gulp.watch(path.drop_ins.source +  '*/assets/*.svg', gulp.task('svgstore')); 
+  getDropInJsons().forEach(drop_in => {
+    if(drop_in.json.img != undefined && drop_in.json.img.length > 0) {
+      drop_in.json.img.forEach(image => {
+        gulp.watch(path.drop_ins.source + drop_in.name + '/' + image, gulp.task('images'));
+      });
+    }
+  });
+  getDropInJsons().forEach(drop_in => {
+    if(drop_in.json.sprite != undefined && drop_in.json.sprite.length > 0) {
+      drop_in.json.sprite.forEach(sprite => {
+        gulp.watch(path.drop_ins.source + drop_in.name + '/' + sprite, gulp.task('svgstore'));
+      });
+    }
+  });
 
   gulp.watch([
     'gulpfile.js',
