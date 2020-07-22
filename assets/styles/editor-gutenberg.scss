@@ -7,11 +7,14 @@
 
 @import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
 
+/* Utils
+----------------------------------------------- */
+
+@import "utils";
+
 /* Base
 ----------------------------------------------- */
 
-@import "base/variables";
-@import "base/mixins";
 @import "base/normalize";
 @import "base/media";
 

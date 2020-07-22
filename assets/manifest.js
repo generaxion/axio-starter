@@ -67,6 +67,10 @@ module.exports = {
    */
   css: function() {
     return {
+      
+      "utils.css": [
+        "assets/styles/utils.scss"
+      ],
 
       "main.css": [
         "assets/styles/main.scss"

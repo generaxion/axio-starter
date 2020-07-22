@@ -118,10 +118,12 @@ const updateTimestamp = (stamp) => {
 const getDropInJsons = () => {  
   let jsons = [];
   let drop_ins_dir = './drop-ins/';
-  let drop_ins = fs.readdirSync(drop_ins_dir)
-                  .filter(function(file) {
-                    return fs.statSync(path_module.join(drop_ins_dir, file)).isDirectory();
-                  });
+  let drop_ins =  fs.readdirSync(drop_ins_dir)
+                    .filter(function(file) {
+                      if (!file.includes("_", 0)) {
+                        return fs.statSync(path_module.join(drop_ins_dir, file)).isDirectory();
+                      }
+                    });
 
   for (let i = 0; i < drop_ins.length; i++) {
     if (fs.existsSync('./drop-ins/' + drop_ins[i] + '/_.json')) {
@@ -545,8 +547,6 @@ gulp.task('watch', () => {
         gulp.watch(path.drop_ins.source + drop_in.name + '/' + image, gulp.task('images'));
       });
     }
-  });
-  getDropInJsons().forEach(drop_in => {
     if(drop_in.json.sprite != undefined && drop_in.json.sprite.length > 0) {
       drop_in.json.sprite.forEach(sprite => {
         gulp.watch(path.drop_ins.source + drop_in.name + '/' + sprite, gulp.task('svgstore'));
@@ -557,6 +557,7 @@ gulp.task('watch', () => {
   gulp.watch([
     'gulpfile.js',
     'assets/manifest.js',
+    path.drop_ins.source + '*',
     path.drop_ins.source + '*/_.json'
   ], () => {
     console.error("\n⚠️  Congifuration files modified. Restart gulp. ⚠️\n");

@@ -10,11 +10,14 @@
 @import "../../node_modules/@rqrauhvmra/tobi/scss/_variables.scss";
 @import "../../node_modules/@rqrauhvmra/tobi/scss/tobi.scss";
 
+/* Utils
+----------------------------------------------- */
+
+@import "utils";
+
 /* Base
 ----------------------------------------------- */
 
-@import "base/variables";
-@import "base/mixins";
 @import "base/normalize";
 @import "base/typography";
 @import "base/media";
