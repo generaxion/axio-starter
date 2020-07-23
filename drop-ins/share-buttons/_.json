@@ -11,7 +11,7 @@
   },
   "css": {
     "main.css": [
-      "assets/share-buttons.scss"
+      "assets/styles/share-buttons.scss"
     ],
     "admin.css": [],
     "editor-gutenberg.css": []
@@ -19,12 +19,5 @@
   "js": {
     "main.js": [],
     "editor-gutenberg.js": []
-  },
-  "img": [],
-  "sprite": [
-    "assets/facebook.svg",
-    "assets/instagram.svg",
-    "assets/linkedin.svg",
-    "assets/whatsapp.svg"
-  ]
+  }
 }

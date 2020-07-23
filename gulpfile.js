@@ -113,25 +113,30 @@ const updateTimestamp = (stamp) => {
 };
 
 /**
- * getDropInJsons helper function for collecting all drop-ins _.json files
+ * getDropIns helper function for collecting all drop-ins
  */
-const getDropInJsons = () => {  
-  let jsons = [];
-  let drop_ins_dir = './drop-ins/';
-  let drop_ins =  fs.readdirSync(drop_ins_dir)
-                    .filter(function(file) {
-                      if (!file.includes("_", 0)) {
-                        return fs.statSync(path_module.join(drop_ins_dir, file)).isDirectory();
-                      }
-                    });
+const getDropIns = () => {
+  return  fs.readdirSync(path.drop_ins.source)
+            .filter(function(drop_in) {
+              if (!drop_in.includes("_", 0)) {
+                return fs.statSync(path_module.join('./drop-ins/', drop_in)).isDirectory();
+              }
+            });
+}
+/**
+ * getDropInJsons helper function for collecting all drop-ins _.json files
+ */ 
+var getDropInJsons = () => {  
+  var jsons = [];
+  var drop_ins = getDropIns();
 
   for (let i = 0; i < drop_ins.length; i++) {
-    if (fs.existsSync('./drop-ins/' + drop_ins[i] + '/_.json')) {
+    if (!drop_ins[i].includes("_", 0) && !drop_ins[i].includes(".")) {
       jsons.push({
         'name': drop_ins[i],
         'json': require('./drop-ins/' + drop_ins[i] + '/_.json'),
       });
-    } 
+    }
   }
   return jsons;
 }
@@ -167,7 +172,7 @@ const getAssets = () => {
  *   'globs': 'assets/main.scss,assets/print.scss'
  * }
  */
-const buildAssets = (buildFiles) => {
+var buildAssets = (buildFiles) => {
   let result = [];
   for (let buildFile in buildFiles) {
     // set correct asset paths
@@ -181,8 +186,8 @@ const buildAssets = (buildFiles) => {
   }
   return result;
 };
-const jsAssets  = buildAssets(getAssets().js);
-const cssAssets = buildAssets(getAssets().css);
+var jsAssets  = buildAssets(getAssets().js);
+var cssAssets = buildAssets(getAssets().css);
 
 /**
  * Process: CSS
@@ -286,6 +291,8 @@ const jsTasks = (filename) => {
  */
 gulp.task('styles', () => {
   const merged = merge();
+  cssAssets = buildAssets(getAssets().css);
+
   // update last-edited.json
   updateTimestamp('css');
   // process all assets
@@ -321,6 +328,8 @@ gulp.task('styles', () => {
  */
 gulp.task('scripts', () => {
   const merged = merge();
+  jsAssets = buildAssets(getAssets().js);
+  
   // process all assets
   for (i = 0; i < jsAssets.length; i++) {
     let asset = jsAssets[i];
@@ -365,14 +374,10 @@ gulp.task('fonts', () => {
 gulp.task('images', () => {
 
   // Gather all image sources to one array
-  let image_sources = [path.images.source + '**/*'];
-  getDropInJsons().forEach(drop_in => {
-    if(drop_in.json.img != undefined && drop_in.json.img.length > 0) {
-      drop_in.json.img.forEach(image => {
-        image_sources.push('drop-ins/' + drop_in.name + '/' + image);
-      });
-    }
-  });
+  let image_sources = [
+    path.images.source + '**/*',
+    path.drop_ins.source + '**/images/*'
+  ];
 
   return gulp
     .src(image_sources)
@@ -384,8 +389,11 @@ gulp.task('images', () => {
         svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}, {removeDimensions: true}]
       })
     )
+    
     // send to /dist/images
+    .pipe(flatten())
     .pipe(gulp.dest(path.images.dist))
+
     // browsersync result
     .pipe(browsersync.stream());
 });
@@ -408,9 +416,13 @@ gulp.task('svgstore', () => {
 
   // Add Drop-in sprites to sprite_sources if icon with the same name is not found
   let same_icon_found = false;
-  getDropInJsons().forEach(drop_in => {
-    if(drop_in.json.sprite != undefined && drop_in.json.sprite.length > 0) {
-      drop_in.json.sprite.forEach(sprite => {
+  let drop_ins = getDropIns();
+
+  drop_ins.forEach(drop_in => {
+    let drop_in_sprites = fs.readdirSync(path.drop_ins.source + drop_in + '/assets/sprites');
+
+    if(drop_in_sprites != undefined && drop_in_sprites.length > 0) {
+      drop_in_sprites.forEach(sprite => {
         for (let i=sprite_sources.length; i--;) {
           if (sprite_sources[i].indexOf(sprite.replace(/^.*[\\\/]/, ''))>=0) {
             console.log("Ignoring " + sprite + " from drop-in " + drop_in.name + ":  An icon with the same name already exists.");
@@ -420,7 +432,7 @@ gulp.task('svgstore', () => {
           same_icon_found = false;
         }
         if(!same_icon_found) {
-          sprite_sources.push('drop-ins/' + drop_in.name + '/' + sprite);  
+          sprite_sources.push('drop-ins/' + drop_in + '/assets/sprites/' + sprite);
         }
       });
     }
@@ -539,31 +551,26 @@ gulp.task('watch', () => {
   gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
 
   // Drop-ins
-  gulp.watch(path.drop_ins.source + '*/assets/*.scss', gulp.task('styles')); 
-  gulp.watch(path.drop_ins.source +   '*/assets/*.js', gulp.task('scripts')); 
-  getDropInJsons().forEach(drop_in => {
-    if(drop_in.json.img != undefined && drop_in.json.img.length > 0) {
-      drop_in.json.img.forEach(image => {
-        gulp.watch(path.drop_ins.source + drop_in.name + '/' + image, gulp.task('images'));
-      });
-    }
-    if(drop_in.json.sprite != undefined && drop_in.json.sprite.length > 0) {
-      drop_in.json.sprite.forEach(sprite => {
-        gulp.watch(path.drop_ins.source + drop_in.name + '/' + sprite, gulp.task('svgstore'));
-      });
-    }
-  });
-
+  gulp.watch(path.drop_ins.source +           '**/*.scss', gulp.task('styles')); 
+  gulp.watch(path.drop_ins.source +       '**/*.js', gulp.task('scripts')); 
+  gulp.watch(path.drop_ins.source +    '**/images/*', gulp.task('images'));
+  gulp.watch(path.drop_ins.source +     '**/sprites/*', gulp.task('svgstore'));
+  
   gulp.watch([
     'gulpfile.js',
     'assets/manifest.js',
-    path.drop_ins.source + '*',
     path.drop_ins.source + '*/_.json'
   ], () => {
     console.error("\n⚠️  Congifuration files modified. Restart gulp. ⚠️\n");
     beeper();
     process.exit();
   });
+
+  gulp.watch([
+    path.drop_ins.source + '*',
+  ],  
+    gulp.task('default')
+  )
 });
 
 /**
@@ -574,7 +581,7 @@ gulp.task('watch', () => {
  */
 
 gulp.task('build', gulp.series(
-  gulp.parallel('styles','jshint', 'scripts'),
+  gulp.parallel('styles', 'scripts','jshint'),
   gulp.parallel('fonts', 'images', 'svgstore', 'favicon')
 ));
 
