@@ -424,7 +424,13 @@ gulp.task('svgstore', () => {
   let drop_ins = getDropIns();
 
   drop_ins.forEach(drop_in => {
-    let drop_in_sprites = fs.readdirSync(path.drop_ins.source + drop_in + '/assets/sprites');
+
+    let drop_in_sprites = []
+    fs.access(path.drop_ins.source + drop_in + '/assets/sprite', error => {
+      if (!error) {
+        drop_in_sprites = fs.readdirSync(path.drop_ins.source + drop_in + '/assets/sprite');
+      } 
+    });
 
     if(drop_in_sprites != undefined && drop_in_sprites.length > 0) {
       drop_in_sprites.forEach(sprite => {
@@ -437,7 +443,7 @@ gulp.task('svgstore', () => {
           same_icon_found = false;
         }
         if(!same_icon_found) {
-          sprite_sources.push('drop-ins/' + drop_in + '/assets/sprites/' + sprite);
+          sprite_sources.push('drop-ins/' + drop_in + '/assets/sprite/' + sprite);
         }
       });
     }
@@ -559,7 +565,7 @@ gulp.task('watch', () => {
   gulp.watch(path.drop_ins.source +           '**/*.scss', gulp.task('styles')); 
   gulp.watch(path.drop_ins.source +       '**/*.js', gulp.task('scripts')); 
   gulp.watch(path.drop_ins.source +    '**/images/*', gulp.task('images'));
-  gulp.watch(path.drop_ins.source +     '**/sprites/*', gulp.task('svgstore'));
+  gulp.watch(path.drop_ins.source +     '**/sprite/*', gulp.task('svgstore'));
   
   gulp.watch([
     'gulpfile.js',
