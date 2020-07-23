@@ -165,7 +165,7 @@ const getAssets = () => {
       }
     });
   });
-  console.log(manifest_json.css);
+  
   return manifest_json;
 }
 
