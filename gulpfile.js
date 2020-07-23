@@ -148,18 +148,24 @@ const getAssets = () => {
   }
 
   getDropInJsons().forEach(drop_in => {
-    Object.entries(drop_in.json.css).forEach(([key, value]) => {
-      if (typeof value !== 'undefined' && value.length > 0) {
-        manifest_json.css[key].push('drop-ins/' + drop_in.name + '/' + value);
+    
+    Object.entries(drop_in.json.css).forEach(([target, sources]) => {
+      if (typeof sources !== 'undefined' && sources.length > 0) {
+        sources.forEach(source => {
+          manifest_json.css[target].push('drop-ins/' + drop_in.name + '/' + source);
+        });
       }
     });
-    Object.entries(drop_in.json.js).forEach(([key, value]) => {
-      if (typeof value !== 'undefined' && value.length > 0) {
-        manifest_json.js[key].push('drop-ins/' + drop_in.name + '/' + value);
+
+    Object.entries(drop_in.json.js).forEach(([target, sources]) => {
+      if (typeof sources !== 'undefined' && sources.length > 0) {
+        sources.forEach(source => {
+          manifest_json.js[target].push('drop-ins/' + drop_in.name + '/' + source);
+        });
       }
     });
   });
-
+  console.log(manifest_json.css);
   return manifest_json;
 }
 
@@ -334,7 +340,6 @@ gulp.task('scripts', () => {
   for (i = 0; i < jsAssets.length; i++) {
     let asset = jsAssets[i];
     const jsTasksInstance = jsTasks(asset.name);
-    
     //merge
     merged.add(
       gulp.src(asset.globs, {base: 'scripts'})
