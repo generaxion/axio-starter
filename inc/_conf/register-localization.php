@@ -17,14 +17,7 @@ add_filter('aucor_core_pll_register_strings', function() {
   return [
 
     // menu
-    'Menu: Button label'                => 'Menu',
-    'Menu: Primary Menu'                => 'Päävalikko',
-    'Menu: Additional Menu'             => 'Lisävalikko',
     'Menu: Social Menu'                 => 'Sosiaalisen median kanavat',
-    'Menu: Open'                        => 'Avaa valikko',
-    'Menu: Close'                       => 'Sulje valikko',
-    'Menu: Open Sub-menu'               => 'Avaa alavalikko',
-    'Menu: Close Sub-menu'              => 'Sulje alavalikko',
 
     // 404
     '404: Page not found description'   => 'Sivu on saatettu poistaa tai siirtää eri osoitteeseen. Käytä alla olevaa hakua löytääksesi etsimäsi.',
