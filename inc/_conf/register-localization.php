@@ -16,12 +16,6 @@ add_filter('aucor_core_pll_register_strings', function() {
 
   return [
 
-    // titles
-    'Title: Home'                       => 'Blogi',
-    'Title: Archives'                   => 'Arkisto',
-    'Title: Search'                     => 'Haku',
-    'Title: 404'                        => 'Hakemaasi sivua ei löytynyt',
-
     // menu
     'Menu: Button label'                => 'Menu',
     'Menu: Primary Menu'                => 'Päävalikko',

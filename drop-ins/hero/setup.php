@@ -6,52 +6,22 @@
  */
 
 /**
- * Register block
+ * theme_hero action
  */
-add_action('acf/init', function () {
-
-  // Check function exists.
-  if (function_exists('acf_register_block_type')) {
-    acf_register_block_type([
-      'name'              => 'hero',
-      'title'             => 'Hero',
-      'render_template'   => 'drop-ins/hero/block.php',
-      'multiple'          => false,
-      'keywords'          => ['header', 'title', 'cover'],
-      'post_types'        => ['page'],
-      'category'          => 'general',
-      'icon'              => 'slides',
-      'mode'              => 'preview',
-      'supports'          => [
-        'align'               => false,
-        'mode'                => false,
-        '__experimental_jsx'  => true,
-      ],
-    ]);
-  }
-
-});
+add_action('theme_hero', function () {
+  Aucor_Hero::render();
+}, 100, 1);
 
 /**
- * Allow hero block
+ * Localization
  */
-add_filter('allowed_block_types', function($blocks, $post) {
+add_filter('aucor_core_pll_register_strings', function($strings) {
 
-  $blocks[] = 'acf/hero';
-  return $blocks;
+  return array_merge($strings, [
+    'Title: Home'                       => 'Blogi',
+    'Title: Archives'                   => 'Arkisto',
+    'Title: Search'                     => 'Haku',
+    'Title: 404'                        => 'Hakemaasi sivua ei löytynyt',
+  ]);
 
-}, 11, 2);
-
-
-/**
- * Auto append hero block
- */
-add_action('init', function () {
-
-  $post_type_object = get_post_type_object('page');
-  $post_type_object->template = [
-    ['acf/hero'],
-    ['core/paragraph'],
-  ];
-
-});
+}, 10, 1);
