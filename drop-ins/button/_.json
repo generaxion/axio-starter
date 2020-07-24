@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "Button",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php",
+      "setup.php",
+      "acf.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/button.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/button.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  },
+  "img": [],
+  "sprite": []
+}
