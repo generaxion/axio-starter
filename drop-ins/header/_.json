@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "header",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "components/menu-additional.php",
+      "components/menu-primary.php",
+      "components/menu-toggle.php",
+      "components/mobile-menu.php",
+      "component.php",
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/header.scss",
+      "assets/styles/menu-additional.scss",
+      "assets/styles/menu-primary.scss",
+      "assets/styles/menu-toggle.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/menu-primary.scss"
+    ]
+  },
+  "js": {
+    "main.js": [
+      "assets/scripts/dropdown-menu.js",
+      "assets/scripts/mobile-menu.js"
+    ],
+    "editor-gutenberg.js": []
+  }
+}

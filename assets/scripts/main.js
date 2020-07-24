@@ -3,26 +3,6 @@
 ========================================================================== */
 
 /**
- * Init dropdown-menus
- */
-var dropdown_menus = document.querySelectorAll('.js-navigation');
-for (var i = 0; i < dropdown_menus.length; i++) {
-  component_dropdown_menu({
-    desktop_min_width: 890,
-    menu: dropdown_menus[i]
-  });
-}
-
-/**
- * Init mobile menu
- */
-component_mobile_menu({
-  menu:     document.querySelector('.js-mobile-menu'),
-  site:     document.querySelector('.js-page'),
-  toggles:  document.querySelectorAll('.js-menu-toggle')
-});
-
-/**
  * Init Responsive videos
  */
 fitvids();

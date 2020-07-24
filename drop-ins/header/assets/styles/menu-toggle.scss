@@ -1,0 +1,77 @@
+/* ==========================================================================
+ # Menu toggle
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+.menu-toggle {
+  @include button-reset;
+  background: transparent;
+  color: $primary;
+  cursor: pointer;
+  display: inline-block;
+  font-size: .875em;
+  line-height: 0;
+  padding: 0;
+  text-transform: uppercase;
+  @include breakpoint($menu-visible) {
+    display: none;
+  }
+
+  &:focus {
+    outline: thin dotted;
+    outline-offset: -2px;
+  }
+
+  &:hover, &:focus, &:active {
+    svg {
+      transform: scale(.95);
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 0;
+    position: relative;
+    svg {
+      @include transition;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .icon-open {
+      opacity: 1;
+    }
+    .icon-close {
+      opacity: 0;
+    }
+  }
+
+  &__label-open {
+    @include visuallyhidden;
+  }
+
+  &__label-close {
+    @include visuallyhidden;
+    display: none;
+  }
+
+
+  .is-active-menu & {
+    .icon-menu {
+      opacity: 0;
+    }
+    .icon-close {
+      opacity: 1;
+    }
+  }
+
+}
+

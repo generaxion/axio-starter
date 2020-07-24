@@ -1,0 +1,156 @@
+/* ==========================================================================
+ # Header
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+.site-header {
+  &__inner {
+    @include wrap;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    @include breakpoint($menu-hidden) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @include breakpoint($menu-visible) {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  &__menus {
+    display: none;
+    @include breakpoint($menu-visible) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__additional {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+  }
+
+  &__main {
+    flex-grow: 1;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__branding {
+    @include breakpoint($menu-visible) {
+      padding-right: $gap;
+    }
+  }
+
+  &__title {
+    &, a {
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  &__logo {
+    width: 7rem;
+    @include breakpoint($menu-hidden) {
+      width: 5rem;
+    }
+  }
+
+}
+
+.mobile-menu {
+  display: none;
+  &__nav {
+    display: none;
+    padding: $gap-big;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50rem;
+    background: $white;
+    z-index: 9000;
+    width: 100%;
+    overflow-y: auto;
+    max-width: 25rem;
+    &__inner {
+      position: relative;
+    }
+    .menu-toggle {
+      display: block;
+      position: absolute;
+      top: $gap;
+      right: $gap;
+    }
+  }
+  &__overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 8998;
+    background: rgba($black, .3);
+  }
+  &__close {
+    @include button-reset;
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 8999;
+  }
+
+  @include breakpoint($menu-hidden) {
+    .is-active-menu & {
+      display: block;
+      .mobile-menu__nav {
+        display: block;
+        animation: mobilemenu-nav-in .25s;
+
+      }
+      .mobile-menu__overlay {
+        animation: mobilemenu-overlay-in .25s;
+
+      }
+    }
+    .is-closing-menu & {
+      .mobile-menu__nav {
+        animation: mobilemenu-nav-out .25s;
+      }
+      .mobile-menu__overlay {
+        animation: mobilemenu-overlay-out .25s;
+      }
+    }
+  }
+}
+
+@keyframes mobilemenu-overlay-in {
+  from {opacity: 0}
+  to   {opacity: 1}
+}
+@keyframes mobilemenu-overlay-out {
+  from {opacity: 1}
+  to   {opacity: 0}
+}
+@keyframes mobilemenu-nav-in {
+  from {transform: translateX(100%)}
+  to   {transform: translateX(0)}
+}
+@keyframes mobilemenu-nav-out {
+  from {transform: translateX(0)}
+  to   {transform: translateX(100%)}
+}
+

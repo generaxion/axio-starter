@@ -1,0 +1,393 @@
+/* ==========================================================================
+ # Primary menu
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+.primary-navigation__items {
+
+  /* Both navigations
+  ----------------------------------------------- */
+
+  &, ul {
+    @include list-reset;
+  }
+
+  li {
+
+    // call to action
+    &.cta {
+      & > span > a {
+        @include button;
+        font-size: .875rem;
+        font-weight: $bold;
+      }
+    }
+
+  }
+
+  .menu-item__caret__text-open,
+  .menu-item__caret__text-close {
+    @include visuallyhidden;
+  }
+  .menu-item__caret__text-open {
+    display: block;
+  }
+  .menu-item__caret__text-close {
+    display: none;
+  }
+
+  .menu-item-has-children[aria-expanded="true"] > span > .menu-item__caret {
+    .menu-item__caret__text-open {
+      display: none;
+    }
+    .menu-item__caret__text-close {
+      display: block;
+    }
+    svg {
+      @include breakpoint($menu-hidden) {
+        transform: rotate(180deg); // flip caret to point up
+      }
+    }
+  }
+
+  /* Mobile navigation
+  ----------------------------------------------- */
+
+  @include breakpoint($menu-hidden) {
+    display: block;
+    padding-top: 2rem;
+    .desktop-menu & {
+      display: none;
+    }
+
+    // all <li>
+    li {
+
+      // all <a>
+      a {
+        color: $base-font-color;
+        flex-grow: 1;
+        font-size: .875rem;
+        text-decoration: none;
+      }
+
+      & > span {
+        align-items: center;
+        display: flex;
+        min-height: 2rem;
+      }
+
+      // call to action
+      &.cta {
+        border-top: 0;
+        & > span > a {
+          display: block;
+          text-align: center;
+          svg {
+            margin-right: .25rem;
+            position: relative;
+            top: -.125rem;
+          }
+        }
+      }
+
+      &.menu-item-has-children {
+        position: relative;
+        & > span {
+          align-items: center;
+          display: flex;
+          width: 100%;
+
+          // caret <button>
+          & > .menu-item__caret {
+            svg {
+              @include transition;
+            }
+          }
+        }
+
+      }
+    }
+
+    // all carets
+    .menu-item__caret {
+      @include button-reset;
+      background: $primary;
+      color: $white;
+      padding: .5rem .5rem;
+      margin-left: 1rem;
+      .icon {
+        width: 1.25em;
+        height: 1.25em;
+        top: -.125rem;
+        position: relative;
+      }
+    }
+
+    // all .sub-menu
+    .sub-menu {
+      display: none;
+      padding: $gap-small 0 $gap-small $gap-small;
+      &[aria-hidden="false"] {
+        display: block;
+        animation: dropdown-in .25s;
+      }
+
+      // all lower <li>
+      li {
+        padding: .25rem 0;
+        &:last-of-type {
+          padding-bottom: 0;
+        }
+      }
+
+    }
+
+    // 1st level <li>
+    & > li {
+
+      padding: .75rem 0;
+      border-top: 1px solid $grey;
+      &:first-of-type {
+        border-top: 0;
+      }
+
+      // 1st level <a>
+      & > span > a {
+        font-size: 1.125rem;
+      }
+
+        // 2nd level <ul class="sub-menu"> [closed]
+        & > ul {
+          max-height: 0;
+          background: $white;
+          opacity: 0;
+
+          // 2nd level <ul class="sub-menu"> [open]
+          &[aria-hidden="false"] {
+            opacity: 1;
+            max-height: 999px;
+
+          }
+
+
+          // 2nd level <li>
+          & > li {
+
+            // 2nd level <a>
+            & > span > a {}
+
+            // 3rd level <ul class="sub-menu"> [closed]
+            & > ul {
+              max-height: 0;
+              opacity: 0;
+
+              // 3rd level <ul class="sub-menu"> [open]
+              &[aria-hidden="false"] {
+                max-height: 999px;
+                opacity: 1;
+              }
+            }
+
+
+          }
+
+        }
+
+    }
+
+
+  }
+
+  /* Desktop navigation
+  ----------------------------------------------- */
+
+  @include breakpoint($menu-visible) {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    // all <li>
+    li {
+      & > span {
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+    }
+
+    // all <a>
+    a {
+      color: $base-font-color;
+      text-decoration: none;
+      flex-grow: 1;
+    }
+
+    // all carets
+    .menu-item__caret {
+      @include button-reset;
+      margin-left: .125em;
+      flex-shrink: 0;
+    }
+
+    // all <svg>
+    .icon {
+      width: 1em;
+      height: 1em;
+      top: -.125rem;
+      position: relative;
+      &.icon-from-class {
+        margin-right: .5rem;
+        width: 1.25em;
+        height: 1.25em;
+      }
+    }
+
+    // 1st level <li>
+    & > li {
+      position: relative;
+      margin-right: $gap;
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      // 1st level <a>
+      & > span > a {
+
+        font-size: 1rem;
+        @include breakpoint($l) {
+          font-size: 1.125rem;
+        }
+
+      }
+
+      // all dropdown <li>
+      li {
+        background: $menu-dropdown-bg;
+        & > span > a {
+          color: $menu-dropdown-color;
+          padding: .5rem .75rem;
+          font-size: .875rem;
+          display: block;
+        }
+        &:hover, &:focus, &:active {
+          background: lighten($menu-dropdown-bg, 6);
+        }
+        .icon {
+          color: $menu-dropdown-color;
+          transform: rotate(-90deg);
+        }
+      }
+
+      // 2nd level <ul class="sub-menu"> [open]
+      &:hover > .sub-menu,
+      & > .sub-menu[aria-hidden="false"] {
+        display: block;
+        opacity: 1;
+        left: 50%;
+        &.is-out-of-bounds {
+          left: auto;
+          right: 0;
+          &:before {
+            left: calc(75% - .2rem);
+          }
+        }
+      }
+
+      // 2nd level <ul class="sub-menu"> [closed]
+      & > .sub-menu {
+        display: none;
+        color: $white;
+        width: $menu-dropdown-width;
+        margin: .4rem 0 0 $menu-dropdown-width*-0.5; // margin-left half of the width!
+        background: $white;
+        position: absolute;
+        left: -999em;
+        z-index: 99;
+        box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+        opacity: 0;
+        transition: opacity .2s ease-out;
+
+        .menu-item__caret {
+          align-self: stretch;
+        }
+
+        // 2nd level caret
+        &:before {
+          content: '';
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 .4rem .4rem .4rem;
+          border-color: transparent transparent $menu-dropdown-bg transparent;
+          position: absolute;
+          top: -.4rem;
+          left: 50%;
+          left: calc(50% - .2rem);
+        }
+
+        // 2nd level <li>
+        & > li {
+
+          &.menu-item-has-children {
+            position: relative;
+          }
+
+          // 2nd level <a>
+          & > a {
+            display: block;
+          }
+
+          // carets 2nd level and below
+          .menu-item__caret {
+            padding-left: .75rem;
+            padding-right: .75rem;
+          }
+
+          // 3rd level <ul class="sub-menu"> [open]
+          &:hover > .sub-menu,
+          & > .sub-menu[aria-hidden="false"] {
+            animation: dropdown-in .25s;
+            opacity: 1;
+            display: block;
+            left: $menu-dropdown-width;
+            top: 0;
+            &.is-out-of-bounds {
+              left: -$menu-dropdown-width;
+              right: 0;
+            }
+          }
+
+          // 3rd level <ul class="sub-menu"> [closed]
+          & > ul {
+            width: $menu-dropdown-width;
+            display: none;
+            background: $white;
+            position: absolute;
+            left: -999em;
+            z-index: 99;
+            box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+            opacity: 0;
+            transition: opacity .2s ease-out;
+
+          }
+
+        }
+
+      }
+
+    }
+  }
+}
+
+@keyframes dropdown-in {
+  from {opacity: 0}
+  to   {opacity: 1}
+}
+@keyframes dropdown-out {
+  from {opacity: 1}
+  to   {opacity: 0}
+}

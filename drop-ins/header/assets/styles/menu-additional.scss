@@ -1,0 +1,108 @@
+/* ==========================================================================
+ # Primary menu
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+.additional-navigation__items {
+
+  /* Both navigations
+  ----------------------------------------------- */
+
+  a {}
+
+  &, ul {
+    @include list-reset;
+  }
+
+  /* Mobile navigation
+  ----------------------------------------------- */
+
+  @include breakpoint($menu-hidden) {
+    padding: $gap 0 0;
+    display: block;
+    .desktop-menu & {
+      display: none;
+    }
+
+    // all <li>
+    li {
+
+      // all <a>
+      a {
+        @include transition;
+        color: $base-font-color;
+        flex-grow: 1;
+        font-size: .875rem;
+        text-decoration: none;
+      }
+
+      & > span {
+        align-items: center;
+        display: flex;
+        min-height: 2rem;
+      }
+    }
+
+    // 1st level <li>
+    & > li {
+
+      padding: .25rem 0;
+
+      // 1st level <a>
+      & > span > a {
+        color: $grey-font-color;
+        font-weight: $bold;
+        text-transform: uppercase;
+      }
+
+    }
+
+
+  }
+
+  /* Desktop navigation
+  ----------------------------------------------- */
+
+  @include breakpoint($menu-visible) {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    // all <li>
+    li {
+      & > span {
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+    }
+
+    // all <a>
+    a {
+      @include transition;
+      color: $grey-font-color;
+      text-decoration: none;
+      flex-grow: 1;
+      font-size: .875rem;
+      @include breakpoint($l) {
+        font-size: .9375rem;
+      }
+      &:hover, &:focus, &:active {
+        color: $base-font-color;
+      }
+    }
+
+    // 1st level <li>
+    & > li {
+      position: relative;
+      margin-right: $gap;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+  }
+}

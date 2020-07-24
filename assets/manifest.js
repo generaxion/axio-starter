@@ -41,8 +41,6 @@ module.exports = {
         "node_modules/@rqrauhvmra/tobi/js/tobi.js",
 
         // project specific js
-        "assets/scripts/lib/dropdown-menu.js",
-        "assets/scripts/lib/mobile-menu.js",
         "assets/scripts/lib/markup-enhancements.js",
         "assets/scripts/main.js"
       ],
@@ -67,7 +65,7 @@ module.exports = {
    */
   css: function() {
     return {
-      
+
       "utils.css": [
         "assets/styles/utils.scss"
       ],
