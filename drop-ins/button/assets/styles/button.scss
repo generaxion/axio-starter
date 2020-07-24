@@ -1,0 +1,68 @@
+/* ==========================================================================
+ # Button block and Aucor_Button component
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Component, block front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-acf-button .button,
+.wysiwyg .wp-block-acf-button .button,
+.button {
+  @include button;
+
+  &--primary {
+
+  }
+}
+
+/* Component
+----------------------------------------------- */
+
+.button {
+
+}
+
+
+/* Block front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-acf-button,
+.wysiwyg .wp-block-acf-button {
+
+}
+
+/* Block, only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-acf-button {
+
+  &.is-first-block {
+    margin-top: 0;
+  }
+
+  &.is-last-block {
+    margin-bottom: 0;
+  }
+
+  &.align-left {
+    text-align: left;
+  }
+
+  &.align-center {
+    text-align: center;
+  }
+
+  &.align-right {
+    text-align: right;
+  }
+
+}
+
+/* Block, only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type="acf/button"] {
+
+}

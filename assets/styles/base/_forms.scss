@@ -48,10 +48,3 @@ form button,
 input[type="submit"] {
   @include button;
 }
-
-/* Buttons
------------------------------------------------ */
-
-.button {
-  @include button;
-}
