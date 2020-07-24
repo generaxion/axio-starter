@@ -9,7 +9,11 @@
 
 get_header(); ?>
 
-  <?php Aucor_Hero::render(); ?>
+  <?php 
+    if (has_action('theme_hero')) {
+      do_action('theme_hero');
+    } 
+  ?>
 
   <div id="primary" class="primary primary--single">
 

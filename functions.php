@@ -26,7 +26,6 @@ require_once 'inc/_conf/register-menus.php';
  * Components
  */
 require_once 'inc/components/component.php';
-require_once 'inc/components/hero.php';
 require_once 'inc/components/image.php';
 require_once 'inc/components/menu-primary.php';
 require_once 'inc/components/menu-social.php';
