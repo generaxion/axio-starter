@@ -31,9 +31,6 @@ module.exports = {
         // polyfill for object-fit
         "node_modules/objectFitPolyfill/dist/objectFitPolyfill.min.js",
 
-        // a11y dialog helpers (https://github.com/edenspiekermann/a11y-dialog)
-        "node_modules/a11y-dialog/a11y-dialog.js",
-
         // vanilla js version of fitvids, that makes iframe videos responsice (https://www.npmjs.com/package/fitvids)
         "node_modules/fitvids/dist/fitvids.js",
 

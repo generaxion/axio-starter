@@ -27,6 +27,7 @@
   },
   "js": {
     "main.js": [
+      "node_modules/a11y-dialog/a11y-dialog.js",
       "assets/scripts/dropdown-menu.js",
       "assets/scripts/mobile-menu.js"
     ],
