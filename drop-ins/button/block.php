@@ -10,11 +10,13 @@
  * @package aucor_starter
  */
 
-$align          = $block['align'];
+$align                     = $block['align'];
 
-$args           = array();
-$args['text']   = get_field('button_link')['title'];
-$args['url']    = get_field('button_link')['url'];
+$args                      = array();
+$args['text']              = get_field('button_link')['title'];
+$args['attr']['href'][]    = get_field('button_link')['url'];
+$args['attr']['target'][]  = get_field('button_link')['target'];
+
 if (!empty(get_field('button_type'))) {
   $args['attr']['class'][] = 'button--' . get_field('button_type');
 }
