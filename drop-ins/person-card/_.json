@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "title": "person-card",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "acf.php",
+      "cpt.php",
+      "component.php",
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/person-card.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/person-card.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}
