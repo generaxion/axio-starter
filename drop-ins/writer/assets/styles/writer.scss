@@ -1,0 +1,56 @@
+/* ==========================================================================
+ # Component: Writer
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+.writer {
+  @include narrow-content;
+
+  display: flex;
+  margin: auto;
+  padding-top: 2rem;
+
+  @include breakpoint($sub-m) {
+    flex-direction: column;
+  }
+
+  &__image {
+    width: 20%;
+    flex-shrink: 0;
+    text-align: center;
+
+    @include breakpoint($sub-m) {
+      width: 100%;
+    }
+  }
+
+  &__info {
+    flex-grow: 1;
+
+    @include breakpoint($sub-m) {
+      text-align: center;
+    }
+  }
+
+  &__title {
+    margin: 0 0 0.5rem 0;
+    font-weight: $bold;
+  }
+
+  &__description {
+    margin-bottom: 0.5rem;
+  }
+
+  &__articles-link {
+    text-decoration: none;
+    color: $base-font-color;
+    font-weight: $bold;
+
+    &:hover, &:focus, &:active {
+      text-decoration: underline;
+      color: $primary;
+    }
+  }
+
+}

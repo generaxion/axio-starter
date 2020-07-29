@@ -1,0 +1,117 @@
+/* ==========================================================================
+ # Component: Person Card
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Component, block front-end and back-end
+----------------------------------------------- */
+
+
+
+/* Component
+----------------------------------------------- */
+
+.person-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    margin-bottom: $gap;
+  }
+
+  &__image {
+    flex-shrink: 0;
+    margin-right: $gap;
+    max-width: 4rem;
+    @include breakpoint($s) {
+      max-width: none;
+    }
+    a, img {
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  &__content {
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  h3,
+  &__name {
+    font-size: 1.25rem;
+    margin: 0;
+
+    a {
+      @include link-reset;
+
+      &:hover, &:focus, &:active {
+        color: $primary;
+      }
+    }
+  }
+
+  &__meta {
+    display: block;
+
+    a {
+      @include link-reset;
+
+      &:hover, &:focus, &:active {
+        color: $primary;
+      }
+    }
+  }
+
+}
+
+
+/* Block front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-acf-staff-list,
+.wysiwyg .wp-block-acf-staff-list {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin-left:  auto;
+  margin-right: auto;
+  padding-bottom: $gap;
+
+  &__title {
+    width: 100%;
+  }
+
+  & > *:not(.wp-block-acf-staff-list__title) {
+    width: 100%;
+    @include breakpoint($m) {
+      width: calc(50% - 1rem);
+    }
+  }
+
+}
+
+/* Block, only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-acf-staff-list {
+
+
+}
+
+/* Block, only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type="acf/staff-list"] {
+
+  h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0;
+  }
+
+}
+
