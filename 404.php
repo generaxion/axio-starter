@@ -9,10 +9,10 @@
 
 get_header(); ?>
 
-  <?php 
+  <?php
     if (has_action('theme_hero')) {
       do_action('theme_hero');
-    } 
+    }
   ?>
 
   <div id="primary" class="primary primary--404">
@@ -21,13 +21,17 @@ get_header(); ?>
 
         <div class="entry__content">
           <p><?php ask_e('404: Page not found description'); ?></p>
-          <?php
-            Aucor_Search_Form::render([
-              'attr' => [
-                'class' => ['search-form--404'],
-              ],
-            ]);
-          ?>
+
+          <?php if (class_exists('Aucor_Search_Form')) : ?>
+            <?php
+              Aucor_Search_Form::render([
+                'attr' => [
+                  'class' => ['search-form--404'],
+                ],
+              ]);
+            ?>
+          <?php endif; ?>
+
         </div>
 
       </article>

@@ -9,10 +9,10 @@
 
 get_header(); ?>
 
-  <?php 
+  <?php
     if (has_action('theme_hero')) {
       do_action('theme_hero');
-    } 
+    }
   ?>
 
   <div id="primary" class="primary primary--search">
@@ -39,13 +39,15 @@ get_header(); ?>
 
           <p role="status"><?php ask_e('Search: Nothing found description'); ?></p>
 
-          <?php
-            Aucor_Search_Form::render([
-              'attr' => [
-                'class' => ['search-form--no-results'],
-              ],
-            ]);
-          ?>
+          <?php if (class_exists('Aucor_Search_Form')) : ?>
+            <?php
+              Aucor_Search_Form::render([
+                'attr' => [
+                  'class' => ['search-form--no-results'],
+                ],
+              ]);
+            ?>
+          <?php endif; ?>
 
         </div>
 

@@ -2,6 +2,8 @@
  # Search forms
 ========================================================================== */
 
+@import '../../../../assets/styles/utils.scss';
+
 .search-form {
   display: flex;
   max-width: 30rem;
@@ -37,7 +39,7 @@
 
   // 404 search form
   &--404,
-  &--search-empty {
+  &--no-results {
     margin: 2rem auto 5rem;
   }
 
