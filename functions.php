@@ -26,7 +26,6 @@ require_once 'inc/_conf/register-localization.php';
  */
 require_once 'inc/components/component.php';
 require_once 'inc/components/image.php';
-require_once 'inc/components/menu-sub-pages.php';
 require_once 'inc/components/posts-nav-numeric.php';
 require_once 'inc/components/search-form.php';
 require_once 'inc/components/svg.php';
