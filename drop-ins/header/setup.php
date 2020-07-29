@@ -43,6 +43,19 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
 }, 10, 1);
 
 /**
+ * Register menu positions
+ */
+
+add_action('after_setup_theme', function() {
+
+  register_nav_menus([
+    'primary'    => ask__('Menu: Primary Menu'),
+    'additional' => ask__('Menu: Additional Menu'),
+  ]);
+
+});
+
+/**
  * Dropdown caret for primary menu
  *
  * @param string  $item_output the menu item output

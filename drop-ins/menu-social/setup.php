@@ -18,8 +18,6 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
 
 /**
  * Register menu position
- *
- * @package aucor_starter
  */
 
 add_action('after_setup_theme', function() {
