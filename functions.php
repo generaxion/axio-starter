@@ -27,7 +27,6 @@ require_once 'inc/_conf/register-menus.php';
  */
 require_once 'inc/components/component.php';
 require_once 'inc/components/image.php';
-require_once 'inc/components/menu-social.php';
 require_once 'inc/components/menu-sub-pages.php';
 require_once 'inc/components/posts-nav-numeric.php';
 require_once 'inc/components/search-form.php';
@@ -47,7 +46,6 @@ require_once 'inc/helpers/function-last-edited.php';
 require_once 'inc/setup-classic-editor.php';
 require_once 'inc/setup-fallbacks.php';
 require_once 'inc/setup-gutenberg.php';
-require_once 'inc/hooks-menu.php';
 require_once 'inc/setup-theme-support.php';
 
 

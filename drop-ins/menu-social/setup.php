@@ -1,9 +1,30 @@
 <?php
 /**
- * Menus
+ * Setup: Menu Social
  *
  * @package aucor_starter
  */
+
+/**
+ * Localization
+ */
+add_filter('aucor_core_pll_register_strings', function($strings) {
+
+  return array_merge($strings, [
+    'Menu: Social Menu' => 'Sosiaalisen median kanavat',
+  ]);
+
+}, 10, 1);
+
+/**
+ * Register menu position
+ *
+ * @package aucor_starter
+ */
+
+add_action('after_setup_theme', function() {
+  register_nav_menus(['social'     => ask__('Menu: Social Menu')]);
+});
 
 /**
  * SVG icons for social menu
@@ -50,4 +71,5 @@ function aucor_starter_social_menu_icons($title, $item, $args, $depth) {
 
 }
 add_filter('nav_menu_item_title', 'aucor_starter_social_menu_icons', 10, 4);
+
 
