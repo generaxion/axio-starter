@@ -2,6 +2,8 @@
  # Teaser
 ========================================================================== */
 
+@import '../../../../assets/styles/utils.scss';
+
 .teaser-container {
   @include narrow-content;
   margin-left: auto;

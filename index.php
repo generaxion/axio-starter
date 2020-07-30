@@ -14,17 +14,19 @@
 
 get_header(); ?>
 
-  <?php 
+  <?php
     if (has_action('theme_hero')) {
       do_action('theme_hero');
-    } 
+    }
   ?>
 
   <div id="primary" class="primary primary--index">
 
       <div class="teaser-container">
         <?php while (have_posts()) : the_post(); ?>
-          <?php Aucor_Teaser::render(['id' => get_the_ID()]); ?>
+          <?php if (class_exists('Aucor_Teaser')) : ?>
+            <?php Aucor_Teaser::render(['id' => get_the_ID()]); ?>
+          <?php endif; ?>
         <?php endwhile; ?>
       </div>
 

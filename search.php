@@ -23,7 +23,9 @@ get_header(); ?>
 
         <?php while (have_posts()) : the_post(); ?>
 
-          <?php Aucor_Teaser::render(['id' => get_the_ID()]); ?>
+          <?php if (class_exists('Aucor_Teaser')) : ?>
+            <?php Aucor_Teaser::render(['id' => get_the_ID()]); ?>
+          <?php endif; ?>
 
         <?php endwhile; ?>
 

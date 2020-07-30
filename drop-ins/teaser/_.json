@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "Teaser",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/teaser.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/teaser.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}
