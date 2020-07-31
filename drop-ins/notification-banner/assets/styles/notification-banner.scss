@@ -1,0 +1,60 @@
+/**
+ * Component: Notification banner
+ */
+
+ @import '../../../../assets/styles/utils.scss';
+
+.notification {
+  background: hotpink;
+  display: none;
+  justify-content: center;
+  position: relative;
+
+  &__close {
+    @include button-reset;
+    padding: .5rem .75rem;
+    position: absolute;
+    right: .75rem;
+    top: calc(50% - 1.15rem);
+    @include breakpoint ($sub-s) { top: .75rem }
+    & > * { pointer-events: none } // prevent clicking the svg icon inside <button>. fixes buggy js
+    .icon { color: $white }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    padding: 1rem;
+    @include breakpoint ($sub-m) { padding: 1rem 3.5rem }
+    @include breakpoint ($sub-s) {
+      flex-direction: column;
+      padding: 1.5rem;
+      .icon { margin-bottom: .75rem }
+      .notification__container__text { padding-bottom: 1.25rem }
+    }
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: $white;
+    }
+    &__text {
+      display: block;
+      padding: 0 1rem;
+      text-decoration: none;
+      color: $white;
+    }
+    &__more {
+      white-space: nowrap;
+    }
+    &__text-only {
+      color: $white;
+    }
+  }
+
+}
+
+.js-notification--active {
+  display: flex;
+}
