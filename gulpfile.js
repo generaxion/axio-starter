@@ -125,8 +125,8 @@ const getDropIns = () => {
 }
 /**
  * getDropInJsons helper function for collecting all drop-ins _.json files
- */ 
-var getDropInJsons = () => {  
+ */
+var getDropInJsons = () => {
   var jsons = [];
   var drop_ins = getDropIns();
 
@@ -148,7 +148,7 @@ const getAssets = () => {
   }
 
   getDropInJsons().forEach(drop_in => {
-    
+
     Object.entries(drop_in.json.css).forEach(([target, sources]) => {
       if (typeof sources !== 'undefined' && sources.length > 0) {
         sources.forEach(source => {
@@ -165,7 +165,7 @@ const getAssets = () => {
       }
     });
   });
-  
+
   return manifest_json;
 }
 
@@ -312,7 +312,7 @@ gulp.task('styles', () => {
         this.emit('end');
       });
     }
-    
+
     // merge
     merged.add(
       gulp.src(asset.globs, {base: 'styles'})
@@ -335,7 +335,7 @@ gulp.task('styles', () => {
 gulp.task('scripts', () => {
   const merged = merge();
   jsAssets = buildAssets(getAssets().js);
-  
+
   // process all assets
   for (i = 0; i < jsAssets.length; i++) {
     let asset = jsAssets[i];
@@ -394,7 +394,7 @@ gulp.task('images', () => {
         svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}, {removeDimensions: true}]
       })
     )
-    
+
     // send to /dist/images
     .pipe(flatten())
     .pipe(gulp.dest(path.images.dist))
@@ -408,48 +408,48 @@ gulp.task('images', () => {
  *
  * Create a single sprite.svg file from files in /assets/sprite/.
  */
-gulp.task('svgstore', () => {
+gulp.task('svgstore', async () => {
+
   updateTimestamp('svg');
-  
+
   // Gather all svg sources to one array
-  let sprite_sources = [];
+  let spriteSources = [];
 
   // Get names of icons in /assets/sprite/ directory for later name comparison
-  fs.readdirSync(path.sprite.source).forEach(sprite => {
-    sprite_sources.push(path.sprite.source + sprite);
-  });
+  await fs.promises.readdir(path.sprite.source).then(
+    files => files.forEach(file => spriteSources.push(path.sprite.source + file)),
+    err => console.error({err})
+  );
 
-  // Add Drop-in sprites to sprite_sources if icon with the same name is not found
-  let same_icon_found = false;
-  let drop_ins = getDropIns();
+  // Add Drop-in sprites to spriteSources if icon with the same name is not found
+  // @todo maybe turn into async function
+  const dropIns = getDropIns();
 
-  drop_ins.forEach(drop_in => {
+  // Get drop-in filenames
+  for (const drop_in of dropIns) {
+    await fs.promises.readdir(path.drop_ins.source + drop_in + '/assets/sprite').then(
+      files => files.forEach(file => spriteSources.push(path.drop_ins.source + drop_in + '/assets/sprite/' + file)),
+      err => null // directory doesn't exist
+    );
+  }
 
-    let drop_in_sprites = []
-    fs.access(path.drop_ins.source + drop_in + '/assets/sprite', error => {
-      if (!error) {
-        drop_in_sprites = fs.readdirSync(path.drop_ins.source + drop_in + '/assets/sprite');
-      } 
-    });
+  // Make reference with path and filename
+  let spriteFilenameReference = [];
+  for (const file of spriteSources) {
+    spriteFilenameReference[file] = file.replace(/^.*[\\\/]/, '');
+  }
 
-    if(drop_in_sprites != undefined && drop_in_sprites.length > 0) {
-      drop_in_sprites.forEach(sprite => {
-        for (let i=sprite_sources.length; i--;) {
-          if (sprite_sources[i].indexOf(sprite.replace(/^.*[\\\/]/, ''))>=0) {
-            console.log("Ignoring " + sprite + " from drop-in " + drop_in.name + ":  An icon with the same name already exists.");
-            same_icon_found = true;
-            break;
-          } 
-          same_icon_found = false;
-        }
-        if(!same_icon_found) {
-          sprite_sources.push('drop-ins/' + drop_in + '/assets/sprite/' + sprite);
-        }
-      });
+  // Remove duplicates
+  for (const [path, file] of Object.entries(spriteFilenameReference)) {
+    for (const [searchFilePath, searchFile] of Object.entries(spriteFilenameReference)) {
+      if (path !== searchFilePath && file == searchFile && spriteFilenameReference[path]) {
+        delete spriteFilenameReference[searchFilePath];
+        console.log(`SVG sprite duplicate ignored: ${searchFilePath}`);
+      }
     }
-  });
+  }
 
-  return gulp.src(sprite_sources)
+  return gulp.src(Object.keys(spriteFilenameReference))
   // rename SVG IDs by "icon-filename"
   .pipe(rename({prefix: 'icon-'}))
   // optimize SVG
@@ -562,11 +562,11 @@ gulp.task('watch', () => {
   gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
 
   // Drop-ins
-  gulp.watch(path.drop_ins.source +           '**/*.scss', gulp.task('styles')); 
-  gulp.watch(path.drop_ins.source +       '**/*.js', gulp.task('scripts')); 
+  gulp.watch(path.drop_ins.source +           '**/*.scss', gulp.task('styles'));
+  gulp.watch(path.drop_ins.source +       '**/*.js', gulp.task('scripts'));
   gulp.watch(path.drop_ins.source +    '**/images/*', gulp.task('images'));
   gulp.watch(path.drop_ins.source +     '**/sprite/*', gulp.task('svgstore'));
-  
+
   gulp.watch([
     'gulpfile.js',
     'assets/manifest.js',
@@ -579,7 +579,7 @@ gulp.task('watch', () => {
 
   gulp.watch([
     path.drop_ins.source + '*',
-  ],  
+  ],
     gulp.task('default')
   )
 });
