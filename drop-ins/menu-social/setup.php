@@ -70,4 +70,8 @@ function aucor_starter_social_menu_icons($title, $item, $args, $depth) {
 }
 add_filter('nav_menu_item_title', 'aucor_starter_social_menu_icons', 10, 4);
 
-
+add_action('theme_after_post', function() {
+  Aucor_Share_Buttons::render([
+    'section_title' => ask__('Social share: Title')
+  ]);
+}, 100, 1);

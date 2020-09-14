@@ -28,7 +28,6 @@ require_once 'inc/components/component.php';
 require_once 'inc/components/image.php';
 require_once 'inc/components/posts-nav-numeric.php';
 require_once 'inc/components/svg.php';
-require_once 'inc/components/list-terms.php';
 /**
  * Helpers
  */

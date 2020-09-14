@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "List Terms",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php",
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/list-terms.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": []
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}
