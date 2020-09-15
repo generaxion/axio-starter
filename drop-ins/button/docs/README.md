@@ -9,3 +9,5 @@
 ## Description
 
 Button component to be used in the theme and button block (using ACF) to replace the default Gutenberg button block
+
+There's more information in component.php
