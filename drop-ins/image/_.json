@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "title": "image",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php"
+    ]
+  },
+  "css": {
+    "main.css": [],
+    "admin.css": [],
+    "editor-gutenberg.css": []
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}

@@ -22,11 +22,9 @@ require_once 'inc/_conf/register-image-sizes.php';
 require_once 'inc/_conf/register-localization.php';
 
 /**
- * Components
+ * Abstract component
  */
-require_once 'inc/components/component.php';
-require_once 'inc/components/image.php';
-require_once 'inc/components/svg.php';
+require_once 'inc/component.php';
 
 /**
  * Helpers
