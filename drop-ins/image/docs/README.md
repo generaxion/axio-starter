@@ -6,3 +6,4 @@
 
 ## Description
 
+more info in component.php
