@@ -6,3 +6,6 @@
 
 ## Description
 
+Displays a svg image from assets/sprite
+
+More information in component.php
