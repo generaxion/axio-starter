@@ -10,12 +10,12 @@ add_action('init', function() {
       'archives'              => __( 'Arkisto',                         'seure_plugin' ),
       'parent_item_colon'     => __( 'Ylempi huomiopalkki:',            'seure_plugin' ),
       'all_items'             => __( 'Kaikki huomiopalkit',             'seure_plugin' ),
-      'add_new_item'          => __( 'LisÃ¤Ã¤ uusi huomiopalkki',         'seure_plugin' ),
-      'add_new'               => __( 'LisÃ¤Ã¤ uusi',                      'seure_plugin' ),
+      'add_new_item'          => __( 'Lisää uusi huomiopalkki',         'seure_plugin' ),
+      'add_new'               => __( 'Lisää uusi',                      'seure_plugin' ),
       'new_item'              => __( 'Uusi huomiopalkki',               'seure_plugin' ),
       'edit_item'             => __( 'Muokkaa huomiopalkkia',           'seure_plugin' ),
-      'update_item'           => __( 'PÃ¤ivitÃ¤ huomiopalkki',            'seure_plugin' ),
-      'view_item'             => __( 'NÃ¤ytÃ¤ huomiopalkki',              'seure_plugin' ),
+      'update_item'           => __( 'Päivitä huomiopalkki',            'seure_plugin' ),
+      'view_item'             => __( 'Näytä huomiopalkki',              'seure_plugin' ),
       'search_items'          => __( 'Etsi huomiopalkkia',              'seure_plugin' ),
 
     );
