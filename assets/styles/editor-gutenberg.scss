@@ -12,27 +12,7 @@
 
 @import "base/normalize";
 @import "base/media";
-
-/* Blocks
------------------------------------------------ */
-
-@import "blocks/core-button";
-@import "blocks/core-columns";
-@import "blocks/core-embed";
-@import "blocks/core-file";
-@import "blocks/core-freeform";
-@import "blocks/core-gallery";
-@import "blocks/core-group";
-@import "blocks/core-heading";
-@import "blocks/core-image";
-@import "blocks/core-list";
-@import "blocks/core-media-text";
-@import "blocks/core-paragraph";
-@import "blocks/core-quote";
-@import "blocks/core-separator";
-@import "blocks/core-table";
-@import "blocks/settings-alignment";
-@import "blocks/settings-colors";
+@import "base/blocks";
 
 /* Elements
 ----------------------------------------------- */

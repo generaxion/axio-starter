@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "core-heading",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/core-heading.scss"
+    ],
+    "editor-gutenberg.css": [
+      "assets/styles/core-heading.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": [
+      "assets/scripts/core-heading.js"
+    ]
+  }
+}

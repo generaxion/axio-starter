@@ -1,0 +1,37 @@
+/* ==========================================================================
+ # Embed block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-embed,
+.wysiwyg .wp-block-embed {
+
+  figcaption {
+    color: $grey-font-color;
+    font-size: .875rem;
+    max-width: $max-width-s;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $gap-small;
+    text-align: center;
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-embed {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-embed {
+
+}

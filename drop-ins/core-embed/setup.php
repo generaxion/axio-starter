@@ -1,0 +1,24 @@
+<?php
+/**
+ * Setup: core/embed(s) block(s)
+ *
+ * @package aucor_starter
+ */
+
+/**
+ * Allow block
+ */
+add_filter('allowed_block_types', function($blocks, $post) {
+
+  $blocks[] = 'core/embed';
+  $blocks[] = 'core-embed/twitter';
+  $blocks[] = 'core-embed/youtube';
+  $blocks[] = 'core-embed/soundcloud';
+  $blocks[] = 'core-embed/spotify';
+  $blocks[] = 'core-embed/flickr';
+  $blocks[] = 'core-embed/vimeo';
+  $blocks[] = 'core-embed/issuu';
+  $blocks[] = 'core-embed/slideshare';
+  return $blocks;
+
+}, 11, 2);

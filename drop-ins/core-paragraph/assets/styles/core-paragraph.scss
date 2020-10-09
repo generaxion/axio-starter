@@ -1,0 +1,27 @@
+/* ==========================================================================
+ # Paragraph block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-paragraph,
+.wysiwyg .wp-block-paragraph {
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-paragraph {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .wp-block-paragraph {
+  line-height: $line-height;
+}

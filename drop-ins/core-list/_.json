@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "core-list",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/core-list.scss"
+    ],
+    "editor-gutenberg.css": [
+      "assets/styles/core-list.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": [
+      "assets/scripts/core-list.js"
+    ]
+  }
+}

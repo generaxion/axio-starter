@@ -24,9 +24,7 @@ function aucor_starter_gutenberg_allowed_blocks($allowed_block_types, $post) {
   /**
    * Common blocks
    */
-  $blocks[] = 'core/paragraph';
   $blocks[] = 'core/image';
-  $blocks[] = 'core/heading';
   $blocks[] = 'core/gallery';
   $blocks[] = 'core/list';
   $blocks[] = 'core/quote';
@@ -43,7 +41,6 @@ function aucor_starter_gutenberg_allowed_blocks($allowed_block_types, $post) {
    */
   $blocks[] = 'core/media-text';
   $blocks[] = 'core/columns';
-  $blocks[] = 'core/group';
   $blocks[] = 'core/separator';
 
   /**

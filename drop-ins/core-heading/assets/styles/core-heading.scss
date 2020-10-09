@@ -1,0 +1,29 @@
+/* ==========================================================================
+ # Heading block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type="core/heading"] > *,
+.wysiwyg .wp-block-heading {
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-heading {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type="core/heading"] > * {
+
+}
+

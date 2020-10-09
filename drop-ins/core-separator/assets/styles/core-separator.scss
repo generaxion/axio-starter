@@ -1,0 +1,43 @@
+/* ==========================================================================
+ # Separator block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-separator,
+.wysiwyg .wp-block-separator,
+.wysiwyg hr {
+
+  margin-top: $gap-big;
+  margin-bottom: $gap-big;
+  display: block;
+  clear: both;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid $grey;
+  max-width: $max-width-m !important;
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg {
+  .wp-block-separator, hr {
+
+  }
+}
+
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-separator {
+  // add clickable surface
+  padding-top: .5rem;
+  transform: translateY(-.25rem);
+}

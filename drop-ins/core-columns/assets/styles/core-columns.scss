@@ -1,0 +1,42 @@
+/* ==========================================================================
+ # Columns block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type="core/columns"] .wp-block-columns,
+.wysiwyg .wp-block-columns {
+
+  .wp-block-column {
+    margin-bottom: $gap;
+    @include child-margin-reset;
+  }
+
+  &.alignfull {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.alignwide,
+  &.alignfull {
+    @include spacing-m(margin-bottom);
+  }
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.wysiwyg .wp-block-columns {
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type="core/columns"] .wp-block-columns {
+
+}

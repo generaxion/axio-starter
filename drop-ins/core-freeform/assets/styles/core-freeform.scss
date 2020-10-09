@@ -1,0 +1,24 @@
+/* ==========================================================================
+ # Freeform block
+============================================================================
+
+Notice: Freeform content won't have identifiable classes on front-end.
+Freeform content is styled mainly in typography.
+
+*/
+
+@import '../../../../assets/styles/utils.scss';
+
+
+/* Only back-end (not identifiable on front-end)
+----------------------------------------------- */
+
+// whole editor block
+.editor-styles-wrapper div[data-type="core/freeform"] {
+
+}
+
+// editor contents
+.editor-styles-wrapper .wp-block-freeform {
+
+}
