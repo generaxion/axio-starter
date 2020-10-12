@@ -1,0 +1,167 @@
+@import '../../../../assets/styles/utils.scss';
+
+.background {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: $gap-big $gap;
+  @include breakpoint($m) {
+    padding: $gap-big;
+  }
+  @include breakpoint($l) {
+    padding-bottom: $gap-huge;
+    padding-top: $gap-huge;
+  }
+
+  // vertical align
+  &--vertical-align-middle {
+    align-items: center;
+  }
+  &--vertical-align-top {
+    align-items: flex-start;
+  }
+  &--vertical-align-bottom {
+    align-items: flex-end;
+  }
+
+  // dimming
+  &--dimming-dark {
+    .background__background__dimming {
+      background: $black;
+    }
+  }
+  &--dimming-light {
+    .background__background__dimming {
+      background: $white;
+    }
+  }
+
+  // height
+  &.background--height-default {
+
+  }
+  &.background--height-100 {
+    min-height: 100vh;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  &.background--height-75 {
+    min-height: 75vh;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  &.background--height-50 {
+    min-height: 50vh;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+
+  // colors
+  background: $grey-light;
+
+  // env
+  &--env-editor {
+
+  }
+
+  &--env-front {
+
+  }
+
+  &.is-dark-mode {
+    color: $white;
+
+    &.background--type-image,
+    &.background--type-video {
+      background: $black;
+    }
+  }
+  &.is-light-mode {
+    &.background--type-image,
+    &.background--type-video {
+      background: $white;
+    }
+  }
+  &__media {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    max-height: 100vh;
+    .no-js & {
+      max-height: none;
+    }
+
+    &__video-wrapper {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      video {
+        display: block;
+        line-height: 0;
+        right: 0;
+        bottom: 0;
+        object-fit: cover;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &__dimming {
+    background: $black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  // shadow
+  &--type-video,
+  &--type-image {
+    &.is-dark-mode.background--content-background-none {
+      text-shadow: 0 0 1rem rgba(0,0,0,.6);
+      @include breakpoint($m) {
+        text-shadow: 0 0 1rem rgba(0,0,0,.5);
+      }
+    }
+  }
+
+  &__content {
+    @include child-margin-reset;
+    width: 100%;
+    position: relative;
+  }
+
+  // content background
+  &--content-background-light {
+    .background__content {
+      @include spacing(margin-top, margin-bottom);
+      background: $white;
+      margin-left:  auto;
+      margin-right: auto;
+      max-width: calc(#{$content-default-width} + 6rem);
+      padding: 2rem;
+      @include breakpoint($m) {
+        padding: 3rem;
+      }
+    }
+  }
+
+
+}

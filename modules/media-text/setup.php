@@ -18,7 +18,7 @@ add_action('acf/init', function () {
       'multiple'          => false,
       'keywords'          => ['media-text', 'text-media', '50/50'],
       'category'          => 'common',
-      'icon'              => 'align-pull-left',
+      'icon'              => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="0" fill="none" width="20" height="20"/><g><path d="M9 16V4H3v12h6zm2-7h6V7h-6v2zm0 4h6v-2h-6v2z"/></g></svg>',
       'mode'              => 'preview',
       'align'             => 'wide',
       'supports'          => [
@@ -46,7 +46,7 @@ add_filter('allowed_block_types', function($blocks, $post) {
  */
 add_filter('acf/settings/load_json', function ($paths) {
 
-  $paths[] = dirname(__FILE__) . '/assets/fields';
+  $paths[] = dirname(__FILE__) . '/acf-json';
   return $paths;
 
 });

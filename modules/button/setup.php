@@ -18,7 +18,7 @@ add_action('acf/init', function () {
       'keywords'          => ['button', 'buttons', 'cta'],
       'post_types'        => ['page', 'post'],
       'category'          => 'common',
-      'icon'              => 'dashicons-admin-links',
+      'icon'              => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="0" fill="none" width="20" height="20"/><g><path d="M17 5H3c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm1 7c0 .6-.4 1-1 1H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h14c.6 0 1 .4 1 1v5z"/></g></svg>',
       'mode'              => 'preview',
       'align'             => '',
       'supports'          => [
@@ -36,7 +36,7 @@ add_action('acf/init', function () {
  */
 add_filter('acf/settings/load_json', function ($paths) {
 
-  $paths[] = dirname(__FILE__) . '/assets/fields';
+  $paths[] = dirname(__FILE__) . '/acf-json';
   return $paths;
 
 });

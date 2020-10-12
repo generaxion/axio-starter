@@ -25,6 +25,10 @@
     @include spacing-m(margin-bottom);
   }
 
+  &.is-last-inner-block {
+    margin-bottom: 0;
+  }
+
 }
 
 /* Only front-end

@@ -26,7 +26,8 @@
 
   // each block takes care of its own width
   & > *,
-  .inner-blocks > * {
+  .inner-blocks > *,
+  .block-editor-block-list__layout > * {
     @include spacing(margin-top, margin-bottom);
     margin-left:  auto;
     margin-right: auto;

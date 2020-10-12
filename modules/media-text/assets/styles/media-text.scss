@@ -16,6 +16,7 @@ $breakpoint_mediatext_desktop: min-width 920px;
 .wp-block-acf-media-text {
 
   &.alignwide {
+    & + .wp-block-acf-media-text.alignwide,
     & + .wp-block-acf-media-text.alignwide {
       @include negative-spacing-m(margin-top);
     }
@@ -27,7 +28,8 @@ $breakpoint_mediatext_desktop: min-width 920px;
 
   &.alignfull {
 
-    & + .wp-block-acf-media-text.alignfull {
+    & + .wp-block-acf-media-text.alignfull,
+    & + .wp-block-acf-background.alignfull {
       @include negative-spacing-l(margin-top);
     }
 
