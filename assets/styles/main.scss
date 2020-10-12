@@ -2,13 +2,6 @@
  # Main (front-end)
 ========================================================================== */
 
-/* Vendor (external)
------------------------------------------------ */
-
-@import "../../node_modules/@rqrauhvmra/tobi/scss/_functions.scss";
-@import "../../node_modules/@rqrauhvmra/tobi/scss/_variables.scss";
-@import "../../node_modules/@rqrauhvmra/tobi/scss/tobi.scss";
-
 /* Utils
 ----------------------------------------------- */
 
@@ -23,17 +16,9 @@
 @import "base/forms";
 @import "base/blocks";
 
-/* Vendor (modifications)
------------------------------------------------ */
-
-@import "vendor/tobi-lightbox";
-
 /* Elements
 ----------------------------------------------- */
 
-@import "elements/list-terms";
-@import "elements/numeric-posts-nav";
-@import "elements/social-share";
 
 /* Layout
 ----------------------------------------------- */

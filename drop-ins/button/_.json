@@ -6,9 +6,7 @@
   "php": {
     "inc": [
       "component.php",
-      "setup.php",
-      "acf.php"
-    ]
+      "setup.php"    ]
   },
   "css": {
     "main.css": [

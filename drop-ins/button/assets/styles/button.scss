@@ -12,7 +12,7 @@
 .button {
   @include button;
 
-  &--primary {
+  &--type-primary {
 
   }
 }
@@ -65,4 +65,15 @@
 
 .block-editor .wp-block[data-type="acf/button"] {
 
+  .wp-block-acf-button a {
+    pointer-events: none;
+  }
+
+}
+
+.acf-field[data-name="button_link"] {
+  .link-title {
+    padding-left: 0;
+    display: block;
+  }
 }

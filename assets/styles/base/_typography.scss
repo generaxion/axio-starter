@@ -1,5 +1,5 @@
 /* ==========================================================================
- # Typography - Text settings in any context and everywhere
+ # Typography
 ========================================================================== */
 
 html {
@@ -23,12 +23,6 @@ p, .p {
   font-weight: $normal;
   line-height: $line-height;
   margin: 0 0 1.5rem;
-  &.lead {
-    font-size: 1.125rem;
-    @include breakpoint($s) {
-      font-size: 1.25rem;
-    }
-  }
 }
 
 /* Titles
@@ -49,12 +43,12 @@ h3 {
   margin-bottom: 1.5rem;
 }
 
-h4, .h4 {
+h4 {
   @include heading(s);
   margin-bottom: 1.5rem;
 }
 
-h5, .h5 {
+h5 {
   @include heading(xs);
   margin-bottom: 0;
 }

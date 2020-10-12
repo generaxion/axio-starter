@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "lightbox",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/vendor/tobi/scss/tobi.scss",
+      "assets/styles/lightbox.scss"
+    ],
+    "editor-gutenberg.css": []
+  },
+  "js": {
+    "main.js": [
+      "assets/vendor/tobi/js/tobi.min.js",
+      "assets/scripts/lightbox.js"
+    ],
+    "editor-gutenberg.js": []
+  }
+}

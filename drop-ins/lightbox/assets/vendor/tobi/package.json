@@ -1,0 +1,38 @@
+{
+  "name": "@rqrauhvmra/tobi",
+  "version": "1.9.2",
+  "description": "An accessible, open-source lightbox with no dependencies.",
+  "main": "js/tobi.js",
+  "style": "css/tobi.css",
+  "devDependencies": {
+    "standard": "*",
+    "autoprefixer": "*"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not <= 1%",
+    "not IE 10"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rqrauhvmra/tobi.git"
+  },
+  "keywords": [
+    "lightbox",
+    "accessible",
+    "a11y",
+    "javascript",
+    "vanilla",
+    "scss",
+    "css"
+  ],
+  "author": "rqrauhvmra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rqrauhvmra/tobi/issues"
+  },
+  "homepage": "https://github.com/rqrauhvmra/tobi"
+}

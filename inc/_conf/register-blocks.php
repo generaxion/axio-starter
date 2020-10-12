@@ -17,66 +17,17 @@
  *
  * @return array $allowed_block_types list of block names
  */
-function aucor_starter_gutenberg_allowed_blocks($allowed_block_types, $post) {
+add_filter('allowed_block_types', function ($allowed_block_types, $post) {
 
+  // remove all existing blocks
   $blocks = [];
 
-  /**
-   * Common blocks
-   */
-  $blocks[] = 'core/image';
-  $blocks[] = 'core/gallery';
-  $blocks[] = 'core/list';
-  $blocks[] = 'core/quote';
-  $blocks[] = 'core/file';
-
-  /**
-   * Formatting
-   */
-  $blocks[] = 'core/table';
-  $blocks[] = 'core/freeform'; // classic editor
-
-  /**
-   * Layout
-   */
-  $blocks[] = 'core/media-text';
-  $blocks[] = 'core/columns';
-  $blocks[] = 'core/separator';
-
-  /**
-   * Widgets
-   */
+  // base blocks without styling
+  $blocks[] = 'core/freeform';
   $blocks[] = 'core/shortcode';
-
-  /**
-   * Embeds
-   */
-  $blocks[] = 'core/embed';
-  $blocks[] = 'core-embed/twitter';
-  $blocks[] = 'core-embed/youtube';
-  $blocks[] = 'core-embed/facebook';
-  $blocks[] = 'core-embed/instagram';
-  $blocks[] = 'core-embed/soundcloud';
-  $blocks[] = 'core-embed/spotify';
-  $blocks[] = 'core-embed/flickr';
-  $blocks[] = 'core-embed/vimeo';
-  $blocks[] = 'core-embed/issuu';
-  $blocks[] = 'core-embed/slideshare';
-
-  /**
-   * Reusable blocks
-   */
   $blocks[] = 'core/block';
 
-  /**
-   * Plugins
-   */
-
-  /**
-   * Custom
-   */
-
+  // other blocks added from modules
   return $blocks;
 
-}
-add_filter('allowed_block_types', 'aucor_starter_gutenberg_allowed_blocks', 10, 2);
+}, 10, 2);

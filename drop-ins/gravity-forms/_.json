@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "gravity-forms",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/gravity-forms.scss"
+    ],
+    "editor-gutenberg.css": [
+      "assets/styles/gravity-forms.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}

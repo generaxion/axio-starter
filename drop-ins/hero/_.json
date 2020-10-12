@@ -10,14 +10,18 @@
     ]
   },
   "css": {
-    "main.css": ["assets/styles/hero.scss"],
+    "main.css": [
+      "assets/styles/hero.scss"
+    ],
     "admin.css": [],
-    "editor-gutenberg.css": ["assets/styles/hero.scss"]
+    "editor-gutenberg.css": [
+      "assets/styles/hero.scss"
+    ]
   },
   "js": {
-    "main.js": [],
+    "main.js": [
+      "assets/scripts/front-end.js"
+    ],
     "editor-gutenberg.js": []
-  },
-  "img": [],
-  "sprite": []
+  }
 }

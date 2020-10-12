@@ -21,8 +21,6 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
 
-
-
   ]);
 
 }, 10, 1);

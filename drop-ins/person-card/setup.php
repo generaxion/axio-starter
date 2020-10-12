@@ -11,9 +11,7 @@
 add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
-
     'Person Card: Title'        => 'Yhteystiedot',
-
   ]);
 
 }, 10, 1);
@@ -23,7 +21,6 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
  */
 add_action('acf/init', function () {
 
-  // Check function exists.
   if (function_exists('acf_register_block_type')) {
     acf_register_block_type([
       'name'              => 'staff-list',
@@ -49,6 +46,8 @@ add_action('acf/init', function () {
  * Allow staff list block
  */
 add_filter('allowed_block_types', function($blocks, $post) {
+
   $blocks[] = 'acf/staff-list';
   return $blocks;
+
 }, 11, 2);

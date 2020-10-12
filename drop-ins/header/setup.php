@@ -29,7 +29,6 @@ add_action('theme_header', function () {
 add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
-
     'Menu: Primary Menu'        => 'Päävalikko',
     'Menu: Additional Menu'     => 'Lisävalikko',
     'Menu: Button label'        => 'Menu',
@@ -37,7 +36,6 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
     'Menu: Close'               => 'Sulje valikko',
     'Menu: Open Sub-menu'       => 'Avaa alavalikko',
     'Menu: Close Sub-menu'      => 'Sulje alavalikko',
-
   ]);
 
 }, 10, 1);
@@ -65,24 +63,23 @@ add_action('after_setup_theme', function() {
  *
  * @return string menu item with possible description
  */
-function aucor_starter_dropdown_icon_to_menu_links($item_output, $item, $depth, $args) {
+add_filter('walker_nav_menu_start_el', function ($item_output, $item, $depth, $args) {
 
   if ($args->theme_location == 'primary') {
     foreach ($item->classes as $value) {
       if ($value == 'menu-item-has-children') {
         // add caret button. not focusable as tab navigation is handeled without this button
         $item_output .= '<button class="menu-item__caret js-menu-caret">' .
-                          Aucor_SVG::get(['name' => 'chevron-down']) .
-                          '<span class="menu-item__caret__text-open">' . ask__('Menu: Open Sub-menu') . '</span>' .
-                          '<span class="menu-item__caret__text-close">' . ask__('Menu: Close Sub-menu') . '</span>' .
-                        '</button>';
+          Aucor_SVG::get(['name' => 'chevron-down']) .
+          '<span class="menu-item__caret__text-open">' . ask__('Menu: Open Sub-menu') . '</span>' .
+          '<span class="menu-item__caret__text-close">' . ask__('Menu: Close Sub-menu') . '</span>' .
+        '</button>';
       }
     }
   }
   return '<span class="menu-item__link">' . $item_output . '</span>';
 
-}
-add_filter('walker_nav_menu_start_el', 'aucor_starter_dropdown_icon_to_menu_links', 10, 4);
+}, 10, 4);
 
 /**
  * Include icon by class name
@@ -96,7 +93,7 @@ add_filter('walker_nav_menu_start_el', 'aucor_starter_dropdown_icon_to_menu_link
  *
  * @return string menu item with possible description
  */
-function aucor_starter_icons_from_classes($title, $item, $args, $depth) {
+add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
 
   foreach ($item->classes as $value) {
     if (strpos($value, 'icon-') === 0) {
@@ -105,5 +102,4 @@ function aucor_starter_icons_from_classes($title, $item, $args, $depth) {
   }
   return $title;
 
-}
-add_filter('nav_menu_item_title', 'aucor_starter_icons_from_classes', 10, 4);
+}, 10, 4);

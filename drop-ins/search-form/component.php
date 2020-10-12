@@ -5,13 +5,6 @@
  * @example
  * Aucor_Search_Form::render();
  *
- * @example
- * Aucor_Search_Form::render([
- *   'section_title'  => 'Share this article',
- *   'post_title'     => 'Custom post title',
- *   'permalink'      => get_permalink(),
- * ]);
- *
  * @package aucor_starter
  */
 class Aucor_Search_Form extends Aucor_Component {
@@ -55,9 +48,9 @@ class Aucor_Search_Form extends Aucor_Component {
       'attr'               => [],
       'value'              => get_search_query(),
       'name'               => 's',
-      'submit'             => ask__('Search: Submit'), // can be HTML, icons etc
-      'placeholder'        => ask__('Search: Placeholder'),
-      'screen-reader-text' => ask__('Search: Screen reader label'),
+      'submit'             => ask__('Search form: Submit'), // can be HTML, icons etc
+      'placeholder'        => ask__('Search form: Placeholder'),
+      'screen-reader-text' => ask__('Search form: Screen reader label'),
 
       // internal
       'id'                => '',

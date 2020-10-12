@@ -19,7 +19,7 @@
   "js": {
     "main.js": [],
     "editor-gutenberg.js": [
-      "assets/scripts/core-quote.js"
+      "assets/scripts/editor.js"
     ]
   }
 }

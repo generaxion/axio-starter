@@ -17,9 +17,11 @@
     ]
   },
   "js": {
-    "main.js": [],
+    "main.js": [
+      "assets/scripts/front-end.js"
+    ],
     "editor-gutenberg.js": [
-      "assets/scripts/core-image.js"
+      "assets/scripts/editor.js"
     ]
   }
 }

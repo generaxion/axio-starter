@@ -5,7 +5,6 @@
   },
   "php": {
     "inc": [
-      "component.php",
       "setup.php"
     ]
   },
@@ -20,7 +19,7 @@
   "js": {
     "main.js": [],
     "editor-gutenberg.js": [
-      "assets/scripts/core-paragraph.js"
+      "assets/scripts/editor.js"
     ]
   }
 }

@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "numeric-posts-nav",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php",
+      "component.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/numeric-post-nav.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": []
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}

@@ -31,16 +31,6 @@ add_action('wp_enqueue_scripts', function() {
     true
   );
 
-  // localize scripts
-  $strings = [
-    // Tobi.js
-    'prev'    => ask__('Tobi: Prev'),
-    'next'    => ask__('Tobi: Next'),
-    'close'   => ask__('Tobi: Close'),
-    'loading' => ask__('Tobi: Loading'),
-  ];
-  wp_localize_script('aucor_starter-js', 'theme_strings', $strings);
-
   // comments
   if (is_singular() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
@@ -122,6 +112,8 @@ add_action('wp_footer', function() {
  * Add favicons' <link> and <meta> tags here
  */
 function aucor_starter_favicons() {
+
+  // echo get_stylesheet_directory_uri() . /dist/favicon/
 
 }
 add_action('wp_head',    'aucor_starter_favicons');

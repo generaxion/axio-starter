@@ -10,19 +10,39 @@
  * @package aucor_starter
  */
 
-$align                     = $block['align'];
+$align    = $block['align'] ? $block['align'] : 'default';
+$type     = get_field('button_type');
+$link     = get_field('button_link');
+$title    = '';
+$url      = '';
+$text     = '';
+$target   = '';
 
-$args                      = array();
-$args['text']              = get_field('button_link')['title'];
-$args['attr']['href'][]    = get_field('button_link')['url'];
-$args['attr']['target'][]  = get_field('button_link')['target'];
+if (isset($link['title']) && !empty($link['title'])) {
+  $title = $link['title'];
+} elseif ($is_preview) {
+  $title = ask__('Button: New button instructions');
+}
 
-if (!empty(get_field('button_type'))) {
-  $args['attr']['class'][] = 'button--' . get_field('button_type');
+if (isset($link['url']) && !empty($link['url'])) {
+  $url = $link['url'];
+} elseif ($is_preview) {
+  $url = '#';
+}
+
+if (isset($link['target']) && !empty($link['target'])) {
+  $target = $link['target'];
 }
 
 ?>
 
-<div class="wp-block-acf-button <?php echo 'align-' . $align; ?>">
-  <?php Aucor_Button::render($args); ?>
+<div class="wp-block-acf-button <?php echo 'align-' . esc_attr($align); ?>">
+  <?php
+    Aucor_Button::render([
+      'title'     => $title,
+      'type'      => $type,
+      'url'       => $url,
+      'target'    => $target,
+    ]);
+  ?>
 </div>

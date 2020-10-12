@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "svg",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/svg.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/svg.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}

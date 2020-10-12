@@ -1,7 +1,38 @@
 /* ==========================================================================
- # Share buttons
+ # Social share
 ========================================================================== */
 
-.test-class {
-  position: relative;
+@import '../../../../assets/styles/utils.scss';
+
+.social-share {
+  margin-top: $gap;
+
+  &__title {
+    @include heading(s);
+    margin-bottom: .25rem;
+  }
+
+  &__link {
+    @include transition;
+    display: inline-block;
+    color: $link;
+    vertical-align: top;
+    line-height: 0;
+    margin: $gap-tiny $gap-tiny 0 0;
+    position: relative;
+    text-decoration: none;
+    .icon {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &__label {
+      @include visuallyhidden;
+    }
+
+  }
+
 }

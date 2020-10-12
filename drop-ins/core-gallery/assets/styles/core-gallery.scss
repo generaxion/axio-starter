@@ -42,3 +42,84 @@
 .editor-styles-wrapper .wp-block-gallery {
 
 }
+
+/* Legacy markup
+----------------------------------------------- */
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  img {
+    display: block;
+    line-height: 0;
+  }
+}
+
+.gallery-item {
+  margin: 0;
+  padding: .5rem 0;
+  width: 100%;
+  .gallery-columns-2 & {
+    width: 100%;
+    @include breakpoint($s) {
+      margin-right: 1rem;
+      width: calc(50% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .gallery-columns-3 & {
+    width: 100%;
+    @include breakpoint($s) {
+      margin-right: 1rem;
+      width: calc(50% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($m) {
+      margin-right: 1rem;
+      width: calc(33.33% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .gallery-columns-4 & {
+    width: 100%;
+    @include breakpoint($s) {
+      margin-right: 1rem;
+      width: calc(50% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($m) {
+      margin-right: 1rem;
+      width: calc(33.33% - 1rem);
+      &:nth-of-type(2n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+    @include breakpoint($l) {
+      margin-right: 1rem;
+      width: calc(25% - 1rem);
+      &:nth-of-type(2n),
+      &:nth-of-type(3n) {
+        margin-right: 1rem;
+      }
+      &:nth-of-type(4n) {
+        margin-right: 0;
+      }
+    }
+  }
+}

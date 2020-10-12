@@ -9,10 +9,10 @@
 
 get_header(); ?>
 
-  <?php 
+  <?php
     if (has_action('theme_hero')) {
       do_action('theme_hero');
-    } 
+    }
   ?>
 
   <div id="primary" class="primary primary--single">
@@ -25,21 +25,12 @@ get_header(); ?>
           <?php the_content(); ?>
         </div>
 
-        <footer class="entry__footer">
-          <?php
-            Aucor_List_Terms::render([
-              'title'     => ask__('Taxonomies: Categories'),
-              'taxonomy'  => 'category'
-            ]);
-            Aucor_List_Terms::render([
-              'title'     => ask__('Taxonomies: Keywords'),
-              'taxonomy'  => 'post_tag'
-            ]);
-            Aucor_Share_Buttons::render([
-              'section_title' => ask__('Social share: Title')
-            ]);
-          ?>
-        </footer>
+
+        <?php if (has_action('theme_after_post')) : ?>
+          <footer class="entry__footer">
+            <?php do_action('theme_after_post'); ?>
+          </footer>
+        <?php endif; ?>
 
       </article>
 

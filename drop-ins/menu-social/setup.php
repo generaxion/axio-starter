@@ -21,7 +21,7 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
  */
 
 add_action('after_setup_theme', function() {
-  register_nav_menus(['social'     => ask__('Menu: Social Menu')]);
+  register_nav_menus(['social' => ask__('Menu: Social Menu')]);
 });
 
 /**
@@ -34,19 +34,19 @@ add_action('after_setup_theme', function() {
  *
  * @return string menu item with possible description
  */
-function aucor_starter_social_menu_icons($title, $item, $args, $depth) {
+add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
 
   if ($args->theme_location == 'social') {
 
     // supported social icons
-    $social_icons = array(
+    $social_icons = [
       'facebook.com'   => 'facebook',
       'instagram.com'  => 'instagram',
       'linkedin.com'   => 'linkedin',
       'mailto:'        => 'mail',
       'twitter.com'    => 'twitter',
       'youtube.com'    => 'youtube',
-    );
+    ];
 
     // fallback icon
     $svg = 'external';
@@ -67,7 +67,4 @@ function aucor_starter_social_menu_icons($title, $item, $args, $depth) {
 
   return $title;
 
-}
-add_filter('nav_menu_item_title', 'aucor_starter_social_menu_icons', 10, 4);
-
-
+}, 10, 4);

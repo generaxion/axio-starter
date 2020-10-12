@@ -1,0 +1,20 @@
+/* ==========================================================================
+ # Component: List Terms
+========================================================================== */
+@import '../../../../assets/styles/utils.scss';
+
+.list-terms {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  &__title {
+    @include heading(s);
+    margin-bottom: .5rem;
+  }
+  &__term {
+    margin-right: .25rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
