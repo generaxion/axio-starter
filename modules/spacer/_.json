@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "spacer",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php",
+      "component.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/spacer.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/spacer.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}

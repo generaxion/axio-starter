@@ -1,0 +1,48 @@
+{
+    "key": "group_5f48cdb0f1f95",
+    "title": "Spacer",
+    "fields": [
+        {
+            "key": "field_5f48ce2e67eb2",
+            "label": "Size",
+            "name": "spacer_size",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "s": "S",
+                "m": "M",
+                "l": "L"
+            },
+            "allow_null": 0,
+            "default_value": "m",
+            "layout": "horizontal",
+            "return_format": "value",
+            "translations": "copy_once"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/spacer"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1598819894
+}

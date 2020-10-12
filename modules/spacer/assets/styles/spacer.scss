@@ -1,0 +1,95 @@
+/* ==========================================================================
+ # Spacer block and Aucor_Spacer component
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Component, block front-end and back-end
+----------------------------------------------- */
+
+.spacer {
+  position: relative;
+  height: 1px;
+
+  &--size-s {
+    @include breakpoint($m) {
+      margin-bottom: $gap-small;
+      margin-top: $gap-small;
+    }
+    @include breakpoint($m) {
+      margin-bottom: $gap;
+      margin-top: $gap;
+    }
+
+    &.is-preview {
+      height: $gap;
+    }
+  }
+
+  &--size-m {
+    @include breakpoint($m) {
+      margin-bottom: $gap;
+      margin-top: $gap;
+    }
+    @include breakpoint($m) {
+      margin-bottom: $gap-big;
+      margin-top: $gap-big;
+    }
+    &.is-preview {
+      height: $gap-big;
+    }
+  }
+
+  &--size-l {
+    @include breakpoint($m) {
+      margin-bottom: $gap-big;
+      margin-top: $gap-big;
+    }
+    @include breakpoint($l) {
+      margin-bottom: $gap-huge;
+      margin-top: $gap-huge;
+    }
+
+    &.is-preview {
+      height: $gap-huge;
+    }
+  }
+
+  &.is-preview {
+    margin: 0;
+  }
+  &__indicator {
+    opacity: .4;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    height: 100%;
+    background: currentColor;
+    .is-dark-mode & {
+      color: $white;
+    }
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      transform: translateX(-50%);
+      background: currentColor;
+    }
+    &:before {
+      top: 0;
+      bottom: auto;
+    }
+    &:after {
+      top: auto;
+      bottom: 0;
+    }
+  }
+}
