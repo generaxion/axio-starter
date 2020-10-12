@@ -8,8 +8,8 @@
 ----------------------------------------------- */
 
 .block-editor .wp-block-separator,
-.wysiwyg .wp-block-separator,
-.wysiwyg hr {
+.blocks .wp-block-separator,
+.blocks hr {
 
   margin-top: $gap-big;
   margin-bottom: $gap-big;
@@ -26,7 +26,7 @@
 /* Only front-end
 ----------------------------------------------- */
 
-.wysiwyg {
+.blocks {
   .wp-block-separator, hr {
 
   }

@@ -21,7 +21,7 @@ get_header(); ?>
 
       <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--post'); ?>>
 
-        <div class="entry__content wysiwyg">
+        <div class="entry__content blocks">
           <?php the_content(); ?>
         </div>
 

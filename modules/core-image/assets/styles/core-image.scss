@@ -8,7 +8,7 @@
 ----------------------------------------------- */
 
 .editor-styles-wrapper .wp-block-image,
-.wysiwyg .wp-block-image {
+.blocks .wp-block-image {
 
   line-height: 0;
   text-align: center;
@@ -56,12 +56,12 @@
 ----------------------------------------------- */
 
 // image block
-.wysiwyg .wp-block-image {
+.blocks .wp-block-image {
 
 }
 
 // classic editor images
-.wysiwyg .wp-caption {
+.blocks .wp-caption {
   @extend .wp-block-image;
 }
 

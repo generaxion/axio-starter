@@ -7,7 +7,7 @@
  */
 let responsive_tables_in_content = function() {
 
-  const tables = document.querySelectorAll('.wysiwyg .wp-block-table table');
+  const tables = document.querySelectorAll('.blocks .wp-block-table table');
   if (tables) {
     for (var i = 0; i < tables.length; i++) {
 

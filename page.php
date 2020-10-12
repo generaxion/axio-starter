@@ -9,10 +9,10 @@
 
 get_header(); ?>
 
-  <?php 
+  <?php
     if (has_action('theme_hero')) {
       do_action('theme_hero');
-    } 
+    }
   ?>
 
   <div id="primary" class="primary primary--page">
@@ -21,7 +21,7 @@ get_header(); ?>
 
         <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--page'); ?>>
 
-          <div class="entry__content wysiwyg">
+          <div class="entry__content blocks">
 
             <?php the_content(); ?>
 

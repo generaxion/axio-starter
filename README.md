@@ -889,7 +889,7 @@ Gutenberg block styles are in `/assets/styles/blocks/`. Each block should have t
 
 #### Scoping
 
-All Gutenberg and Classic Editor content should be inside container with class `.wysiwyg`. You should scope the styles for this to focus on right elements.
+All Gutenberg and Classic Editor content should be inside container with class `.blocks`. You should scope the styles for this to focus on right elements.
 
 #### Margins and widths
 

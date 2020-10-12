@@ -8,7 +8,7 @@
 ----------------------------------------------- */
 
 .block-editor .wp-block-acf-button .button,
-.wysiwyg .wp-block-acf-button .button,
+.blocks .wp-block-acf-button .button,
 .button {
   @include button;
 
@@ -29,14 +29,14 @@
 ----------------------------------------------- */
 
 .block-editor .wp-block-acf-button,
-.wysiwyg .wp-block-acf-button {
+.blocks .wp-block-acf-button {
 
 }
 
 /* Block, only front-end
 ----------------------------------------------- */
 
-.wysiwyg .wp-block-acf-button {
+.blocks .wp-block-acf-button {
 
   &.is-first-block {
     margin-top: 0;

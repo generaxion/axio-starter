@@ -8,7 +8,7 @@
 ----------------------------------------------- */
 
 .block-editor .wp-block[data-type="core/columns"] .wp-block-columns,
-.wysiwyg .wp-block-columns {
+.blocks .wp-block-columns {
 
   .wp-block-column {
     margin-bottom: $gap;
@@ -30,7 +30,7 @@
 /* Only front-end
 ----------------------------------------------- */
 
-.wysiwyg .wp-block-columns {
+.blocks .wp-block-columns {
 
 }
 

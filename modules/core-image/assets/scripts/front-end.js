@@ -9,7 +9,7 @@
  * <figure class="wp-caption"><img></figure> => <div class="wp-block-image"><figure class="wp-caption"><img></figure></div>
  */
 let wrap_old_images_with_caption = function() {
-  let figures = document.querySelectorAll('.wysiwyg .wp-caption');
+  let figures = document.querySelectorAll('.blocks .wp-caption');
   if (figures.length) {
     for (let i = 0; i < figures.length; i++) {
       if (!figures[i].parentNode.classList.contains('wp-block-image')) {
@@ -31,7 +31,7 @@ wrap_old_images_with_caption();
  */
 let wrap_old_aligned_images = function() {
   let aligned_parent;
-  let aligned = document.querySelectorAll('.wysiwyg img.alignleft, .wysiwyg img.alignright');
+  let aligned = document.querySelectorAll('.blocks img.alignleft, .blocks img.alignright');
   if (aligned.length) {
     for (var i = 0; i < aligned.length; i++) {
 

@@ -5,7 +5,7 @@
 /* Only front-end
 ----------------------------------------------- */
 
-.wysiwyg {
+.blocks {
   @include clearfix;
   @include child-margin-reset;
   padding-left:  $gap;
@@ -26,7 +26,7 @@
 
   // each block takes care of its own width
   & > *,
-  .wp-block-group__inner-container > * {
+  .inner-blocks > * {
     @include spacing(margin-top, margin-bottom);
     margin-left:  auto;
     margin-right: auto;

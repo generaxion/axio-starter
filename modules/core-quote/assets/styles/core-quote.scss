@@ -8,8 +8,8 @@
 ----------------------------------------------- */
 
 .block-editor .wp-block-quote,
-.wysiwyg .wp-block-quote,
-.wysiwyg blockquote:not([class]) {
+.blocks .wp-block-quote,
+.blocks blockquote:not([class]) {
 
   border-left: .25rem solid $primary;
   margin: $gap auto;
@@ -43,7 +43,7 @@
 /* Only front-end
 ----------------------------------------------- */
 
-.wysiwyg {
+.blocks {
 
   .wp-block-quote, blockquote:not([class]) {
 

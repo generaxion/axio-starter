@@ -40,7 +40,7 @@ class Aucor_Media_Text extends Aucor_Component {
         </div>
 
       <div class="module-media-text__content">
-        <div class="module-media-text__content__inner">
+        <div class="module-media-text__content__inner inner-blocks">
           <?php if (!empty($data['contents'])) : ?>
             <?php echo $data['contents']; ?>
           <?php endif; ?>
@@ -133,6 +133,7 @@ class Aucor_Media_Text extends Aucor_Component {
     }
 
     // image size
+    // @todo fix image sizes
     // $size = 'module-media-text-wide';
     // if ($args['width'] == 'full') {
     //   $size = 'module-media-text-full';
