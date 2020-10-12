@@ -37,9 +37,10 @@ $gap-small:  .75rem;
 $gap-tiny:   .5rem;
 
 // wrappers
-$max-width-s: 40rem; // 640px
-$max-width-m: 45rem; // 720px
-$max-width-l: 76rem; // 1216px
+$max-width-s:   40rem; // 640px
+$max-width-m:   45rem; // 720px
+$max-width-l:   76rem; // 1216px
+$max-width-xl:  90rem;    // 1440px
 
 // content width
 $content-default-width: $max-width-m;

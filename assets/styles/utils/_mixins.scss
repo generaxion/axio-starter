@@ -141,6 +141,26 @@
   box-shadow: none;
 }
 
+/* Widths
+----------------------------------------------- */
+
+@mixin alignwide {
+  max-width: $max-width-l;
+  @include breakpoint($xl) {
+    max-width: $max-width-xl;
+  }
+}
+
+@mixin alignfull {
+  margin-left: -$gap;
+  margin-right: -$gap;
+  max-width: none;
+  @include breakpoint($m) {
+    margin-left: -$gap-big;
+    margin-right: -$gap-big;
+  }
+}
+
 /* Spacing
 ----------------------------------------------- */
 

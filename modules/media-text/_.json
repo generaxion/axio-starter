@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "media-text",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php",
+      "component.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/media-text.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/media-text.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}
