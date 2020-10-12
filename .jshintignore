@@ -1,4 +1,4 @@
 gulpfile.js
 node_modules/**
-drop-ins/*/node_modules/**
-drop-ins/*/assets/vendor/**
+modules/*/node_modules/**
+modules/*/assets/vendor/**

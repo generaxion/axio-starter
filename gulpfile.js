@@ -78,8 +78,8 @@ const path = {
     "source": "assets/favicon/",
     "dist":   "dist/favicon/",
   },
-  "drop_ins" : {
-    "source": "drop-ins/",
+  "modules" : {
+    "source": "modules/",
   }
 };
 
@@ -113,28 +113,28 @@ const updateTimestamp = (stamp) => {
 };
 
 /**
- * getDropIns helper function for collecting all drop-ins
+ * getModules helper function for collecting all modules
  */
-const getDropIns = () => {
-  return  fs.readdirSync(path.drop_ins.source)
+const getModules = () => {
+  return  fs.readdirSync(path.modules.source)
             .filter(function(drop_in) {
               if (!drop_in.includes("_", 0)) {
-                return fs.statSync(path_module.join('./drop-ins/', drop_in)).isDirectory();
+                return fs.statSync(path_module.join('./modules/', drop_in)).isDirectory();
               }
             });
 }
 /**
- * getDropInJsons helper function for collecting all drop-ins _.json files
+ * getDropInJsons helper function for collecting all modules _.json files
  */
 var getDropInJsons = () => {
   var jsons = [];
-  var drop_ins = getDropIns();
+  var modules = getModules();
 
-  for (let i = 0; i < drop_ins.length; i++) {
-    if (!drop_ins[i].includes("_", 0) && !drop_ins[i].includes(".")) {
+  for (let i = 0; i < modules.length; i++) {
+    if (!modules[i].includes("_", 0) && !modules[i].includes(".")) {
       jsons.push({
-        'name': drop_ins[i],
-        'json': require('./drop-ins/' + drop_ins[i] + '/_.json'),
+        'name': modules[i],
+        'json': require('./modules/' + modules[i] + '/_.json'),
       });
     }
   }
@@ -152,7 +152,7 @@ const getAssets = () => {
     Object.entries(drop_in.json.css).forEach(([target, sources]) => {
       if (typeof sources !== 'undefined' && sources.length > 0) {
         sources.forEach(source => {
-          manifest_json.css[target].push('drop-ins/' + drop_in.name + '/' + source);
+          manifest_json.css[target].push('modules/' + drop_in.name + '/' + source);
         });
       }
     });
@@ -160,7 +160,7 @@ const getAssets = () => {
     Object.entries(drop_in.json.js).forEach(([target, sources]) => {
       if (typeof sources !== 'undefined' && sources.length > 0) {
         sources.forEach(source => {
-          manifest_json.js[target].push('drop-ins/' + drop_in.name + '/' + source);
+          manifest_json.js[target].push('modules/' + drop_in.name + '/' + source);
         });
       }
     });
@@ -381,7 +381,7 @@ gulp.task('images', () => {
   // Gather all image sources to one array
   let image_sources = [
     path.images.source + '**/*',
-    path.drop_ins.source + '**/images/*'
+    path.modules.source + '**/images/*'
   ];
 
   return gulp
@@ -421,14 +421,14 @@ gulp.task('svgstore', async () => {
     err => console.error({err})
   );
 
-  // Add Drop-in sprites to spriteSources if icon with the same name is not found
+  // Add module sprites to spriteSources if icon with the same name is not found
   // @todo maybe turn into async function
-  const dropIns = getDropIns();
+  const dropIns = getModules();
 
-  // Get drop-in filenames
+  // Get module filenames
   for (const drop_in of dropIns) {
-    await fs.promises.readdir(path.drop_ins.source + drop_in + '/assets/sprite').then(
-      files => files.forEach(file => spriteSources.push(path.drop_ins.source + drop_in + '/assets/sprite/' + file)),
+    await fs.promises.readdir(path.modules.source + drop_in + '/assets/sprite').then(
+      files => files.forEach(file => spriteSources.push(path.modules.source + drop_in + '/assets/sprite/' + file)),
       err => null // directory doesn't exist
     );
   }
@@ -561,16 +561,16 @@ gulp.task('watch', () => {
   gulp.watch(path.sprite.source   +    '*', gulp.task('svgstore'));
   gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
 
-  // Drop-ins
-  gulp.watch(path.drop_ins.source +           '**/*.scss', gulp.task('styles'));
-  gulp.watch(path.drop_ins.source +       '**/*.js', gulp.task('scripts'));
-  gulp.watch(path.drop_ins.source +    '**/images/*', gulp.task('images'));
-  gulp.watch(path.drop_ins.source +     '**/sprite/*', gulp.task('svgstore'));
+  // modules
+  gulp.watch(path.modules.source +           '**/*.scss', gulp.task('styles'));
+  gulp.watch(path.modules.source +       '**/*.js', gulp.task('scripts'));
+  gulp.watch(path.modules.source +    '**/images/*', gulp.task('images'));
+  gulp.watch(path.modules.source +     '**/sprite/*', gulp.task('svgstore'));
 
   gulp.watch([
     'gulpfile.js',
     'assets/manifest.js',
-    path.drop_ins.source + '*/_.json'
+    path.modules.source + '*/_.json'
   ], () => {
     console.error("\n⚠️  Congifuration files modified. Restart gulp. ⚠️\n");
     beeper();
@@ -578,7 +578,7 @@ gulp.task('watch', () => {
   });
 
   gulp.watch([
-    path.drop_ins.source + '*',
+    path.modules.source + '*',
   ],
     gulp.task('default')
   )

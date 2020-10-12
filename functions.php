@@ -43,12 +43,12 @@ require_once 'inc/setup-theme-support.php';
 
 
 /**
- * Drop-in PHP autoloader
+ * Module PHP autoloader
  *
- * You can disable a drop-in by starting directory with underscore
+ * You can disable a module by starting directory with underscore
  */
-foreach (glob(__DIR__ . '/drop-ins/*', GLOB_ONLYDIR) as $dir) {
-  if (!strstr($dir, '/drop-ins/_') && file_exists($dir . '/_.json')) {
+foreach (glob(__DIR__ . '/modules/*', GLOB_ONLYDIR) as $dir) {
+  if (!strstr($dir, '/modules/_') && file_exists($dir . '/_.json')) {
     $parts = json_decode(file_get_contents($dir . '/_.json'), true);
     if (isset($parts['php']) && isset($parts['php']['inc'])) {
       foreach ($parts['php']['inc'] as $file) {

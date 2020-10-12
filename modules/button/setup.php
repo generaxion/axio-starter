@@ -14,7 +14,7 @@ add_action('acf/init', function () {
     acf_register_block_type([
       'name'              => 'button',
       'title'             => ask__('Button: Block name'),
-      'render_template'   => 'drop-ins/button/block.php',
+      'render_template'   => 'modules/button/block.php',
       'keywords'          => ['button', 'buttons', 'cta'],
       'post_types'        => ['page', 'post'],
       'category'          => 'common',
