@@ -19,6 +19,9 @@ add_action('after_setup_theme', function() {
   // disable font size selection
   add_theme_support('disable-custom-font-sizes');
 
+  // disable default patterns
+  remove_theme_support('core-block-patterns');
+
   // disable gradients
   add_theme_support('__experimental-editor-gradient-presets', []);
   add_theme_support('__experimental-disable-custom-gradients', true);
