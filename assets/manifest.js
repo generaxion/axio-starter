@@ -7,9 +7,7 @@ module.exports = {
   /**
    * URL for BrowserSync to mirror
    */
-  devUrl: function() {
-    return "https://aucor-starter.local";
-  },
+  devUrl: () => "https://aucor-starter.local",
 
   /**
    * JS files
@@ -19,7 +17,7 @@ module.exports = {
    *   "scripts/cool-scripts.js"
    * ]
    */
-  js: function() {
+  js: () => {
     return {
 
       // main js to be loaded in footer
@@ -51,6 +49,22 @@ module.exports = {
   },
 
   /**
+   * Babel ignores
+   *
+   * Babel messes up scripts that use "this" and these need to be skipped
+   *
+   * @see https://stackoverflow.com/a/34983495
+   */
+  babelIgnores: () => {
+    return [
+      "./node_modules/@rqrauhvmra/tobi/js/tobi.js",
+      "./node_modules/axios/dist/axios.min.js",
+      "./modules/lightbox/assets/vendor/tobi/js/tobi.js",
+      "./modules/lightbox/assets/vendor/tobi/js/tobi.min.js"
+    ];
+  },
+
+  /**
    * CSS files
    *
    * "build-file-name.css": [
@@ -58,7 +72,7 @@ module.exports = {
    *   "styles/main.scss"
    * ]
    */
-  css: function() {
+  css: () => {
     return {
 
       "utils.css": [

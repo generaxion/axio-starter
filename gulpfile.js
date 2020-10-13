@@ -263,14 +263,8 @@ const jsTasks = (filename) => {
     .pipe(function() {
       return babel({
         presets: ["@babel/preset-env", "@babel/preset-react"],
-        // override because of use of "this" in IIFE with Babel in Tobi.js: https://stackoverflow.com/questions/34973442/how-to-stop-babel-from-transpiling-this-to-undefined-and-inserting-use-str
         overrides: [{
-          test: [
-            "./node_modules/@rqrauhvmra/tobi/js/tobi.js",
-            "./node_modules/axios/dist/axios.min.js",
-            "./modules/lightbox/assets/vendor/tobi/js/tobi.js",
-            "./modules/lightbox/assets/vendor/tobi/js/tobi.min.js"
-          ],
+          test: manifest.babelIgnores(),
           sourceType: "script",
         }],
       });
