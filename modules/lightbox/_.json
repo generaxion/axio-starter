@@ -17,7 +17,7 @@
   },
   "js": {
     "main.js": [
-      "assets/vendor/tobi/js/tobi.min.js",
+      "assets/vendor/tobi/js/tobi.js",
       "assets/scripts/lightbox.js"
     ],
     "editor-gutenberg.js": []

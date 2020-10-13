@@ -116,12 +116,12 @@ const updateTimestamp = (stamp) => {
  * getModules helper function for collecting all modules
  */
 const getModules = () => {
-  return  fs.readdirSync(path.modules.source)
-            .filter(function(drop_in) {
-              if (!drop_in.includes("_", 0)) {
-                return fs.statSync(path_module.join('./modules/', drop_in)).isDirectory();
-              }
-            });
+  return fs.readdirSync(path.modules.source)
+    .filter(function(module) {
+      if (!module.includes("_", 0)) {
+        return fs.statSync(path_module.join('./modules/', module)).isDirectory();
+      }
+    });
 }
 /**
  * getDropInJsons helper function for collecting all modules _.json files
@@ -147,23 +147,25 @@ const getAssets = () => {
     'css': manifest.css(),
   }
 
-  getDropInJsons().forEach(drop_in => {
-
-    Object.entries(drop_in.json.css).forEach(([target, sources]) => {
-      if (typeof sources !== 'undefined' && sources.length > 0) {
-        sources.forEach(source => {
-          manifest_json.css[target].push('modules/' + drop_in.name + '/' + source);
-        });
-      }
-    });
-
-    Object.entries(drop_in.json.js).forEach(([target, sources]) => {
-      if (typeof sources !== 'undefined' && sources.length > 0) {
-        sources.forEach(source => {
-          manifest_json.js[target].push('modules/' + drop_in.name + '/' + source);
-        });
-      }
-    });
+  getDropInJsons().forEach(module => {
+    if (module.json.css) {
+      Object.entries(module.json.css).forEach(([target, sources]) => {
+        if (typeof sources !== 'undefined' && sources.length > 0) {
+          sources.forEach(source => {
+            manifest_json.css[target].push('modules/' + module.name + '/' + source);
+          });
+        }
+      });
+    }
+    if (module.json.js) {
+      Object.entries(module.json.js).forEach(([target, sources]) => {
+        if (typeof sources !== 'undefined' && sources.length > 0) {
+          sources.forEach(source => {
+            manifest_json.js[target].push('modules/' + module.name + '/' + source);
+          });
+        }
+      });
+    }
   });
 
   return manifest_json;
@@ -266,6 +268,8 @@ const jsTasks = (filename) => {
           test: [
             "./node_modules/@rqrauhvmra/tobi/js/tobi.js",
             "./node_modules/axios/dist/axios.min.js",
+            "./modules/lightbox/assets/vendor/tobi/js/tobi.js",
+            "./modules/lightbox/assets/vendor/tobi/js/tobi.min.js"
           ],
           sourceType: "script",
         }],
@@ -426,9 +430,9 @@ gulp.task('svgstore', async () => {
   const dropIns = getModules();
 
   // Get module filenames
-  for (const drop_in of dropIns) {
-    await fs.promises.readdir(path.modules.source + drop_in + '/assets/sprite').then(
-      files => files.forEach(file => spriteSources.push(path.modules.source + drop_in + '/assets/sprite/' + file)),
+  for (const module of dropIns) {
+    await fs.promises.readdir(path.modules.source + module + '/assets/sprite').then(
+      files => files.forEach(file => spriteSources.push(path.modules.source + module + '/assets/sprite/' + file)),
       err => null // directory doesn't exist
     );
   }

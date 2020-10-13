@@ -10,7 +10,7 @@
  *   classic images without caption and with no or center align,
  *   classic images without caption and with left or right align
  */
-const init_lightboxes_in_content = () => {
+const lightboxesInContent = () => {
   var imgItems = document.querySelectorAll('.blocks-gallery-item > figure > a, .gallery-item > .gallery-icon > a, .wp-block-image a, p > a > img, p > a > .wp-block-image');
   // if found, add .lightbox class that Tobi uses as selector to the items
   if (imgItems.length) {
@@ -39,22 +39,24 @@ const init_lightboxes_in_content = () => {
     });
   }
 };
-init_lightboxes_in_content();
+lightboxesInContent();
 
 /**
  * Init lightbox
  */
-if (document.querySelectorAll('.lightbox').length) {
-  try {
-    new Tobi({
-      navLabel: [theme_strings_lightbox.prev, theme_strings_lightbox.next],
-      closeLabel: theme_strings_lightbox.close,
-      loadingIndicatorLabel: theme_strings_lightbox.loading,
-      captionsSelector: 'self',
-      captionAttribute: 'data-caption',
-      zoom: false,
-    });
-  } catch (e) {
-    console.log(e);
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelectorAll('.lightbox').length > 0) {
+    try {
+      new Tobi({
+        navLabel: [theme_strings_lightbox.prev, theme_strings_lightbox.next],
+        closeLabel: theme_strings_lightbox.close,
+        loadingIndicatorLabel: theme_strings_lightbox.loading,
+        captionsSelector: 'self',
+        captionAttribute: 'data-caption',
+        zoom: false,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
-}
+});
