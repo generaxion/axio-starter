@@ -22,11 +22,6 @@ require_once 'inc/_conf/register-image-sizes.php';
 require_once 'inc/_conf/register-localization.php';
 
 /**
- * Abstract component
- */
-require_once 'inc/component.php';
-
-/**
  * Helpers
  */
 require_once 'inc/helpers/function-dates.php';
@@ -36,6 +31,7 @@ require_once 'inc/helpers/function-last-edited.php';
 /**
  * Hooks and setup
  */
+require_once 'inc/class-component.php';
 require_once 'inc/setup-acf.php';
 require_once 'inc/setup-classic-editor.php';
 require_once 'inc/setup-fallbacks.php';
@@ -51,7 +47,7 @@ require_once 'inc/setup-theme-support.php';
 foreach (glob(__DIR__ . '/modules/*', GLOB_ONLYDIR) as $dir) {
   if (!strstr($dir, '/modules/_') && file_exists($dir . '/_.json')) {
     $parts = json_decode(file_get_contents($dir . '/_.json'), true);
-    if (isset($parts['php']) && isset($parts['php']['inc'])) {
+    if (isset($parts['php'], $parts['php']['inc'])) {
       foreach ($parts['php']['inc'] as $file) {
         if (!strstr($file, '..')) {
           require_once $dir . '/' . $file;

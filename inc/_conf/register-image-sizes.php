@@ -38,83 +38,57 @@ add_action('after_setup_theme', function() {
   }
 
   // custom image sizes
-  add_image_size('hero_lg',  2000,  750, true);  // hero @1,33x 3:1
-  add_image_size('hero_md',  1500,  500, true);  // hero @1x 3:1
-  add_image_size('hero_sm',   800,  500, true);  // hero mobile 8:5
-  add_image_size('wide_md',  1216, 2432, false); // gutenberg wide, relational to large
-  add_image_size('wide_lg',  1824, 3648, false); // gutenberg wide, relational to large
+  add_image_size('wide_m',  1216, 2432, false); // gutenberg wide, relational to large
+  add_image_size('wide_l',  1824, 3648, false); // gutenberg wide, relational to large
 
   // enable support for post thumbnails
   add_theme_support('post-thumbnails');
 
 });
 
-
 /**
- * Turn human readable image size into responsive sizes
+ * Add sizing info to image function to responsive image logic
  *
- * @param string $human_size an abstraction of WP image size that consits of multiple sub-sizes
+ * Module specific sizings should be registeder from the module.
  *
- * @return array of responsive image stuff
+ * @param array $sizes
+ *
+ * @return array $sizes
  */
-function aucor_starter_human_image_size_to_wp_sizes($human_size) {
+add_filter('theme_image_sizing', function($sizes) {
 
-  switch ($human_size) {
+  $sizes['large'] = [
+    'primary'    => 'large',
+    'supporting' => ['full', 'large', 'medium'],
+    'sizes'      => '(min-width: 720px) 720px, 100vw'
+  ];
 
-    case 'hero':
-      return [
-        'primary'    => 'hero_md',
-        'supporting' => ['hero_lg', 'hero_md', 'hero_sm'],
-        'sizes'      => '100vw'
-      ];
+  $sizes['medium'] = [
+    'primary'    => 'medium',
+    'supporting' => ['full', 'large', 'medium'],
+    'sizes'      => '(min-width: 360px) 360px, 100vw'
+  ];
 
-    case 'teaser':
-      return [
-        'primary'    => 'thumbnail',
-        'supporting' => ['thumbnail'],
-        'sizes'      => '250px'
-      ];
+  $sizes['thumbnail'] = [
+    'primary'    => 'thumbnail',
+    'supporting' => ['thumbnail'],
+    'sizes'      => '100px'
+  ];
 
-    case 'large':
-      return [
-        'primary'    => 'large',
-        'supporting' => ['full', 'large', 'medium'],
-        'sizes'      => '(min-width: 720px) 720px, 100vw'
-      ];
+  return $sizes;
 
-    case 'medium':
-      return [
-        'primary'    => 'medium',
-        'supporting' => ['full', 'large', 'medium'],
-        'sizes'      => '(min-width: 360px) 360px, 100vw'
-      ];
-
-    case 'thumbnail':
-      return [
-        'primary'    => 'thumbnail',
-        'supporting' => ['thumbnail'],
-        'sizes'      => '100px'
-      ];
-
-    default:
-      if (function_exists('aucor_core_debug_msg')) {
-        aucor_core_debug_msg('Image size error - Missing human readable size {' . $human_size . '}', ['aucor_starter_get_image']);
-      }
-  }
-
-}
+});
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet
  *
  * @global int $content_width the max width of content in pixels
  */
-function aucor_starter_content_width() {
+add_action('after_setup_theme', function() {
 
   $GLOBALS['content_width'] = 720;
 
-}
-add_action('after_setup_theme', 'aucor_starter_content_width', 0);
+}, 0);
 
 /**
  * Set wide image sizes attribute

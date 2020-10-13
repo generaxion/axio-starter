@@ -1,1 +1,188 @@
-// [
+{
+  "key": "group_media_and_text",
+  "title": "Block: Media and Text",
+  "fields": [
+      {
+          "key": "field_5f477f422dbc5",
+          "label": "Media",
+          "name": "",
+          "type": "accordion",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "open": 1,
+          "multi_expand": 1,
+          "endpoint": 0
+      },
+      {
+          "key": "field_5f467c4edbabc",
+          "label": "Position",
+          "name": "position",
+          "type": "button_group",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "left": "Left",
+              "right": "Right"
+          },
+          "allow_null": 0,
+          "default_value": "right",
+          "layout": "horizontal",
+          "return_format": "value",
+          "translations": "copy_once"
+      },
+      {
+          "key": "field_5f46770e84e39",
+          "label": "Type",
+          "name": "type",
+          "type": "button_group",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "image": "Image",
+              "video": "Video"
+          },
+          "allow_null": 0,
+          "default_value": "image",
+          "layout": "horizontal",
+          "return_format": "value",
+          "translations": "copy_once"
+      },
+      {
+          "key": "field_5f46770e84f85",
+          "label": "Image",
+          "name": "image",
+          "type": "image",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f46770e84e39",
+                      "operator": "==",
+                      "value": "image"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "return_format": "id",
+          "preview_size": "medium",
+          "library": "all",
+          "min_width": "",
+          "min_height": "",
+          "min_size": "",
+          "max_width": "",
+          "max_height": "",
+          "max_size": "",
+          "mime_types": "",
+          "translations": "copy_once"
+      },
+      {
+          "key": "field_5f8428ec94cc1",
+          "label": "Video (mp4)",
+          "name": "video",
+          "type": "file",
+          "instructions": "Autoplaying muted video without controls.",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f46770e84e39",
+                      "operator": "==",
+                      "value": "video"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "return_format": "url",
+          "library": "all",
+          "min_size": "",
+          "max_size": "",
+          "mime_types": "mp4"
+      },
+      {
+          "key": "field_5f477f642dbc6",
+          "label": "Text",
+          "name": "",
+          "type": "accordion",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "open": 1,
+          "multi_expand": 1,
+          "endpoint": 0
+      },
+      {
+          "key": "field_5f477e312dbc4",
+          "label": "Vertical align",
+          "name": "align",
+          "type": "button_group",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "top": "Top",
+              "middle": "Middle",
+              "bottom": "Bottom"
+          },
+          "allow_null": 0,
+          "default_value": "middle",
+          "layout": "horizontal",
+          "return_format": "value",
+          "translations": "copy_once"
+      }
+  ],
+  "location": [
+      [
+          {
+              "param": "block",
+              "operator": "==",
+              "value": "acf\/media-text"
+          }
+      ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "modified": 1602502520
+}

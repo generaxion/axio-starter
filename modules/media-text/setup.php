@@ -32,6 +32,27 @@ add_action('acf/init', function () {
 });
 
 /**
+ * Image sizing
+ */
+add_filter('theme_image_sizing', function($sizes) {
+
+  $sizes['media_text_wide'] = [
+    'primary'    => 'large',
+    'supporting' => ['wide_l', 'wide_m', 'large', 'medium'],
+    'sizes'      => '(min-width: 920px) 720px, 100vw'
+  ];
+
+  $sizes['media_text_full'] = [
+    'primary'    => 'large',
+    'supporting' => ['wide_l', 'wide_m', 'large', 'medium'],
+    'sizes'      => '(min-width: 720px) 50vw, 100vw'
+  ];
+
+  return $sizes;
+
+});
+
+/**
  * Allow block
  */
 add_filter('allowed_block_types', function($blocks, $post) {

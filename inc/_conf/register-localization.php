@@ -8,6 +8,8 @@
 /**
  * Register string to translate
  *
+ * Module specific strings should be registeder from the module.
+ *
  * @uses Aucor Core filter: aucor_core_pll_register_strings
  *
  * @return array list of translatabel strings

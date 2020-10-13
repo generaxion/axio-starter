@@ -68,7 +68,12 @@ class Aucor_Image extends Aucor_Component {
     ];
 
     // get desired sizes for image
-    $desired_sizes = aucor_starter_human_image_size_to_wp_sizes($args['size']);
+    $registered_sizes = apply_filters('theme_image_sizing', []);
+    if (isset($registered_sizes[$args['size']])) {
+      $desired_sizes = $registered_sizes[$args['size']];
+    } else {
+      return parent::error('Requested size not found ' . $args['size']);
+    }
 
     // figure out which desired sizes are possible
     $possible_sizes = self::get_possible_image_sizes($desired_sizes, $generated_sizes);

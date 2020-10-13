@@ -12,6 +12,8 @@
  * blocks here to appear on Gutenberg. This is to keep the control on what
  * is or is not allowed.
  *
+ * Module specific blocks should be registered from the module.
+ *
  * @param bool|array $allowed_block_types list of block names or true for all
  * @param WP_Post $post the current post object
  *

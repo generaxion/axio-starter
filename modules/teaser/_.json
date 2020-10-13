@@ -5,6 +5,7 @@
   },
   "php": {
     "inc": [
+      "setup.php",
       "component.php"
     ]
   },

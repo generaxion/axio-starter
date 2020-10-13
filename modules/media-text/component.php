@@ -133,13 +133,10 @@ class Aucor_Media_Text extends Aucor_Component {
     }
 
     // image size
-    // @todo fix image sizes
-    // $size = 'module-media-text-wide';
-    // if ($args['width'] == 'full') {
-    //   $size = 'module-media-text-full';
-    // }
-
-    $size = 'large';
+    $size = 'media_text_wide';
+    if ($args['width'] == 'full') {
+      $size = 'media_text_full';
+    }
 
     if (!empty($args['image_id'])) {
       $args['image'] = Aucor_Image::get([

@@ -16,10 +16,9 @@ class Aucor_Background extends Aucor_Component {
           <div class="background__media js-background__media">
             <?php if ($data['type'] == 'image') : ?>
               <?php
-              // @todo image sizes
               Aucor_Image::render([
                 'id'       => $data['image_id'],
-                'size'     => 'hero',
+                'size'     => 'background',
               ]);
               ?>
             <?php elseif ($data['type'] == 'video') : ?>
