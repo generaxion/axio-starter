@@ -36,6 +36,7 @@ require_once 'inc/helpers/function-last-edited.php';
 /**
  * Hooks and setup
  */
+require_once 'inc/setup-acf.php';
 require_once 'inc/setup-classic-editor.php';
 require_once 'inc/setup-fallbacks.php';
 require_once 'inc/setup-gutenberg.php';
