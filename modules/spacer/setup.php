@@ -32,7 +32,7 @@ add_action('acf/init', function () {
       'render_template'   => 'modules/spacer/block.php',
       'keywords'          => ['spacer'],
       'post_types'        => ['page', 'post'],
-      'category'          => 'common',
+      'category'          => 'design',
       'icon'              => 'image-flip-vertical',
       'mode'              => 'preview',
       'supports'          => [

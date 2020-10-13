@@ -17,7 +17,7 @@ add_action('acf/init', function () {
       'render_template'   => dirname(__FILE__) . '/block.php',
       'multiple'          => false,
       'keywords'          => ['media-text', 'text-media', '50/50'],
-      'category'          => 'common',
+      'category'          => 'design',
       'icon'              => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="0" fill="none" width="20" height="20"/><g><path d="M9 16V4H3v12h6zm2-7h6V7h-6v2zm0 4h6v-2h-6v2z"/></g></svg>',
       'mode'              => 'preview',
       'align'             => 'wide',
