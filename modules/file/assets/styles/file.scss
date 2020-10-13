@@ -1,0 +1,65 @@
+/* ==========================================================================
+ # Button block and Aucor_Button component
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Component, block front-end and back-end
+----------------------------------------------- */
+
+.wp-block-acf-files {
+
+  &__empty {
+    border: 2px dotted rgba(0,0,0,.4);
+    padding: 1.5rem;
+  }
+
+}
+
+/* Component
+----------------------------------------------- */
+
+.module-file {
+  & + .module-file {
+    margin-top: .5rem;
+  }
+
+  &__link {
+    display: flex;
+  }
+  &__icon {
+    flex-shrink: 0;
+    margin-right: .25rem;
+  }
+  &__title {
+
+  }
+
+}
+
+
+/* Block front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block-acf-files,
+.blocks .wp-block-acf-files {
+
+}
+
+/* Block, only front-end
+----------------------------------------------- */
+
+.blocks .wp-block-acf-files {
+
+}
+
+/* Block, only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type="acf/file"] {
+
+  .wp-block-acf-files a {
+    pointer-events: none;
+  }
+
+}

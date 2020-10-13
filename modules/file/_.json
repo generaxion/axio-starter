@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "File",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php",
+      "setup.php"    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/file.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/file.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}
