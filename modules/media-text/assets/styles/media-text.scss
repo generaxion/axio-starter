@@ -82,12 +82,6 @@ $breakpoint_mediatext_desktop: min-width 920px;
       .module-media-text__media {
         order: 1;
       }
-
-      .module-media-text__content {
-        & > * {
-          margin-left: auto;
-        }
-      }
     }
   }
 
