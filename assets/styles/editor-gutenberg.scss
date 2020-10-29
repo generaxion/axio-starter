@@ -46,4 +46,8 @@
     min-height: 0 !important;
   }
 
+  input[type="search"]{
+    box-sizing: border-box;
+  }
+
 }
