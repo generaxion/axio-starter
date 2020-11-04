@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "breakpoint-sass": "^2.7.1",
+    "css-vars-ponyfill": "^2.4.0",
     "fitvids": "^2.1.1",
+    "nodelist-foreach-polyfill": "^1.2.0",
     "objectFitPolyfill": "^2.3.0",
     "svgxuse": "^1.2.6"
   },

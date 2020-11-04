@@ -23,11 +23,17 @@ module.exports = {
       // main js to be loaded in footer
       "main.js": [
 
-        // polyfill for external x:link svg (https://github.com/Keyamoon/svgxuse)
+        // IE11 polyfill for external x:link svg (https://github.com/Keyamoon/svgxuse)
         "node_modules/svgxuse/svgxuse.js",
 
-        // polyfill for object-fit
+        // IE11 polyfill for object-fit
         "node_modules/objectFitPolyfill/dist/objectFitPolyfill.min.js",
+
+        // IE11 polyfill for forEach
+        "node_modules/nodelist-foreach-polyfill/index.js",
+
+        // IE 11 ponyfill for css vars
+        "node_modules/css-vars-ponyfill/dist/css-vars-ponyfill.min.js",
 
         // vanilla js version of fitvids, that makes iframe videos responsice (https://www.npmjs.com/package/fitvids)
         "node_modules/fitvids/dist/fitvids.js",

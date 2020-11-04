@@ -3,10 +3,10 @@
 ========================================================================== */
 
 html {
-  color: $base-font-color;
-  font-family: $font-text;
+  color: var(--color-text);
+  font-family: var(--font-default);
   font-size: 100%;
-  line-height: $line-height;
+  line-height: 1.5;
   -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
 }
@@ -17,11 +17,11 @@ html {
 p, .p {
   display: block;
   font-size: .875rem;
-  @include breakpoint($s) {
+  @include breakpoint($breakpoint-s) {
     font-size: 1rem;
   }
-  font-weight: $normal;
-  line-height: $line-height;
+  font-weight: var(--font-wright-normal);
+  line-height: 1.5;
   margin-bottom: 1.5rem;
 }
 
@@ -61,7 +61,7 @@ ul, ol {
   margin: 0 0 1rem;
   li {
     font-size: .875rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 1rem;
     }
   }
@@ -72,7 +72,7 @@ ul, ol {
 
 a {
 
-  color: $link;
+  color: var(--color-link);
 
   &:hover, &:active, &:focus {
   }
@@ -90,8 +90,8 @@ a:focus {
 }
 
 .skip-to-content {
-  background: $black;
-  color: $white;
+  background: var(--color-black);
+  color: var(--color-white);
   display: inline-block;
   left: -9999em;
   outline: none;

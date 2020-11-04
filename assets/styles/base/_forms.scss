@@ -30,8 +30,8 @@ textarea,
 input {
   max-width: 100%;
   padding: .5rem 1rem;
-  color: $base-font-color;
-  background: $white;
+  color: var(--color-text);
+  background: var(--color-white);
 }
 
 input[type="radio"],

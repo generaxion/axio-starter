@@ -11,7 +11,7 @@
 
     li {
       display: inline-block;
-      margin-right: $gap-small;
+      margin-right: var(--spacing-xs);
       &:last-of-type {
         margin-right: 0;
       }
@@ -19,9 +19,9 @@
 
     a {
       @include transition;
-      color: $grey-font-color;
+      color: var(--color-text-light);
       &:hover, &:focus, &:active {
-        color: $primary;
+        color: var(--color-primary);
       }
     }
 

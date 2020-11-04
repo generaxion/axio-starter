@@ -7,14 +7,14 @@
 .menu-toggle {
   @include button-reset;
   background: transparent;
-  color: $primary;
+  color: var(--color-primary);
   cursor: pointer;
   display: inline-block;
   font-size: .875em;
   line-height: 0;
   padding: 0;
   text-transform: uppercase;
-  @include breakpoint($menu-visible) {
+  @include breakpoint($breakpoint-desktop-menu) {
     display: none;
   }
 

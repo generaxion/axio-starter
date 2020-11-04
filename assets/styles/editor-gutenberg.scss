@@ -5,6 +5,7 @@
 /* Utils
 ----------------------------------------------- */
 
+@import "utils/variables";
 @import "utils";
 
 /* Base
@@ -23,18 +24,18 @@
   .editor-post-title {
     &__input {
       @include heading(xl);
-      font-family: $font-title;
+      font-family: var(--font-title);
       text-align: center;
     }
   }
 
   .wp-block {
-    font-family: $font-text;
+    font-family: var(--font-default);
     @import "base/typography";
-    max-width: $max-width-m;
+    max-width: var(--width-m);
 
     &[data-align="wide"] {
-      max-width: $max-width-l;
+      max-width: var(--width-l);
     }
 
     &[data-align="full"] {

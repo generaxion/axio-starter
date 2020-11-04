@@ -4,6 +4,14 @@
 
 @import '../../../../assets/styles/utils.scss';
 
+/* Variables
+----------------------------------------------- */
+
+:root {
+  --color-file-icon: var(--color-text);
+  --color-file-text: var(--color-link);
+}
+
 /* Component, block front-end and back-end
 ----------------------------------------------- */
 
@@ -26,10 +34,14 @@
 
   &__link {
     display: flex;
+    color: var(--color-file-text);
   }
   &__icon {
     flex-shrink: 0;
     margin-right: .25rem;
+    svg {
+      fill: var(--color-file-icon);
+    }
   }
   &__title {
 

@@ -11,16 +11,16 @@
 .blocks .wp-block-quote,
 .blocks blockquote:not([class]) {
 
-  border-left: .25rem solid $primary;
-  margin: $gap auto;
-  padding-left: $gap;
+  border-left: .25rem solid var(--color-primary);
+  margin: var(--spacing-m) auto;
+  padding-left: var(--spacing-m);
 
   p {
     font-size: .875rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 1rem;
     }
-    @include breakpoint($m) {
+    @include breakpoint($breakpoint-m) {
       font-size: 1.125rem;
     }
     margin: 0;
@@ -30,10 +30,10 @@
   .wp-block-quote__citation {
     display: block;
     font-style: normal;
-    margin-top: $gap-small;
-    color: $grey-font-color;
+    margin-top: var(--spacing-xs);
+    color: var(--color-text-light);
     font-size: .875rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 1rem;
     }
   }

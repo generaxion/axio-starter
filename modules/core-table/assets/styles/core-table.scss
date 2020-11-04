@@ -10,10 +10,10 @@
 .block-editor .wp-block-table,
 .blocks .wp-block-table {
   font-size: .875rem;
-  @include breakpoint($s) {
+  @include breakpoint($breakpoint-s) {
     font-size: 1rem;
   }
-  margin: $gap auto;
+  margin: var(--spacing-m) auto;
   width: 100%;
 
   figure {
@@ -21,31 +21,31 @@
   }
 
   table {
-    border: 1px solid $grey;
+    border: 1px solid var(--color-border);
     width: 100%;
   }
 
   thead {
-    background: $primary;
-    color: $white;
+    background: var(--color-primary);
+    color: var(--color-white);
   }
 
   td, th {
     text-align: left;
     min-width: 8rem;  // for responsive tables
-    padding: $gap-small $gap-small;
+    padding: var(--spacing-xs) var(--spacing-xs);
   }
 
   td {
     border: 0;
-    border-left: 1px solid $grey;
+    border-left: 1px solid var(--color-border);
     &:first-of-type {
       border-left: 0;
     }
   }
 
   tr {
-    border-bottom: 1px solid $grey;
+    border-bottom: 1px solid var(--color-border);
     &:last-of-type {
       border-bottom: 0;
     }
@@ -58,15 +58,15 @@
   &--responsive {
     display: block;
     overflow-x: auto;
-    border: 1px solid $grey;
+    border: 1px solid var(--color-border);
     // scroll indicator, @see https://www.smashingmagazine.com/2019/01/table-design-patterns-web/#style-the-scroll
     background:
-        linear-gradient(to right, $white 30%, rgba(255,255,255,0)),
-        linear-gradient(to right, rgba(255,255,255,0), $white 70%) 0 100%,
+        linear-gradient(to right, var(--color-white) 30%, rgba(255,255,255,0)),
+        linear-gradient(to right, rgba(255,255,255,0), var(--color-white) 70%) 0 100%,
         radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)),
         radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
     background-repeat: no-repeat;
-    background-color: $white;
+    background-color: var(--color-white);
     background-size: 2.5rem 100%, 2.5rem 100%, .875rem 100%, .875rem 100%;
     background-position: 0 0, 100%, 0 0, 100%;
     background-attachment: local, local, scroll, scroll;
@@ -80,16 +80,16 @@
     margin-left: auto;
     margin-right: auto;
     td {
-      @include breakpoint($l) {
-        padding: $gap;
+      @include breakpoint($breakpoint-l) {
+        padding: var(--spacing-m);
       }
     }
   }
 
   &.alignleft,
   &.alignright {
-    @include breakpoint($content-fits) {
-      max-width: #{$content-default-width/2};
+    @include breakpoint($breakpoint-l) {
+      max-width: calc(var(--width-content-m) / 2);
     }
   }
 

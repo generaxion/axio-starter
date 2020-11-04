@@ -19,6 +19,7 @@
  *
  * @return array $allowed_block_types list of block names
  */
+
 add_filter('allowed_block_types', function ($allowed_block_types, $post) {
 
   // remove all existing blocks

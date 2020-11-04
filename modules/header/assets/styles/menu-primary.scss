@@ -4,6 +4,15 @@
 
 @import '../../../../assets/styles/utils.scss';
 
+:root {
+
+  --color-menu-dropdown-bg:         hsl(0, 0%, 15%);
+  --color-menu-dropdown-bg-hover:   hsl(0, 0%, 20%);
+  --color-menu-dropdown-text:       var(--color-white);
+  --width-menu-dropdown:            12rem;
+
+}
+
 .primary-navigation__items {
 
   /* Both navigations
@@ -20,7 +29,7 @@
       & > span > a {
         @include button;
         font-size: .875rem;
-        font-weight: $bold;
+        font-weight: var(--font-wright-bold);
       }
     }
 
@@ -45,7 +54,7 @@
       display: block;
     }
     svg {
-      @include breakpoint($menu-hidden) {
+      @include breakpoint($breakpoint-mobile-menu) {
         transform: rotate(180deg); // flip caret to point up
       }
     }
@@ -54,7 +63,7 @@
   /* Mobile navigation
   ----------------------------------------------- */
 
-  @include breakpoint($menu-hidden) {
+  @include breakpoint($breakpoint-mobile-menu) {
     display: block;
     padding-top: 2rem;
     .desktop-menu & {
@@ -66,7 +75,7 @@
 
       // all <a>
       a {
-        color: $base-font-color;
+        color: var(--color-text);
         flex-grow: 1;
         font-size: .875rem;
         text-decoration: none;
@@ -113,8 +122,8 @@
     // all carets
     .menu-item__caret {
       @include button-reset;
-      background: $primary;
-      color: $white;
+      background: var(--color-primary);
+      color: var(--color-white);
       padding: .5rem .5rem;
       margin-left: 1rem;
       .icon {
@@ -128,7 +137,7 @@
     // all .sub-menu
     .sub-menu {
       display: none;
-      padding: $gap-small 0 $gap-small $gap-small;
+      padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-xs);
       &[aria-hidden="false"] {
         display: block;
         animation: dropdown-in .25s;
@@ -148,7 +157,7 @@
     & > li {
 
       padding: .75rem 0;
-      border-top: 1px solid $grey;
+      border-top: 1px solid var(--color-grey);
       &:first-of-type {
         border-top: 0;
       }
@@ -161,7 +170,7 @@
         // 2nd level <ul class="sub-menu"> [closed]
         & > ul {
           max-height: 0;
-          background: $white;
+          background: var(--color-white);
           opacity: 0;
 
           // 2nd level <ul class="sub-menu"> [open]
@@ -203,7 +212,7 @@
   /* Desktop navigation
   ----------------------------------------------- */
 
-  @include breakpoint($menu-visible) {
+  @include breakpoint($breakpoint-desktop-menu) {
 
     display: flex;
     flex-wrap: wrap;
@@ -221,7 +230,7 @@
 
     // all <a>
     a {
-      color: $base-font-color;
+      color: var(--color-text);
       text-decoration: none;
       flex-grow: 1;
     }
@@ -249,7 +258,7 @@
     // 1st level <li>
     & > li {
       position: relative;
-      margin-right: $gap;
+      margin-right: var(--spacing-m);
       &:last-of-type {
         margin-right: 0;
       }
@@ -258,7 +267,7 @@
       & > span > a {
 
         font-size: 1rem;
-        @include breakpoint($l) {
+        @include breakpoint($breakpoint-l) {
           font-size: 1.125rem;
         }
 
@@ -266,18 +275,18 @@
 
       // all dropdown <li>
       li {
-        background: $menu-dropdown-bg;
+        background: var(--color-menu-dropdown-bg);
         & > span > a {
-          color: $menu-dropdown-color;
+          color: var(--color-menu-dropdown-text);
           padding: .5rem .75rem;
           font-size: .875rem;
           display: block;
         }
         &:hover, &:focus, &:active {
-          background: lighten($menu-dropdown-bg, 6);
+          background: var(--color-menu-dropdown-bg-hover);
         }
         .icon {
-          color: $menu-dropdown-color;
+          color: var(--color-menu-dropdown-text);
           transform: rotate(-90deg);
         }
       }
@@ -300,10 +309,10 @@
       // 2nd level <ul class="sub-menu"> [closed]
       & > .sub-menu {
         display: none;
-        color: $white;
-        width: $menu-dropdown-width;
-        margin: .4rem 0 0 $menu-dropdown-width*-0.5; // margin-left half of the width!
-        background: $white;
+        color: var(--color-white);
+        width: var(--width-menu-dropdown);
+        margin: .4rem 0 0 calc(var(--width-menu-dropdown) * -0.5); // margin-left half of the width!
+        background: var(--color-menu-dropdown-bg);
         position: absolute;
         left: -999em;
         z-index: 99;
@@ -322,7 +331,7 @@
           height: 0;
           border-style: solid;
           border-width: 0 .4rem .4rem .4rem;
-          border-color: transparent transparent $menu-dropdown-bg transparent;
+          border-color: transparent transparent var(--color-menu-dropdown-bg) transparent;
           position: absolute;
           top: -.4rem;
           left: 50%;
@@ -353,19 +362,19 @@
             animation: dropdown-in .25s;
             opacity: 1;
             display: block;
-            left: $menu-dropdown-width;
+            left: var(--width-menu-dropdown);
             top: 0;
             &.is-out-of-bounds {
-              left: -$menu-dropdown-width;
+              left: calc(-1 * var(--width-menu-dropdown));
               right: 0;
             }
           }
 
           // 3rd level <ul class="sub-menu"> [closed]
           & > ul {
-            width: $menu-dropdown-width;
+            width: var(--width-menu-dropdown);
             display: none;
-            background: $white;
+            background: var(--color-white);
             position: absolute;
             left: -999em;
             z-index: 99;

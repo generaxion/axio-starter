@@ -9,21 +9,20 @@
 @mixin button {
   @include button-reset;
   @include transition;
-  background: $primary;
+  background: var(--color-primary);
   border-radius: 5rem;
-  color: $white;
+  color: var(--color-white);
   display: inline-block;
   font-size: .875rem;
-  @include breakpoint($s) {
+  @include breakpoint($breakpoint-s) {
     font-size: 1rem;
   }
-  font-weight: $bold;
+  font-weight: var(--font-wright-bold);
   line-height: 1.25;
-  padding: $gap-small $gap;
+  padding: var(--spacing-xs) var(--spacing-m);
   text-decoration: none;
   vertical-align: baseline;
   &:hover, &:focus, &:active {
-    background: darken($primary, 5);
     transform: translateY(-.125rem);
   }
   &:focus {
@@ -33,7 +32,7 @@
 
 // button variaton: big
 @mixin button--big {
-  padding: $gap-medium $gap;
+  padding: var(--spacing-s) var(--spacing-m);
 }
 
 /* Headings
@@ -44,46 +43,46 @@
   @if ($size == xl) {
 
     font-size: 2rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 2.5rem;
     }
-    font-weight: $bold;
+    font-weight: var(--font-wright-bold);
     line-height: 1.125;
 
   } @else if ($size == l) {
 
     font-size: 1.5rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 2rem;
     }
-    font-weight: $bold;
+    font-weight: var(--font-wright-bold);
     line-height: 1.333333;
 
   } @else if ($size == s) {
 
     font-size: 1rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 1.25rem;
     }
-    font-weight: $bold;
+    font-weight: var(--font-wright-bold);
 
   } @else if ($size == xs) {
 
     font-size: .875rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 1rem;
     }
-    font-weight: $bold;
-    line-height: $line-height;
+    font-weight: var(--font-wright-bold);
+    line-height: 1.5;
 
   } @else {
 
     font-size: 1.125rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       font-size: 1.5rem;
     }
-    font-weight: $bold;
-    line-height: $line-height;
+    font-weight: var(--font-wright-bold);
+    line-height: 1.5;
 
   }
 
@@ -145,19 +144,19 @@
 ----------------------------------------------- */
 
 @mixin alignwide {
-  max-width: $max-width-l;
-  @include breakpoint($xl) {
-    max-width: $max-width-xl;
+  max-width: var(--width-l);
+  @include breakpoint($breakpoint-xl) {
+    max-width: var(--width-xl);
   }
 }
 
 @mixin alignfull {
-  margin-left: -$gap;
-  margin-right: -$gap;
+  margin-left: calc(-1 * var(--spacing-m));
+  margin-right: calc(-1 * var(--spacing-m));
   max-width: none;
-  @include breakpoint($m) {
-    margin-left: -$gap-big;
-    margin-right: -$gap-big;
+  @include breakpoint($breakpoint-m) {
+    margin-left: calc(-1 * var(--spacing-l));
+    margin-right: calc(-1 * var(--spacing-l));
   }
 }
 
@@ -183,7 +182,7 @@
   @if ($property2) {
     #{$property2}: 1.5rem;
   }
-  @include breakpoint($s) {
+  @include breakpoint($breakpoint-s) {
     #{$property}: 3rem;
     @if ($property2) {
       #{$property2}: 3rem;
@@ -195,7 +194,7 @@
   @if ($property2) {
     #{$property2}: -1.5rem;
   }
-  @include breakpoint($s) {
+  @include breakpoint($breakpoint-s) {
     #{$property}: -3rem;
     @if ($property2) {
       #{$property2}: -3rem;
@@ -208,13 +207,13 @@
   @if ($property2) {
     #{$property2}: 1.5rem;
   }
-  @include breakpoint($s) {
+  @include breakpoint($breakpoint-s) {
     #{$property}: 3rem;
     @if ($property2) {
       #{$property2}: 3rem;
     }
   }
-  @include breakpoint($l) {
+  @include breakpoint($breakpoint-l) {
     #{$property}: 4rem;
     @if ($property2) {
       #{$property2}: 4rem;
@@ -226,13 +225,13 @@
   @if ($property2) {
     #{$property2}: -1.5rem;
   }
-  @include breakpoint($s) {
+  @include breakpoint($breakpoint-s) {
     #{$property}: -3rem;
     @if ($property2) {
       #{$property2}: -3rem;
     }
   }
-  @include breakpoint($l) {
+  @include breakpoint($breakpoint-l) {
     #{$property}: -4rem;
     @if ($property2) {
       #{$property2}: -4rem;
@@ -291,9 +290,9 @@
 
 // wrap outer containers (width, padding, center)
 @mixin wrap {
-  max-width: #{$max-width-l + 2*$gap};
-  padding-left:  $gap;
-  padding-right: $gap;
+  max-width: calc(var(--width-l) + 2 * var(--spacing-m));
+  padding-left:  var(--spacing-m);
+  padding-right: var(--spacing-m);
   margin-left:  auto;
   margin-right: auto;
   width: 100%;
@@ -301,5 +300,5 @@
 
 // narrow content
 @mixin narrow-content {
-  max-width: #{$max-width-m + 2*$gap};
+  max-width: calc(var(--width-m) + 2 * var(--spacing-m));
 }

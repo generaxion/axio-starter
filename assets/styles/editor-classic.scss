@@ -12,12 +12,12 @@
 ----------------------------------------------- */
 
 html, body {
-  background: $white;
+  background: var(--color-white);
 }
 
 body {
   width: 95%;
-  max-width: 720px; // Content width
+  max-width: 720px; // content width
   margin: 1.5rem auto;
 }
 

@@ -1,165 +1,60 @@
 /* ==========================================================================
- # Variables
+ # Variables (CSS)
 ========================================================================== */
 
-/* Colors
------------------------------------------------ */
+:root {
 
-// basic colors
-$black:                #000;
-$white:                #fff;
-$grey:                 #ddd;
-$grey-light:           #f2f2f2;
+  /* Basic colors
+  ----------------------------------------------- */
 
-// context colors
-$primary:              #c82986;
+  --color-primary:          #c82986;
+  --color-accent:           #3279A6;
 
-$link:                 #3279A6;
-$success:              #98C93C;
-$error:                #D95757;
+  --color-black:            hsl(0, 0%, 0%);
+  --color-grey-dark:        hsl(0, 0%, 30%);
+  --color-grey:             hsl(0, 0%, 70%);
+  --color-grey-light:       hsl(0, 0%, 85%);
+  --color-grey-extra-light: hsl(0, 0%, 93%);
+  --color-white:            hsl(0, 0%, 100%);
 
-// text colors
-$base-font-color:      #333;
-$grey-font-color:      #767676;
+  /* Context colors
+  ----------------------------------------------- */
 
-// special colors
-$menu-dropdown-bg:     $base-font-color;
-$menu-dropdown-color:  $white;
+  --color-text:             hsl(0, 0%, 15%);
+  --color-text-light:       hsl(0, 0%, 52.5%);
 
-/* Spacing
------------------------------------------------ */
+  --color-link:             var(--color-primary);
+  --color-border:           var(--color-grey-light);
 
-// gaps
-$gap-huge:   6rem;
-$gap-big:    3rem;
-$gap:        1.5rem;
-$gap-medium: 1rem;
-$gap-small:  .75rem;
-$gap-tiny:   .5rem;
+  --color-success:          #98C93C;
+  --color-error:            #D95757;
 
-// wrappers
-$max-width-s:   40rem; // 640px
-$max-width-m:   45rem; // 720px
-$max-width-l:   76rem; // 1216px
-$max-width-xl:  90rem;    // 1440px
+  /* Typography
+  ----------------------------------------------- */
 
-// content width
-$content-default-width: $max-width-m;
+  --font-wright-heavy:  900;
+  --font-wright-bold:   700;
+  --font-wright-normal: 400;
+  --font-weight-light:  300;
 
-// sub-menu width
-$menu-dropdown-width:  12rem; // desktop dropdown width
+  --font-default: "Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --font-title: var(--font-default);
 
-/* Breakpoints
------------------------------------------------ */
+  /* Spacing
+  ----------------------------------------------- */
 
-// generic breakpoints
-$s:      560px;
-$sub-s:  max-width 559px;
-$m:      720px;
-$sub-m:  max-width 719px;
-$l:      1120px;
-$sub-l:  max-width 1119px;
-$xl:     1440px;
-$sub-xl: max-width 1399px;
+  --spacing-xl:   6rem;
+  --spacing-l:    3rem;
+  --spacing-m:    1.5rem;
+  --spacing-s:    1rem;
+  --spacing-xs:   .75rem;
+  --spacing-xxs:  .5rem;
 
-// content breakpoints
-$content-fits: #{$content-default-width + 3*$gap};
+  --width-xl:     90rem; // 1440
+  --width-l:      76rem; // 1216
+  --width-m:      45rem; // 720
+  --width-s:      40rem; // 640
 
-// menu breakpoints
-$menu-hidden:  max-width 889px; // hamburger
-$menu-visible: 890px;           // no hamburger
+  --width-content-m: var(--width-m);
 
-// hero breakpoints
-$hero-s:  530px;
-$hero-m:  650px;
-$hero-l:  1120px;
-$hero-xl: 1600px;
-
-// teaser breakpoints
-$teaser-s: $s;
-$teaser-m: $m;
-$teaser-l: $l;
-
-/* Fonts
------------------------------------------------ */
-
-// font families
-$font-text:  'Montserrat', sans-serif;
-$font-title: 'Montserrat', sans-serif;
-
-// font weights
-$light:   300;
-$normal:  400;
-$bold:    700;
-$heavy:   900;
-
-// line heights
-$line-height-small:   1.25;
-$line-height:         1.5;
-$line-height-big:     1.75;
-
-// font faces
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 300;
-  src: url('../fonts/montserrat-v12-latin-300.eot');
-  src: local('Montserrat Light'), local('Montserrat-Light'),
-       url('../fonts/montserrat-v12-latin-300.eot?#iefix')     format('embedded-opentype'),
-       url('../fonts/montserrat-v12-latin-300.woff2')          format('woff2'),
-       url('../fonts/montserrat-v12-latin-300.woff')           format('woff'),
-       url('../fonts/montserrat-v12-latin-300.ttf')            format('truetype'),
-       url('../fonts/montserrat-v12-latin-300.svg#Montserrat') format('svg');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/montserrat-v12-latin-regular.eot');
-  src: local('Montserrat Regular'), local('Montserrat-Regular'),
-       url('../fonts/montserrat-v12-latin-regular.eot?#iefix')     format('embedded-opentype'),
-       url('../fonts/montserrat-v12-latin-regular.woff2')          format('woff2'),
-       url('../fonts/montserrat-v12-latin-regular.woff')           format('woff'),
-       url('../fonts/montserrat-v12-latin-regular.ttf')            format('truetype'),
-       url('../fonts/montserrat-v12-latin-regular.svg#Montserrat') format('svg');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 400;
-  src: url('../fonts/montserrat-v12-latin-italic.eot');
-  src: local('Montserrat Italic'), local('Montserrat-Italic'),
-       url('../fonts/montserrat-v12-latin-italic.eot?#iefix')     format('embedded-opentype'),
-       url('../fonts/montserrat-v12-latin-italic.woff2')          format('woff2'),
-       url('../fonts/montserrat-v12-latin-italic.woff')           format('woff'),
-       url('../fonts/montserrat-v12-latin-italic.ttf')            format('truetype'),
-       url('../fonts/montserrat-v12-latin-italic.svg#Montserrat') format('svg');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  src: url('../fonts/montserrat-v12-latin-700.eot');
-  src: local('Montserrat Bold'), local('Montserrat-Bold'),
-       url('../fonts/montserrat-v12-latin-700.eot?#iefix')     format('embedded-opentype'),
-       url('../fonts/montserrat-v12-latin-700.woff2')          format('woff2'),
-       url('../fonts/montserrat-v12-latin-700.woff')           format('woff'),
-       url('../fonts/montserrat-v12-latin-700.ttf')            format('truetype'),
-       url('../fonts/montserrat-v12-latin-700.svg#Montserrat') format('svg');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 900;
-  src: url('../fonts/montserrat-v12-latin-900.eot');
-  src: local('Montserrat Black'), local('Montserrat-Black'),
-       url('../fonts/montserrat-v12-latin-900.eot?#iefix')      format('embedded-opentype'),
-       url('../fonts/montserrat-v12-latin-900.woff2')           format('woff2'),
-       url('../fonts/montserrat-v12-latin-900.woff')            format('woff'),
-       url('../fonts/montserrat-v12-latin-900.ttf')             format('truetype'),
-       url('../fonts/montserrat-v12-latin-900.svg#Montserrat')  format('svg');
 }

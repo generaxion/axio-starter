@@ -13,7 +13,7 @@
 .teaser {
 
   position: relative;
-  margin-bottom: $gap;
+  margin-bottom: var(--spacing-m);
 
   &__link {
     position: absolute;
@@ -40,9 +40,9 @@
 
   &__thumbnail {
     flex-shrink: 0;
-    margin-right: $gap;
+    margin-right: var(--spacing-m);
     max-width: 4rem;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       max-width: none;
     }
     a, img {

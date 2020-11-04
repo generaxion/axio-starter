@@ -9,12 +9,12 @@
     @include wrap;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-    @include breakpoint($menu-hidden) {
+    @include breakpoint($breakpoint-mobile-menu) {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    @include breakpoint($menu-visible) {
+    @include breakpoint($breakpoint-desktop-menu) {
       align-items: center;
       display: flex;
       justify-content: space-between;
@@ -25,7 +25,7 @@
 
   &__menus {
     display: none;
-    @include breakpoint($menu-visible) {
+    @include breakpoint($breakpoint-desktop-menu) {
       display: flex;
       flex-direction: column;
     }
@@ -46,8 +46,8 @@
   }
 
   &__branding {
-    @include breakpoint($menu-visible) {
-      padding-right: $gap;
+    @include breakpoint($breakpoint-desktop-menu) {
+      padding-right: var(--spacing-m);
     }
   }
 
@@ -60,7 +60,7 @@
 
   &__logo {
     width: 7rem;
-    @include breakpoint($menu-hidden) {
+    @include breakpoint($breakpoint-mobile-menu) {
       width: 5rem;
     }
   }
@@ -71,13 +71,13 @@
   display: none;
   &__nav {
     display: none;
-    padding: $gap-big;
+    padding: var(--spacing-l);
     position: fixed;
     right: 0;
     top: 0;
     bottom: 0;
     width: 50rem;
-    background: $white;
+    background: var(--color-white);
     z-index: 9000;
     width: 100%;
     overflow-y: auto;
@@ -88,8 +88,8 @@
     .menu-toggle {
       display: block;
       position: absolute;
-      top: $gap;
-      right: $gap;
+      top: var(--spacing-m);
+      right: var(--spacing-m);
     }
   }
   &__overlay {
@@ -99,7 +99,7 @@
     bottom: 0;
     right: 0;
     z-index: 8998;
-    background: rgba($black, .3);
+    background: rgba(0, 0, 0, .3); // @todo variable
   }
   &__close {
     @include button-reset;
@@ -113,7 +113,7 @@
     z-index: 8999;
   }
 
-  @include breakpoint($menu-hidden) {
+  @include breakpoint($breakpoint-mobile-menu) {
     .is-active-menu & {
       display: block;
       .mobile-menu__nav {

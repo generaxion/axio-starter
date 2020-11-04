@@ -18,8 +18,8 @@
   /* Mobile navigation
   ----------------------------------------------- */
 
-  @include breakpoint($menu-hidden) {
-    padding: $gap 0 0;
+  @include breakpoint($breakpoint-mobile-menu) {
+    padding: var(--spacing-m) 0 0;
     display: block;
     .desktop-menu & {
       display: none;
@@ -31,7 +31,7 @@
       // all <a>
       a {
         @include transition;
-        color: $base-font-color;
+        color: var(--color-text);
         flex-grow: 1;
         font-size: .875rem;
         text-decoration: none;
@@ -51,8 +51,8 @@
 
       // 1st level <a>
       & > span > a {
-        color: $grey-font-color;
-        font-weight: $bold;
+        color: var(--color-text-light);
+        font-weight: var(--font-wright-bold);
         text-transform: uppercase;
       }
 
@@ -64,7 +64,7 @@
   /* Desktop navigation
   ----------------------------------------------- */
 
-  @include breakpoint($menu-visible) {
+  @include breakpoint($breakpoint-desktop-menu) {
 
     display: flex;
     flex-wrap: wrap;
@@ -83,22 +83,22 @@
     // all <a>
     a {
       @include transition;
-      color: $grey-font-color;
+      color: var(--color-text-light);
       text-decoration: none;
       flex-grow: 1;
       font-size: .875rem;
-      @include breakpoint($l) {
+      @include breakpoint($breakpoint-l) {
         font-size: .9375rem;
       }
       &:hover, &:focus, &:active {
-        color: $base-font-color;
+        color: var(--color-text);
       }
     }
 
     // 1st level <li>
     & > li {
       position: relative;
-      margin-right: $gap;
+      margin-right: var(--spacing-m);
       &:last-of-type {
         margin-right: 0;
       }

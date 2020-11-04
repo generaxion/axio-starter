@@ -10,7 +10,7 @@
 var component_dropdown_menu = function(args) {
 
   // setup args
-  var desktop_min_width = args.desktop_min_width, // match this to $menu-visible SASS variable
+  var desktop_min_width = args.desktop_min_width, // match this to $breakpoint-desktop-menu SASS variable
       menu              = args.menu,
       screen_w,
       hover_timeout;

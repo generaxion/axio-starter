@@ -12,9 +12,9 @@
     flex-grow: 1;
     padding: 1rem 2.75rem 1rem 1rem !important;
     border-radius: 5rem;
-    border: 2px solid $grey;
+    border: 2px solid var(--color-border);
     &:focus {
-      border-color: $primary;
+      border-color: var(--color-primary);
       outline: 0;
     }
   }
@@ -31,7 +31,7 @@
     }
 
     .icon {
-      fill: $primary;
+      fill: var(--color-primary);
       height: 1.25rem;
       width: 1.25rem;
     }

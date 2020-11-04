@@ -14,7 +14,8 @@ const lightboxesInContent = () => {
   var imgItems = document.querySelectorAll('.blocks-gallery-item > figure > a, .gallery-item > .gallery-icon > a, .wp-block-image a, p > a > img, p > a > .wp-block-image');
   // if found, add .lightbox class that Tobi uses as selector to the items
   if (imgItems.length) {
-    imgItems.forEach(function(item) {
+    for (let i = 0; i < imgItems.length; i++) {
+      let item = imgItems[i];
       var formats = ['.jpg', '.png', '.jpeg', '.gif'];
       // check (3 first selectors) href to verify media link
       if (item.href) {
@@ -36,7 +37,7 @@ const lightboxesInContent = () => {
           item.parentNode.classList.add('lightbox');
         }
       }
-    });
+    }
   }
 };
 lightboxesInContent();

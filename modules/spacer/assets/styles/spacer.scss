@@ -12,46 +12,46 @@
   height: 1px;
 
   &--size-s {
-    @include breakpoint($m) {
-      margin-bottom: $gap-small;
-      margin-top: $gap-small;
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: var(--spacing-xs);
+      margin-top: var(--spacing-xs);
     }
-    @include breakpoint($m) {
-      margin-bottom: $gap;
-      margin-top: $gap;
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: var(--spacing-m);
+      margin-top: var(--spacing-m);
     }
 
     &.is-preview {
-      height: $gap;
+      height: var(--spacing-m);
     }
   }
 
   &--size-m {
-    @include breakpoint($m) {
-      margin-bottom: $gap;
-      margin-top: $gap;
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: var(--spacing-m);
+      margin-top: var(--spacing-m);
     }
-    @include breakpoint($m) {
-      margin-bottom: $gap-big;
-      margin-top: $gap-big;
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: var(--spacing-l);
+      margin-top: var(--spacing-l);
     }
     &.is-preview {
-      height: $gap-big;
+      height: var(--spacing-l);
     }
   }
 
   &--size-l {
-    @include breakpoint($m) {
-      margin-bottom: $gap-big;
-      margin-top: $gap-big;
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: var(--spacing-l);
+      margin-top: var(--spacing-l);
     }
-    @include breakpoint($l) {
-      margin-bottom: $gap-huge;
-      margin-top: $gap-huge;
+    @include breakpoint($breakpoint-l) {
+      margin-bottom: var(--spacing-xl);
+      margin-top: var(--spacing-xl);
     }
 
     &.is-preview {
-      height: $gap-huge;
+      height: var(--spacing-xl);
     }
   }
 
@@ -70,7 +70,7 @@
     height: 100%;
     background: currentColor;
     .is-dark-mode & {
-      color: $white;
+      color: var(--color-white);
     }
     &:after,
     &:before {

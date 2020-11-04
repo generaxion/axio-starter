@@ -4,14 +4,22 @@
 
 @import '../../../../assets/styles/utils.scss';
 
+:root {
+  --color-footer-bg:    var(--color-black);
+  --color-footer-color: var(--color-white);
+}
+
 .site-footer {
-  background: $grey-light;
+  background: var(--color-footer-bg);
   padding: 2rem 0;
 
   &__container {
     @include wrap;
     display: flex;
     justify-content: space-between;
+    h2, h3, h4, h5, h6, p, span, li, a {
+      color: var(--color-footer-color);
+    }
   }
 
 }

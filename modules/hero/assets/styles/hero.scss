@@ -3,6 +3,12 @@
 ========================================================================== */
 @import '../../../../assets/styles/utils.scss';
 
+// hero breakpoints
+$hero-s:  530px;
+$hero-m:  650px;
+$hero-l:  1120px;
+$hero-xl: 1600px;
+
 .hero {
   align-items: center;
   display: flex;
@@ -33,7 +39,7 @@
   }
 
   &__meta {
-    margin-top: $gap-small;
+    margin-top: var(--spacing-xs);
   }
 
   &__description {
@@ -54,8 +60,8 @@
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     .hero__container {
-      padding-top: $gap;
-      padding-bottom: $gap;
+      padding-top: var(--spacing-m);
+      padding-bottom: var(--spacing-m);
     }
   }
 
@@ -99,7 +105,7 @@
       display: table;
     }
     h1, p, span, a {
-      color: $white;
+      color: var(--color-white);
       text-shadow: 0 0 1rem rgba(0,0,0,.6);
       @include breakpoint($hero-s) {
         text-shadow: 0 0 1rem rgba(0,0,0,.4);
@@ -141,8 +147,8 @@
       width: 100%;
       height: 100%;
       z-index: 3;
-      background: rgba($black, .25);
-      background: linear-gradient(rgba($black, .15), rgba($black, .3));
+      background: rgba(0, 0, 0, .25);
+      background: linear-gradient(rgba(0, 0, 0, .15), rgba(0, 0, 0,.3)); // @todo variable
 
     }
   }

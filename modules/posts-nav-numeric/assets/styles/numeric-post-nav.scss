@@ -16,15 +16,15 @@
     margin: .5rem .125rem;
     a {
       @include transition;
-      background: $grey-light;
-      color: $base-font-color;
+      background: var(--color-grey-light);
+      color: var(--color-text);
       display: inline-block;
       line-height: 1;
       min-width: 2rem;
       padding: .5rem;
       text-decoration: none;
       &:hover, &:focus, &:active {
-        background: $grey;
+        background: var(--color-grey);
       }
     }
 
@@ -46,10 +46,10 @@
     &--active {
 
       a {
-        background: $primary;
-        color: $white;
+        background: var(--color-primary);
+        color: var(--color-white);
         &:hover, &:focus, &:active {
-          background: $primary;
+          background: var(--color-primary);
         }
       }
 

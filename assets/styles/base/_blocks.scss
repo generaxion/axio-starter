@@ -8,8 +8,8 @@
 .blocks {
   @include clearfix;
   @include child-margin-reset;
-  padding-left:  $gap;
-  padding-right: $gap;
+  padding-left:  var(--spacing-m);
+  padding-right: var(--spacing-m);
 
   & > :first-child,
   & > .is-first-block {
@@ -31,19 +31,19 @@
     @include spacing(margin-top, margin-bottom);
     margin-left:  auto;
     margin-right: auto;
-    max-width: $content-default-width;
+    max-width: var(--width-content-m);
   }
 
   .alignfull {
     @include spacing-l(margin-top, margin-bottom);
-    margin-left: -$gap;
-    margin-right: -$gap;
+    margin-left: calc(-1 * var(--spacing-m));
+    margin-right: calc(-1 * var(--spacing-m));
     max-width: none;
   }
 
   .alignwide {
     @include spacing-m(margin-top, margin-bottom);
-    max-width: $max-width-l;
+    max-width: var(--width-l);
     &.is-first-block {
       @include spacing-l(margin-top);
     }
@@ -54,7 +54,7 @@
 
   // float left tweaks
   .alignleft {
-    @include breakpoint($sub-m) {
+    @include breakpoint($breakpoint-sub-m) {
       float: none;
       margin-left: auto;
       margin-right: auto;
@@ -63,7 +63,7 @@
 
   // float right tweaks
   .alignright {
-    @include breakpoint($sub-m) {
+    @include breakpoint($breakpoint-sub-m) {
       float: none;
       margin-left: auto;
       margin-right: auto;

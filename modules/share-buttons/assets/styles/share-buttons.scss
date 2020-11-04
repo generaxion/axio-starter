@@ -5,7 +5,7 @@
 @import '../../../../assets/styles/utils.scss';
 
 .social-share {
-  margin-top: $gap;
+  margin-top: var(--spacing-m);
 
   &__title {
     @include heading(s);
@@ -15,10 +15,10 @@
   &__link {
     @include transition;
     display: inline-block;
-    color: $link;
+    color: var(--color-link);
     vertical-align: top;
     line-height: 0;
-    margin: $gap-tiny $gap-tiny 0 0;
+    margin: var(--spacing-xxs) var(--spacing-xxs) 0 0;
     position: relative;
     text-decoration: none;
     .icon {

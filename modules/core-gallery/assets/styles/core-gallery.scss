@@ -11,16 +11,16 @@
 .blocks .wp-block-gallery {
 
   @include list-reset;
-  margin: $gap auto;
+  margin: var(--spacing-m) auto;
 
   &.is-cropped .blocks-gallery-item {
     figcaption {
-      padding: $gap-big $gap-tiny $gap-tiny;
+      padding: var(--spacing-l) var(--spacing-xxs) var(--spacing-xxs);
       position: absolute;
       bottom: 0;
       display: block;
       width: 100%;
-      color: $white;
+      color: var(--color-white);
       font-size: .875rem;
       background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0, 0));
     }
@@ -63,7 +63,7 @@
   width: 100%;
   .gallery-columns-2 & {
     width: 100%;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       margin-right: 1rem;
       width: calc(50% - 1rem);
       &:nth-of-type(2n) {
@@ -73,14 +73,14 @@
   }
   .gallery-columns-3 & {
     width: 100%;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       margin-right: 1rem;
       width: calc(50% - 1rem);
       &:nth-of-type(2n) {
         margin-right: 0;
       }
     }
-    @include breakpoint($m) {
+    @include breakpoint($breakpoint-m) {
       margin-right: 1rem;
       width: calc(33.33% - 1rem);
       &:nth-of-type(2n) {
@@ -93,14 +93,14 @@
   }
   .gallery-columns-4 & {
     width: 100%;
-    @include breakpoint($s) {
+    @include breakpoint($breakpoint-s) {
       margin-right: 1rem;
       width: calc(50% - 1rem);
       &:nth-of-type(2n) {
         margin-right: 0;
       }
     }
-    @include breakpoint($m) {
+    @include breakpoint($breakpoint-m) {
       margin-right: 1rem;
       width: calc(33.33% - 1rem);
       &:nth-of-type(2n) {
@@ -110,7 +110,7 @@
         margin-right: 0;
       }
     }
-    @include breakpoint($l) {
+    @include breakpoint($breakpoint-l) {
       margin-right: 1rem;
       width: calc(25% - 1rem);
       &:nth-of-type(2n),

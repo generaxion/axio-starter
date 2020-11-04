@@ -6,3 +6,8 @@
  * Init responsive videos
  */
 fitvids();
+
+/**
+ * Init CSS vars ponyfill
+ */
+cssVars({});
