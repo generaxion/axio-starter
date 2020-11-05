@@ -17,7 +17,7 @@
   @include breakpoint($breakpoint-s) {
     font-size: 1rem;
   }
-  font-weight: var(--font-wright-bold);
+  font-weight: var(--font-weight-bold);
   line-height: 1.25;
   padding: var(--spacing-xs) var(--spacing-m);
   text-decoration: none;
@@ -46,7 +46,7 @@
     @include breakpoint($breakpoint-s) {
       font-size: 2.5rem;
     }
-    font-weight: var(--font-wright-bold);
+    font-weight: var(--font-weight-bold);
     line-height: 1.125;
 
   } @else if ($size == l) {
@@ -55,7 +55,7 @@
     @include breakpoint($breakpoint-s) {
       font-size: 2rem;
     }
-    font-weight: var(--font-wright-bold);
+    font-weight: var(--font-weight-bold);
     line-height: 1.333333;
 
   } @else if ($size == s) {
@@ -64,7 +64,7 @@
     @include breakpoint($breakpoint-s) {
       font-size: 1.25rem;
     }
-    font-weight: var(--font-wright-bold);
+    font-weight: var(--font-weight-bold);
 
   } @else if ($size == xs) {
 
@@ -72,7 +72,7 @@
     @include breakpoint($breakpoint-s) {
       font-size: 1rem;
     }
-    font-weight: var(--font-wright-bold);
+    font-weight: var(--font-weight-bold);
     line-height: 1.5;
 
   } @else {
@@ -81,7 +81,7 @@
     @include breakpoint($breakpoint-s) {
       font-size: 1.5rem;
     }
-    font-weight: var(--font-wright-bold);
+    font-weight: var(--font-weight-bold);
     line-height: 1.5;
 
   }
