@@ -41,7 +41,7 @@ class Aucor_Teaser extends Aucor_Component {
         <div class="teaser__content">
 
           <header class="teaser__header">
-            <h3 class="teaser__title"><?php echo $data['post_title']; ?></h2>
+            <h2 class="teaser__title"><?php echo $data['post_title']; ?></h2>
           </header>
 
           <div class="teaser__summary">
