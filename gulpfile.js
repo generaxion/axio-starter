@@ -3,18 +3,9 @@
  */
 
 /**
- * Manifest
- *
- * Requires manifest.js file
- */
-function get_manifest() {
-  return require('./assets/manifest.js');
-}
-
-/**
  * Site config
  */
-var manifest       = get_manifest();
+const manifest     = require('./assets/manifest.js');
 const timestamps   = require('./assets/last-edited.json');
 
 /**
@@ -124,9 +115,9 @@ const getModules = () => {
     });
 }
 /**
- * getDropInJsons helper function for collecting all modules _.json files
+ * getModuleJsons helper function for collecting all modules _.json files
  */
-var getDropInJsons = () => {
+var getModuleJsons = () => {
   var jsons = [];
   var modules = getModules();
 
@@ -147,7 +138,7 @@ const getAssets = () => {
     'css': manifest.css(),
   }
 
-  getDropInJsons().forEach(module => {
+  getModuleJsons().forEach(module => {
     if (module.json.css) {
       Object.entries(module.json.css).forEach(([target, sources]) => {
         if (typeof sources !== 'undefined' && sources.length > 0) {
@@ -322,7 +313,7 @@ gulp.task('styles', () => {
       beeper();
     })
     .pipe(gulp.dest(path.styles.dist))
-    .pipe(browsersync.stream({match: '**/*.css'}));
+    .pipe(gulpif(!argv.q, browsersync.stream({match: '**/*.css'})))
 });
 
 /**
@@ -350,7 +341,7 @@ gulp.task('scripts', () => {
       console.log(err);
     })
     .pipe(gulp.dest(path.scripts.dist))
-    .pipe(browsersync.stream({match: '**/*.js'}));
+    .pipe(gulpif(!argv.q, browsersync.stream({match: '**/*.js'})));
 });
 
 /**
@@ -366,7 +357,7 @@ gulp.task('fonts', () => {
     // send to /dist/fonts/
     .pipe(gulp.dest(path.fonts.dist))
     // browsersync result
-    .pipe(browsersync.stream());
+    .pipe(gulpif(!argv.q, browsersync.stream()));
 });
 
 /**
@@ -398,7 +389,8 @@ gulp.task('images', () => {
     .pipe(gulp.dest(path.images.dist))
 
     // browsersync result
-    .pipe(browsersync.stream());
+    .pipe(gulpif(!argv.q, browsersync.stream()));
+
 });
 
 /**
@@ -442,7 +434,7 @@ gulp.task('svgstore', async () => {
     for (const [searchFilePath, searchFile] of Object.entries(spriteFilenameReference)) {
       if (path !== searchFilePath && file == searchFile && spriteFilenameReference[path]) {
         delete spriteFilenameReference[searchFilePath];
-        console.log(`SVG sprite duplicate ignored: ${searchFilePath}`);
+        console.log(`SVG sprite duplicate: ${searchFilePath}`);
       }
     }
   }
@@ -465,7 +457,8 @@ gulp.task('svgstore', async () => {
   .pipe(svgstore())
   .pipe(gulp.dest(path.sprite.dist))
   // browsersync result
-  .pipe(browsersync.stream());
+  .pipe(gulpif(!argv.q, browsersync.stream()));
+
 });
 
 /**
@@ -530,26 +523,22 @@ gulp.task('clean', () => {
  */
 gulp.task('watch', () => {
   var new_tab = 'local';
-  if (argv.q) {
-    new_tab = false;
+
+  if (!argv.q) {
+    // browsersync changes unless in quiet mode
+    browsersync.init({
+      files: [
+        '{inc,blocks,modules}/**/*.php',
+        '*.php'
+      ],
+      proxy: manifest.devUrl(),
+      snippetOptions: {
+        whitelist: ['/wp-admin/admin-ajax.php'],
+        blacklist: ['/wp-admin/**']
+      },
+      open: 'local'
+    });
   }
-  var sonic = false;
-  if (argv.s) {
-    sonic = true;
-  }
-  // browsersync changes
-  browsersync.init({
-    files: [
-      '{inc,components,blocks,partials}/**/*.php',
-      '*.php'
-    ],
-    proxy: manifest.devUrl(),
-    snippetOptions: {
-      whitelist: ['/wp-admin/admin-ajax.php'],
-      blacklist: ['/wp-admin/**']
-    },
-    open: new_tab
-  });
 
   // watch these files
   gulp.watch(path.styles.source   + '**/*', gulp.task('styles'));
@@ -570,7 +559,7 @@ gulp.task('watch', () => {
     'assets/manifest.js',
     path.modules.source + '*/_.json'
   ], () => {
-    console.error("\n⚠️  Congifuration files modified. Restart gulp. ⚠️\n");
+    console.error("\n⚠️  Congifuration modified. Restart gulp. ⚠️\n");
     beeper();
     process.exit();
   });
