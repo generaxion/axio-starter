@@ -22,7 +22,7 @@ class Aucor_Teaser extends Aucor_Component {
     <article <?php parent::render_attributes($data['attr']); ?>>
 
       <a class="teaser__link" href="<?php echo esc_url($data['permalink']); ?>">
-        <span class="screen-reader-text"><?php echo $data['post_title']; ?></a>
+        <span class="screen-reader-text"><?php echo $data['post_title']; ?></span>
       </a>
 
       <div class="teaser__card">
