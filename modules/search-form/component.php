@@ -25,6 +25,7 @@ class Aucor_Search_Form extends Aucor_Component {
         name="<?php echo esc_attr($data['name']); ?>"
         value="<?php echo esc_attr($data['value']); ?>"
         placeholder="<?php echo esc_attr($data['placeholder']); ?>"
+        autocomplete="off"
       />
 
       <button type="submit" class="search-form__submit">
