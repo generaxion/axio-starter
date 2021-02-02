@@ -26,9 +26,9 @@ get_header(); ?>
         </div>
 
 
-        <?php if (has_action('theme_after_post')) : ?>
+        <?php if (has_action('theme_entry_footer')) : ?>
           <footer class="entry__footer">
-            <?php do_action('theme_after_post'); ?>
+            <?php do_action('theme_entry_footer', get_the_ID()); ?>
           </footer>
         <?php endif; ?>
 
