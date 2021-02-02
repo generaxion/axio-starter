@@ -11,7 +11,9 @@
 .blocks .wp-block-columns {
 
   .wp-block-column {
-    margin-bottom: var(--spacing-m);
+    @include breakpoint($breakpoint-sub-l) {
+      margin-bottom: var(--spacing-m);
+    }
     @include child-margin-reset;
   }
 
