@@ -1,14 +1,19 @@
 # Aucor Starter
 
-Superior WordPress starter theme with modern build tools by **[Aucor](https://www.aucor.fi)**. 200+ hours of development over 2,5 years to make the greatest starting point for WordPress site.
+**🖥 For developer from developers:**
+
+Superior Gutenberg WordPress starter theme with modern build tools by **[Aucor](https://www.aucor.fi)**. 200+ hours of development over 2,5 years to make the greatest starting point for WordPress site.
 
 **Demo:** **[starter.aucor.fi](https://starter.aucor.fi)**
 
-**Required plugin:** **[Aucor Core](https://github.com/aucor/aucor-core)**
+**🔌 Required plugins:**
 
-**For who**: Developers building superb WordPress sites
+* **[Aucor Core](https://wordpress.org/plugins/aucor-core/)**: Core functionality that is clever to be centrally updated.
+* **[Advanced Custom Fields Pro](https://www.advancedcustomfields.com/)**: Some custom blocks use ACF. You can do without, but should remove them.
 
-**A few buzz-words**: Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Native lazyload, BEM, Babel, Responsive images
+**🏷Buzz-words**:
+
+Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Native lazyload, BEM, Babel, Responsive images
 
 ![aucor-starter](https://user-images.githubusercontent.com/9577084/75164116-f3dee180-5728-11ea-9eab-e2bfa89805cf.png)
 
@@ -22,6 +27,7 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
     2. [Install Aucor Core](#23-install-aucor-core)
     2. [Install build tools](#24-install-build-tools)
     3. [Start working](#25-start-working)
+    4. [First 15 minutes of new site]
 3. [Components](#3-components)
     1. [Component.php](#31-componentphp)
     2. [Using components](#32-using-components)
@@ -67,15 +73,15 @@ Superior WordPress starter theme with modern build tools by **[Aucor](https://ww
 
 ## 1. Directory structure
 
-Directory structure was once based a mixture between [_underscores](http://underscores.me/)(template structure) and [Sage](https://roots.io/sage/) (Gulp and assets) It has evolved from there.
+`/assets/` global JS, SASS, images, SVG and fonts
 
-`/assets/` includes all JS, SASS, images, SVG and fonts
-
-`/blocks/` custom Gutenberg blocks
+`/bin/` shell scripts for bulk tasks/automations
 
 `/dist/` has processed, combined and optimized assets ready to be included to theme
 
-`/inc/` has all php files that are not part of template structure
+`/modules/` features that are packaged into modules like blocks, template parts, post-types
+
+`/inc/` global php files that are not part of template structure/modules
 
 ## 2. Setup
 
@@ -125,6 +131,12 @@ Do this everythime you start to work with the theme.
 **Protip**: You can also run just `gulp` to build all the resources or just some resources with `gulp styles` or `gulp scripts`.
 
 **Protip**: Want to start the watch task but not open the Browsersync? Start watch with quiet mode `qulp watch -q`.
+
+### 2.5 First 15 minutes of new site
+
+1. Go through the `/modules/` and remove any unneeded. Just throw them to trash.
+2. Save logo at `/assets/images/logo.svg`
+3. Setup base variables at `/assets/styles/utils/_variables.scss`
 
 ## 3. Components
 
