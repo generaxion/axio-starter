@@ -92,6 +92,12 @@ class Aucor_Background extends Aucor_Component {
 
       $args['is_dark_mode'] = false;
 
+      if (isset($args['fields']['background_color']) && !empty($args['fields']['background_color'])) {
+        $args['attr']['class'][] = 'background--color-' . $args['fields']['background_color'];
+      } else {
+        $args['attr']['class'][] = 'background--color-none';
+      }
+
 
     } elseif ($args['type'] === 'video' && !empty($args['fields']['background_video'])) {
 

@@ -1,305 +1,338 @@
 {
-    "key": "group_5f05b3bd56ab4",
-    "title": "Block: Background",
-    "fields": [
-        {
-            "key": "field_5f23eba90792d",
-            "label": "Background",
-            "name": "",
-            "type": "accordion",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "open": 1,
-            "multi_expand": 1,
-            "endpoint": 0
-        },
-        {
-            "key": "field_5f05b3c496a71",
-            "label": "Type",
-            "name": "background_media_type",
-            "type": "button_group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "color": "Color",
-                "image": "Image",
-                "video": "Video"
-            },
-            "allow_null": 0,
-            "default_value": "color",
-            "layout": "horizontal",
-            "return_format": "value"
-        },
-        {
-            "key": "field_5f05b451471c1",
-            "label": "Set image",
-            "name": "background_image",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5f05b3c496a71",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "large",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "jpg,jpeg,png"
-        },
-        {
-            "key": "field_5f84409986fbb",
-            "label": "Video (mp4)",
-            "name": "background_video",
-            "type": "file",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5f05b3c496a71",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "library": "all",
-            "min_size": "",
-            "max_size": 20,
-            "mime_types": "mp4"
-        },
-        {
-            "key": "field_5f06be284c1af",
-            "label": "Dimming",
-            "name": "background_dimming",
-            "type": "range",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5f05b3c496a71",
-                        "operator": "!=",
-                        "value": "color"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "min": 0,
-            "max": 75,
-            "step": 1,
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_5f05c6c797e8e",
-            "label": "Content",
-            "name": "",
-            "type": "accordion",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "open": 1,
-            "multi_expand": 1,
-            "endpoint": 0
-        },
-        {
-            "key": "field_5f84411986fbd",
-            "label": "Content background",
-            "name": "background_content_background",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "None",
-                "light": "Light"
-            },
-            "default_value": "none",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5f23ec6f07930",
-            "label": "Height",
-            "name": "background_height",
-            "type": "select",
-            "instructions": "Minimum height of the section.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "none": "Fit content",
-                "50": "50%",
-                "75": "75%",
-                "100": "100%"
-            },
-            "default_value": "none",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5f05c760171db",
-            "label": "Alignment",
-            "name": "background_content_align",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5f23ec6f07930",
-                        "operator": "!=",
-                        "value": "none"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "top": "Top",
-                "middle": "Middle",
-                "bottom": "Bottom"
-            },
-            "default_value": "middle",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5f05c70b171da",
-            "label": "Light mode",
-            "name": "background_content_mode",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5f05b3c496a71",
-                        "operator": "==",
-                        "value": "image"
-                    },
-                    {
-                        "field": "field_5f84411986fbd",
-                        "operator": "==",
-                        "value": "none"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_5f05b3c496a71",
-                        "operator": "==",
-                        "value": "video"
-                    },
-                    {
-                        "field": "field_5f84411986fbd",
-                        "operator": "==",
-                        "value": "none"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "auto": "Automatic",
-                "dark": "Dark",
-                "light": "Light"
-            },
-            "default_value": "auto",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        }
-    ],
-    "location": [
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/background"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "side",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": true,
-    "description": "",
-    "modified": 1602505966
+  "key": "group_5f05b3bd56ab4",
+  "title": "Block: Background",
+  "fields": [
+      {
+          "key": "field_5f23eba90792d",
+          "label": "Background",
+          "name": "",
+          "type": "accordion",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "open": 1,
+          "multi_expand": 1,
+          "endpoint": 0
+      },
+      {
+          "key": "field_5f05b3c496a71",
+          "label": "Type",
+          "name": "background_media_type",
+          "type": "button_group",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "color": "Color",
+              "image": "Image",
+              "video": "Video"
+          },
+          "allow_null": 0,
+          "default_value": "color",
+          "layout": "horizontal",
+          "return_format": "value"
+      },
+      {
+          "key": "field_5ff74c3e6ecd0",
+          "label": "Color",
+          "name": "background_color",
+          "type": "select",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f05b3c496a71",
+                      "operator": "==",
+                      "value": "color"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "none": "None",
+              "grey": "Grey"
+          },
+          "default_value": "white",
+          "allow_null": 0,
+          "multiple": 0,
+          "ui": 0,
+          "return_format": "value",
+          "ajax": 0,
+          "placeholder": ""
+      },
+      {
+          "key": "field_5f05b451471c1",
+          "label": "Set image",
+          "name": "background_image",
+          "type": "image",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f05b3c496a71",
+                      "operator": "==",
+                      "value": "image"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "return_format": "id",
+          "preview_size": "large",
+          "library": "all",
+          "min_width": "",
+          "min_height": "",
+          "min_size": "",
+          "max_width": "",
+          "max_height": "",
+          "max_size": "",
+          "mime_types": "jpg,jpeg,png"
+      },
+      {
+          "key": "field_5f84409986fbb",
+          "label": "Video (mp4)",
+          "name": "background_video",
+          "type": "file",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f05b3c496a71",
+                      "operator": "==",
+                      "value": "video"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "return_format": "url",
+          "library": "all",
+          "min_size": "",
+          "max_size": 20,
+          "mime_types": "mp4"
+      },
+      {
+          "key": "field_5f06be284c1af",
+          "label": "Dimming",
+          "name": "background_dimming",
+          "type": "range",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f05b3c496a71",
+                      "operator": "!=",
+                      "value": "color"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "default_value": 0,
+          "min": 0,
+          "max": 75,
+          "step": 1,
+          "prepend": "",
+          "append": ""
+      },
+      {
+          "key": "field_5f05c6c797e8e",
+          "label": "Content",
+          "name": "",
+          "type": "accordion",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "open": 1,
+          "multi_expand": 1,
+          "endpoint": 0
+      },
+      {
+          "key": "field_5f84411986fbd",
+          "label": "Content background",
+          "name": "background_content_background",
+          "type": "select",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "none": "None",
+              "light": "Light"
+          },
+          "default_value": "none",
+          "allow_null": 0,
+          "multiple": 0,
+          "ui": 0,
+          "return_format": "value",
+          "ajax": 0,
+          "placeholder": ""
+      },
+      {
+          "key": "field_5f23ec6f07930",
+          "label": "Height",
+          "name": "background_height",
+          "type": "select",
+          "instructions": "Minimum height of the section.",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "none": "Fit content",
+              "50": "50%",
+              "75": "75%",
+              "100": "100%"
+          },
+          "default_value": "none",
+          "allow_null": 0,
+          "multiple": 0,
+          "ui": 0,
+          "return_format": "value",
+          "ajax": 0,
+          "placeholder": ""
+      },
+      {
+          "key": "field_5f05c760171db",
+          "label": "Alignment",
+          "name": "background_content_align",
+          "type": "select",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f23ec6f07930",
+                      "operator": "!=",
+                      "value": "none"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "top": "Top",
+              "middle": "Middle",
+              "bottom": "Bottom"
+          },
+          "default_value": "middle",
+          "allow_null": 0,
+          "multiple": 0,
+          "ui": 0,
+          "return_format": "value",
+          "ajax": 0,
+          "placeholder": ""
+      },
+      {
+          "key": "field_5f05c70b171da",
+          "label": "Light mode",
+          "name": "background_content_mode",
+          "type": "select",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": [
+              [
+                  {
+                      "field": "field_5f05b3c496a71",
+                      "operator": "==",
+                      "value": "image"
+                  },
+                  {
+                      "field": "field_5f84411986fbd",
+                      "operator": "==",
+                      "value": "none"
+                  }
+              ],
+              [
+                  {
+                      "field": "field_5f05b3c496a71",
+                      "operator": "==",
+                      "value": "video"
+                  },
+                  {
+                      "field": "field_5f84411986fbd",
+                      "operator": "==",
+                      "value": "none"
+                  }
+              ]
+          ],
+          "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+          },
+          "choices": {
+              "auto": "Automatic",
+              "dark": "Dark",
+              "light": "Light"
+          },
+          "default_value": "auto",
+          "allow_null": 0,
+          "multiple": 0,
+          "ui": 0,
+          "return_format": "value",
+          "ajax": 0,
+          "placeholder": ""
+      }
+  ],
+  "location": [
+      [
+          {
+              "param": "block",
+              "operator": "==",
+              "value": "acf\/background"
+          }
+      ]
+  ],
+  "menu_order": 0,
+  "position": "side",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "modified": 1610042528
 }

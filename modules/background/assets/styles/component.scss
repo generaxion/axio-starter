@@ -58,7 +58,16 @@
   }
 
   // colors
-  background: var(--color-grey-extra-light);
+  &--color-none {
+    background: transparent;
+  }
+  &--color-grey {
+    background: var(--color-grey-extra-light);
+  }
+  &--color-primary {
+    background: var(--color-primary);
+  }
+
 
   // env
   &--env-editor {
