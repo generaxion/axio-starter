@@ -36,7 +36,7 @@ $placeholder_content = [
 
 $contents = $content;
 if ($is_preview) {
-  $contents .= '<innerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
+  $contents .= '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
 }
 
 $fields = get_fields();
