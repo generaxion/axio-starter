@@ -29,13 +29,13 @@ add_action('theme_header', function () {
 add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
-    'Menu: Primary Menu'        => 'Päävalikko',
-    'Menu: Additional Menu'     => 'Lisävalikko',
+    'Menu: Primary Menu'        => 'Primary Menu',
+    'Menu: Additional Menu'     => 'Additional Menu',
     'Menu: Button label'        => 'Menu',
-    'Menu: Open'                => 'Avaa valikko',
-    'Menu: Close'               => 'Sulje valikko',
-    'Menu: Open Sub-menu'       => 'Avaa alavalikko',
-    'Menu: Close Sub-menu'      => 'Sulje alavalikko',
+    'Menu: Open'                => 'Open menu',
+    'Menu: Close'               => 'Close menu',
+    'Menu: Open Sub-menu'       => 'Open sub-menu',
+    'Menu: Close Sub-menu'      => 'Close sub-menu',
   ]);
 
 }, 10, 1);
@@ -86,10 +86,10 @@ add_filter('walker_nav_menu_start_el', function ($item_output, $item, $depth, $a
  *
  * Example: `icon-arrow` includes svg `arrow` from SVG sprite.
  *
- * @param string  $title the title of menu item
- * @param WP_Post $item menu item object
- * @param array   $args wp_nav_menu() arguments
- * @param int     $depth depth of the menu
+ * @param string    $title the title of menu item
+ * @param WP_Post   $item menu item object
+ * @param stdObject $args wp_nav_menu() arguments
+ * @param int       $depth depth of the menu
  *
  * @return string menu item with possible description
  */
@@ -97,7 +97,12 @@ add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
 
   foreach ($item->classes as $value) {
     if (strpos($value, 'icon-') === 0) {
-      $title = Aucor_SVG::get(['name' => str_replace('icon-', '', $value), 'attr' => ['class' => ['icon-from-class']]]) . trim($title);
+      $svg = Aucor_SVG::get(['name' => str_replace('icon-', '', $value), 'attr' => ['class' => ['icon-from-class']]]);
+      if (in_array('after-icon', $item->classes)) {
+        $title = trim($title) . $svg;
+      } else {
+        $title =  $svg . trim($title);
+      }
     }
   }
   return $title;

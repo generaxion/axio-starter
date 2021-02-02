@@ -13,7 +13,7 @@ add_action('acf/init', function () {
   if (function_exists('acf_register_block_type')) {
     acf_register_block_type([
       'name'              => 'media-text',
-      'title'             => 'Media & Text',
+      'title'             => ask__('Media & Text: Title'),
       'render_template'   => dirname(__FILE__) . '/block.php',
       'multiple'          => false,
       'keywords'          => ['media-text', 'text-media', '50/50'],
@@ -78,7 +78,7 @@ add_filter('acf/settings/load_json', function ($paths) {
 add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
-
+    'Media & Text: Title'     => 'Media & Text',
   ]);
 
 }, 10, 1);

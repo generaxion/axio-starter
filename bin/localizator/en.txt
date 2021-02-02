@@ -1,0 +1,77 @@
+# Generic
+
+404: Page not found description     || Page might have been deleted or moved. Try the search below.
+Search: Title                       || Search:
+Search: Nothing found               || No results
+Search: Nothing found description   || No results found. Try different words.
+Accessibility: Skip to content      || Skip to content
+
+# Module: Button
+
+Button: Block name                 || Button
+Button: Type Primary               || Primary
+Button: New button instructions    || Click to edit...
+
+# Module: File
+
+Files: Accessability download      || Downloadable file
+Files: New block instructions      || Click to add files...
+
+# Module: Header
+
+Menu: Primary Menu         || Primary Menu
+Menu: Additional Menu      || Additional Menu
+Menu: Button label         || Menu
+Menu: Open                 || Open menu
+Menu: Close                || Close menu
+Menu: Open Sub-menu        || Open sub-menu
+Menu: Close Sub-menu       || Close sub-menu
+
+# Module: Hero
+
+Title: Home                || Blog
+Title: Archives            || Archives
+Title: Search              || Search
+Title: 404                 || Page not found
+
+# Module: Lightbox
+
+Lightbox: Prev             || Previous
+Lightbox: Next             || Next
+Lightbox: Close            || Close
+Lightbox: Loading          || Loading
+
+# Module: List Terms
+
+Taxonomies: Categories     || Categories
+Taxonomies: Post tags      || Tags
+
+# Module: Media & text
+
+Media & Text: Title        || Media & Text
+
+# Module: Menu social
+
+Menu: Social Menu          || Social media channels
+
+# Module: Posts Nav Mumeric
+
+Navigation: Numeric pagination    || Show more
+Navigation: Go to page x          || Go to page %s
+Navigation: Current page x        || Current page, page %s
+Navigation: Previous              || Previous page
+Navigation: Next                  || Next page
+
+# Module: Search Form
+
+Search form: Placeholder          || Search from website...
+Search form: Screen reader label  || Search from website
+Search form: Submit               || Search
+
+# Module: Share Buttons
+
+Social share: Title               || Share on social media
+Social share: Facebook            || Share on Facebook
+Social share: Twitter             || Share on Twitter
+Social share: LinkedIn            || Share on LinkedIn
+Social share: WhatsApp            || Share on WhatsApp

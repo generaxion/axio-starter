@@ -12,9 +12,9 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
 
-    'Search form: Placeholder'                => 'Etsi sivustolta...',
-    'Search form: Screen reader label'        => 'Etsi sivustolta',
-    'Search form: Submit'                     => 'Hae',
+    'Search form: Placeholder'                => 'Search from website...',
+    'Search form: Screen reader label'        => 'Search from website',
+    'Search form: Submit'                     => 'Search',
 
   ]);
 

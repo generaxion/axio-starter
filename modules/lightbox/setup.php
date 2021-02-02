@@ -11,12 +11,10 @@
 add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
-
-    'Lightbox: Prev'          => 'Edellinen',
-    'Lightbox: Next'          => 'Seuraava',
-    'Lightbox: Close'         => 'Sulje',
-    'Lightbox: Loading'       => 'Lataa',
-
+    'Lightbox: Prev'          => 'Previous',
+    'Lightbox: Next'          => 'Next',
+    'Lightbox: Close'         => 'Close',
+    'Lightbox: Loading'       => 'Loading',
   ]);
 
 }, 10, 1);

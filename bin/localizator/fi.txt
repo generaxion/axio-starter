@@ -1,0 +1,77 @@
+# Generic
+
+404: Page not found description     || Sivu on saatettu poistaa tai siirtää eri osoitteeseen. Käytä alla olevaa hakua löytääksesi etsimäsi.
+Search: Title                       || Haku:
+Search: Nothing found               || Ei hakutuloksia
+Search: Nothing found description   || Hakutuloksia ei löytynyt. Kokeile eri hakusanoja.
+Accessibility: Skip to content      || Siirry sisältöön
+
+# Module: Button
+
+Button: Block name                 || Painike
+Button: Type Primary               || Ensisijainen
+Button: New button instructions    || Klikkaa ja muokkaa...
+
+# Module: File
+
+Files: Accessability download      || Ladattava tiedosto
+Files: New block instructions      || Klikkaa ja lisää tiedosto(t)...
+
+# Module: Header
+
+Menu: Primary Menu         || Päävalikko
+Menu: Additional Menu      || Lisävalikko
+Menu: Button label         || Menu
+Menu: Open                 || Avaa valikko
+Menu: Close                || Sulje valikko
+Menu: Open Sub-menu        || Avaa alavalikko
+Menu: Close Sub-menu       || Sulje alavalikko
+
+# Module: Hero
+
+Title: Home                || Blogi
+Title: Archives            || Arkisto
+Title: Search              || Haku
+Title: 404                 || Hakemaasi sivua ei löytynyt
+
+# Module: Lightbox
+
+Lightbox: Prev             || Edellinen
+Lightbox: Next             || Seuraava
+Lightbox: Close            || Sulje
+Lightbox: Loading          || Lataa
+
+# Module: List Terms
+
+Taxonomies: Categories     || Kategoriat
+Taxonomies: Post tags      || Avainsanat
+
+# Module: Media & text
+
+Media & Text: Title        || Media & Teksti
+
+# Module: Menu social
+
+Menu: Social Menu          || Sosiaalisen median kanavat
+
+# Module: Posts Nav Mumeric
+
+Navigation: Numeric pagination    || Näytä lisää
+Navigation: Go to page x          || Siirry sivulle %s
+Navigation: Current page x        || Nykyinen sivu, sivu %s
+Navigation: Previous              || Edellinen sivu
+Navigation: Next                  || Seuraava sivu
+
+# Module: Search Form
+
+Search form: Placeholder          || Etsi sivustolta...
+Search form: Screen reader label  || Etsi sivustolta
+Search form: Submit               || Hae
+
+# Module: Share buttons
+
+Social share: Title               || Jaa sosiaalisessa mediassa
+Social share: Facebook            || Jaa Facebookissa
+Social share: Twitter             || Jaa Twitterissä
+Social share: LinkedIn            || Jaa LinkedInissä
+Social share: WhatsApp            || Jaa WhatsAppissa

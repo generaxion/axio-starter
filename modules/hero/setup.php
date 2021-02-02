@@ -37,10 +37,10 @@ add_filter('theme_image_sizing', function($sizes) {
 add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
-    'Title: Home'                       => 'Blogi',
-    'Title: Archives'                   => 'Arkisto',
-    'Title: Search'                     => 'Haku',
-    'Title: 404'                        => 'Hakemaasi sivua ei löytynyt',
+    'Title: Home'                       => 'Blog',
+    'Title: Archives'                   => 'Archives',
+    'Title: Search'                     => 'Search',
+    'Title: 404'                        => 'Page not found',
   ]);
 
 }, 10, 1);

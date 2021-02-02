@@ -11,7 +11,7 @@
 add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
-    'Menu: Social Menu' => 'Sosiaalisen median kanavat',
+    'Menu: Social Menu' => 'Social media channels',
   ]);
 
 }, 10, 1);
@@ -21,16 +21,18 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
  */
 
 add_action('after_setup_theme', function() {
+
   register_nav_menus(['social' => ask__('Menu: Social Menu')]);
+
 });
 
 /**
  * SVG icons for social menu
  *
- * @param string  $title the title of menu item
- * @param WP_Post $item menu item object
- * @param array   $args wp_nav_menu() arguments
- * @param int     $depth depth of the menu
+ * @param string    $title the title of menu item
+ * @param WP_Post   $item menu item object
+ * @param stdClass  $args wp_nav_menu() arguments
+ * @param int       $depth depth of the menu
  *
  * @return string menu item with possible description
  */

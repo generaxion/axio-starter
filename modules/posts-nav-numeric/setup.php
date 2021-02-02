@@ -13,11 +13,11 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
 
-    'Navigation: Numeric pagination'     => 'Näytä lisää',
-    'Navigation: Go to page x'           => 'Siirry sivulle %s',
-    'Navigation: Current page x'         => 'Nykyinen sivu, sivu %s',
-    'Navigation: Previous'               => 'Edellinen sivu',
-    'Navigation: Next'                   => 'Seuraava sivu',
+    'Navigation: Numeric pagination'     => 'Show more',
+    'Navigation: Go to page x'           => 'Go to page %s',
+    'Navigation: Current page x'         => 'Current page, page %s',
+    'Navigation: Previous'               => 'Previous page',
+    'Navigation: Next'                   => 'Next page',
 
   ]);
 

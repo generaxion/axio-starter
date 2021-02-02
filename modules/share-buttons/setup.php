@@ -21,11 +21,11 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
 
-    'Social share: Title'       => 'Jaa sosiaalisessa mediassa',
-    'Social share: Facebook'    => 'Jaa Facebookissa',
-    'Social share: Twitter'     => 'Jaa Twitterissä',
-    'Social share: LinkedIn'    => 'Jaa LinkedInissä',
-    'Social share: WhatsApp'    => 'Jaa WhatsAppissa',
+    'Social share: Title'       => 'Share on social media',
+    'Social share: Facebook'    => 'Share on Facebook',
+    'Social share: Twitter'     => 'Share on Twitter',
+    'Social share: LinkedIn'    => 'Share on LinkedIn',
+    'Social share: WhatsApp'    => 'Share on WhatsApp',
 
   ]);
 
