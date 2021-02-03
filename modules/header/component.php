@@ -17,7 +17,7 @@ class Aucor_Header extends Aucor_Component {
 
         <div class="site-header__branding">
           <a href="<?php echo esc_url(home_url('/')); ?>" class="site-header__title" rel="home" itemprop="headline">
-            <img class="site-header__logo" width="150" height="80" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/images/logo.svg" loading="lazy" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" />
+            <img class="site-header__logo" width="300" height="100" src="<?php echo get_stylesheet_directory_uri(); ?>/dist/images/logo.svg" loading="lazy" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" />
           </a>
         </div>
 

@@ -59,9 +59,9 @@
   }
 
   &__logo {
-    width: 7rem;
-    @include breakpoint($breakpoint-mobile-menu) {
-      width: 5rem;
+    width: 10rem;
+    @include breakpoint($breakpoint-desktop-menu) {
+      width: 14rem;
     }
   }
 

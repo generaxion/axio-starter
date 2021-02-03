@@ -249,10 +249,14 @@
       top: -.125rem;
       position: relative;
       &.icon-from-class {
-        margin-right: .5rem;
+        margin-right: .25em;
         width: 1.25em;
         height: 1.25em;
       }
+    }
+    .after-icon .icon {
+      margin-left: .25em;
+      margin-right: 0;
     }
 
     // 1st level <li>
