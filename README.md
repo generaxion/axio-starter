@@ -25,8 +25,7 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
 2. [Setup](#2-setup)
     1. [New site setup](#21-new-site-setup)
     2. [Developer setup](#22-developer-setup)
-    3. [Work session setup](#24-work-session-setup)
-    4. [First 15 minutes of new site]
+    3. [Work session setup](#23-work-session-setup)
 3. [Components](#3-components)
     1. [Component.php](#31-componentphp)
     2. [Using components](#32-using-components)
@@ -100,7 +99,7 @@ Do these theme installation steps before modifying anything.
 Run setup wizard in theme root with bash `sh bin/setup.sh`
 
 | **Field**                   | **Meaning**  | **Default**  |
-|---|---|---|---|---|
+|---|---|---|
 | **Site name**               | Name in style.css | `Aucor Starter` |
 | **Unique id**               | Prefix and ID for code. Recommended length 1-5 characters. | `aucor_starter` |
 | **Local development url**   | Browsersync's mirror URL. Stored at `/assets/manifest.js` | `https://aucor-starter.local` |
