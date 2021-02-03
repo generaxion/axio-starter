@@ -27,11 +27,17 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
     2. [Developer setup](#22-developer-setup)
     3. [Work session setup](#23-work-session-setup)
 3. [Components](#3-components)
-    1. [Component.php](#31-componentphp)
+    1. [Base component](#31-base-component)
     2. [Using components](#32-using-components)
     3. [Creating new component](#33-creating-new-components)
     4. [Validating arguments](#34-validating-arguments)
 4. [Modules](#4-modules)
+    1. [Default modules](#41-default-modules)
+    2. [Module loading](#42-module-loading)
+    3. [Module structure](#43-module-structure)
+    4. [Creating new modules](#44-creating-new-modules)
+    5. [Disabling or deleting modules](#45-disabling-or-deleting-modules)
+    6. [Module caveats](#46-module-caveats)
 5. [Assets](#5-assets)
     1. [Styles](#51-styles)
     2. [Scripts](#52-scripts)
@@ -46,10 +52,6 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
     4. [Localization (Polylang)](#74-localization-polylang)
 7. [Workflows]()
 8. [Philosophy](#8-gutenberg-and-classic-editor)
-
-## 5. Assets
-
-
 
 ## 1. Directory structure
 
@@ -139,7 +141,7 @@ Components are the first unique building blocks of this theme. They are an evolu
 3. **Validation**: Template part concept won't encourage to validate arguments early and end up with highly nested if checks for the code. In components you can exit early and have separated backend and frontend functions to gather and sanitize data.
 4. **Context free**: You can create components to be used in blocks, templates and inside other components. It's up to you how context aware/independent components you want to build.
 
-### 3.1 Component.php
+### 3.1 Base component
 
 Components get their power from abstract class Component that keeps in the structure and required functionality for each component. Every component inherits from this class. The component structure is loosely inspired by React component concept.
 
@@ -258,6 +260,164 @@ Here are your validation strategies:
 ## 4. Modules
 
 Modules are the biggest separation to traditional WordPress themes that build on components introduced before. Modules package PHP, HTML, SASS, JS and images to "mini plugins" that operate inside the theme.
+
+### 4.1 Default modules
+
+This theme comes with selection of default modules that are listed here. Modules have their own readme files at `/modules/module-name/docs/README.md`.
+
+A few modules are sort of required or there are more changes needed than just removing the module to remove it. You can of course replace them but they have some critical functions that need to be implemented.
+
+| **Module**             | **Required**   |  **Function**  |
+|------------------------|----------------|----------------|
+| `/footer/`             | Yes            | Template part for footer |
+| `/header/`             | Yes            | Template part for header with menus and logo |
+| `/hero/`               | Yes            | Template part for hero section |
+| `/image/`              | Yes            | Component to show responsive images |
+| `/svg/`                | Yes            | Component to display SVG sprite icons |
+| `/teaser/`             | Yes            | Component to display teaser cards |
+| `/background/`         | -              | Replacement for core/group block with background color, image or video options. |
+| `/button/`             | -              | Replacement for core/button block with ACF block and component. |
+| `/core-columns/`       | -              | Gutenberg columns block |
+| `/core-embed/`         | -              | Gutenberg embed blocks |
+| `/core-gallery/`       | -              | Gutenberg gallery block |
+| `/core-heading/`       | -              | Gutenberg heading block |
+| `/core-image/`         | -              | Gutenberg image block |
+| `/core-list/`          | -              | Gutenberg list block |
+| `/core-paragraph/`     | -              | Gutenberg paragraph block |
+| `/core-quote/`         | -              | Gutenberg quote block |
+| `/core-table/`         | -              | Gutenberg table block |
+| `/file/`               | -              | Replacement for core/file block and component |
+| `/gravity-forms/`      | -              | Base styles and settings for Gravity Forms + Gutenberg block |
+| `/lightbox/`           | -              | Shows gallery/image links to media file as lightbox |
+| `/list-terms/`         | -              | Component that shows post's terms of given taxonomy |
+| `/media-text/`         | -              | Replacament for core/media-text block |
+| `/menu-social/`        | -              | Menu for social media channels with icons |
+| `/posts-nav-numeric/`  | -              | Shows numeric navigation for pagination |
+| `/search-form/`        | -              | Search form component |
+| `/share-buttons/`      | -              | Social share buttons component |
+| `/spacer/`             | -              | Replacement for core/spacer block |
+
+### 4.2 Module loading
+
+Each module have in their root a manifest file called `_.json`. This file declares what files needs to be loaded for this module (PHP, JS, SASS).
+
+For PHP files, theme's `functions.php` goes through all `_.json` files and requires files. For assets Gulp goes through all the assets and processes them just like files in `/assets/`.
+
+#### Example: _.json
+
+```json
+{
+  "meta": {
+    "title": "Teaser",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php",
+      "component.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/teaser.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": [
+      "assets/styles/teaser.scss"
+    ]
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}
+```
+
+Notice that SASS and JS files are targetted to specific compiled files. All PHP files are just included so no need to categorize them.
+
+All SVG sprite files in `/assets/sprite/` and images in `/assets/images/` are loaded automatically by Gulp.
+
+All compiled assets go to the same `/dist/` as regular assets.
+
+#### Example: Modifying WP template hierarchy
+
+WordPress has well documented [template hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/) where you can name PHP file in certain way and put it to the root or second level directory of theme and WP finds it and includes it when appropriate.
+
+By default WordPress won't find template files inside modules, but you can easily serve them with a filter in module's `setup.php` like so:
+
+```php
+/**
+ * Host archive template in module
+ */
+add_action('template_include', function ($template) {
+  if (is_post_type_archive('projects')) {
+    return dirname(__FILE__) . '/archive-projects.php';
+  }
+  return $template;
+});
+```
+
+### 4.3 Module structure
+
+There are no strict rules on how module should be structured but there are a few recommendations.
+
+#### Repeative naming is good
+
+PHP files are often named very minimally:
+ * `setup.php` – hooks and base for feature
+ * `component.php` – the component of feature
+ * `block.php` – Gutenberg block template
+ * `helpers.php` – public helper functions
+ * `endpoint.php` – queryable API endpoint
+ * `cpt-{name}.php` and `tax-{name}.php` – registering data types
+
+If module includes for example multiple components, you do need to name them better but other than that the directory already "namespaces" the files so there is no need to repeat module's name very much.
+
+#### Avoid excessive subdirectories
+
+Modules bring some extra directories to begin with so don't make the directory situation more complicated if not necessary.
+
+#### Use mini `/assets/`
+
+For assets it's recommended to use simplified `/assets/` structure to separate PHP files and asset files.
+
+### 4.4 Creating new modules
+
+You should create module each time there is a feature that can be packaged into one intact thing. Module can be simple component like button, compatibility with some plugin, everything that goes into some post type or certain changes to wp-admin. You have to consider and decide what makes sense.
+
+1. Create new directory under `/modules/`
+2. Add `_.json` (use other modules as example)
+3. Add `setup.php` and other needed files
+
+If you have `gulp watch` active while creating modules or modifying `_.json` files the process will stop and Gulp asks you to restart the watch. This is somewhat annoying but we haven't found a smart way to reload list of watched files during watch process.
+
+### 4.5 Disabling or deleting modules
+
+There is built-in way to disable module that prevents including PHP files and assets (for assets you need to run Gulp before taking effect).
+
+Simply add underscore to the directory name to disable it: `teaser => _teaser`.
+
+For deleting a module you can just throw it to the trash and be done with it (for the default modules marked as not required).
+
+### 4.6 Module caveats
+
+Modules are not a perfect solution but pretty simple solution to complex problem. Here are a few issues that you should know.
+
+#### Declaring dependencies
+
+There is no programming way to declare module to depend on another module. You can use resources from other modules but it's up to you to document it.
+
+#### No namespacing
+
+At the moment we still use prefixing instead of namespacing with functions so you should be aware not to have conflicting naming across modules.
+
+#### ACF JSON is tricky
+
+Optimally you would both save and edit Advanced Custom Fields fieldsets so that the JSON files would also be under the module. At the moment ACF doesn't allow this legitimately.
+
+You can load JSON fields from multiple locations but only save them in one. So the modules that come with ACF fields have them loading from the module but if you edit them with ACF the new version is saved in theme's `/acf-json/` and loaded there leaving the old duplicate file in module.
+
+The ultimate solution would be either to have ACF alter the JSON behaviour or have ACF PHP API become so good that you could mostly write fields in PHP.
 
 ## 5. Assets
 
