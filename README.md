@@ -261,6 +261,13 @@ Here are your validation strategies:
 
 Modules are the biggest separation to traditional WordPress themes that build on components introduced before. Modules package PHP, HTML, SASS, JS and images to "mini plugins" that operate inside the theme.
 
+Modules tackle these big level goals:
+
+  1. **Organization**: Traditional WordPress theme file structure scatters each feature's files into many locations and some of the logic is in shared files with other features. Modules separated the logic by the feature.
+  2. **Remove bloat**: Make it as easy as possible to discard features from the starter to not carry any unneeded features just because removing them is cumbersome.
+  3. **Encourage standardization**: Features could be pre-built or modules from previous projects could be used easily for new projects.
+  4. **Scalability**: In big projects the codebase gets easily messy because the logic is scattered in so many places. With modules, adding a new module adds very little additional complexity to the whole project.
+
 ### 4.1 Default modules
 
 This theme comes with selection of default modules that are listed here. Modules have their own readme files at `/modules/module-name/docs/README.md`.
@@ -410,6 +417,12 @@ There is no programming way to declare module to depend on another module. You c
 #### No namespacing
 
 At the moment we still use prefixing instead of namespacing with functions so you should be aware not to have conflicting naming across modules.
+
+#### Repeating hooks and function calls
+
+By modularisation there are some additional code that wouldn't be otherwise needed. For example declaring allowed blocks could be done in one hook call for all the blocks but with modules each module declares only its own blocks creating many hook calls.
+
+This is a small price to pay for better organization and scalability.
 
 #### ACF JSON is tricky
 
