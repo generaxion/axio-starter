@@ -30,25 +30,16 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
     1. [Component.php](#31-componentphp)
     2. [Using components](#32-using-components)
     3. [Creating new component](#33-creating-new-components)
-4. [Styles](#4-styles)
-    1. [Directory structure](#41-directory-structure)
-    2. [Workflow](#42-workflow)
-    3. [Adding new files](#43-adding-new-files)
-    4. [Naming](#44-naming)
-    5. [Tips](#45-tips)
-5. [Scripts](#5-scripts)
-    1. [Directory structure](#51-directory-structure)
-    2. [Workflow](#52-workflow)
-    3. [Adding new files](#53-adding-new-files)
-    4. [JavaScript syntax](#54-javascript-syntax)
-6. [SVG and Images](#6-svg-and-images)
-    1. [SVG sprite](#61-svg-sprite)
-    2. [Single SVG images](#62-single-svg-images)
-    3. [Static Images](#63-static-images)
-    4. [Image sizes](#64-image-sizes)
-    5. [Embed images](#65-embed-images)
-    6. [Lazy load](#66-lazy-load)
-    7. [Favicons](#67-favicons)
+    4. [Validating arguments](#34-validating-arguments)
+4. [Modules](#4-modules)
+
+5. [Assets](#5-assets)
+    1. [Styles](#51-styles)
+    2. [Scripts](#52-scripts)
+    3. [SVG](#53-svg)
+    4. [Images](#54-images)
+    5. [Fonts](#55-fonts)
+    6. [Favicon](#56-favicon)
 7. [Includes](#7-includes)
     1. [Functions.php](#71-functionsphp)
     2. [\_conf](#72-_conf)
@@ -69,17 +60,21 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
 10. [Editorconfig](#10-editorconfig)
 11. [Site specific plugin](#11-site-specific-plugin)
 
+
+## 5. Assets
+
+
+
 ## 1. Directory structure
 
-`/assets/` global JS, SASS, images, SVG and fonts
-
-`/bin/` shell scripts for bulk tasks/automations
-
-`/dist/` has processed, combined and optimized assets ready to be included to theme
-
-`/modules/` features that are packaged into modules like blocks, template parts, post-types
-
-`/inc/` global php files that are not part of template structure/modules
+| **Directory**                   | **Contents**  |
+|---|---|
+| `/acf-json/`    | automatically saved JSON versions of site specific fields from Advanced Custom Fields |
+| `/assets/`      | global JS, SASS, images, SVG and fonts |
+| `/bin/`         | shell scripts for bulk tasks/automations  |
+| `/dist/`        | has processed, combined and optimized assets ready to be included to theme |
+| `/modules/`     | features that are packaged into modules like blocks, template parts, post-types|
+| `/inc/`         | global php files that are not part of template structure/modules |
 
 ## 2. Setup
 
@@ -106,10 +101,13 @@ Run setup wizard in theme root with bash `sh bin/setup.sh`
 | **Author name**             |  Author in style.css | `Aucor Oy` |
 | **Author URL**              | Author URL in style.css | `https://www.aucor.fi` |
 
-
 #### Run localizator (if needed)
 
-@todo
+Theme strings are by default in English but we do support Finnish and probably Swedish in near future. If you would like to initialize strings in these languages, do the following:
+
+1. Run `bin/localizator.sh`
+2. Input language code
+3. Select to remove language packages after running
 
 #### Install Aucor Core
 
@@ -125,8 +123,7 @@ Here's optional next steps:
 
 1. Go through the `/modules/` and remove any unneeded. Just throw them to trash.
 2. Save logo at `/assets/images/logo.svg`
-3. Setup base variables at `/assets/styles/utils/_variables.scss`
-4. Run `gulp && gulp watch`
+3. Setup colors and fonts at `/assets/styles/utils/_variables.scss`
 
 ### 2.2 Developer setup
 
@@ -145,20 +142,20 @@ Do this everythime you start to work with the theme.
 2. Run `gulp watch` to activate build process in background. You'll get development proxy at http://localhost:3000 where changes to code will be updated automatically to browser (no need to reload).
 3. To quit press `ctrl` + `c`
 
-**Protip**: You can also run just `gulp` to build all the resources or just some resources with `gulp styles` or `gulp scripts`. Want to start the watch task but not open the Browsersync? Start watch with quiet mode `qulp watch -q`.
-
-
+**Protip**: You can also run just `gulp` to build all the resources or just some resources with `gulp styles` or `gulp scripts`. Want to start the watch task but not open the Browsersync in browser? Start watch with quiet mode `qulp watch -q`.
 
 ## 3. Components
 
-Components are independent components that can be used in many contexts (forms, menu, teaser etc).
-Styles of components should be in `/assets/styles/elements` and named as `_component-name.scss` and will be compiled to `dist/styles/main.css`.
+Components are the first unique building blocks of this theme. They are an evolution of WordPress's `get_template_part()` function that aim to fix underlying issues of that function:
 
-**But why?** WordPress doesn't offer by default a way to make partials where you can pass arguments. This becomes a problem when same partials are used with various contexts and with multiple variations. You can of course make functions but it easily leads you having some partials as functions and others as template-parts. This component structure makes it possible to have partials with and without arguments in a way that is easy to use from project to project.
+1. **Arguments**: Template parts had no legitimate way to pass arguments (until WP 5.5.0).
+2. **Returning and echoing**: All components can be either echoed or HTML markup can be returned.
+3. **Validation**: Template part concept won't encourage to validate arguments early and end up with highly nested if checks for the code. In components you can exit early and have separated backend and frontend functions to gather and sanitize data.
+4. **Context free**: You can create components to be used in blocks, templates and inside other components. It's up to you how context aware/independent components you want to build.
 
 ### 3.1 Component.php
 
-Abstract Class Component that keeps in the structure and required functionality for each component. Every component should inherit this class.
+Components get their power from abstract class Component that keeps in the structure and required functionality for each component. Every component inherits from this class.
 
 ### 3.2 Using components
 
@@ -183,12 +180,10 @@ All components can be interacted with the same way. It is up to the component to
 
 ### 3.3 Creating new components
 
-#### PHP
-Create `components-name.php` to `inc/components/`
 ```php
 <?php
 /**
- * Component: Componets name
+ * Component: Componet's name
  *
  * @example
  * Aucor_Components_Name::render([
@@ -196,8 +191,6 @@ Create `components-name.php` to `inc/components/`
  *   'description'  => 'Descriptive text'
  *   'image'        => 123
  * ]);
- *
- * @package aucor_starter
  */
 class Aucor_Components_Name extends Aucor_Component {
 
@@ -265,35 +258,24 @@ class Aucor_Components_Name extends Aucor_Component {
 
 }
 ```
-Require it in functions.php.
-```php
-/**
- * Components
- */
-require_once 'components/components-name.php';
-```
 
-#### SCSS
-Create `_components-name.scss` to `/assets/styles/components/`.
+### 3.4 Validating arguments
 
-After creating `_components-name.scss` you can import it to main.scss so it compiles with other .scss files. Make sure `gulp watch` is running or run it manually with `gulp styles`.
-```scss
-/* Components
------------------------------------------------ */
+As in example above the rendering of component starts by passing data to backend function in `$args` that passes it to frontend function and renames it to `$data` (just to mentally separate raw input from sanitized).
 
-@import "components/components-name";
-```
+Here are your validation strategies:
 
-#### JS
-If your component will need .js create components-name.js to `/assets/scripts/components/`.
+1. **Return error in backend**: `return parent::error('What heppened');` and this error is displayed if WP_DEBUG is activated. In production without WP_DEBUG, nothing is returned.
+2. **Set default values in backend**: You should set good `$default` values in start to handle most common cases where all non critical arguments are not passed.
+3. **Sanitize HTML attributes in frontend**: For passing big amount of HTML attributes, add them to key => value array and pass to `parent::render_attributes($attributes)`.
 
-After creating `components-name.js` add it to `/assets/manifest.js` under "project specific js" or anywhere else. Make sure `gulp watch` is running or run it manually with `gulp scripts`.
-```js
-// project specific js
-"scripts/lib/components-name.js",
-```
+## 4. Modules
 
-## 4. Styles
+Modules are the biggest separation to traditional WordPress themes that build on components introduced before. Modules package PHP, HTML, SASS, JS and images to "mini plugins" that operate inside the theme.
+
+## 5. Assets
+
+### 5.1 Styles
 
 Styles are written in SASS in `/assets/styles`. There's five separate stylesheets that are compiled automatically to `dist/styles`.
 
@@ -302,26 +284,34 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * `editor-classic.scss` back-end styles for old TinyMCE based editor
   * `editor-gutenberg.scss` back-end styles for new Gutenberg editor
 
-### 4.1 Directory structure
+#### Direcotry structure
 
-  * `/base/` universal styles and utilities
-      * `_variables.scss` colors, fonts, breakpoints
-      * `_mixins.scss` all [SASS mixins](http://sass-lang.com/guide)
-      * `_normalize.scss` set unifiend base styles to html elements for all browsers
-      * `_typography.scss` base styles for typography elements (h1, h2, h3, p, ul, ol, blockquote etc.)
-      * `_media.scss` base styles for media elements (img, iframe, svg etc.)
-      * `_forms.scss` base styles for forms
-      * `_print.scss` styles for printing out the page
-  * `/blocks/` Gutenberg block styles for front-end and back-end
-      * `_core-` supported core blocks
-      * `_settings-` utilities for blocks (alignment, width, color)
-  * `/elements/` small components that can be used in many contexts (forms, menu, teaser etc)
-  * `/layout/` layouts and page templates
-  * `/vendor/` styles for external libraries or WP plugins
-  * `@node_modules` vendor packages
-      * `breakpoint-sass` [helper mixins](http://breakpoint-sass.com/) for breakpoints
+| **Directory** | **File**                  |  **Contents**  |
+|-------------------|-----------------------|----------------|
+| `/utils/`         | *                     | variables and functions |
+| `/utils/`         | `_env.scss`           | environment variables (sass variabled until browser support is better) |
+| `/utils/`         | `_variables.scss`     | CSS3 variables |
+| `/utils/`         | `_mixins.scss`        | SASS functions |
+| `/base/`          | *                     | global styles |
+| `/base/`          | `_normalize.scss`     | unify browser defaults |
+| `/base/`          | `_typography.scss`    | text base styles |
+| `/base/`          | `_blocks.scss`        | Gutenberg base styles |
+| `/base/`          | `_media.scss`         | image, svg and iframe base styles |
+| `/base/`          | `_forms.scss`         | forms base styles |
+| `/base/`          | `_print.scss`         | print base styles |
+| `/elements/`      | *                     | global elements |
+| `/layout/`        | *                     | layouts and templates |
+| `/layout/`        | `_layout.scss`        | global layout styles |
+| `/layout/`        | `_404.scss`           | 404 template |
+| `/layout/`        | `_front-page.scss`    | front page |
+| `/layout/`        | `_index.scss`         | generic archive |
+| `/layout/`        | `_page.scss`          | generic page template |
+| `/layout/`        | `_search.scss`        | search template |
+| `/layout/`        | `_single.scss`        | generic post and custom post template |
+| `@node-modules`   | *                     | vendor packages |
+| `@modules`        | *                     | module specific styling |
 
-### 4.2 Workflow
+#### Styles workflow
 
   * When you begin working, start the gulp with `gulp watch`
   * You get Browsersync URL at `https://localhost:3000` (check yours in console). Here the styles will automatically reload when you save your changes.
@@ -330,7 +320,7 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
   * There's Autoprefixer that adds prefixes automatically. (If you have to support very old browsers, set browsers in gulpfile.js)
   * In browser developer tools shows what styles is located in which SASS partial file (SASS Maps)
 
-### 4.3 Adding new files
+#### Adding new global styles
 
   1. Make a new file like `/assets/styles/elements/_card.scss`
   2. Go edit `main.scss`
@@ -338,7 +328,13 @@ Styles are written in SASS in `/assets/styles`. There's five separate stylesheet
 
 **Protip:** If those styles are needed in Gutenberg editor as well, include the file in `editor-gutenberg.scss` as well.
 
-### 4.4 Naming
+#### Adding new module styles
+
+  1. Make an new file like `module-name/assets/styles/card.scss`
+  2. Import utilities with `@import '../../../../assets/styles/utils.scss';`
+  3. Include by editing module's `_.json`
+
+#### Naming
 
 Theme uses [BEM methodology](http://getbem.com/) to organize class names. Quick example:
 
@@ -366,11 +362,16 @@ BEM in SASS:
 
 **Protip:** Use your own judgement on how deep you should go. There is no right or wrong way. For example `.entry__footer__categories__item__label` might be better as just `.categories__label`.
 
-### 4.5 Tips
+### 5.2 Scripts
 
- * Setup responsive font sizes by setting fonts in percentages in `html` and change html font size with media queries. All elements use `rem` for font sizes so all the font size changes happen in html.
- * Don't hesitate to create variables if you have repeating values. Put all variable definitions in `/base/variables/` or at the beginning of the file.
- * Build mobile-first: more `min-width`, less `max-width`.
+### 5.3 SVG
+
+### 5.4 Images
+
+### 5.5 Fonts
+
+### 5.6 Favicon
+
 
 ## 5. Scripts
 
