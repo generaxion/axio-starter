@@ -32,7 +32,6 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
     3. [Creating new component](#33-creating-new-components)
     4. [Validating arguments](#34-validating-arguments)
 4. [Modules](#4-modules)
-
 5. [Assets](#5-assets)
     1. [Styles](#51-styles)
     2. [Scripts](#52-scripts)
@@ -40,26 +39,13 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
     4. [Images](#54-images)
     5. [Fonts](#55-fonts)
     6. [Favicon](#56-favicon)
-7. [Includes](#7-includes)
+6. [Includes](#7-includes)
     1. [Functions.php](#71-functionsphp)
     2. [\_conf](#72-_conf)
     3. [Helpers](#73-helpers)
-    4. [Navigation](#74-navigation)
-    5. [Localization (Polylang)](#75-localization-polylang)
-8. [Gutenberg and Classic Editor](#8-gutenberg-and-classic-editor)
-    1. [Gutenberg architecture](#81-gutenberg-architecture)
-    2. [Allowed blocks](#82-allowed-blocks)
-    3. [Known Gutenberg issues](#83-known-gutenberg-issues)
-    4. [Classic Editor](#84-classic-editor)
-9. [Menus](#9-menus)
-    1. [Primary menu](#91-primary-menu)
-    2. [Upper menu](#92-upper-menu)
-    3. [Social menu](#93-social-menu)
-    4. [Dropdown menus](#94-dropdown-menus)
-    5. [Mobile menu](#95-mobile-menu)
-10. [Editorconfig](#10-editorconfig)
-11. [Site specific plugin](#11-site-specific-plugin)
-
+    4. [Localization (Polylang)](#74-localization-polylang)
+7. [Workflows]()
+8. [Philosophy](#8-gutenberg-and-classic-editor)
 
 ## 5. Assets
 
@@ -155,7 +141,7 @@ Components are the first unique building blocks of this theme. They are an evolu
 
 ### 3.1 Component.php
 
-Components get their power from abstract class Component that keeps in the structure and required functionality for each component. Every component inherits from this class.
+Components get their power from abstract class Component that keeps in the structure and required functionality for each component. Every component inherits from this class. The component structure is loosely inspired by React component concept.
 
 ### 3.2 Using components
 
@@ -239,12 +225,12 @@ class Aucor_Components_Name extends Aucor_Component {
     // overrides defaults with given args
     $args = wp_parse_args($args, $default);
 
-    // in example you can make some data validation
+    // validate arguments
     if (empty($args['title']) || empty($args['description'])) {
       return parent::error('Missing title or/and description');
     }
 
-    // or set attributes like classes
+    // set html attributes
     $args['attr']['class'][] = 'components-name';
 
     // or make conditioning
@@ -252,7 +238,7 @@ class Aucor_Components_Name extends Aucor_Component {
       $args['attr']['class'][] = 'components-name--has-image';
     }
 
-    // $args should be so pre-chewed that frontend doesn't have to think anything
+    // $args should be so pre-chewed that frontend can just use the data with simple empty() checks or foreach() loops
     return $args;
   }
 
@@ -364,44 +350,27 @@ BEM in SASS:
 
 ### 5.2 Scripts
 
-### 5.3 SVG
+Javascript can be written with modern ES6 syntax as Babel compiles it to work on even older browsers.
 
-### 5.4 Images
+#### Directory structure
 
-### 5.5 Fonts
-
-### 5.6 Favicon
-
-
-## 5. Scripts
-
-By default, you get [external SVG polyfill svgxuse](https://github.com/Keyamoon/svgxuse), [jQuery-free fitvids](https://www.npmjs.com/package/fitvids) and our framework for navigation. There is [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) for accessible overlay menu. Also we synchronize image markup from Classic Editor to Gutenberg in front-end to make styling easier (not critical or some cases even needed).
-
-**Protip:** If you are using jQuery, take into account that Aucor Core moves jQuery to the bottom of the document as a speed optimization. If it causes a problem for you, add a filter `add_filter('aucor_core_speed_move_jquery', '__return_false');`.
-
-
-### 5.1 Directory structure
-
-The script have very simple structure.
-
-  * `/lib/` directory for small components
-      * `menu-primary.js` primary menu functionality
-      * `markup-enhancements.js` sync old image markup to Gutenberg style, responsive tables
-      * `mobile-menu.js` logic for mobile menu
-  * `main.js` main js file that is run in footer
-  * `critical.js` scripts that should be run in head
+  * `/lib/` directory for small global scripts
+      * `blocks.js` frontend markup enhancements for Gutenberg content
+  * `main.js` primary js file that is run in footer
   * `editor-gutenberg.js` modifies gutenberg editor
+  * `@node-modules` vendor scripts
+  * `@modules` module specific js
 
-### 5.2 Workflow
+#### Default vendor libraries
 
-  * When you begin working, start the gulp with `gulp watch`
-  * You get Browsersync URL at `https://localhost:3000` (check yours in console). Here the styles will automatically reload when you save your changes.
-  * If you make a syntax error, a console will send you a notification and tell where the error is. If Gulp stops running, start it again with `gulp watch`.
-  * The Gulp updates `/assets/last-edited.json` timestamps for styles and WP assets use it. This means that cache busting is done automatically.
+* [External SVG polyfill: svgxuse](https://github.com/Keyamoon/svgxuse)
+* [Responsive video embds: fitvids (jQuery-free)](https://www.npmjs.com/package/fitvids)
+* [Accessible modals/mobile menu: a11y-dialog](https://github.com/edenspiekermann/a11y-dialog)
 
-### 5.3 Adding new files
+**Protip:** If you are using jQuery, take into account that Aucor Core moves jQuery to the bottom of the document as a speed optimization. If it causes a problem for you, add a filter `add_filter('aucor_core_speed_move_jquery', '__return_false');` (has to be executed from a plugin).
 
-#### 5.3.1 Add script from file
+
+#### Add new global script
 
 Put file in `/assets/scripts/lib/my_script.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
 
@@ -419,9 +388,9 @@ Put file in `/assets/scripts/lib/my_script.js`. Add script to main.js (or some o
 ],
 ```
 
-#### 5.3.2 Add script with yarn (node_modules)
+#### Add vendor script with yarn (node_modules)
 
-First, go to [npmjs.com](https://www.npmjs.com/) and find if your library is avaialble. Add your library in `package.json` devDependencies. Run `yarn upgrade`.
+First, go to [npmjs.com](https://www.npmjs.com/) and find if your library is avaialble. Add your library in `package.json` devDependencies. Run `yarn install` or `yarn upgrade` (also updates all packages).
 
 Include the script in `/assets/manifest.js`.
 
@@ -430,26 +399,19 @@ Add project libraries in `dependencies` and Gulp libraries in `devDependencies`.
 ```js
 "main.js": [
   "../node_modules/fitvids/dist/fitvids.js",
-  "scripts/lib/menu-primary.js",
   "scripts/main.js"
 ],
 ```
 
-**Protip**: Gulp uses [Babel](https://babeljs.io/) to compile ES6 and React syntax to be compatible to older browsers. In some cases this may mess up older scripts from node_modules. If you have problems with the script, add it to babel exclusions at `gulpfile.js`.
+**Protip**: Gulp uses [Babel](https://babeljs.io/) to compile ES6 and React syntax to be compatible to older browsers. In some cases this may mess up older scripts from node_modules. If you have problems with the script (weird errors in console), add it to babelIgnores at `manifest.js`.
 
-### 5.4 JavaScript syntax
+### 5.3 SVG
 
-We use [Babel](https://babeljs.io/) to compile the JS. You can use ES6 or React syntax with theme's or Gutenberg's code and it will be compiled to be compatible with older browsers.
-
-## 6. SVG and Images
-
-Gulp will automatically minify images and combine SVG images in one sprite.
-
-### 6.1 SVG sprite
+#### SVG Sprite
 
 Put all icons to `/assets/sprite/` and Gulp will combine and minify them into `/dist/sprite/sprite.svg`.
 
-In PHP you can get these images with (more exmples in Template tags):
+In PHP you can get these images with:
 
 ```php
 <?php Aucor_SVG::render([
@@ -457,24 +419,32 @@ In PHP you can get these images with (more exmples in Template tags):
 ]); ?>
 ```
 
-Theme includes one big SVG sprite `/assets/images/icons.svg` that has by default a caret (dropdown arrow) and a few social icons. Add your own svg icons in `/assets/sprite/` and Gulp will add them to this sprite with id from filename.
+Theme includes one big SVG sprite `/assets/images/icons.svg`. Add your own svg icons in `/assets/sprite/` and Gulp will add them to this sprite with id from filename.
 
-Example: Print out SVG `/assets/sprite/facebook.svg`
-```php
-<?php Aucor_SVG::render([
-  'name' => 'facebook'
-]); ?>
-```
-
-### 6.2 Single SVG images
+#### SVG as image
 
 You can also place more complex (multi-colored) SVGs in `/assets/images/` and Gulp will compress them. They can be found in `/dist/images/`
 
-### 6.3 Static images
+### 5.4 Images
 
-Put your static images in `/assets/images/` and Gulp will compress them a bit. Refer images in `/dist/images/`.
+Put your static images in `/assets/images/` and Gulp will compress them a bit. Refer images in `/dist/images/`. In SASS `background('../images/bg.png')`
 
-### 6.4 Image sizes
+### 5.5 Fonts
+
+You can put font files in `/assets/fonts/` and Gulp flattens sub directories and serves them to `/dist/fonts/`.
+
+### 5.6 Favicon
+
+You can put favicon files in `/assets/favicon/` and Gulp optimizes images and serves them to `/dist/favicon/`. You can use a tool like [RealFaviconGenerator](https://realfavicongenerator.net/) to make favicon.
+
+
+
+
+
+
+
+
+###  Image sizes
 
 Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating image sizes:
 
@@ -551,11 +521,8 @@ By default the image function has lazy loading on. Lazy loading uses HTML's nati
 
 Native lazy loading is automatically backwards compatible with old browsers and users without JS. This theme won't add lazy load for images inside Gutenberg as this will be done by core some day.
 
-### 6.7. Favicons
 
-Add all favicon files to `/assets/favicon/` where they will be moved (and images optimized) to `/dist/favicon/`. Use for example [Real Favicon Generator](https://realfavicongenerator.net/) to make favicon. Add favicon embeds to function `aucor_starter_favicons` in `/inc/_conf/register-assets.php`.
-
-## 7. Includes
+## 6. Includes
 
 Includes is place for all PHP files that are not part of templates. So all filters, actions and functions.
 
@@ -565,11 +532,11 @@ All the functions, hooks and setup should be on their own filer organized at /in
   * `setup-` configures existing settings and assets
   * `function-` adds functions to be used in templates
 
-### 7.1 Functions.php
+### 6.1 Functions.php
 
 The `/functions.php` is the place to require all PHP files that are not part of the current template. This file should only ever have requires and nothing else.
 
-### 7.2 \_conf
+### 6.2 \_conf
 
 The `/inc/_conf/` directory has some essential settings for theme that you basically want to review in every project and probably will return many times during development.
 
@@ -579,7 +546,7 @@ The `/inc/_conf/` directory has some essential settings for theme that you basic
   * `register-localization.php` add all translatable strings for Polylang.
   * `register-menus.php` define all menu positions.
 
-### 7.3 Helpers
+### 6.3 Helpers
 
 Directory `/inc/helpers/`.
 
@@ -637,127 +604,7 @@ Get last edited timestamp from asset files. Timestamps are saved in `/assets/las
 
 Include fallback function in case critical plugin is not active.
 
-### 7.4 Navigation
-
-Directory `/inc/components/` has various components for menus and navigation things.
-
-#### Social share buttons
-Function:
-```php
-Aucor_Share_Buttons::render([
-  'section_title' => ask__('Social share: Title')
-])
-```
-
-Displays share buttons (Facebook, Twitter, LinkedIn, WhatsApp) with link to their sharer.
-```php
-<?php Aucor_Share_Buttons::render([
-  'section_title' => ask__('Social share: Title')
-]); ?>
-```
-
-#### Numeric posts navigation
-Function: `aucor_starter_numeric_posts_nav($custom_query = null, $custom_paged_var = null)`
-
-Displays numeric navigation instead of normal "next page, last page" navigation. Can be used with a custom query. You can even change the pagination variable if you need to.
-
-Main query:
-```php
-if(have_posts())
-  while (have_posts()) : the_post();
-    ...
-  endwhile;
-  Aucor_Posts_Nav_Numeric::render();
-endif;
-```
-
-Custom query:
-```php
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$args = [
-  'post_type'       => 'post',
-  'posts_per_page'  => 10,
-  'paged'           => $paged,
-];
-$loop = new WP_Query($args);
-if($loop->have_posts())
-  while ($loop->have_posts()) : $loop->the_post();
-    ...
-  endwhile;
-  Aucor_Posts_Nav_Numeric::render(['wp_query' => $loop]);
-endif;
-```
-
-Custom query with your own pagination variable "current_page"
-```php
-$paged = (isset($_GET['current_page']) && !empty($_GET['current_page'])) ? absint($_GET['current_page']) : 1;
-$args = [
-  'post_type'       => 'post',
-  'posts_per_page'  => 10,
-  'paged'           => $paged,
-];
-$loop = new WP_Query($args);
-if ($loop->have_posts())
-  while ($loop->have_posts() ) : $loop->the_post();
-    ...
-  endwhile;
-  aucor_starter_numeric_posts_nav([
-    'wp_query'  => $loop,
-    'paged_var' => 'current_page',
-  ]);
-endif;
-```
-
-#### Sub-pages navigation (pretendable)
-Function:
-```php
-Aucor_Menu_Sub_Pages::render()
-```
-
-Displays sub-pages for current page in list. If you need to pretend that single post is somewhere in the hierarchy, use global variable pretend_id to display current view to be in certain place in hierarchy
-
-Usage:
-```php
-Aucor_Menu_Sub_Pages::render([
-  'id' => $id
-]);
-```
-
-Pretend to be someone else (active_id is the id of someone who to pretend):
-```php
-// single-post.php etc.
-Aucor_Menu_Sub_Pages::render([
-  'id'        => $id,
-  'active_id' => 321,
-]);
-```
-
-#### Menu toggle btn
-Function:
-```php
-Aucor_Menu_Toggle::render([
-  'id'    => $id,
-  'attr'  => $args
-])
-```
-
-Display hamburger button for menu.
-
-#### Menu hooks
-
-##### Carets for primary menu (dropdown icon)
-
-By default we add small SVG carets for menu items that have children in primary menu.
-
-##### Social icons for social menu
-
-We add social icons SVG to menu items in social menu. There's a few most used supported already (like Twitter, Facebook, Youtube, LinkedIn) but you can add your very easily there.
-
-##### Icons to menu by class name
-
-You can add icons to primary menu by adding class `icon-{name-of-the-icon}` like `icon-facebook`.
-
-### 7.5 Localization (Polylang)
+### 6.4 Localization (Polylang)
 
 In depth about file: `/inc/_conf/register-localization.php` (and `/inc/helpers/setup-fallbacks.php`)
 
@@ -776,69 +623,6 @@ Start off by registering some strings.
   * All your strings are registered at `/inc/_conf/register-localization.php` (static pieces of text in theme)
   * You give a unique context (key) and the default text (value) for string. Example `"Header: Greeting" => "Hello"`
 
-By default you have a few strings there. They are in Finnish by default. You can change them to English by copying and pasting following (we should make this into setup process...)
-
-```php
-// titles
-'Title: Home'                       => 'Blog',
-'Title: Archives'                   => 'Archives',
-'Title: Search'                     => 'Search',
-'Title: 404'                        => 'Page not found',
-
-// menu
-'Menu: Button label'                => 'Menu',
-'Menu: Primary Menu'                => 'Primary menu',
-'Menu: Social Menu'                 => 'Social media channels',
-'Menu: Additional Menu'             => 'Additional menu',
-'Menu: Open'                        => 'Open menu',
-'Menu: Close'                       => 'Close menu',
-'Menu: Open Sub-menu'               => 'Open submenu',
-'Menu: Close Sub-menu'              => 'Close submenu',
-
-// 404
-'404: Page not found description'   => 'The page might have been deleted or moved to different location. Use the search below to find what you are looking for.',
-
-// search
-'Search: Title'                      => 'Search: ',
-'Search: Nothing found'              => 'No search results',
-'Search: Nothing found description'  => 'No search results found. Try different words.',
-'Search: Placeholder'                => 'Search...',
-'Search: Screen reader label'        => 'Search from site',
-'Search: Submit'                     => 'Search',
-
-// accessibility
-'Accessibility: Skip to content'     => 'Skip to content',
-
-// navigation
-'Navigation: Numeric pagination'     => 'Show more',
-'Navigation: Go to page x'           => 'Go to page %s',
-'Navigation: Current page x'         => 'Current page, page %s',
-'Navigation: Previous'               => 'Previous page',
-'Navigation: Next'                   => 'Next page',
-
-// social
-'Social share: Title'                => 'Share on social media',
-'Social share: Facebook'             => 'Share on Facebook',
-'Social share: Twitter'              => 'Share on Twitter',
-'Social share: LinkedIn'             => 'Share on LinkedIn',
-'Social share: WhatsApp'             => 'Share on  WhatsApp',
-
-// taxonomies
-'Taxonomies: Keywords'               => 'Keywords',
-'Taxonomies: Categories'             => 'Categories',
-
-// colors
-'Color: White'                       => 'White',
-'Color: Black'                       => 'Black',
-'Color: Primary'                     => 'Primary color',
-
-// script localization
-'Tobi: Prev'                        => 'Previous',
-'Tobi: Next'                        => 'Next',
-'Tobi: Close'                       => 'Close',
-'Tobi: Loading'                     => 'Loading',
-
-```
 
 You can change these default texts (values) right here and they will update on templates. If you have Polylang installed, these strings will appear automatically on String Translations.
 
@@ -894,11 +678,26 @@ Debugging is the greatest benefit of using our string localization functions ins
 
 So there's really no excuse to forget to register your strings no more.
 
-## 8. Gutenberg and Classic Editor
+## 7. Workflows
 
-Aucor Starter supports both Gutenberg and Classic Editor though Gutenberg is preferred.
+### Editorconfig
 
-### 8.1 Gutenberg architecture
+Theme has an `.editorconfig` file that sets your code editor settings accordingly. Never used Editorconfig? [Download the extension](http://editorconfig.org/#download) to your editor. The settings will automatically be applied when you edit code when you have the extension.
+
+Our settings:
+```
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
+
+## 8. Philosophy
+
+
+### 8.1 Adopting Gutenberg
 
 #### Styles
 
@@ -991,77 +790,3 @@ Gutenberg development is moving fast and there are a lot of people working hard 
 ### 8.4 Classic Editor
 
 You can still use Classic Editor in some post types or all if you like. If you want to completely disable Gutenberg, you might want to re-organize the styles a bit as some styles are shared in `/assets/styles/blocks/`.
-
-## 9. Menus
-
-By default the starter theme has three menu locations: Primary menu, Upper menu and Social menu.
-
-### 9.1 Primary menu
-
-Theme location: `primary`
-
-Theme's main navigation in header that is build to handle multiple levels.
-
-### 9.2 Additional menu
-
-Theme location: `additional`
-
-Additional navigation items that are not as important as in primary menu. By default, it will only show 1st level and dropdown menus are not supported. If you will need them, take a look st primary menu styles and `main.js`.
-
-### 9.3 Social menu
-
-Theme location: `social`
-
-Optional menu for organization's social media accounts.
-
-How to use:
- * Include template part somewhere `<?php get_template_part('partials/menu-social'); ?>`
- * Create a new menu in WP admin
- * Add custom link items with url to account and title like "Facebook"
- * Menu item gets SVG icon that is based on url
- * Style menu as needed on `/assets/styles/elements/_menu-social.scss`
-
-### 9.4 Dropdown menus
-
-Starter includes rough navigation skeleton that is working out of box for 3 levels (or infinite amount if you put a little bit more CSS into it). Skeleton includes `/assets/scripts/components/dropdown-menu.js` and `/assets/styles/components/_menu-primary.scss`. This menu works with mouse, touch and tabs. Accessibility is built-in!
-
-Inside `main.js` there is the menu init and a few arguments:
-
-```js
-component_dropdown_menu({
-  desktop_min_width: 890,
-  menu: document.querySelector('.primary-navigation'),
-});
-```
-
-**Protip:** The `desktop_min_width` option will disable or enable some ways to interact with the menu. For example the hover stuff is disabled on "mobile mode".
-
-### 9.5 Mobile menu
-
-Shows and hides the mobile menu. The mobile menu component is essentially a wrapper for [a11y-dialog](https://github.com/edenspiekermann/a11y-dialog) that makes the mobile menu more accessible by trapping the focus inside the menu when it's opened.
-
-```js
-component_mobile_menu({
-  menu:     document.querySelector('.js-mobile-menu'),
-  site:     document.querySelector('.js-page'),
-  toggles:  document.querySelectorAll('.js-menu-toggle')
-});
-```
-
-## 10. Editorconfig
-
-Theme has an `.editorconfig` file that sets your code editor settings accordingly. Never used Editorconfig? [Download the extension](http://editorconfig.org/#download) to your editor. The settings will automatically be applied when you edit code when you have the extension.
-
-Our settings:
-```
-indent_style = space
-indent_size = 2
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
-```
-
-## 11. Site specific plugin
-
-It is recommended to create also site specific plugin to store custom post types, custom taxonomies, shortcodes, ACF fields etc information architecture. There is nothing stopping you from defining them into theme, but we find it better to isolate information architecture outside of theme as those post types and taxonomies will remain when theme gets rebuild.
