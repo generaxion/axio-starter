@@ -2,7 +2,7 @@
 
 **🖥 For developer from developers:**
 
-Superior Gutenberg WordPress starter theme with modern build tools by **[Aucor](https://www.aucor.fi)**. 200+ hours of development over 2,5 years to make the greatest starting point for WordPress site.
+Superior Gutenberg WordPress starter theme with modern build tools by **[Generaxion](https://www.generaxion.com)**. 200+ hours of development over 3 years to make the greatest starting point for WordPress site.
 
 **Demo:** **[starter.aucor.fi](https://starter.aucor.fi)**
 
@@ -11,7 +11,7 @@ Superior Gutenberg WordPress starter theme with modern build tools by **[Aucor](
 * **[Aucor Core](https://wordpress.org/plugins/aucor-core/)**: Core functionality that is clever to be centrally updated.
 * **[Advanced Custom Fields Pro](https://www.advancedcustomfields.com/)**: Some custom blocks use ACF. You can do without, but should remove them.
 
-**🏷Buzz-words**:
+**🏷 Buzz-words**:
 
 Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Native lazyload, BEM, Babel, Responsive images
 
@@ -23,10 +23,9 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
 
 1. [Directory structure](#1-directory-structure)
 2. [Setup](#2-setup)
-    1. [Install Aucor Starter](#21-install-aucor-starter)
-    2. [Install Aucor Core](#23-install-aucor-core)
-    2. [Install build tools](#24-install-build-tools)
-    3. [Start working](#25-start-working)
+    1. [New site setup](#21-new-site-setup)
+    2. [Developer setup](#22-developer-setup)
+    3. [Work session setup](#24-work-session-setup)
     4. [First 15 minutes of new site]
 3. [Components](#3-components)
     1. [Component.php](#31-componentphp)
@@ -85,42 +84,61 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
 
 ## 2. Setup
 
-### 2.1 Install Aucor Starter
+### 2.1 New site setup
 
 Do these theme installation steps before modifying anything.
 
-![Project setup with setup.sh](https://user-images.githubusercontent.com/9577084/28662834-236bda4e-72c4-11e7-98db-67b25a289b4f.png)
+#### Download & Extract
 
 1. Download this repository
-2. Extract into /wp-content/themes/ and rename for project as `sitename`
-3. Run setup wizard in theme root with bash `sh setup.sh`
-    1. **Site name** (Default: "Aucor Starter")
-    2. **Unique id** for your theme. Use only a-z and _. The shorter the better. Recommended length is 3-4 characters. (Default: aucor_starter)
-    3. **Local development url** is used by Browsersync and can be changed in `/assets/manifest.js` (Default: https://aucor-starter.local)
-    4. **Author name** is shown in default style.css (Default: Aucor Oy)
-    5. **Author URL** is shown in default style.css (Default: https://www.aucor.fi)
+2. Extract into /wp-content/themes/ and rename for project like `sitename`
 
-### 2.2 Install Aucor Core
+#### Run setup
+
+![Project setup with setup.sh](https://user-images.githubusercontent.com/9577084/28662834-236bda4e-72c4-11e7-98db-67b25a289b4f.png)
+
+Run setup wizard in theme root with bash `sh bin/setup.sh`
+
+| **Field**                   | **Meaning**  | **Default**  |
+|---|---|---|---|---|
+| **Site name**               | Name in style.css | `Aucor Starter` |
+| **Unique id**               | Prefix and ID for code. Recommended length 1-5 characters. | `aucor_starter` |
+| **Local development url**   | Browsersync's mirror URL. Stored at `/assets/manifest.js` | `https://aucor-starter.local` |
+| **Author name**             |  Author in style.css | `Aucor Oy` |
+| **Author URL**              | Author URL in style.css | `https://www.aucor.fi` |
+
+
+#### Run localizator (if needed)
+
+@todo
+
+#### Install Aucor Core
 
 Some of the functionality of Aucor Starter require plugin Aucor Core. The plugin is centrally updated so that sites using starter will be easier to maintain and there will be less duplicate code from project to project. Aucor Starter won't have fatal errors without it, but for example localization won't work without it.
-
-Aucor Core is open source so you can take parts of it and add them to your theme or create your own plugin. You shouldn't make modifications to Aucor Core directly as your changes will be overridden with future updates.
 
 Download Aucor Core from [WordPress.org](https://wordpress.org/plugins/aucor-core/) or [Github](https://github.com/aucor/aucor-core) and activate.
 
 **Protip**: If you are using composer: `composer require wpackagist-plugin/aucor-core` or WP-CLI: `wp plugin install aucor-core`.
 
-### 2.3 Install build tools
+#### First 15 minutes of your new site
+
+Here's optional next steps:
+
+1. Go through the `/modules/` and remove any unneeded. Just throw them to trash.
+2. Save logo at `/assets/images/logo.svg`
+3. Setup base variables at `/assets/styles/utils/_variables.scss`
+4. Run `gulp && gulp watch`
+
+### 2.2 Developer setup
 
 Every developer does this before first time working with the project.
 
 1. Open terminal and navigate to `/wp-content/themes/sitename`
-2. Run `yarn install` (fetches all node packages for build tools) (no yarn? download: https://yarnpkg.com/en/docs/install)
-3. Go to "Start working"
+2. Run `yarn install` (fetches all node packages for build tools).
 
-**Protip**: If you don't have Gulp installed locally run `npm install --global gulp-cli`.
+**Protip**: If you don't have Gulp installed locally run `npm install --global gulp-cli`. If you are missing Yarn, [install Yarn](https://yarnpkg.com/en/docs/install).
 
-### 2.4 Start working
+### 2.3 Work session setup
 
 Do this everythime you start to work with the theme.
 
@@ -128,15 +146,9 @@ Do this everythime you start to work with the theme.
 2. Run `gulp watch` to activate build process in background. You'll get development proxy at http://localhost:3000 where changes to code will be updated automatically to browser (no need to reload).
 3. To quit press `ctrl` + `c`
 
-**Protip**: You can also run just `gulp` to build all the resources or just some resources with `gulp styles` or `gulp scripts`.
+**Protip**: You can also run just `gulp` to build all the resources or just some resources with `gulp styles` or `gulp scripts`. Want to start the watch task but not open the Browsersync? Start watch with quiet mode `qulp watch -q`.
 
-**Protip**: Want to start the watch task but not open the Browsersync? Start watch with quiet mode `qulp watch -q`.
 
-### 2.5 First 15 minutes of new site
-
-1. Go through the `/modules/` and remove any unneeded. Just throw them to trash.
-2. Save logo at `/assets/images/logo.svg`
-3. Setup base variables at `/assets/styles/utils/_variables.scss`
 
 ## 3. Components
 
