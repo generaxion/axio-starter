@@ -11,8 +11,9 @@ $breakpoint-media-text-mobile:   max-width 919px;
 $breakpoint-media-text-desktop:  min-width 920px;
 
 :root {
-  --color-media-text-color: var(--color-text);
-  --color-media-text-bg:    transparent;
+  --color-media-text:         var(--color-text);
+  --color-media-text-bg:      transparent;
+  --color-media-text-shadow:  none;
 }
 
 /* Block
@@ -28,6 +29,9 @@ $breakpoint-media-text-desktop:  min-width 920px;
     @include breakpoint($breakpoint-media-text-mobile) {
       margin-left: calc(-1 * var(--spacing-m));
       margin-right: calc(-1 * var(--spacing-m));
+    }
+    @include breakpoint($breakpoint-media-text-desktop) {
+      box-shadow: var(--color-media-text-shadow);
     }
   }
 
@@ -137,7 +141,7 @@ $breakpoint-media-text-desktop:  min-width 920px;
     &__inner {
       @include child-margin-reset;
       width: 100%;
-      color: var(--color-media-text-color);
+      color: var(--color-media-text);
     }
   }
 }

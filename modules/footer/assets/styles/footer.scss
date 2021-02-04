@@ -5,8 +5,8 @@
 @import '../../../../assets/styles/utils.scss';
 
 :root {
+  --color-footer:       var(--color-white);
   --color-footer-bg:    var(--color-black);
-  --color-footer-color: var(--color-white);
 }
 
 .site-footer {
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     h2, h3, h4, h5, h6, p, span, li, a {
-      color: var(--color-footer-color);
+      color: var(--color-footer);
     }
   }
 
