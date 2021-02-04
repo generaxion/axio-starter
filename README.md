@@ -884,9 +884,11 @@ Here are some optional extensions that will help you:
 
 The fastest way to navigate code when you are familiar with the basic structure and naming conventions is to use the search.
 
-By defalut key bindings are:
+By default key bindings are:
 
 <kbd>⌘</kbd> + <kbd>P</kbd> or  <kbd>Ctrl</kbd> + <kbd>E</kbd>
+
+You can search by directory name or file name. So if you are looking for some kind of component, you might first write `component` to hope to find `component.php` and add to search query `component teaser` to get the right one. Or just start with module name like `teaser` to get files under that module.
 
 ## 9. Philosophy
 
