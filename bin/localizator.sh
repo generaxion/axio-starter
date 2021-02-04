@@ -94,7 +94,7 @@ echo "
 
 done
 
-
+while true; do
 read -p "
 2) Remove Localizator packages? (recommended: yes) [y/N]
 " yn
@@ -105,3 +105,7 @@ read -p "
   esac
 done
 
+# Delete localizator packages
+find "$dir_theme" -path "*/localizator/*" -type f -name "$locale.txt" -delete
+
+echo "Packages deleted for locale $locale"

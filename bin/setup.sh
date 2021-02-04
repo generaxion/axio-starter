@@ -10,10 +10,10 @@ default_authorurl="https://www.aucor.fi"
 default_locale="fi"
 
 # Directories
-basedir="$( cd "$( dirname "$0" )" && pwd )/."
+basedir="$( cd "$( dirname "$0" )" && cd .. && pwd)"
 assetsdir="$basedir/assets"
 basedir_all_files="$basedir/."
-setup_script="$basedir/setup.sh"
+setup_script="$basedir/bin/setup.sh"
 
 # Text styles
 bold=$(tput bold)
