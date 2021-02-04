@@ -117,7 +117,6 @@ class Aucor_Image extends Aucor_Component {
       $args['alt'] = get_post_meta($args['id'], '_wp_attachment_image_alt', true);
     }
 
-
     // alt
     if (!isset($args['attr']['alt'])) {
       $args['attr']['alt'] = $args['alt'];
