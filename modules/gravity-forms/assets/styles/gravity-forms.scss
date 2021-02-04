@@ -4,3 +4,36 @@
 
 @import '../../../../assets/styles/utils.scss';
 
+// Gravity Forms has very specified styles so use more nesting than usual
+
+.site {
+
+  .gform_wrapper {
+
+    .gform_body {
+
+      .gfield_label {
+
+      }
+
+      .gfield {
+
+      }
+
+      .gform_footer {
+
+        .gform_button {
+          @include button;
+        }
+
+      }
+
+    }
+
+  }
+
+  .gform_confirmation_wrapper {
+
+  }
+
+}
