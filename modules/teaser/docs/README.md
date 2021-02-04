@@ -1,17 +1,23 @@
-# Teaser component
+# Teaser
 
-**Tags:** wordpress, aucor, teaser
+## Install
 
-**License:** GPLv2 or later
+1. Insert directory
 
-## Description
+## Contents
 
-Teaser component creates teaser object of given post, page or any post-type which have title and excerpt. 
+Helper component for teasers.
 
-Component can be called wherever wanted. 
+## Usage
+
+Teaser component creates teaser card of given post, page or any post-type which have title and excerpt.
+
+Component can be called wherever wanted.
 Just add:
+```php
 Aucor_Teaser::render([
-  'id'   => POST ID,
+  'id'   => 123,
 ]);
+```
 
-There's more information in component.php
+By default teasers are used in archives.

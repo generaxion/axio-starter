@@ -1,9 +1,13 @@
-# Hero component
+# Hero
 
-**Tags:** wordpress, aucor, hero
+## Install
 
-**License:** GPLv2 or later
+1. Insert directory
 
-## Description
+## Contents
 
-Hero component to be used as the theme hero.
+Replacement of template part for hero.
+
+## Usage
+
+It adds action to "theme_hero" hook and that hook is called from templates.

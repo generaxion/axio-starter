@@ -1,14 +1,18 @@
-# Share buttons component
+# Share Buttons
 
-**Tags:** wordpress, aucor, share, buttons
+## Install
 
-**License:** GPLv2 or later
+1. Insert directory
 
-## Description
+## Contents
 
-Share buttons component creates buttons for sharing in facebook, twitter, Linkedin and whatsapp. 
+Helper component for social sharing.
 
-'theme_entry_footer' hook is used to call it after content, but it's also usable as component wherever wanted
+## Usage
+
+Component creates buttons for sharing in Facebook, Twitter, Linkedin and WhatsApp.
+
+'theme_entry_footer' hook is used to call it after content, but it's also usable as component wherever wanted.
 
 Just add: <?php Aucor_Share_Buttons::render(); ?>
 

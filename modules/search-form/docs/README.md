@@ -1,10 +1,14 @@
-# Search form component
+# Search form
 
-**Tags:** wordpress, aucor, search, menu
+## Install
 
-**License:** GPLv2 or later
+1. Insert directory
 
-## Description
+## Contents
+
+Helper component for search forms.
+
+## Usage
 
 Search menu component creates search form. Just add <?php Aucor_Search_Form::render(); ?> where you want search form to be appeared
 

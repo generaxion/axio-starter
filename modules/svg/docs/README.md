@@ -1,11 +1,30 @@
-# SVG component
+# SVG
 
-**Tags:** wordpress, aucor, svg
+## Install
 
-**License:** GPLv2 or later
+1. Insert directory
 
-## Description
+## Contents
+
+Helper component for SVG sprites.
+
+## Usage
 
 Displays a svg image from assets/sprite
 
-More information in component.php
+In PHP you can get these icons with:
+
+```php
+<?php Aucor_SVG::render([
+  'name' => 'facebook'
+]); ?>
+```
+
+Theme includes one big SVG sprite `/assets/images/icons.svg` that has by default a caret (dropdown arrow) and a few social icons. Add your own svg icons in `/assets/sprite/` and Gulp will add them to this sprite with id from filename.
+
+Example: Print out SVG `/assets/sprite/facebook.svg`
+```php
+<?php Aucor_SVG::render([
+  'name' => 'facebook'
+]); ?>
+```

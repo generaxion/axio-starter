@@ -1,13 +1,15 @@
-# Menu social component
+# Menu Social
 
-**Tags:** wordpress, aucor, menu, social
+## Install
 
-**License:** GPLv2 or later
+1. Insert directory
 
-## Description
+## Contents
 
-Menu social component to be used as social links menu.
+Component to be used as social links menu and new menu position for social menu.
+
+## Usage
 
 It registers menu position for social menu in "after_setup_theme" hook.
 
-aucor_starter_social_menu_icons() function add automatically svg logo before menu items title depending menu items url 
+aucor_starter_social_menu_icons() function add automatically svg logo before menu items title depending menu items url

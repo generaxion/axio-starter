@@ -1,13 +1,13 @@
-# Button component and block
+# Button
 
-**Contributors:** [Patric Manner](https://github.com/patricmanner)
+## Install
 
-**Tags:** wordpress, aucor, button, block
+1. Insert directory
 
-**License:** GPLv2 or later
+## Contents
 
-## Description
+Replacement of core/button block.
 
-Button component to be used in the theme and button block (using ACF) to replace the default Gutenberg button block
+## Usage
 
-There's more information in component.php
+In Gutenberg select the "Button" block to use. You can use Button component separately as part of other modules.

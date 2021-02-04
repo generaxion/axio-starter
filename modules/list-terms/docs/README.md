@@ -1,12 +1,13 @@
-# List terms component
+# List terms
 
-**Tags:** wordpress, aucor, list, terms
+## Install
 
-**License:** GPLv2 or later
+1. Insert directory
 
-## Description
+## Contents
 
-List terms component to be used as list of posts terms.
+Helper component to list post's terms.
+
+## Usage
+
 It adds action to "theme_entry_footer" hook and that hook is called from single.php
-
-There's more information in component.php

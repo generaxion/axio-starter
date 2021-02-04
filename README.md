@@ -2,7 +2,7 @@
 
 **🖥 For developer from developers:**
 
-Superior Gutenberg WordPress starter theme with modern build tools by **[Generaxion](https://www.generaxion.com)**. 200+ hours of development over 3 years to make the greatest starting point for WordPress site.
+Superior Gutenberg WordPress starter theme with modern build tools by **[Generaxion](https://www.generaxion.com)**. 200+ hours of development over 4 years to make the greatest starting point for WordPress site.
 
 **Demo:** **[starter.aucor.fi](https://starter.aucor.fi)**
 
@@ -36,8 +36,9 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
     2. [Module loading](#42-module-loading)
     3. [Module structure](#43-module-structure)
     4. [Creating new modules](#44-creating-new-modules)
-    5. [Disabling or deleting modules](#45-disabling-or-deleting-modules)
-    6. [Module caveats](#46-module-caveats)
+    5. [Installing new modules](#45-installing-new-modules)
+    6. [Disabling or deleting modules](#46-disabling-or-deleting-modules)
+    7. [Module caveats](#47-module-caveats)
 5. [Assets](#5-assets)
     1. [Styles](#51-styles)
     2. [Scripts](#52-scripts)
@@ -45,13 +46,22 @@ Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org,
     4. [Images](#54-images)
     5. [Fonts](#55-fonts)
     6. [Favicon](#56-favicon)
-6. [Includes](#7-includes)
-    1. [Functions.php](#71-functionsphp)
-    2. [\_conf](#72-_conf)
-    3. [Helpers](#73-helpers)
-    4. [Localization (Polylang)](#74-localization-polylang)
-7. [Workflows]()
-8. [Philosophy](#8-gutenberg-and-classic-editor)
+6. [Includes](#6-includes)
+    1. [Functions.php](#61-functionsphp)
+    2. [\_conf](#62-_conf)
+    3. [Helpers](#63-helpers)
+7. [Localization](#7-localization)
+    1. [Registering strings](#71-registering-strings)
+    2. [Using strings](#72-using-strings)
+    3. [Localizator](#73-localizator)
+8. [Workflows](#8-workflows)
+    1. [Setting up your code editor](#81-setting-up-your-code-editor)
+    2. [Navigating the code](#82-navigating-the-code)
+9. [Philosophy](#9-philosophy)
+    1. [Gutenberg](#91-gutenberg)
+    2. [Scope of starter](#92-level-of-detail)
+    3. [Level of detail](#93-level-of-detail)
+    4. [Open source](#94-open-source)
 
 ## 1. Directory structure
 
@@ -272,7 +282,7 @@ Modules tackle these big level goals:
 
 This theme comes with selection of default modules that are listed here. Modules have their own readme files at `/modules/module-name/docs/README.md`.
 
-A few modules are sort of required or there are more changes needed than just removing the module to remove it. You can of course replace them but they have some critical functions that need to be implemented.
+A few modules are required or there are more changes needed than just deleting the module to remove it. You can of course replace them but they have some critical functions that need to be implemented.
 
 | **Module**             | **Required**   |  **Function**  |
 |------------------------|----------------|----------------|
@@ -378,7 +388,7 @@ PHP files are often named very minimally:
  * `endpoint.php` – queryable API endpoint
  * `cpt-{name}.php` and `tax-{name}.php` – registering data types
 
-If module includes for example multiple components, you do need to name them better but other than that the directory already "namespaces" the files so there is no need to repeat module's name very much.
+If module includes for example multiple components, you do need to name them better but other than that the directory already "namespaces" the files so there is no need to repeat module name.
 
 #### Avoid excessive subdirectories
 
@@ -398,7 +408,13 @@ You should create module each time there is a feature that can be packaged into 
 
 If you have `gulp watch` active while creating modules or modifying `_.json` files the process will stop and Gulp asks you to restart the watch. This is somewhat annoying but we haven't found a smart way to reload list of watched files during watch process.
 
-### 4.5 Disabling or deleting modules
+### 4.5 Installing new modules
+
+You can install modules from previous projects or external code libraries by just doing simple copy and paste of the module directory. You need to run gulp to update the assets.
+
+Check the module's readme for any additional steps.
+
+### 4.6 Disabling or deleting modules
 
 There is built-in way to disable module that prevents including PHP files and assets (for assets you need to run Gulp before taking effect).
 
@@ -406,9 +422,9 @@ Simply add underscore to the directory name to disable it: `teaser => _teaser`.
 
 For deleting a module you can just throw it to the trash and be done with it (for the default modules marked as not required).
 
-### 4.6 Module caveats
+### 4.7 Module caveats
 
-Modules are not a perfect solution but pretty simple solution to complex problem. Here are a few issues that you should know.
+Modules are not a perfect solution but pretty simple take on a complex problem. Here are a few issues that you should know.
 
 #### Declaring dependencies
 
@@ -436,7 +452,7 @@ The ultimate solution would be either to have ACF alter the JSON behaviour or ha
 
 ### 5.1 Styles
 
-Styles are written in SASS in `/assets/styles`. There's five separate stylesheets that are compiled automatically to `dist/styles`.
+Styles are written in SASS. Global styles are found in `/assets/styles`. There's four separate stylesheets that are compiled automatically to `dist/styles` and enqueued to frontend.
 
   * `main.scss` front-end styles of website
   * `admin.scss` back-end styles for admin views
@@ -545,7 +561,7 @@ Javascript can be written with modern ES6 syntax as Babel compiles it to work on
 
 #### Add new global script
 
-Put file in `/assets/scripts/lib/my_script.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
+Put file in `/assets/scripts/lib/hello-world.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
 
 ```js
 "main.js": [
@@ -556,7 +572,7 @@ Put file in `/assets/scripts/lib/my_script.js`. Add script to main.js (or some o
 **Combine scripts in one file:**
 ```js
 "main.js": [
-  "scripts/lib/menu-primary.js",
+  "scripts/lib/hello-world.js",
   "scripts/main.js"
 ],
 ```
@@ -610,96 +626,11 @@ You can put font files in `/assets/fonts/` and Gulp flattens sub directories and
 
 You can put favicon files in `/assets/favicon/` and Gulp optimizes images and serves them to `/dist/favicon/`. You can use a tool like [RealFaviconGenerator](https://realfavicongenerator.net/) to make favicon.
 
-
-
-
-
-
-
-
-###  Image sizes
-
-Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating image sizes:
-
-  * Base images on commonly used aspect ratios (16:9, 1:1)
-  * Make "medium" half of the text columns and "large" full text column
-  * Add additional sizes for responsive images (for example teaser_lg, teaser_md, teaser_sm)
-
-### 6.5 Embed images
-
-```php
-<?php Aucor_Image::render([
-  'id'        => 123,
-  'size'      => 'large',
-]); ?>
-```
-
-Theme has its own function for getting image markup that gives the developer control of which responsive sizes should be used and include lazy loading.
-
-After you have setup WordPress image sizes go to `/inc/_conf/register-image-sizes.php` and setup your "human-sizes" (the sizes you will use as arguments). These human-sizes hold info of the primary image size, supporting sizes and what size the image is displayed.
-
-```php
-switch ($human_size) {
-
-  case 'hero':
-    return [
-      'primary'    => 'hero_md',
-      'supporting' => ['hero_lg', 'hero_md', 'hero_sm'],
-      'sizes'      => '100vw'
-    ];
-
-  case 'thumbnail':
-    return [
-      'primary'    => 'thumbnail',
-      'supporting' => ['full', 'thumbnail'],
-      'sizes'      => '250px'
-    ];
-
-  default:
-    aucor_starter_debug('Image size error - Missing human readable size {' . $human_size . '}', ['aucor_starter_get_image']);
-
-}
-```
-
-Notice that many "human-sizes" can use same WordPress image sizes. This is useful for example when same image might be displayed different size on different devices so you can pass different "sizes" attributes for browser. [Read more about sizes attribute](https://css-tricks.com/responsive-images-css/#article-header-id-1).
-
-**Protip:** If you use CSS property `object-fit` it needs special handling to work in IE11 and older. Theme has [object-fit-polyfill](https://github.com/constancecchen/object-fit-polyfill) installed and all you need to do is add special data attribute for img tag like
-```php
-Aucor_Image::render([
-  'id'    => 123,
-  'size'  => 'medium',
-  'attr'  => ['data-object-fit' => 'cover']
-])
-```
-
-### 6.6 Lazy load
-
-By default the image function has lazy loading on. Lazy loading uses HTML's native `loading` attribute When emedding image there's three possibilities:
-
-  * Default: Use lazyload `loading="lazy"`
-  ```php
-  Aucor_Image::render([
-    'id'    => 123,
-    'size'  => 'medium'
-  ])
-  ```
-  * No lazyload:
-  ```php
-  Aucor_Image::render([
-    'id'      => 123,
-    'size'    => 'medium',
-    'loading' => 'eager',
-  ])
-  ```
-
-Native lazy loading is automatically backwards compatible with old browsers and users without JS. This theme won't add lazy load for images inside Gutenberg as this will be done by core some day.
-
-
 ## 6. Includes
 
-Includes is place for all PHP files that are not part of templates. So all filters, actions and functions.
+Includes are all global PHP files that are not part of templates. So filters, actions and functions.
 
-All the functions, hooks and setup should be on their own filer organized at /inc/. The names of files should describe what the file does as following:
+All global functions, hooks and setup should be on their own files organized at /inc/. The names of files should describe what the file does as following:
 
   * `register-` configures new settings and assets
   * `setup-` configures existing settings and assets
@@ -707,17 +638,16 @@ All the functions, hooks and setup should be on their own filer organized at /in
 
 ### 6.1 Functions.php
 
-The `/functions.php` is the place to require all PHP files that are not part of the current template. This file should only ever have requires and nothing else.
+The `/functions.php` is the place to require and autoload all PHP files that are not part of the current template. This file should only ever have requires and nothing else.
 
 ### 6.2 \_conf
 
 The `/inc/_conf/` directory has some essential settings for theme that you basically want to review in every project and probably will return many times during development.
 
-  * `register-assets.php` has all CSS and JS includes to templates as well as any arbitary code added to header or footer.
-  * `register-blocks.php` defines which Gutenberg blocks are allowed. Gutenberg will have UI in future to select these so this will be removed in some future version. Notice that all blocks that are not defined here are not allowed.
-  * `register-image-sizes.php` register all image sizes and responsive image sizes.
-  * `register-localization.php` add all translatable strings for Polylang.
-  * `register-menus.php` define all menu positions.
+  * `register-assets.php` has all CSS and JS enqueues to templates as well as any arbitary code added to header or footer.
+  * `register-blocks.php` defines which Gutenberg blocks are allowed. Notice that all blocks that are not defined here are not allowed and modules add their own blocks to the mix.
+  * `register-image-sizes.php` register all global image sizes and responsive image sizes.
+  * `register-localization.php` all global translatable strings for Polylang.
 
 ### 6.3 Helpers
 
@@ -728,9 +658,6 @@ Directory `/inc/helpers/`.
 Function: `aucor_starter_get_posted_on()`
 
 Get published date.
-
-
-Display categories and tags of single post.
 
 #### Hardcoded ids
 
@@ -772,34 +699,48 @@ Function: `aucor_starter_last_edited($asset)`
 
 Get last edited timestamp from asset files. Timestamps are saved in `/assets/last-edited.json`.
 
-
 #### Setup fallbacks
 
 Include fallback function in case critical plugin is not active.
 
-### 6.4 Localization (Polylang)
+## 7. Localization
 
-In depth about file: `/inc/_conf/register-localization.php` (and `/inc/helpers/setup-fallbacks.php`)
+We don't really like .po files as they are confusing for customers, their build process is weird and are prone to errors, it's hard to change the "original" text later on and they are slow-ish to load. What we do like is [Polylang](https://polylang.pro/). If we are running a multi-lingual site, we want to use Polylang's String Translation to translate the strings in theme.
 
-Do you have a minute to talk about localization? Good.
+But we don't stop at using just Polylang. It's generally a little pain to have to register all the strings for your theme and it's very easy to forget to add something. We created our own wrapper function to give you error messages for missing string in `WP_DEBUG` mode.
 
-We don't really like .po files as they are confusing for customers, their build process is weird and are prone to errors, it's hard to change the "original" text later on and they are slowish to load. What we do like is [Polylang](https://polylang.pro/). If we are running a multi-lingual site, we want to use Polylang's String Translation to translate the strings in theme.
+**But what if I'm only making site in one language?** Well you can be a lazy developer and hardcode things but that is a bit sloppy. You can prepare for multiple languages from the start by using these functions and registering your strings already. These functions (and bunch of Polylang's) will work **even if you don't use Polylang** (thanks to `/inc/setup-fallbacks.php`).
 
-But we don't stop at using just Polylang. It's generally a little pain to have to register all the strings for your theme and it's very easy to forget to add something. We created our own wrapper function to give you error messages for missing string in WP_DEBUG mode.
+### 7.1 Registering strings
 
-**But what if I'm only making site in one language?** Well you can be a lazy developer and hardcode things but is that a way to live a life? You can prepare for multiple languages from the start by using these functions and registering your strings already. These functions (and bunch of Polylang's) will work **even if you don't use Polylang**.
+Start off by registering some strings (static pieces of text in theme).
 
-#### Registering your strings
+  * All global strings are registered at `/inc/_conf/register-localization.php`
+  * Module specific strings are registered at module's `setup.php`.
 
-Start off by registering some strings.
-
-  * All your strings are registered at `/inc/_conf/register-localization.php` (static pieces of text in theme)
-  * You give a unique context (key) and the default text (value) for string. Example `"Header: Greeting" => "Hello"`
-
+You give a unique context (key) and the default text (value) for string. Example `"Header: Greeting" => "Hello"`
 
 You can change these default texts (values) right here and they will update on templates. If you have Polylang installed, these strings will appear automatically on String Translations.
 
-#### Using the strings (Aucor Core)
+#### Example: Module strings
+
+Module's `setup.php`:
+
+```php
+/**
+ * Localization
+ */
+add_filter('aucor_core_pll_register_strings', function($strings) {
+
+  return array_merge($strings, [
+    'Menu: Button label'  => 'Menu',
+    'Menu: Open'          => 'Open menu',
+  ]);
+
+}, 10, 1);
+```
+
+### 7.2 Using strings
 
 There are two ways to get translated string
 
@@ -840,6 +781,24 @@ Example: `asv_e('Share on social media')` => 'Share on social media' (or transla
 
 **Protip:** This is the "normal" Polylang way of getting your translated strings. The downside is that if the default text you propose will be radically changed in String Translation the code might be hard to read (it will work nevertheless).
 
+#### Using strings in JS
+
+Enqueue string to frontend with `wp_localize_script()`:
+
+```php
+add_action('wp_enqueue_scripts', function() {
+  wp_localize_script('aucor_starter-js', 'theme_strings_variable_name', [
+    'prev' => ask__('Lightbox: Prev'),
+    'next' => ask__('Lightbox: Next'),
+  ]);
+});
+```
+
+This makes a global JS variable before given script id (here aucor_starter-js) and you can use string in JS:
+
+```js
+console.log(theme_strings_variable_name.prev);
+```
 
 #### Debugging your strings
 
@@ -851,41 +810,99 @@ Debugging is the greatest benefit of using our string localization functions ins
 
 So there's really no excuse to forget to register your strings no more.
 
-## 7. Workflows
+### 7.3 Localizator
 
-### Editorconfig
+Localizator is a shell script in `/bin/localizator.sh` and can be executed via `sh bin/localizator.sh`.
 
-Theme has an `.editorconfig` file that sets your code editor settings accordingly. Never used Editorconfig? [Download the extension](http://editorconfig.org/#download) to your editor. The settings will automatically be applied when you edit code when you have the extension.
+Localizator is a automated search & replace for registered string values so that all theme strings can initially be in English but we can have support for Finnish out of the box. It's a simplified tool to help in complex problem.
 
-Our settings:
+Localizator consists of two parts:
+
+  1. **Language packages**: that are named `{lang_code}.txt` that are placed in `/bin/localizator/` or inside module `/modules/module/docs/localizator/`
+  2. **Shell script**: finds selected locale's language packages and search & replaces the strings in PHP files.
+
+#### Language packages
+
+Language packages have only few formatting rules. Localizator parses the file from row to row so that each row either is a translatable string or ignored.
+
+Translatable strings are in format:
+`String key || String value`
+
+Any spaces before or after values are ignored and string is split from `||` to key and value. Any rows missing `||` are intrepented as comments.
+
+#### Shell script
+
+Shell script should be executed only if your first language is not English and you have not modified existing strings already (you will lose your changes – script will work, though).
+
+You can also execute it if installing external module that has its own packages. **Notice that localizator uses all packages it founds so remove unnecessary packages or those will be also used**.
+
+#### Localizator caviats
+
+The formatting of string registration needs to be as following:
 ```
-indent_style = space
-indent_size = 2
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+'String key'    => 'String value' // ✅
+'String key'=>'String value'      // ✅
+
+"String key"    => "String value" // ❌
 ```
 
-## 8. Philosophy
+If you are using strings by value (`asv__('Hello world)`) those are not replaced by localizator and in general it is recommended to use strings by key (as defaults do).
 
+## 8. Workflows
 
-### 8.1 Adopting Gutenberg
+### 8.1 Setting up your code editor
 
-#### Styles
+Recommended code editor is [Visual Studio Code](https://code.visualstudio.com/) as it provides some great extensions and code navigation.
 
-Aucor Starter includes default Gutenberg styles on front-end and overrides them with from theme. This makes developing both easier and harder:
+#### Extension: phpcs
 
-  * 👍 Makes site more future-proof as Gutenberg will have breaking changes in future where some features will not work properly without correct styles (and default styles will take care of them to some degree).
-  * 👎 You may have to override some opinionated defaults.
+Theme includes a `phpcs.xml` that has code formatting guidelines for PHP CodeSniffer. Using the plugin the editor will highlight all issues.
 
-In Gutenberg editor, there are still lots of default styles so there might be a few inconsistensies between front-end and back-end. This will get better in future versions of Gutenberg and Aucor Starter.
+#### Extension: EditorConfig for VS Code
 
-Gutenberg block styles are in `/assets/styles/blocks/`. Each block should have their own file. Also there should be separation for front-end and back-end styles as you'll need to style both. Both styles are defined in same file that is the most convinient way to define them. It does add a bit of unused code to front-end.
+Theme has an `.editorconfig` file that sets your code editor settings accordingly. [Download the extension](http://editorconfig.org/#download) to your editor. The settings will automatically be applied when you edit code when you have the extension.
+
+#### Settings: Clean up search
+
+Remove build assets from search:
+
+ 1. Go to Code => Preferences => Settings
+ 2. Search the setting `Search: Exclude`
+ 3. Add new pattern `**/dist`
+
+#### Other useful extensions
+
+Here are some optional extensions that will help you:
+
+  * **PHP Intelephense**: Smart helper tools for PHP code
+  * **Sass**: Syntax highlight and autocomplete for styles
+  * **Tabnine Autocomplete**: AI driven generic autocomplete for functions/variables that learns from your code. With recurring naming conventions, it becomes really useful.
+  * **WordPress Snippet**: Autocomplete WordPress functions
+  * **WooCommerce Snippet**: Autocomplete WooCommerce functions
+
+### 8.2 Navigating the code
+
+The fastest way to navigate code when you are familiar with the basic structure and naming conventions is to use the search.
+
+By defalut key bindings are:
+
+<kbd>⌘</kbd> + <kbd>P</kbd> or  <kbd>Ctrl</kbd> + <kbd>E</kbd>
+
+## 9. Philosophy
+
+### 9.1 Gutenberg
+
+Gutenberg is the new default WordPress editor so it is not a great long term plan to hold on to the old Classic Editor. It provides page builder -ish possibilities that were previously done with 3rd party plugins or themes.
+
+#### Gutenberg styles
+
+Aucor Starter includes default Gutenberg styles on front-end and overrides them with from theme. This makes a site more future-proof as Gutenberg will have breaking changes in future where some features will not work properly without correct styles (and default styles will take care of them to some degree). You may have to override some opinionated defaults, though.
+
+In Gutenberg editor, there are still lots of default styles so there might be a few inconsistensies between front-end and back-end. This will get better in future versions of Gutenberg and starter.
 
 #### Scoping
 
-All Gutenberg and Classic Editor content should be inside container with class `.blocks`. You should scope the styles for this to focus on right elements.
+All Gutenberg and Classic Editor content should be inside frontend container with class `.blocks`. You should scope the styles for this to focus on right elements.
 
 #### Margins and widths
 
@@ -895,62 +912,13 @@ In Gutenberg world, each block will define its own width as there can be wide bl
 
 **Protip 2:** Use the mixins `@include spacing-s(margin-top)`, `@include spacing-m(margin-top)` or `@include spacing-l(margin-top)` to have responsive and unified margins.
 
-#### Avoid repeating code
+#### Allowed blocks
 
-Many blocks support alignment and different widths. Generic styles for these are located in `/assets/styles/_settings-*` and will be enough for most cases. If you have similar features that many blocks use, add them to settings to keep your code clean.
-
-### 8.2 Allowed blocks
-
-Set allowed blocks in `/inc/_conf/register-blocks.php`.
-
-Aucor Starter supports these blocks by default:
-
-```php
-// common blocks
-'core/paragraph'
-'core/image'
-'core/heading'
-'core/gallery'
-'core/list'
-'core/quote'
-'core/file'
-
-// formatting
-'core/table'
-'core/freeform' // classic editor
-
-// layout
-'core/button'
-'core/media-text'
-'core/columns'
-'core/group'
-'core/separator'
-
-// widgets
-'core/shortcode'
-
-// embeds
-'core/embed'
-'core-embed/twitter'
-'core-embed/youtube'
-'core-embed/facebook'
-'core-embed/instagram'
-'core-embed/soundcloud'
-'core-embed/spotify'
-'core-embed/flickr'
-'core-embed/vimeo'
-'core-embed/issuu'
-'core-embed/slideshare'
-
-// reusable blocks
-'core/block'
-```
-
-**Notice:** All blocks that are not explicitly allowed are disabled. This means that if you install a plugin that has new blocks, those blocks are not shown before you allow them. Gutenberg will provide an UI for this in future and we will drop this feature then.
+**All blocks that are not explicitly allowed are disabled.** This means that if you install a plugin that has new blocks, those blocks are not shown before you allow them. You can allow them inside modules or at global `/inc/_conf/register-blocks.php`.
 
 You can add new blocks by simply finding out their name like `acf/your-custom-block` or `some-plugin/some-block`.
 
-### 8.3 Known Gutenberg issues
+#### Known Gutenberg issues
 
 Gutenberg has still many improvements and bugfixes on the way. These are some issues at the moment:
 
@@ -960,6 +928,14 @@ Gutenberg has still many improvements and bugfixes on the way. These are some is
 
 Gutenberg development is moving fast and there are a lot of people working hard to improve Gutenberg.
 
-### 8.4 Classic Editor
+###  9.2 Scope of starter
 
-You can still use Classic Editor in some post types or all if you like. If you want to completely disable Gutenberg, you might want to re-organize the styles a bit as some styles are shared in `/assets/styles/blocks/`.
+Starter should have features that most of the projects need. The module structure allows little more flexibility in this as unneeded modules are easy to discard. Features that only benefit < 20% sites should not be part of starter.
+
+###  9.3 Level of detail
+
+The features included should be in a working stage and optimally looking professional even without additional styling. Additional styling is always appropriate but the baseline should be polished to some degree.
+
+###  9.4 Open source
+
+Opening the starter to public increases the quality and provides feedback and commits from large community. Without open sourcing the starter wouldn't be where it is today.
