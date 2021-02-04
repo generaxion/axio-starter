@@ -69,7 +69,7 @@ class Aucor_Media_Text extends Aucor_Component {
       'image_id'    => null,
       'video_url'   => null,
       'image'       => '',
-      'position'    => 'left',
+      'position'    => 'right',
       'vertical'    => 'middle',
 
       // block
@@ -119,7 +119,7 @@ class Aucor_Media_Text extends Aucor_Component {
     /**
      * Position
      */
-    $media_position = isset($f['position']) ? $f['position'] : null;
+    $media_position = isset($f['position']) ? $f['position'] : $args['position'];
     if (!empty($media_position) && is_string($media_position)) {
       $args['attr']['class'][] = 'module-media-text--position-' . $media_position;
     }
@@ -127,7 +127,7 @@ class Aucor_Media_Text extends Aucor_Component {
     /**
      * Vertical align
      */
-    $text_vertical = isset($f['align']) ? $f['align'] : null;
+    $text_vertical = isset($f['align']) ? $f['align'] : $args['vertical'];
     if (!empty($text_vertical) && is_string($text_vertical)) {
       $args['attr']['class'][] = 'module-media-text--align-' . $text_vertical;
     }
