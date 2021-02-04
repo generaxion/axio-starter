@@ -50,9 +50,66 @@ class Aucor_Image extends Aucor_Component {
     // fetch attachment metadata from database
     $image = wp_get_attachment_metadata($args['id']);
 
-    // bail if image is invalid
+    // possible invalid image
     if (empty($image) || is_wp_error($image)) {
-      return parent::error('Invalid attachment for Aucor_Image');
+
+      // check if its svg that is missing meta data
+      $file = get_attached_file($args['id']);
+      if (empty($file) || !strstr($file, '.svg')) {
+        return parent::error('Invalid attachment for Aucor_Image');
+      }
+
+    }
+
+    // image has valid meta data
+    if (!empty($image)) {
+
+      // get WP generated image sizes
+      $generated_sizes = $image['sizes'];
+      $generated_sizes['full'] = [
+        'width'  => $image['width'],
+        'height' => $image['height'],
+      ];
+
+      // get desired sizes for image
+      $registered_sizes = apply_filters('theme_image_sizing', []);
+      if (isset($registered_sizes[$args['size']])) {
+        $desired_sizes = $registered_sizes[$args['size']];
+      } else {
+        return parent::error('Requested size not found ' . $args['size']);
+      }
+
+      // figure out which desired sizes are possible
+      $possible_sizes = self::get_possible_image_sizes($desired_sizes, $generated_sizes);
+
+      if (empty($possible_sizes)) {
+        return parent::error('No possible sizes');
+      }
+
+      // src
+      $args['attr']['src'] = self::get_image_url($args['id'], $possible_sizes['primary']);
+
+      // width
+      $args['attr']['width'] = $generated_sizes[$possible_sizes['primary']]['width'];
+
+      // height
+      $args['attr']['height'] = $generated_sizes[$possible_sizes['primary']]['height'];
+
+      // srcset
+      $srcset = [];
+      foreach ($possible_sizes['supporting'] as $key => $possible_size) {
+        $srcset[] = self::get_image_url($args['id'], $possible_size) . ' ' . $generated_sizes[$possible_size]['width'] . 'w';
+      }
+      if (!empty($srcset)) {
+        $args['attr']['srcset'] = implode(', ', $srcset);
+        $args['attr']['sizes'] = $desired_sizes['sizes'];
+      }
+
+    } else {
+
+      // no meta data
+      $args['attr']['src'] = wp_get_attachment_url($args['id']);
+
     }
 
     // load alt text if deosn't exist
@@ -60,36 +117,6 @@ class Aucor_Image extends Aucor_Component {
       $args['alt'] = get_post_meta($args['id'], '_wp_attachment_image_alt', true);
     }
 
-    // get WP generated image sizes
-    $generated_sizes = $image['sizes'];
-    $generated_sizes['full'] = [
-      'width'  => $image['width'],
-      'height' => $image['height'],
-    ];
-
-    // get desired sizes for image
-    $registered_sizes = apply_filters('theme_image_sizing', []);
-    if (isset($registered_sizes[$args['size']])) {
-      $desired_sizes = $registered_sizes[$args['size']];
-    } else {
-      return parent::error('Requested size not found ' . $args['size']);
-    }
-
-    // figure out which desired sizes are possible
-    $possible_sizes = self::get_possible_image_sizes($desired_sizes, $generated_sizes);
-
-    if (empty($possible_sizes)) {
-      return parent::error('No possible sizes');
-    }
-
-    // src
-    $args['attr']['src'] = self::get_image_url($args['id'], $possible_sizes['primary']);
-
-    // width
-    $args['attr']['width'] = $generated_sizes[$possible_sizes['primary']]['width'];
-
-    // height
-    $args['attr']['height'] = $generated_sizes[$possible_sizes['primary']]['height'];
 
     // alt
     if (!isset($args['attr']['alt'])) {
@@ -99,16 +126,6 @@ class Aucor_Image extends Aucor_Component {
     // loading
     if (!isset($args['attr']['loading'])) {
       $args['attr']['loading'] = $args['loading'];
-    }
-
-    // srcset
-    $srcset = [];
-    foreach ($possible_sizes['supporting'] as $key => $possible_size) {
-      $srcset[] = self::get_image_url($args['id'], $possible_size) . ' ' . $generated_sizes[$possible_size]['width'] . 'w';
-    }
-    if (!empty($srcset)) {
-      $args['attr']['srcset'] = implode(', ', $srcset);
-      $args['attr']['sizes'] = $desired_sizes['sizes'];
     }
 
     return $args;
