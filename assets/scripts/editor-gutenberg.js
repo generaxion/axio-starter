@@ -2,6 +2,8 @@
   editor-gutenberg.js
 ========================================================================== */
 
+'use strict';
+
 /**
  * Modify featured image size
  */
