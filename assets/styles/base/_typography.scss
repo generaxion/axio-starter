@@ -11,15 +11,20 @@ html {
    -webkit-font-smoothing: antialiased;
 }
 
+
+/* All elements
+----------------------------------------------- */
+
+* {
+  text-underline-offset: .125em; // prettier text-decouration: underline
+}
+
 /* Paragraphs
 ----------------------------------------------- */
 
 p, .p {
   display: block;
-  font-size: .875rem;
-  @include breakpoint($breakpoint-s) {
-    font-size: 1rem;
-  }
+  font-size: 1rem;
   font-weight: var(--font-weight-normal);
   line-height: 1.5;
   margin-bottom: 1.5rem;
@@ -60,10 +65,7 @@ h5 {
 ul, ol {
   margin: 0 0 1rem;
   li {
-    font-size: .875rem;
-    @include breakpoint($breakpoint-s) {
-      font-size: 1rem;
-    }
+    font-size: 1rem;
   }
 }
 
@@ -113,8 +115,7 @@ a:focus {
 button:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus,
-input[type="submit"]:focus,
-.social-share-link:focus {
+input[type="submit"]:focus {
   outline: 1px dotted;
   outline-offset: -2px;
 }
