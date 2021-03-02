@@ -9,7 +9,7 @@
 
 .block-editor .wp-block-acf-button .button,
 .blocks .wp-block-acf-button .button,
-.button {
+.site .button {
   @include button;
 
   &--type-primary {
