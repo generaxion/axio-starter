@@ -90,6 +90,7 @@
       position: absolute;
       top: var(--spacing-m);
       right: var(--spacing-m);
+      z-index: 5;
     }
   }
   &__overlay {
