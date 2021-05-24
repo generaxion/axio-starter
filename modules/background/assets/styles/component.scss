@@ -5,13 +5,13 @@
   position: relative;
   display: flex;
   justify-content: center;
-  padding: var(--spacing-l) var(--spacing-m);
+  padding: 3rem 1.5rem;
   @include breakpoint($breakpoint-m) {
-    padding: var(--spacing-l);
+    padding: 3rem;
   }
   @include breakpoint($breakpoint-l) {
-    padding-bottom: var(--spacing-xl);
-    padding-top: var(--spacing-xl);
+    padding-bottom: 6rem;
+    padding-top: 6rem;
   }
 
   // vertical align
@@ -58,14 +58,8 @@
   }
 
   // colors
-  &--color-none {
+  &-color--none {
     background: transparent;
-  }
-  &--color-grey {
-    background: var(--color-grey-extra-light);
-  }
-  &--color-primary {
-    background: var(--color-primary);
   }
 
 
@@ -99,10 +93,6 @@
     top: 0;
     width: 100%;
     overflow: hidden;
-    max-height: 100vh;
-    .no-js & {
-      max-height: none;
-    }
 
     &__video-wrapper {
       height: 100%;

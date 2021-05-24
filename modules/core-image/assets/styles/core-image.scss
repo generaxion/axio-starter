@@ -27,8 +27,8 @@
 
   &.alignfull {
     figcaption {
-      padding-left: var(--spacing-m);
-      padding-right: var(--spacing-m);
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
       max-width: var(--width-content-m);
       margin-left: auto;
       margin-right: auto;
@@ -45,9 +45,9 @@
     color: var(--color-text-light);
     display: block;
     line-height: 1.5;
-    margin-top: var(--spacing-xxs);
-    margin-bottom: var(--spacing-m);
-    font-size: .875rem;
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
   }
 
 }

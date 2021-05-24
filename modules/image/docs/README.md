@@ -19,7 +19,7 @@ Image sizes are defined in `/inc/_conf/register-images.php`. Tips for creating i
 ### Embed images
 
 ```php
-<?php Aucor_Image::render([
+<?php X_Image::render([
   'id'        => 123,
   'size'      => 'large',
 ]); ?>
@@ -47,7 +47,7 @@ switch ($human_size) {
     ];
 
   default:
-    aucor_starter_debug('Image size error - Missing human readable size {' . $human_size . '}', ['aucor_starter_get_image']);
+    x_debug('Image size error - Missing human readable size {' . $human_size . '}', ['x_get_image']);
 
 }
 ```
@@ -56,7 +56,7 @@ Notice that many "human-sizes" can use same WordPress image sizes. This is usefu
 
 **Protip:** If you use CSS property `object-fit` it needs special handling to work in IE11 and older. Theme has [object-fit-polyfill](https://github.com/constancecchen/object-fit-polyfill) installed and all you need to do is add special data attribute for img tag like
 ```php
-Aucor_Image::render([
+X_Image::render([
   'id'    => 123,
   'size'  => 'medium',
   'attr'  => ['data-object-fit' => 'cover']
@@ -69,14 +69,14 @@ By default the image function has lazy loading on. Lazy loading uses HTML's nati
 
   * Default: Use lazyload `loading="lazy"`
   ```php
-  Aucor_Image::render([
+  X_Image::render([
     'id'    => 123,
     'size'  => 'medium'
   ])
   ```
   * No lazyload:
   ```php
-  Aucor_Image::render([
+  X_Image::render([
     'id'      => 123,
     'size'    => 'medium',
     'loading' => 'eager',

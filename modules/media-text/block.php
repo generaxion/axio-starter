@@ -16,6 +16,8 @@ $allowed_blocks = [
   'core/image',
   'core/quote',
   'core/list',
+  'core/columns',
+  'acf/buttons',
   'acf/button',
   'acf/spacer'
 ];
@@ -30,7 +32,6 @@ $placeholder_content = [
   ]],
 ];
 
-
 $contents = $content;
 
 if ($is_preview) {
@@ -38,14 +39,14 @@ if ($is_preview) {
 }
 
 $class = [];
-if (!empty($block['className']) ) {
+if (!empty($block['className'])) {
   $class[] = $block['className'];
 }
 
 ?>
 <div class="wp-block-acf-media-text align<?php echo esc_attr($align); ?>">
   <?php
-    Aucor_Media_Text::render([
+    X_Media_Text::render([
       'is_preview'  => $is_preview,
       'contents'    => $contents,
       'fields'      => get_fields(),

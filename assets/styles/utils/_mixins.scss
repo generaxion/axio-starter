@@ -6,33 +6,68 @@
 ----------------------------------------------- */
 
 // basic button styles
-@mixin button {
+@mixin button($style: '') {
   @include button-reset;
   @include transition;
-  background: var(--color-primary);
+  border: 0;
   border-radius: 5rem;
-  color: var(--color-white);
   display: inline-block;
-  font-size: .875rem;
-  @include breakpoint($breakpoint-s) {
-    font-size: 1rem;
-  }
+  position: relative;
+  font-size: 1rem;
   font-weight: var(--font-weight-bold);
   line-height: 1.25;
-  padding: var(--spacing-xs) var(--spacing-m);
+  overflow: hidden;
+  padding: .75rem 1.5rem;
   text-decoration: none;
+  text-shadow: none;
   vertical-align: baseline;
+  @if $style == 'solid' {
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: var(--color-white);
+  } @else if $style == 'outline' {
+    background: transparent;
+    border: 1px solid;
+    color: var(--color-primary);
+    .is-dark-mode & {
+      border-color: var(--color-white);
+      color: var(--color-white);
+    }
+  } @else {
+    color: var(--color-primary);
+    .is-dark-mode & {
+      color: var(--color-white);
+    }
+    padding: .5rem;
+  }
+
+  & > span {
+    position: relative;
+    z-index: 3;
+  }
+
   &:hover, &:focus, &:active {
-    transform: translateY(-.125rem);
+    @if $style == 'solid' {
+      background: var(--color-primary-dark);
+    } @else if $style == 'outline' {
+      border-color: var(--color-primary-dark);
+      color: var(--color-primary-dark);
+      .is-dark-mode & {
+        border-color: rgba(255,255,255,.925);
+        color: rgba(255,255,255,.925);
+      }
+    } @else {
+      color: var(--color-primary-dark);
+      .is-dark-mode & {
+        color: rgba(255,255,255,.925);
+      }
+      text-decoration: underline;
+    }
   }
   &:focus {
-    outline: 1px dotted;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
-}
-
-// button variaton: big
-@mixin button--big {
-  padding: var(--spacing-s) var(--spacing-m);
 }
 
 /* Headings
@@ -68,10 +103,7 @@
 
   } @else if ($size == xs) {
 
-    font-size: .875rem;
-    @include breakpoint($breakpoint-s) {
-      font-size: 1rem;
-    }
+    font-size: 1rem;
     font-weight: var(--font-weight-bold);
     line-height: 1.5;
 
@@ -154,10 +186,6 @@
   margin-left: calc(-1 * var(--spacing-m));
   margin-right: calc(-1 * var(--spacing-m));
   max-width: none;
-  @include breakpoint($breakpoint-m) {
-    margin-left: calc(-1 * var(--spacing-l));
-    margin-right: calc(-1 * var(--spacing-l));
-  }
 }
 
 /* Spacing

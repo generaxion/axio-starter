@@ -2,7 +2,7 @@
 /**
  * Register: translatable strings
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

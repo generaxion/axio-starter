@@ -3,11 +3,11 @@
  * Component: Menu Upper
  *
  * @example
- * Aucor_Menu_Additional::render();
+ * X_Menu_Additional::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Menu_Additional extends Aucor_Component {
+class X_Menu_Additional extends X_Component {
 
   public static function frontend($data) {
 

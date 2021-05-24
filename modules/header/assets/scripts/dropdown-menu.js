@@ -95,12 +95,12 @@ var component_dropdown_menu = function(args) {
       return;
     }
 
-    // acticate <li>
-    li.setAttribute('aria-expanded', 'true');
-
     // actiate <ul>
     var ul = li.querySelector('.sub-menu');
     if (ul) {
+      // acticate <li>
+      li.setAttribute('aria-expanded', 'true');
+
       ul.setAttribute('aria-hidden', 'false');
       // check that <ul> fits viewport
       if (ul.getBoundingClientRect().right > (window.innerWidth || document.documentElement.clientWidth)) {
@@ -126,12 +126,14 @@ var component_dropdown_menu = function(args) {
       return;
     }
 
-    // deactivate <li>
-    li.setAttribute('aria-expanded', 'false');
+    li.classList.remove('is-clicked');
 
     // deactivate <ul>
     var ul = li.querySelector('.sub-menu');
     if (ul) {
+      // deactivate <li>
+      li.setAttribute('aria-expanded', 'false');
+
       ul.setAttribute('aria-hidden', 'true');
       ul.classList.remove('is-out-of-bounds');
     }
@@ -238,7 +240,16 @@ var component_dropdown_menu = function(args) {
     e.preventDefault();
 
     // activate or deactivate <li>
-    toggle_menu_item(get_ancestor(e.currentTarget, 'menu-item-has-children'));
+    var li = get_ancestor(e.currentTarget, 'menu-item-has-children');
+    if (li) {
+      if (li.classList.contains('is-clicked')) {
+        deactivate_menu_item(li);
+        li.classList.remove('is-clicked');
+      } else {
+        activate_menu_item(li);
+        li.classList.add('is-clicked');
+      }
+    }
 
    }
 

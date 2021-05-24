@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Aucor Coding Standards">
+<ruleset name="Generaxion Coding Standards">
 
   <description>Code standard rules to check for WordPress themes and plugins. Relaxed standard from WordPress and Drupal coding standards.</description>
 

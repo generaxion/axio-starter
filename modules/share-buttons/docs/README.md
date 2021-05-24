@@ -14,6 +14,6 @@ Component creates buttons for sharing in Facebook, Twitter, Linkedin and WhatsAp
 
 'theme_entry_footer' hook is used to call it after content, but it's also usable as component wherever wanted.
 
-Just add: <?php Aucor_Share_Buttons::render(); ?>
+Just add: <?php X_Share_Buttons::render(); ?>
 
 There's more information in component.php

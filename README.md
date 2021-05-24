@@ -1,10 +1,10 @@
-# Aucor Starter
+# Axio by Generaxion (previously Aucor Starter)
 
 **🖥 For developer from developers:**
 
-Superior Gutenberg WordPress starter theme with modern build tools by **[Generaxion](https://www.generaxion.com)**. 200+ hours of development over 4 years to make the greatest starting point for WordPress site.
+Superior Gutenberg WordPress starter theme with modern build tools by **[Generaxion](https://www.generaxion.com)**. 250+ hours of development over 6 years to make the greatest starting point for WordPress site.
 
-**Demo:** **[starter.aucor.fi](https://starter.aucor.fi)**
+**Demo:** **[axio.generax.io](https://axio.generax.io)**
 
 **🔌 Required plugins:**
 
@@ -13,11 +13,9 @@ Superior Gutenberg WordPress starter theme with modern build tools by **[Generax
 
 **🏷 Buzz-words**:
 
-Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Polylang, Schema.org, Native lazyload, BEM, Babel, Responsive images
+Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Advanced Custom Fields, Polylang, Schema.org, Native lazyload, BEM, Babel, Responsive images
 
-![aucor-starter](https://user-images.githubusercontent.com/9577084/75164116-f3dee180-5728-11ea-9eab-e2bfa89805cf.png)
-
-![Google Chrome performance audit](https://user-images.githubusercontent.com/9577084/82218626-d8990200-9924-11ea-8060-263426cde897.png)
+![screenshot-axio-generaxion](https://user-images.githubusercontent.com/9577084/119238078-08d33c00-bb49-11eb-916f-770af029c75e.png)
 
 ## Table of contents
 
@@ -87,17 +85,16 @@ Do these theme installation steps before modifying anything.
 
 #### Run setup
 
-![Project setup with setup.sh](https://user-images.githubusercontent.com/9577084/28662834-236bda4e-72c4-11e7-98db-67b25a289b4f.png)
+![Project setup with setup.sh](https://user-images.githubusercontent.com/9577084/119214675-40060680-bad1-11eb-9587-0f8d41f5c938.png)
 
 Run setup wizard in theme root with bash `sh bin/setup.sh`
 
 | **Field**                   | **Meaning**  | **Default**  |
 |---|---|---|
-| **Site name**               | Name in style.css | `Aucor Starter` |
-| **Unique id**               | Prefix and ID for code. Recommended length 1-5 characters. | `aucor_starter` |
-| **Local development url**   | Browsersync's mirror URL. Stored at `/assets/manifest.js` | `https://aucor-starter.local` |
-| **Author name**             |  Author in style.css | `Aucor Oy` |
-| **Author URL**              | Author URL in style.css | `https://www.aucor.fi` |
+| **Site name**               | Name in style.css | `Axio by Generaxion` |
+| **Local development url**   | Browsersync's mirror URL. Stored at `/assets/manifest.js` | `https://axio-starter.local` |
+| **Author name**             |  Author in style.css | `Generaxion` |
+| **Author URL**              | Author URL in style.css | `https://www.generaxion.com` |
 
 #### Run localizator (if needed)
 
@@ -109,7 +106,7 @@ Theme strings are by default in English but we do support Finnish and probably S
 
 #### Install Aucor Core
 
-Some of the functionality of Aucor Starter require plugin Aucor Core. The plugin is centrally updated so that sites using starter will be easier to maintain and there will be less duplicate code from project to project. Aucor Starter won't have fatal errors without it, but for example localization won't work without it.
+Some of the functionality of Axio by Generaxion require plugin Aucor Core. The plugin is centrally updated so that sites using starter will be easier to maintain and there will be less duplicate code from project to project. Axio by Generaxion won't have fatal errors without it, but for example localization won't work without it.
 
 Download Aucor Core from [WordPress.org](https://wordpress.org/plugins/aucor-core/) or [Github](https://github.com/aucor/aucor-core) and activate.
 
@@ -160,15 +157,15 @@ Components get their power from abstract class Component that keeps in the struc
 There are two basic ways to use component:
 
 ```
-Aucor_Teaser::render();
-Aucor_Teaser::get();
+X_Teaser::render();
+X_Teaser::get();
 ```
 
 The render function prints out the HTML markup of the component and get will return it. You can pass arguments in an array like so:
 
 ```
-Aucor_Teaser::render(['id' => 123]);
-Aucor_Teaser::render([
+X_Teaser::render(['id' => 123]);
+X_Teaser::render([
   'id'          => 123
   'hide_image'  => true,
 ]);
@@ -184,13 +181,13 @@ All components can be interacted with the same way. It is up to the component to
  * Component: Componet's name
  *
  * @example
- * Aucor_Components_Name::render([
+ * X_Components_Name::render([
  *   'title'        => 'Title',
  *   'description'  => 'Descriptive text'
  *   'image'        => 123
  * ]);
  */
-class Aucor_Components_Name extends Aucor_Component {
+class X_Components_Name extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -199,7 +196,7 @@ class Aucor_Components_Name extends Aucor_Component {
       <?php if (!empty($data['image'])) : ?>
 
         <div class="components-name__image">
-          Aucor_Image::render([
+          X_Image::render([
             'id'        => $data['image'],
             'size'      => 'large',
           ]);
@@ -293,7 +290,7 @@ A few modules are required or there are more changes needed than just deleting t
 | `/svg/`                | Yes            | Component to display SVG sprite icons |
 | `/teaser/`             | Yes            | Component to display teaser cards |
 | `/background/`         | -              | Replacement for core/group block with background color, image or video options. |
-| `/button/`             | -              | Replacement for core/button block with ACF block and component. |
+| `/buttons/`            | -              | Replacement for core/buttons block with ACF block and component. |
 | `/core-columns/`       | -              | Gutenberg columns block |
 | `/core-embed/`         | -              | Gutenberg embed blocks |
 | `/core-gallery/`       | -              | Gutenberg gallery block |
@@ -603,7 +600,7 @@ Put all icons to `/assets/sprite/` and Gulp will combine and minify them into `/
 In PHP you can get these images with:
 
 ```php
-<?php Aucor_SVG::render([
+<?php X_SVG::render([
   'name' => 'facebook'
 ]); ?>
 ```
@@ -646,6 +643,7 @@ The `/inc/_conf/` directory has some essential settings for theme that you basic
 
   * `register-assets.php` has all CSS and JS enqueues to templates as well as any arbitary code added to header or footer.
   * `register-blocks.php` defines which Gutenberg blocks are allowed. Notice that all blocks that are not defined here are not allowed and modules add their own blocks to the mix.
+  * `register-colors.php` configure background colors to be available in blocks using backgrounds (background, media & text).
   * `register-image-sizes.php` register all global image sizes and responsive image sizes.
   * `register-localization.php` all global translatable strings for Polylang.
 
@@ -655,13 +653,13 @@ Directory `/inc/helpers/`.
 
 #### Dates
 
-Function: `aucor_starter_get_posted_on()`
+Function: `x_get_posted_on()`
 
 Get published date.
 
 #### Hardcoded ids
 
-Function: `aucor_starter_get_hardcoded_id($key)`
+Function: `x_get_hardcoded_id($key)`
 
 Save all harcoded ids in one place in refer them through this function. Example:
 
@@ -673,7 +671,7 @@ Save all harcoded ids in one place in refer them through this function. Example:
  *
  * @return int harcoded id
  */
-function aucor_starter_get_hardcoded_id($key = '') {
+function x_get_hardcoded_id($key = '') {
 
   switch ($key) {
 
@@ -689,13 +687,13 @@ function aucor_starter_get_hardcoded_id($key = '') {
 ```
 
 Used in template:
-`aucor_starter_get_hardcoded_id('some-id')`
+`x_get_hardcoded_id('some-id')`
 
 **Protip:** Avoid hardcoding ids if possible. If you really need to do it, centralize them into this function.
 
 #### Last edited
 
-Function: `aucor_starter_last_edited($asset)`
+Function: `x_last_edited($asset)`
 
 Get last edited timestamp from asset files. Timestamps are saved in `/assets/last-edited.json`.
 
@@ -787,14 +785,14 @@ Enqueue string to frontend with `wp_localize_script()`:
 
 ```php
 add_action('wp_enqueue_scripts', function() {
-  wp_localize_script('aucor_starter-js', 'theme_strings_variable_name', [
+  wp_localize_script('x-js', 'theme_strings_variable_name', [
     'prev' => ask__('Lightbox: Prev'),
     'next' => ask__('Lightbox: Next'),
   ]);
 });
 ```
 
-This makes a global JS variable before given script id (here aucor_starter-js) and you can use string in JS:
+This makes a global JS variable before given script id (here x-js) and you can use string in JS:
 
 ```js
 console.log(theme_strings_variable_name.prev);
@@ -898,7 +896,7 @@ Gutenberg is the new default WordPress editor so it is not a great long term pla
 
 #### Gutenberg styles
 
-Aucor Starter includes default Gutenberg styles on front-end and overrides them with from theme. This makes a site more future-proof as Gutenberg will have breaking changes in future where some features will not work properly without correct styles (and default styles will take care of them to some degree). You may have to override some opinionated defaults, though.
+Axio by Generaxion includes default Gutenberg styles on front-end and overrides them with from theme. This makes a site more future-proof as Gutenberg will have breaking changes in future where some features will not work properly without correct styles (and default styles will take care of them to some degree). You may have to override some opinionated defaults, though.
 
 In Gutenberg editor, there are still lots of default styles so there might be a few inconsistensies between front-end and back-end. This will get better in future versions of Gutenberg and starter.
 

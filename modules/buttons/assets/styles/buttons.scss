@@ -1,0 +1,124 @@
+/* ==========================================================================
+ # Button block and X_Button component
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/* Component
+----------------------------------------------- */
+
+.c-button {
+  &.c-button--type-default,
+  &.c-button--type-solid {
+    @include button('solid');
+  }
+  &.c-button--type-outline {
+    @include button('outline');
+  }
+  &.c-button--type-text {
+    @include button('text');
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  &.buttons--layout-horizontal {
+    flex-direction: row;
+    align-items: center;
+    &.buttons--align-left,
+    &.buttons--align-auto {
+      justify-content: flex-start;
+    }
+    &.buttons--align-center,
+    .hero--align-center &.buttons--align-auto {
+      justify-content: center;
+    }
+    &.buttons--align-right {
+      justify-content: right;
+    }
+  }
+  &.buttons--layout-vertical {
+    flex-direction: column;
+    &.buttons--align-left,
+    &.buttons--align-auto {
+      align-items: flex-start;
+    }
+    &.buttons--align-center,
+    .hero--align-center &.buttons--align-auto {
+      align-items: center;
+    }
+    &.buttons--align-right {
+      align-items: right;
+    }
+  }
+
+}
+
+
+/* Block, only front-end
+----------------------------------------------- */
+
+.blocks .wp-block-acf-button {
+
+  &.is-first-block {
+    margin-top: 0;
+  }
+
+  &.is-last-block {
+    margin-bottom: 0;
+  }
+
+}
+
+/* Block, only back-end
+----------------------------------------------- */
+
+.block-editor [data-type="acf/buttons"] {
+
+  .c-button {
+    pointer-events: none;
+  }
+
+  [data-name="button_link"],
+  [data-name="button_type"] {
+    @include breakpoint(max-width 1000px) {
+      width: 100% !important;
+    }
+  }
+
+  [data-type="link"] {
+    [data-name="add"] {
+      width: 100%;
+      text-align: center;
+    }
+    .link-wrap {
+      width: 100%;
+    }
+  }
+
+  [data-name="buttons"] {
+    margin-top: .5rem !important;
+    & > .acf-label {
+      display: none;
+    }
+  }
+
+  .acf-repeater {
+    .acf-actions {
+      text-align: center;
+      .button {
+        background: transparent;
+        color: currentColor;
+        border-color: currentColor;
+        margin: .75rem auto;
+        opacity: .85;
+        &:hover, &:focus, &:active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+}

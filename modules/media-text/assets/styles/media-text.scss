@@ -42,7 +42,7 @@ $breakpoint-media-text-desktop:  min-width 920px;
       @include negative-spacing-l(margin-top);
     }
 
-    .module-media-text {
+    .media-text {
 
       &__content {
         @include breakpoint($breakpoint-media-text-desktop) {
@@ -71,7 +71,7 @@ $breakpoint-media-text-desktop:  min-width 920px;
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.module-media-text {
+.media-text {
   display: flex;
   background: var(--color-media-text-bg);
 
@@ -88,7 +88,7 @@ $breakpoint-media-text-desktop:  min-width 920px;
   // alignment right
   @include breakpoint($breakpoint-m) {
     &--position-right {
-      .module-media-text__media {
+      .media-text__media {
         order: 1;
       }
     }
@@ -132,16 +132,16 @@ $breakpoint-media-text-desktop:  min-width 920px;
     z-index: 1;
     display: flex;
     @include breakpoint($breakpoint-m) {
-      padding: var(--spacing-l);
+      padding: 3rem;
       width: 50%;
-    }
-    @include breakpoint($breakpoint-xl) {
-      padding: var(--spacing-l) var(--spacing-l);
     }
     &__inner {
       @include child-margin-reset;
       width: 100%;
       color: var(--color-media-text);
+      .is-dark-mode & {
+        color: var(--color-white);
+      }
     }
   }
 }
@@ -150,7 +150,7 @@ $breakpoint-media-text-desktop:  min-width 920px;
 ----------------------------------------------- */
 
 
-.blocks .module-media-text {
+.blocks .media-text {
   display: flex;
   flex-wrap: wrap;
 
@@ -174,15 +174,15 @@ $breakpoint-media-text-desktop:  min-width 920px;
   [data-type="core/paragraph"] {
     clear: both;
   }
-  [data-type="acf/button"] {
+  [data-type="acf/buttons"] {
     clear: both;
     .is-block-content {
       width: 100%;
       clear: both;
     }
   }
-  .module-media-text--no-media {
-    .module-media-text__media {
+  .media-text--no-media {
+    .media-text__media {
       // placeholder image
       background:
         linear-gradient(to top left,

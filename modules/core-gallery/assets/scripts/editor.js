@@ -5,7 +5,7 @@
 /**
  * Modify alignment options
  */
-wp.hooks.addFilter('blocks.registerBlockType', 'aucor-starter/filters', (settings, name) => {
+wp.hooks.addFilter('blocks.registerBlockType', 'x/filters', (settings, name) => {
 
   if (name === 'core/gallery') {
     return lodash.assign({}, settings, {

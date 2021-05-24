@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ACF Block: Cover
+ * ACF Block: Background
  *
  * @param array $block The block settings and attributes.
  * @param string $content The block inner HTML (empty).
@@ -13,6 +13,7 @@ $align = $block['align'] ? $block['align'] : 'full';
 
 $allowed_blocks = [
   'acf/button',
+  'acf/buttons',
   'acf/spacer',
   'core/columns',
   'core/heading',
@@ -51,7 +52,7 @@ if (isset($block['className'])) {
 
 <div class="wp-block-acf-background align<?php echo esc_attr($align); ?>">
   <?php
-    Aucor_Background::render([
+    X_Background::render([
       'fields'        => $fields,
       'contents'      => $contents
     ]);

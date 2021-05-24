@@ -6,7 +6,7 @@
  * Append content into <head> or footer.
  * Include favicons.
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -16,18 +16,23 @@ add_action('wp_enqueue_scripts', function() {
 
   // main css
   wp_enqueue_style(
-    'aucor_starter-style',
+    'x-style',
     get_template_directory_uri() . '/dist/styles/main.css',
     [],
-    aucor_starter_last_edited('css')
+    x_last_edited('css')
   );
+
+    // background colors
+    if (function_exists('x_enqueue_color_variables')) {
+      wp_add_inline_style('x-style', x_enqueue_color_variables());
+    }
 
   // main js
   wp_enqueue_script(
-    'aucor_starter-js',
+    'x-js',
     get_template_directory_uri() . '/dist/scripts/main.js',
     [],
-    aucor_starter_last_edited('js'),
+    x_last_edited('js'),
     true
   );
 
@@ -48,18 +53,23 @@ add_action('enqueue_block_editor_assets', function() {
 
   // editor styles
   wp_enqueue_style(
-    'aucor_starter-editor-gutenberg-style',
+    'x-editor-gutenberg-style',
     get_stylesheet_directory_uri() . '/dist/styles/editor-gutenberg.css',
     [],
-    aucor_starter_last_edited('css')
+    x_last_edited('css')
   );
+
+  // custom colors
+  if (function_exists('x_enqueue_color_variables')) {
+    wp_add_inline_style('x-editor-gutenberg-style', x_enqueue_color_variables());
+  }
 
   // editor scripts
   wp_enqueue_script(
-    'aucor_starter-editor-gutenberg-scripts',
+    'x-editor-gutenberg-scripts',
     get_stylesheet_directory_uri() . '/dist/scripts/editor-gutenberg.js',
     ['wp-i18n', 'wp-blocks', 'wp-dom-ready'],
-    aucor_starter_last_edited('js'),
+    x_last_edited('js'),
     true
   );
 
@@ -72,10 +82,10 @@ add_action('admin_enqueue_scripts', function() {
 
   // admin.css
   wp_enqueue_style(
-    'aucor_starter-admin-css',
+    'x-admin-css',
     get_template_directory_uri() . '/dist/styles/admin.css',
     [],
-    aucor_starter_last_edited('css')
+    x_last_edited('css')
   );
 
 });
@@ -111,11 +121,11 @@ add_action('wp_footer', function() {
  *
  * Add favicons' <link> and <meta> tags here
  */
-function aucor_starter_favicons() {
+function x_favicons() {
 
   // echo get_stylesheet_directory_uri() . /dist/favicon/
 
 }
-add_action('wp_head',    'aucor_starter_favicons');
-add_action('admin_head', 'aucor_starter_favicons');
-add_action('login_head', 'aucor_starter_favicons');
+add_action('wp_head',    'x_favicons');
+add_action('admin_head', 'x_favicons');
+add_action('login_head', 'x_favicons');

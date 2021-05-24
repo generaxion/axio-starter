@@ -3,28 +3,28 @@
  * Component: List Terms
  *
  * @example post_tag
- * Aucor_List_Terms::render([
+ * X_List_Terms::render([
  *  'title'     => 'Tags',
  *  'taxonomy'  => 'post_tag'
  * ]);
  *
  * @example category
- * Aucor_List_Terms::render([
+ * X_List_Terms::render([
  *  'title'     => 'Categories',
  *  'taxonomy'  => 'category'
  * ]);
  *
  * @example fixed id
- * Aucor_List_Terms::render([
+ * X_List_Terms::render([
  *  'title'     => 'Fixed ID categories,
  *  'id'        => '1'.
  *  'taxonomy'  => 'category'
  * ]);
  *
- * @package aucor_starter
+ * @package axio
  */
 
-class Aucor_List_Terms extends Aucor_Component {
+class X_List_Terms extends X_Component {
   public static function frontend($data) {
 
     if (empty($data['terms'])) {

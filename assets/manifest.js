@@ -7,7 +7,7 @@ module.exports = {
   /**
    * URL for BrowserSync to mirror
    */
-  devUrl: () => "https://aucor-starter.local",
+  devUrl: () => "https://axio-starter.local",
 
   /**
    * JS files

@@ -18,8 +18,11 @@
   .main-navigation,
   .social-share-container,
   .hierarchial-pages,
-  .site-footer {
-    display: none;
+  .site-footer,
+  .menu-toggle,
+  .social-share,
+  .wp-block-embed.is-type-video {
+    display: none !important;
   }
 
   // typography

@@ -3,11 +3,14 @@
  * Component: Background
  *
  * @example
- * Aucor_Background::render();
+ * X_Background::render([
+ *   'contents' => '<h1>Title</h1>',
+ *   'fields'   => get_fields(),
+ * ]);
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Background extends Aucor_Component {
+class X_Background extends X_Component {
   public static function frontend($data) {
   ?>
 
@@ -16,7 +19,7 @@ class Aucor_Background extends Aucor_Component {
           <div class="background__media js-background__media">
             <?php if ($data['type'] == 'image') : ?>
               <?php
-              Aucor_Image::render([
+              X_Image::render([
                 'id'       => $data['image_id'],
                 'size'     => 'background',
               ]);
@@ -46,7 +49,7 @@ class Aucor_Background extends Aucor_Component {
       </div>
 
     </div>
-  <?php
+    <?php
   }
 
   public static function backend($args = [])
@@ -78,8 +81,10 @@ class Aucor_Background extends Aucor_Component {
     $args['attr']['class'][] = 'background';
     $args['attr']['class'][] = 'js-background';
 
+    $f = $args['fields'];
+
     // type
-    $type = isset($args['fields']['background_media_type']) ? $args['fields']['background_media_type'] : null;
+    $type = isset($f['background_media_type']) ? $f['background_media_type'] : null;
     if (is_string($type) && !empty($type)) {
       $args['type'] = $type;
     }
@@ -92,16 +97,21 @@ class Aucor_Background extends Aucor_Component {
 
       $args['is_dark_mode'] = false;
 
-      if (isset($args['fields']['background_color']) && !empty($args['fields']['background_color'])) {
-        $args['attr']['class'][] = 'background--color-' . $args['fields']['background_color'];
+      if (isset($f['background_color']) && !empty($f['background_color'])) {
+        $args['attr']['class'][] = 'background-color';
+        $args['attr']['class'][] = 'background-color--' . $f['background_color'];
+        $colors = apply_filters('x_background_colors', []);
+        if (isset($colors[$f['background_color']]) && isset($colors[$f['background_color']]['is_dark'])) {
+          $args['is_dark_mode'] = $colors[$f['background_color']]['is_dark'];
+        }
       } else {
-        $args['attr']['class'][] = 'background--color-none';
+        $args['attr']['class'][] = 'background-color';
+        $args['attr']['class'][] = 'background-color--none';
       }
 
+    } elseif ($args['type'] === 'video' && !empty($f['background_video'])) {
 
-    } elseif ($args['type'] === 'video' && !empty($args['fields']['background_video'])) {
-
-      $args['video_url'] = $args['fields']['background_video'];
+      $args['video_url'] = $f['background_video'];
       $args['has_background'] = true;
 
     } elseif ($args['type'] == 'image') {
@@ -109,7 +119,7 @@ class Aucor_Background extends Aucor_Component {
       /**
        * Background: image
        */
-      $image_id = $args['fields']['background_image'];
+      $image_id = $f['background_image'];
       if (!empty($image_id)) {
         $args['image_id'] = $image_id;
         $args['has_background'] = true;
@@ -122,11 +132,11 @@ class Aucor_Background extends Aucor_Component {
      */
     if (in_array($args['type'], ['image', 'video'])) {
 
-      $dimming = $args['fields']['background_dimming'];
+      $dimming = $f['background_dimming'];
 
       $dimming_amount = 0;
-      if (isset($args['fields']['background_dimming']) && !empty($args['fields']['background_dimming'])) {
-        $dimming_amount = (int) $args['fields']['background_dimming'];
+      if (isset($f['background_dimming']) && !empty($f['background_dimming'])) {
+        $dimming_amount = (int) $f['background_dimming'];
       }
       $args['dimming_opacity'] = $dimming_amount;
 
@@ -135,7 +145,7 @@ class Aucor_Background extends Aucor_Component {
     /**
      * Sizing
      */
-    $min_height = isset($args['fields']['background_height']) ? $args['fields']['background_height'] : null;
+    $min_height = isset($f['background_height']) ? $f['background_height'] : null;
     if (!empty($min_height) && is_string($min_height)) {
       $args['attr']['class'][] = 'background--height-' . $min_height;
     }
@@ -143,7 +153,7 @@ class Aucor_Background extends Aucor_Component {
     /**
      * Content position
      */
-    $position = isset($args['fields']['background_content_align']) ? $args['fields']['background_content_align'] : null;
+    $position = isset($f['background_content_align']) ? $f['background_content_align'] : null;
     if (empty($position) || !is_string($position)) {
       $position = 'middle';
     }
@@ -152,20 +162,19 @@ class Aucor_Background extends Aucor_Component {
     /**
      * Content background
      */
-    $content_background = isset($args['fields']['background_content_background']) ? $args['fields']['background_content_background'] : null;
-    if (empty($content_background) || !is_string($content_background)) {
-      $content_background = 'none';
-    }
-    if ($content_background !== 'none') {
+    $has_content_background = isset($f['background_has_content_background']) ? $f['background_has_content_background'] : null;
+    if (empty($has_content_background)) {
+      $args['attr']['class'][] = 'background--content-background-none';
+    } else {
+      $args['attr']['class'][] = 'background--content-background-light';
       $args['is_dark_mode'] = false;
     }
-    $args['attr']['class'][] = 'background--content-background-' . $content_background;
 
     /**
      * Dark mode
      */
-    if (isset($args['fields']['background_content_mode'])) {
-      $manual_mode = $args['fields']['background_content_mode'];
+    if (isset($f['background_content_mode'])) {
+      $manual_mode = $f['background_content_mode'];
       if (is_string($manual_mode) && $manual_mode !== 'auto') {
         $args['is_dark_mode'] = $manual_mode !== 'light';
       }
@@ -182,8 +191,8 @@ class Aucor_Background extends Aucor_Component {
     /**
      * Extra classes
      */
-    if (isset($args['fields']['class'])) {
-      foreach ($args['fields']['class'] as $class) {
+    if (isset($f['class'])) {
+      foreach ($f['class'] as $class) {
         $args['attr']['class'][] = $class;
       }
     }

@@ -2,7 +2,7 @@
 /**
  * Setup: core/image block
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -38,7 +38,7 @@ add_filter('render_block', function ($html, $args) {
 
     } elseif ($args['attrs']['align'] === 'wide') {
 
-      $base_width = (isset($GLOBALS['content_width'])) ? absint($GLOBALS['content_width']) : 720;
+      $base_width = (isset($GLOBALS['content_width'])) ? absint($GLOBALS['content_width']) : 800;
       $wide_width = absint(1.5 * $base_width);
       $html = str_replace('<img ', '<img sizes="(min-width: ' . $wide_width . 'px) ' . $wide_width . 'px, 100vw" ', $html);
 

@@ -16,7 +16,7 @@ if(have_posts())
   while (have_posts()) : the_post();
     ...
   endwhile;
-  Aucor_Posts_Nav_Numeric::render();
+  X_Posts_Nav_Numeric::render();
 endif;
 ```
 
@@ -33,7 +33,7 @@ if($loop->have_posts())
   while ($loop->have_posts()) : $loop->the_post();
     ...
   endwhile;
-  Aucor_Posts_Nav_Numeric::render(['wp_query' => $loop]);
+  X_Posts_Nav_Numeric::render(['wp_query' => $loop]);
 endif;
 ```
 
@@ -50,7 +50,7 @@ if ($loop->have_posts())
   while ($loop->have_posts() ) : $loop->the_post();
     ...
   endwhile;
-  aucor_starter_numeric_posts_nav([
+  x_numeric_posts_nav([
     'wp_query'  => $loop,
     'paged_var' => 'current_page',
   ]);

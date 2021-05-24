@@ -3,18 +3,18 @@
  * Component: Share Buttons (for social media)
  *
  * @example
- * Aucor_Share_Buttons::render();
+ * X_Share_Buttons::render();
  *
  * @example
- * Aucor_Share_Buttons::render([
+ * X_Share_Buttons::render([
  *   'section_title'  => 'Share this article',
  *   'post_title'     => 'Custom post title',
  *   'permalink'      => get_permalink(),
  * ]);
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Share_Buttons extends Aucor_Component {
+class X_Share_Buttons extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -23,22 +23,22 @@ class Aucor_Share_Buttons extends Aucor_Component {
       <span class="social-share__title"><?php echo $data['section_title']; ?></span>
 
       <a class="social-share__link social-share__link--facebook" href="<?php echo esc_url('https://www.facebook.com/sharer/sharer.php?u=' . $data['permalink']); ?>" target="_blank">
-        <?php Aucor_SVG::render(['name' => 'facebook']); ?>
+        <?php X_SVG::render(['name' => 'facebook']); ?>
         <span class="social-share__link__label"><?php ask_e('Social share: Facebook'); ?></span>
       </a>
 
       <a class="social-share__link social-share__link--twitter" href="<?php echo esc_url('https://twitter.com/share?url=' . $data['permalink']); ?>" target="_blank">
-        <?php Aucor_SVG::render(['name' => 'twitter']); ?>
+        <?php X_SVG::render(['name' => 'twitter']); ?>
         <span class="social-share__link__label"><?php ask_e('Social share: Twitter'); ?></span>
       </a>
 
       <a class="social-share__link social-share__link--linkedin" href="<?php echo esc_url('https://www.linkedin.com/shareArticle?mini=true&title=' . $data['post_title'] . '&url=' . $data['permalink']); ?>" target="_blank">
-        <?php Aucor_SVG::render(['name' => 'linkedin']); ?>
+        <?php X_SVG::render(['name' => 'linkedin']); ?>
         <span class="social-share__link__label"><?php ask_e('Social share: LinkedIn'); ?></span>
       </a>
 
       <a class="social-share__link social-share__link--whatsapp" href="<?php echo esc_url('https://api.whatsapp.com/send?text=' . $data['post_title'] . '%20-%20' . $data['permalink']); ?>" target="_blank" >
-        <?php Aucor_SVG::render(['name' => 'whatsapp']); ?>
+        <?php X_SVG::render(['name' => 'whatsapp']); ?>
         <span class="social-share__link__label"><?php ask_e('Social share: WhatsApp'); ?></span>
       </a>
 

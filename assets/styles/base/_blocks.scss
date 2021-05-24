@@ -35,15 +35,13 @@
   }
 
   .alignfull {
+    @include alignfull;
     @include spacing-l(margin-top, margin-bottom);
-    margin-left: calc(-1 * var(--spacing-m));
-    margin-right: calc(-1 * var(--spacing-m));
-    max-width: none;
   }
 
   .alignwide {
+    @include alignwide;
     @include spacing-m(margin-top, margin-bottom);
-    max-width: var(--width-l);
     &.is-first-block {
       @include spacing-l(margin-top);
     }

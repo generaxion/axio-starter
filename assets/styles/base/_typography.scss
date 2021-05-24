@@ -11,7 +11,6 @@ html {
    -webkit-font-smoothing: antialiased;
 }
 
-
 /* All elements
 ----------------------------------------------- */
 
@@ -73,18 +72,16 @@ ul, ol {
 ----------------------------------------------- */
 
 a {
-
   color: var(--color-link);
-
-  &:hover, &:active, &:focus {
-  }
+  &:hover, &:active, &:focus {}
 }
 
 /* Accessibility
 ----------------------------------------------- */
 
 a:focus {
-  outline: 1px dotted;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .screen-reader-text {
@@ -116,6 +113,6 @@ button:focus,
 input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus {
-  outline: 1px dotted;
+  outline: 2px solid var(--color-primary);
   outline-offset: -2px;
 }

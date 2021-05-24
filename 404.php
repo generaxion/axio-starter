@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package aucor_starter
+ * @package axio
  */
 
 get_header(); ?>
@@ -17,24 +17,25 @@ get_header(); ?>
 
   <div id="primary" class="primary primary--404">
 
-      <article class="entry entry--404">
+    <article class="entry entry--404">
 
-        <div class="entry__content">
-          <p><?php ask_e('404: Page not found description'); ?></p>
+      <div class="entry__content blocks">
 
-          <?php if (class_exists('Aucor_Search_Form')) : ?>
-            <?php
-              Aucor_Search_Form::render([
-                'attr' => [
-                  'class' => ['search-form--404'],
-                ],
-              ]);
-            ?>
-          <?php endif; ?>
+        <p><?php ask_e('404: Page not found description'); ?></p>
 
-        </div>
+        <?php if (class_exists('X_Search_Form')) : ?>
+          <?php
+            X_Search_Form::render([
+              'attr' => [
+                'class' => ['search-form--404'],
+              ],
+            ]);
+          ?>
+        <?php endif; ?>
 
-      </article>
+      </div>
+
+    </article>
 
   </div><!-- #primary -->
 

@@ -3,11 +3,11 @@
  * Component: Footer
  *
  * @example
- * Aucor_Footer::render();
+ * X_Footer::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Footer extends Aucor_Component {
+class X_Footer extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -21,9 +21,9 @@ class Aucor_Footer extends Aucor_Component {
           </span>
         </div>
 
-        <?php if (class_exists('Aucor_Menu_Social')) : ?>
+        <?php if (class_exists('X_Menu_Social')) : ?>
           <div class="site-footer__social">
-            <?php Aucor_Menu_Social::render(); ?>
+            <?php X_Menu_Social::render(); ?>
           </div>
         <?php endif; ?>
 

@@ -2,7 +2,7 @@
 /**
  * Setup: List Terms
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -10,12 +10,12 @@
  */
 add_action('theme_entry_footer', function() {
 
-  Aucor_List_Terms::render([
+  X_List_Terms::render([
     'title'     => ask__('Taxonomies: Categories'),
     'taxonomy'  => 'category'
   ]);
 
-  Aucor_List_Terms::render([
+  X_List_Terms::render([
     'title'     => ask__('Taxonomies: Post tags'),
     'taxonomy'  => 'post_tag'
   ]);

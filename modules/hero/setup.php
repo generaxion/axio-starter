@@ -2,7 +2,7 @@
 /**
  * Hero: Data structures
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -50,6 +50,6 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
  */
 add_action('theme_hero', function() {
 
-  Aucor_Hero::render();
+  X_Hero::render();
 
 }, 100, 1);

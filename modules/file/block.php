@@ -7,7 +7,7 @@
  * @param bool $is_preview True during AJAX preview.
  * @param (int|string) $post_id The post ID this block is saved to.
  *
- * @package aucor_starter
+ * @package axio
  */
 
 $files = get_field('files');
@@ -18,7 +18,7 @@ $files = get_field('files');
     <?php foreach ($files as $file) : ?>
       <?php if (!empty($file['file'])) : ?>
         <?php
-          Aucor_File::render([
+          X_File::render([
             'id'    => $file['file'],
             'title' => $file['title'],
           ]);

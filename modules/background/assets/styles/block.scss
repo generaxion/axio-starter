@@ -42,9 +42,17 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.block-editor [data-type="acf/background"] {
-  max-width: none !important;
-  margin-left: -58px !important;
-  margin-right: -58px !important;
+.block-editor {
+  [data-type="acf/background"] {
+    max-width: none !important;
+  }
+  [data-name="background_video"] {
+    .file-icon {
+      display: none;
+    }
+    .file-info {
+      margin-left: 0;
+    }
+  }
 }
 

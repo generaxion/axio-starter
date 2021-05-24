@@ -10,6 +10,6 @@ Helper component for search forms.
 
 ## Usage
 
-Search menu component creates search form. Just add <?php Aucor_Search_Form::render(); ?> where you want search form to be appeared
+Search menu component creates search form. Just add <?php X_Search_Form::render(); ?> where you want search form to be appeared
 
 In component.php there's more information

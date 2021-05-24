@@ -18,11 +18,6 @@
     display: none;
   }
 
-  &:focus {
-    outline: thin dotted;
-    outline-offset: -2px;
-  }
-
   &:hover, &:focus, &:active {
     svg {
       transform: scale(.95);

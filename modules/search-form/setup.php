@@ -2,7 +2,7 @@
 /**
  * Setup: Search form
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

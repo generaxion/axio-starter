@@ -3,18 +3,18 @@
  * Component: Teaser
  *
  * @example
- * Aucor_Teaser::render([
+ * X_Teaser::render([
  *  'id'   => get_the_ID(),
  * ]);
  *
  * @example
- * Aucor_Teaser::render([
+ * X_Teaser::render([
  *  'post' => $post_object,
  * ]);
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Teaser extends Aucor_Component {
+class X_Teaser extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -30,7 +30,7 @@ class Aucor_Teaser extends Aucor_Component {
         <?php if (!empty($data['attachment_id'])) : ?>
           <div class="teaser__thumbnail">
             <?php
-              Aucor_Image::render([
+              X_Image::render([
                 'id'   => $data['attachment_id'],
                 'size' => 'teaser',
               ]);

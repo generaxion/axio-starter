@@ -432,7 +432,7 @@ gulp.task('svgstore', async () => {
   // Remove duplicates
   for (const [path, file] of Object.entries(spriteFilenameReference)) {
     for (const [searchFilePath, searchFile] of Object.entries(spriteFilenameReference)) {
-      if (path !== searchFilePath && file == searchFile && spriteFilenameReference[path]) {
+      if (path !== searchFilePath && file == searchFile && spriteFilenameReference[path] && file !== '.DS_Store') {
         delete spriteFilenameReference[searchFilePath];
         console.log(`SVG sprite duplicate: ${searchFilePath}`);
       }
@@ -446,9 +446,11 @@ gulp.task('svgstore', async () => {
   .pipe(imagemin([
     imagemin.svgo({
       plugins: [
-        {
-          removeViewBox: false,
-          collapseGroups: true
+        { removeViewBox: false },
+        { collapseGroups: true },
+        { convertColors: {
+            currentColor: true
+          }
         }
       ]
     })

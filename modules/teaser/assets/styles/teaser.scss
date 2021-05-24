@@ -40,7 +40,7 @@
 
   &__thumbnail {
     flex-shrink: 0;
-    margin-right: var(--spacing-m);
+    margin-right: 1.5rem;
     max-width: 4rem;
     @include breakpoint($breakpoint-s) {
       max-width: none;

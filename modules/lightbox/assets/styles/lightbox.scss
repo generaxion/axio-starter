@@ -12,3 +12,11 @@
 
 }
 
+.tobi {
+  background: rgba(0,0,0,.9);
+  &__slide {
+    figcaption {
+      text-align: center;
+    }
+  }
+}

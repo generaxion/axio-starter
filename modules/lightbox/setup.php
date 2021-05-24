@@ -2,7 +2,7 @@
 /**
  * Setup: Lightbox
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -24,7 +24,7 @@ add_filter('aucor_core_pll_register_strings', function($strings) {
  */
 add_action('wp_enqueue_scripts', function() {
 
-  wp_localize_script('aucor_starter-js', 'theme_strings_lightbox', [
+  wp_localize_script('x-js', 'theme_strings_lightbox', [
     'prev'    => ask__('Lightbox: Prev'),
     'next'    => ask__('Lightbox: Next'),
     'close'   => ask__('Lightbox: Close'),

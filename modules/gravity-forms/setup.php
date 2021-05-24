@@ -2,7 +2,7 @@
 /**
  * Setup: Gravity Forms plugin compatibility
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

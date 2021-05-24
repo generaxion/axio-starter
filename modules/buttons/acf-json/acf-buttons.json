@@ -1,0 +1,150 @@
+{
+    "key": "group_5f1a6e3bca0c0",
+    "title": "Block: Buttons",
+    "fields": [
+        {
+            "key": "field_602566880098f",
+            "label": "Buttons",
+            "name": "buttons",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 1,
+            "max": 0,
+            "layout": "block",
+            "button_label": "+ Add New",
+            "sub_fields": [
+                {
+                    "key": "field_5f1a6e4533aff",
+                    "label": "Link",
+                    "name": "button_link",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_5f1a6f6233b00",
+                    "label": "Type",
+                    "name": "button_type",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "default": "Default",
+                        "solid": "Solid",
+                        "outline": "Outline",
+                        "text": "Text"
+                    },
+                    "default_value": "default",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
+            "key": "field_60a4f5119721d",
+            "label": "Alignment",
+            "name": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_6025679600991",
+            "label": "Align",
+            "name": "buttons_alignment",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "auto": "auto",
+                "left": "<i class=\"dashicons dashicons-editor-alignleft\"><\/i>",
+                "center": "<i class=\"dashicons dashicons-editor-aligncenter\"><\/i>",
+                "right": "<i class=\"dashicons dashicons-editor-alignright\"><\/i>"
+            },
+            "allow_null": 0,
+            "default_value": "auto",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_60a4ef1f77c95",
+            "label": "Order",
+            "name": "buttons_layout",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "horizontal": "<i class=\"dashicons dashicons-image-flip-horizontal\"><\/i>",
+                "vertical": "<i class=\"dashicons dashicons-image-flip-vertical\"><\/i>"
+            },
+            "allow_null": 0,
+            "default_value": "horizontal",
+            "layout": "horizontal",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/buttons"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1621663184
+}

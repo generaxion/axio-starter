@@ -2,7 +2,7 @@
 /**
  * Module: Teaser
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

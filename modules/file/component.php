@@ -2,16 +2,16 @@
 /**
  * Component: File
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_File extends Aucor_Component {
+class X_File extends X_Component {
 
   public static function frontend($data) {
     ?>
     <div <?php parent::render_attributes($data['attr']); ?>>
       <a <?php parent::render_attributes($data['link_attr']); ?>>
         <span class="module-file__icon">
-          <?php Aucor_SVG::render(['name' => 'file']); ?>
+          <?php X_SVG::render(['name' => 'file']); ?>
         </span>
         <span class="module-file__title">
           <?php echo $data['title']; ?>

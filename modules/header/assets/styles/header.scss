@@ -47,7 +47,7 @@
 
   &__branding {
     @include breakpoint($breakpoint-desktop-menu) {
-      padding-right: var(--spacing-m);
+      padding-right: 1.5rem;
     }
   }
 
@@ -59,9 +59,9 @@
   }
 
   &__logo {
-    width: 10rem;
+    width: 15rem;
     @include breakpoint($breakpoint-desktop-menu) {
-      width: 14rem;
+      width: 19rem;
     }
   }
 
@@ -71,7 +71,7 @@
   display: none;
   &__nav {
     display: none;
-    padding: var(--spacing-l);
+    padding: 3rem;
     position: fixed;
     right: 0;
     top: 0;
@@ -81,15 +81,17 @@
     z-index: 9000;
     width: 100%;
     overflow-y: auto;
-    max-width: 25rem;
+    @include breakpoint($breakpoint-m) {
+      max-width: 25rem;
+    }
     &__inner {
       position: relative;
     }
     .menu-toggle {
       display: block;
       position: absolute;
-      top: var(--spacing-m);
-      right: var(--spacing-m);
+      top: 2rem;
+      right: 3rem;
       z-index: 5;
     }
   }

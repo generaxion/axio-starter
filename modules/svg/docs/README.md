@@ -15,7 +15,7 @@ Displays a svg image from assets/sprite
 In PHP you can get these icons with:
 
 ```php
-<?php Aucor_SVG::render([
+<?php X_SVG::render([
   'name' => 'facebook'
 ]); ?>
 ```
@@ -24,7 +24,7 @@ Theme includes one big SVG sprite `/assets/images/icons.svg` that has by default
 
 Example: Print out SVG `/assets/sprite/facebook.svg`
 ```php
-<?php Aucor_SVG::render([
+<?php X_SVG::render([
   'name' => 'facebook'
 ]); ?>
 ```

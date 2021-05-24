@@ -2,7 +2,7 @@
 /**
  * Setup: core/heading block
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

@@ -2,7 +2,7 @@
 /**
  * Setup: Footer
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -10,7 +10,7 @@
  */
 add_action('theme_footer', function() {
 
-  Aucor_Footer::render();
+  X_Footer::render();
 
 }, 100, 0);
 

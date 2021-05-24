@@ -2,7 +2,7 @@
 /**
  * Register: Image sizes
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -19,13 +19,13 @@ add_action('after_setup_theme', function() {
     ],
     [
       'name' => 'medium',
-      'w'    => 360,
-      'h'    => 720,
+      'w'    => 400,
+      'h'    => 700,
     ],
     [
       'name' => 'large',
-      'w'    => 720,
-      'h'    => 1440,
+      'w'    => 800,
+      'h'    => 1400,
     ]
   ];
 
@@ -38,8 +38,8 @@ add_action('after_setup_theme', function() {
   }
 
   // custom image sizes
-  add_image_size('wide_m',  1216, 2432, false); // gutenberg wide, relational to large
-  add_image_size('wide_l',  1824, 3648, false); // gutenberg wide, relational to large
+  add_image_size('wide_m',  1216, 2128, false); // gutenberg wide, relational to large
+  add_image_size('wide_l',  1824, 3192, false); // gutenberg wide, relational to large
 
   // enable support for post thumbnails
   add_theme_support('post-thumbnails');
@@ -60,13 +60,13 @@ add_filter('theme_image_sizing', function($sizes) {
   $sizes['large'] = [
     'primary'    => 'large',
     'supporting' => ['full', 'large', 'medium'],
-    'sizes'      => '(min-width: 720px) 720px, 100vw'
+    'sizes'      => '(min-width: 800px) 800px, 100vw'
   ];
 
   $sizes['medium'] = [
     'primary'    => 'medium',
     'supporting' => ['full', 'large', 'medium'],
-    'sizes'      => '(min-width: 360px) 360px, 100vw'
+    'sizes'      => '(min-width: 400px) 400px, 100vw'
   ];
 
   $sizes['thumbnail'] = [
@@ -86,6 +86,6 @@ add_filter('theme_image_sizing', function($sizes) {
  */
 add_action('after_setup_theme', function() {
 
-  $GLOBALS['content_width'] = 720;
+  $GLOBALS['content_width'] = 800;
 
 }, 0);

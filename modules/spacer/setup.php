@@ -2,7 +2,7 @@
 /**
  * Spacer
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -28,10 +28,9 @@ add_action('acf/init', function () {
   if (function_exists('acf_register_block_type')) {
     acf_register_block_type([
       'name'              => 'spacer',
-      'title'             => 'Spacer',
-      'render_template'   => 'modules/spacer/block.php',
-      'keywords'          => ['spacer'],
-      'post_types'        => ['page', 'post'],
+      'title'             => __('Spacer'),
+      'render_template'   => dirname(__FILE__) . '/block.php',
+      'keywords'          => ['spacer', 'break', 'empty', 'margin'],
       'category'          => 'design',
       'icon'              => 'image-flip-vertical',
       'mode'              => 'preview',

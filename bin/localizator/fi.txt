@@ -8,9 +8,8 @@ Accessibility: Skip to content      || Siirry sisältöön
 
 # Module: Button
 
-Button: Block name                 || Painike
-Button: Type Primary               || Ensisijainen
-Button: New button instructions    || Klikkaa ja muokkaa...
+Button: Type Solid               || Väritausta
+Button: Type Outline             || Reunaviiva
 
 # Module: File
 

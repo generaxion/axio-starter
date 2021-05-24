@@ -19,7 +19,7 @@
   ----------------------------------------------- */
 
   @include breakpoint($breakpoint-mobile-menu) {
-    padding: var(--spacing-m) 0 0;
+    padding: 1.5rem 0 0;
     display: block;
     .desktop-menu & {
       display: none;
@@ -33,7 +33,7 @@
         @include transition;
         color: var(--color-text);
         flex-grow: 1;
-        font-size: .875rem;
+        font-size: 1rem;
         text-decoration: none;
       }
 

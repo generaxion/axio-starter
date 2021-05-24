@@ -2,7 +2,7 @@
 /**
  * Setup: core/table block
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

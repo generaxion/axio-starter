@@ -7,14 +7,14 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block[data-type="core/columns"] .wp-block-columns,
+.block-editor [data-type="core/columns"] .wp-block-columns,
 .blocks .wp-block-columns {
 
   .wp-block-column {
-    @include breakpoint($breakpoint-sub-l) {
-      margin-bottom: var(--spacing-m);
-    }
     @include child-margin-reset;
+    @include breakpoint($breakpoint-sub-l) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   &.alignfull {
@@ -43,6 +43,6 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block[data-type="core/columns"] .wp-block-columns {
+.block-editor [data-type="core/columns"] .wp-block-columns {
 
 }

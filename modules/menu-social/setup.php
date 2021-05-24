@@ -2,7 +2,7 @@
 /**
  * Setup: Menu Social
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -48,6 +48,7 @@ add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
       'mailto:'        => 'mail',
       'twitter.com'    => 'twitter',
       'youtube.com'    => 'youtube',
+      'github.com'     => 'github',
     ];
 
     // fallback icon
@@ -61,7 +62,7 @@ add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
     }
 
     // replace title with svg and <span> wrapped title
-    $title = Aucor_SVG::get(['name' => $svg]) . '<span class="social-navigation__item__label">' . $title . '</span>';
+    $title = X_SVG::get(['name' => $svg]) . '<span class="social-navigation__item__label">' . $title . '</span>';
 
     return $title;
 

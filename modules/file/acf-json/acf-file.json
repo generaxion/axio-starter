@@ -19,7 +19,7 @@
             "min": 1,
             "max": 0,
             "layout": "block",
-            "button_label": "+ Add file",
+            "button_label": "+ Add New",
             "sub_fields": [
                 {
                     "key": "field_5f8465986f746",
@@ -42,7 +42,7 @@
                 },
                 {
                     "key": "field_5f8465b36f747",
-                    "label": "Title (optional)",
+                    "label": "Title",
                     "name": "title",
                     "type": "text",
                     "instructions": "",
@@ -79,5 +79,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1602512335
+    "modified": 1621663189
 }

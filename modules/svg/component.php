@@ -3,10 +3,10 @@
  * Component: SVG
  *
  * @example
- * Aucor_SVG::render(['name' => 'plus']);
+ * X_SVG::render(['name' => 'plus']);
  */
 
-class Aucor_SVG extends Aucor_Component {
+class X_SVG extends X_Component {
 
   /**
    * Image markup
@@ -18,7 +18,7 @@ class Aucor_SVG extends Aucor_Component {
       <?php if ($data['title']) : ?>
         <title><?php echo esc_html($data['title']); ?></title>
       <?php endif; ?>
-      <use xlink:href="<?php echo esc_attr(get_template_directory_uri() . '/dist/sprite/sprite.svg?ver=' . aucor_starter_last_edited('svg') . '#icon-' . esc_html($data['name'])); ?>"></use>
+      <use xlink:href="<?php echo esc_attr(get_template_directory_uri() . '/dist/sprite/sprite.svg?ver=' . x_last_edited('svg') . '#icon-' . esc_html($data['name'])); ?>"></use>
     </svg>
 
     <?php

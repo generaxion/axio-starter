@@ -3,11 +3,11 @@
  * Component: Menu Primary
  *
  * @example
- * Aucor_Menu_Primary::render();
+ * X_Menu_Primary::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Menu_Primary extends Aucor_Component {
+class X_Menu_Primary extends X_Component {
 
   public static function frontend($data) {
     ?>

@@ -3,11 +3,11 @@
  * Component: Spacer
  *
  * @example
- * Aucor_Spacer::render();
+ * X_Spacer::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Spacer extends Aucor_Component {
+class X_Spacer extends X_Component {
   public static function frontend($data) {
   ?>
     <div <?php parent::render_attributes($data['attr']); ?>>
@@ -15,7 +15,7 @@ class Aucor_Spacer extends Aucor_Component {
         <div class="spacer__indicator"></div>
       <?php endif; ?>
     </div>
-  <?php
+    <?php
   }
 
   public static function backend($args = [])

@@ -3,11 +3,11 @@
  * Component: Hero
  *
  * @example
- * Aucor_Hero::render();
+ * X_Hero::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Hero extends Aucor_Component {
+class X_Hero extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -72,12 +72,12 @@ class Aucor_Hero extends Aucor_Component {
 
     // meta
     if (is_singular() && get_post_type() === 'post') {
-      $args['meta'] = aucor_starter_get_posted_on();
+      $args['meta'] = x_get_posted_on();
     }
 
     // background
     if (is_singular() && has_post_thumbnail()) {
-      $args['image'] = Aucor_Image::get([
+      $args['image'] = X_Image::get([
         'id'       => get_post_thumbnail_id(),
         'size'     => 'hero',
         'lazyload' => 'animated',

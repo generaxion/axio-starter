@@ -3,11 +3,11 @@
  * Component: Menu Social
  *
  * @example
- * Aucor_Menu_Social::render();
+ * X_Menu_Social::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Menu_Social extends Aucor_Component {
+class X_Menu_Social extends X_Component {
 
   public static function frontend($data) {
     ?>

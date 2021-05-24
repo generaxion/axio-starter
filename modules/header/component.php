@@ -3,11 +3,11 @@
  * Component: Header
  *
  * @example
- * Aucor_Header::render();
+ * X_Header::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Header extends Aucor_Component {
+class X_Header extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -21,11 +21,11 @@ class Aucor_Header extends Aucor_Component {
           </a>
         </div>
 
-        <?php Aucor_Menu_Toggle::render(); ?>
+        <?php X_Menu_Toggle::render(); ?>
 
         <div class="site-header__menus">
           <?php
-            Aucor_Menu_Additional::render([
+            X_Menu_Additional::render([
               'attr' => [
                 'class' => ['site-header__additional', 'desktop-menu']
               ]
@@ -33,7 +33,7 @@ class Aucor_Header extends Aucor_Component {
           ?>
 
           <?php
-            Aucor_Menu_Primary::render([
+            X_Menu_Primary::render([
               'attr' => [
                 'class' => ['site-header__main', 'desktop-menu']
               ]

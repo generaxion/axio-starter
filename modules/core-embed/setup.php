@@ -2,7 +2,7 @@
 /**
  * Setup: core/embed(s) block(s)
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

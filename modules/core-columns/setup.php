@@ -2,7 +2,7 @@
 /**
  * Setup: core/columns block
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

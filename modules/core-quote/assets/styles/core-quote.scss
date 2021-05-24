@@ -16,10 +16,7 @@
   padding-left: var(--spacing-m);
 
   p {
-    font-size: .875rem;
-    @include breakpoint($breakpoint-s) {
-      font-size: 1rem;
-    }
+    font-size: 1rem;
     @include breakpoint($breakpoint-m) {
       font-size: 1.125rem;
     }
@@ -30,7 +27,7 @@
   .wp-block-quote__citation {
     display: block;
     font-style: normal;
-    margin-top: var(--spacing-xs);
+    margin-top: .75rem;
     color: var(--color-text-light);
     font-size: .875rem;
     @include breakpoint($breakpoint-s) {

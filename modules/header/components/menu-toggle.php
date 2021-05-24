@@ -3,16 +3,16 @@
  * Component: Menu Toggle
  *
  * @example
- * Aucor_Menu_Toggle::render();
+ * X_Menu_Toggle::render();
  *
  * @example
- * Aucor_Menu_Toggle::render([
+ * X_Menu_Toggle::render([
  *   'label' => 'Open menu',
  * ]);
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Menu_Toggle extends Aucor_Component {
+class X_Menu_Toggle extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -20,8 +20,8 @@ class Aucor_Menu_Toggle extends Aucor_Component {
     <button <?php parent::render_attributes($data['attr']); ?>>
 
       <span class="menu-toggle__icon">
-        <?php Aucor_SVG::render(['name' => 'menu']); ?>
-        <?php Aucor_SVG::render(['name' => 'close']); ?>
+        <?php X_SVG::render(['name' => 'menu']); ?>
+        <?php X_SVG::render(['name' => 'close']); ?>
       </span>
 
       <?php if (!empty($data['label'])) : ?>

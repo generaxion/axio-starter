@@ -1,5 +1,5 @@
 /* ==========================================================================
- # Button block and Aucor_Button component
+ # Button block and X_Button component
 ========================================================================== */
 
 @import '../../../../assets/styles/utils.scss';
@@ -68,10 +68,43 @@
 /* Block, only back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block[data-type="acf/file"] {
+.block-editor [data-type="acf/file"] {
 
   .wp-block-acf-files a {
     pointer-events: none;
+  }
+
+  [data-name="files"] {
+    margin-top: .5rem;
+    & > .acf-label {
+      display: none;
+    }
+  }
+
+  [data-name="file"] {
+    .acf-label {
+      display: none;
+    }
+    .acf-file-uploader {
+      text-align: center;
+    }
+    .file-wrap {
+      text-align: left;
+    }
+  }
+
+  .acf-actions {
+    text-align: center;
+    .button {
+      background: transparent;
+      color: currentColor;
+      border-color: currentColor;
+      margin: .75rem auto;
+      opacity: .85;
+      &:hover, &:focus, &:active {
+        opacity: 1;
+      }
+    }
   }
 
 }

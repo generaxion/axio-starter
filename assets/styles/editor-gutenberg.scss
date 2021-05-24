@@ -18,6 +18,9 @@
 /* Elements
 ----------------------------------------------- */
 
+.wp-block {
+  @import "base/typography";
+}
 
 .block-editor {
 
@@ -31,7 +34,6 @@
 
   .wp-block {
     font-family: var(--font-default);
-    @import "base/typography";
     max-width: var(--width-m);
 
     &[data-align="wide"] {

@@ -23,7 +23,7 @@
       .gform_footer {
 
         .gform_button {
-          @include button;
+          @include button('solid');
         }
 
       }

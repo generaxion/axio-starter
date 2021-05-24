@@ -2,7 +2,7 @@
 /**
  * Setup: core/gallery block
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

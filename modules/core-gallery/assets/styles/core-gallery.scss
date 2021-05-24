@@ -15,13 +15,13 @@
 
   &.is-cropped .blocks-gallery-item {
     figcaption {
-      padding: var(--spacing-l) var(--spacing-xxs) var(--spacing-xxs);
+      padding: 3rem .5rem .5rem;
       position: absolute;
       bottom: 0;
       display: block;
       width: 100%;
       color: var(--color-white);
-      font-size: .875rem;
+      font-size: 1rem;
       background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0, 0));
     }
   }

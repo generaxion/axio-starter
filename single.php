@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package aucor_starter
+ * @package axio
  */
 
 get_header(); ?>
@@ -24,7 +24,6 @@ get_header(); ?>
         <div class="entry__content blocks">
           <?php the_content(); ?>
         </div>
-
 
         <?php if (has_action('theme_entry_footer')) : ?>
           <footer class="entry__footer">

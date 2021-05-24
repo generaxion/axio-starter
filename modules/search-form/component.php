@@ -3,11 +3,11 @@
  * Component: Search Form
  *
  * @example
- * Aucor_Search_Form::render();
+ * X_Search_Form::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Search_Form extends Aucor_Component {
+class X_Search_Form extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -29,7 +29,7 @@ class Aucor_Search_Form extends Aucor_Component {
       />
 
       <button type="submit" class="search-form__submit">
-        <?php Aucor_SVG::render(['name' => 'search']); ?>
+        <?php X_SVG::render(['name' => 'search']); ?>
         <span class="screen-reader-text"><?php echo $data['submit']; ?></span>
       </button>
 

@@ -3,13 +3,13 @@
  * Component: Image
  *
  * @example
- * Aucor_Image::render([
+ * X_Image::render([
  *  'id'   => get_post_thumbnail_id(),
  *  'size' => 'hero',
  * ]);
  */
 
-class Aucor_Image extends Aucor_Component {
+class X_Image extends X_Component {
 
   /**
    * Image markup
@@ -56,7 +56,7 @@ class Aucor_Image extends Aucor_Component {
       // check if its svg that is missing meta data
       $file = get_attached_file($args['id']);
       if (empty($file) || !strstr($file, '.svg')) {
-        return parent::error('Invalid attachment for Aucor_Image');
+        return parent::error('Invalid attachment for X_Image');
       }
 
     }

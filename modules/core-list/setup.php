@@ -2,7 +2,7 @@
 /**
  * Setup: core/list block
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

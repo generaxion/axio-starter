@@ -2,7 +2,7 @@
 /**
  * Setup: Share buttons
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -10,7 +10,7 @@
  */
 add_action('theme_entry_footer', function ($post_obj) {
 
-  Aucor_Share_Buttons::render();
+  X_Share_Buttons::render();
 
 }, 100, 1);
 

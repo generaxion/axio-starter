@@ -2,7 +2,7 @@
 /**
  * Setup ACF (Advanced Custom Fields Pro plugin)
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

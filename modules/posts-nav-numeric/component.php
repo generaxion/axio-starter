@@ -3,19 +3,19 @@
  * Component: Menu Toggle
  *
  * @example
- * Aucor_Posts_Nav_Numeric::render();
+ * X_Posts_Nav_Numeric::render();
  *
  * @example
- * Aucor_Posts_Nav_Numeric::render([
+ * X_Posts_Nav_Numeric::render([
  *   'wp_query'   => $custom_wp_query,
  *   'paged_var'  => 'custom_get_var',
  *   'label_next' => 'Next',
  *   'label_prev' => 'Previous',
  * ]);
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Posts_Nav_Numeric extends Aucor_Component {
+class X_Posts_Nav_Numeric extends X_Component {
 
   public static function frontend($data) {
     ?>
@@ -49,8 +49,8 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
       'attr'               => [],
       'wp_query'           => null,
       'paged_var'          => '',
-      'label_next'         => Aucor_SVG::get(['name' => 'caret-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Next') . '</span>',
-      'label_prev'         => Aucor_SVG::get(['name' => 'caret-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Previous') . '</span>',
+      'label_next'         => X_SVG::get(['name' => 'caret-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Next') . '</span>',
+      'label_prev'         => X_SVG::get(['name' => 'caret-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Previous') . '</span>',
 
       // internal
       'items'              => [],
@@ -229,7 +229,6 @@ class Aucor_Posts_Nav_Numeric extends Aucor_Component {
 
       $args['items'][$key]['attr'] = $attr;
       $args['items'][$key]['sub-attr'] = $sub_attr;
-
 
     }
 

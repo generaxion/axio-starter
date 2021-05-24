@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package aucor_starter
+ * @package axio
  */
 
 get_header(); ?>

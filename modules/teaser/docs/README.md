@@ -15,7 +15,7 @@ Teaser component creates teaser card of given post, page or any post-type which 
 Component can be called wherever wanted.
 Just add:
 ```php
-Aucor_Teaser::render([
+X_Teaser::render([
   'id'   => 123,
 ]);
 ```

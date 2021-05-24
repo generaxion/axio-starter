@@ -46,5 +46,5 @@ textarea {
 
 form button,
 input[type="submit"] {
-  @include button;
+  @include button('solid');
 }

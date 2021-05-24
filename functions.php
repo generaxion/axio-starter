@@ -10,7 +10,7 @@
  * `setup-`     configures existing settings and assets
  * `function-`  adds functions to be used in templates
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -18,6 +18,7 @@
  */
 require_once 'inc/_conf/register-assets.php';
 require_once 'inc/_conf/register-blocks.php';
+require_once 'inc/_conf/register-colors.php';
 require_once 'inc/_conf/register-image-sizes.php';
 require_once 'inc/_conf/register-localization.php';
 

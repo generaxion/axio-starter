@@ -5,7 +5,7 @@
  * Structure and required functionality for each component.
  * Every component should inherit this class.
  */
-abstract class Aucor_Component {
+abstract class X_Component {
 
   /**
    * Render component (echo HTML)

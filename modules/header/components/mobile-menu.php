@@ -3,21 +3,21 @@
  * Component: Mobile Menu
  *
  * @example
- * Aucor_Mobile_Menu::render();
+ * X_Mobile_Menu::render();
  *
- * @package aucor_starter
+ * @package axio
  */
-class Aucor_Mobile_Menu extends Aucor_Component {
+class X_Mobile_Menu extends X_Component {
 
   public static function frontend($data) {
     ?>
 
     <div <?php parent::render_attributes($data['attr']); ?>>
       <div class="mobile-menu__nav" role="dialog">
-        <?php Aucor_Menu_Toggle::render(); ?>
+        <?php X_Menu_Toggle::render(); ?>
         <div class="mobile-menu__nav__inner">
-          <?php Aucor_Menu_Primary::render(); ?>
-          <?php Aucor_Menu_Additional::render(); ?>
+          <?php X_Menu_Primary::render(); ?>
+          <?php X_Menu_Additional::render(); ?>
         </div>
       </div>
       <div class="mobile-menu__overlay" data-a11y-dialog-hide tabindex="-1"></div>

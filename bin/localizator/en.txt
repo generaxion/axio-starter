@@ -8,9 +8,8 @@ Accessibility: Skip to content      || Skip to content
 
 # Module: Button
 
-Button: Block name                 || Button
-Button: Type Primary               || Primary
-Button: New button instructions    || Click to edit...
+Button: Type Solid               || Solid
+Button: Type Outline             || Outline
 
 # Module: File
 

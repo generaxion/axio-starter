@@ -2,7 +2,7 @@
 /**
  * Setup: core/paragraph block
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

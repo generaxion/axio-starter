@@ -3,6 +3,7 @@
 ========================================================================== */
 
 'use strict';
+/* global fitvids, cssVars */
 
 /**
  * Init responsive videos

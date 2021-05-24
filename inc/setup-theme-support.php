@@ -2,7 +2,7 @@
 /**
  * Theme support registration
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**

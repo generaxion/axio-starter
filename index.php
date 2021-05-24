@@ -9,7 +9,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package aucor_starter
+ * @package axio
  */
 
 get_header(); ?>
@@ -24,13 +24,13 @@ get_header(); ?>
 
       <div class="teaser-container">
         <?php while (have_posts()) : the_post(); ?>
-          <?php if (class_exists('Aucor_Teaser')) : ?>
-            <?php Aucor_Teaser::render(['id' => get_the_ID()]); ?>
+          <?php if (class_exists('X_Teaser')) : ?>
+            <?php X_Teaser::render(['id' => get_the_ID()]); ?>
           <?php endif; ?>
         <?php endwhile; ?>
       </div>
 
-      <?php Aucor_Posts_Nav_Numeric::render(); ?>
+      <?php X_Posts_Nav_Numeric::render(); ?>
 
   </div><!-- #primary -->
 

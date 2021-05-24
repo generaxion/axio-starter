@@ -2,7 +2,7 @@
 /**
  * Editor configuration
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -14,15 +14,15 @@
  *
  * @return array TinyMCE settings
  */
-function aucor_starter_tinymce_formats($init) {
+function x_tinymce_formats($init) {
 
   // text formats
   $init['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4';
 
   // cache busting
-  $init['cache_suffix'] = aucor_starter_last_edited('css');
+  $init['cache_suffix'] = x_last_edited('css');
 
   return $init;
 
 }
-add_filter('tiny_mce_before_init', 'aucor_starter_tinymce_formats');
+add_filter('tiny_mce_before_init', 'x_tinymce_formats');

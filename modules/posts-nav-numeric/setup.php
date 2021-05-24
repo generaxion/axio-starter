@@ -2,9 +2,8 @@
 /**
  * Setup: Posts navigation numeric
  *
- * @package aucor_starter
+ * @package axio
  */
-
 
 /**
  * Localization

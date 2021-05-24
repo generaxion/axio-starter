@@ -19,8 +19,10 @@ const lightboxesInContent = () => {
       var formats = ['.jpg', '.png', '.jpeg', '.gif'];
       // check (3 first selectors) href to verify media link
       if (item.href) {
-        if (formats.some(el => item.href.includes(el))) {
-          item.classList.add('lightbox');
+        for (let j = 0; j < formats.length; j++) {
+          if (item.href.includes(formats[j])) {
+            item.classList.add('lightbox');
+          }
         }
         // check for figcaption (images and gutenberg gallery) and add it to a data attribute
         if (item.nextElementSibling) {
@@ -33,8 +35,10 @@ const lightboxesInContent = () => {
           }
         }
       } else if (item.parentNode.href) { // check (2 last selectors) href to verify media link
-        if (formats.some(el => item.parentNode.href.includes(el))) {
-          item.parentNode.classList.add('lightbox');
+        for (let j = 0; j < formats.length; j++) {
+          if (item.parentNode.href.includes(formats[j])) {
+            item.parentNode.classList.add('lightbox');
+          }
         }
       }
     }

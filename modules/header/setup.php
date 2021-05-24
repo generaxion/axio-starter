@@ -2,7 +2,7 @@
 /**
  * Setup: Header
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -10,7 +10,7 @@
  */
 add_action('theme_before_page', function () {
 
-  Aucor_Mobile_Menu::render();
+  X_Mobile_Menu::render();
 
 }, 100, 1);
 
@@ -19,7 +19,7 @@ add_action('theme_before_page', function () {
  */
 add_action('theme_header', function () {
 
-  Aucor_Header::render();
+  X_Header::render();
 
 }, 100, 1);
 
@@ -56,10 +56,10 @@ add_action('after_setup_theme', function() {
 /**
  * Dropdown caret for primary menu
  *
- * @param string  $item_output the menu item output
- * @param WP_Post $item menu item object
- * @param int     $depth depth of the menu
- * @param array   $args wp_nav_menu() arguments
+ * @param string    $item_output the menu item output
+ * @param WP_Post   $item menu item object
+ * @param int       $depth depth of the menu
+ * @param stdObject $args wp_nav_menu() arguments
  *
  * @return string menu item with possible description
  */
@@ -70,7 +70,9 @@ add_filter('walker_nav_menu_start_el', function ($item_output, $item, $depth, $a
       if ($value == 'menu-item-has-children') {
         // add caret button. not focusable as tab navigation is handeled without this button
         $item_output .= '<button class="menu-item__caret js-menu-caret">' .
-          Aucor_SVG::get(['name' => 'chevron-down']) .
+          X_SVG::get(['name' => 'chevron-down', 'attr' => ['class' => ['menu-item__caret__icon', 'menu-item__caret__icon--desktop', 'menu-item__caret__icon--arrow']]]) .
+          X_SVG::get(['name' => 'plus',         'attr' => ['class' => ['menu-item__caret__icon', 'menu-item__caret__icon--mobile', 'menu-item__caret__icon--open']]]) .
+          X_SVG::get(['name' => 'minus',        'attr' => ['class' => ['menu-item__caret__icon', 'menu-item__caret__icon--mobile', 'menu-item__caret__icon--close']]]) .
           '<span class="menu-item__caret__text-open">' . ask__('Menu: Open Sub-menu') . '</span>' .
           '<span class="menu-item__caret__text-close">' . ask__('Menu: Close Sub-menu') . '</span>' .
         '</button>';
@@ -97,7 +99,7 @@ add_filter('nav_menu_item_title', function ($title, $item, $args, $depth) {
 
   foreach ($item->classes as $value) {
     if (strpos($value, 'icon-') === 0) {
-      $svg = Aucor_SVG::get(['name' => str_replace('icon-', '', $value), 'attr' => ['class' => ['icon-from-class']]]);
+      $svg = X_SVG::get(['name' => str_replace('icon-', '', $value), 'attr' => ['class' => ['icon-from-class']]]);
       if (in_array('after-icon', $item->classes)) {
         $title = trim($title) . $svg;
       } else {

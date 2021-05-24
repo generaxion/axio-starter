@@ -2,7 +2,7 @@
 /**
  * Hardcoded IDs
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -12,7 +12,7 @@
  *
  * @return int harcoded id
  */
-function aucor_starter_get_hardcoded_id($key = '') {
+function x_get_hardcoded_id($key = '') {
 
   switch ($key) {
 

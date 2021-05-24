@@ -2,7 +2,7 @@
 /**
  * Register: Blocks
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -19,7 +19,6 @@
  *
  * @return array $allowed_block_types list of block names
  */
-
 add_filter('allowed_block_types', function ($allowed_block_types, $post) {
 
   // remove all existing blocks
@@ -28,6 +27,7 @@ add_filter('allowed_block_types', function ($allowed_block_types, $post) {
   // base blocks without styling
   $blocks[] = 'core/freeform';
   $blocks[] = 'core/shortcode';
+  $blocks[] = 'core/html';
   $blocks[] = 'core/block';
 
   // other blocks added from modules

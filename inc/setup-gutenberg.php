@@ -2,7 +2,7 @@
 /**
  * Setup Gutenberg
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
@@ -41,3 +41,20 @@ add_action('after_setup_theme', function() {
   add_theme_support('editor-color-palette', []);
 
 });
+
+/**
+ * Clean up content markup
+ *
+ * @param string $content the html markup of content
+ *
+ * @return string $content the html markup of content
+ */
+add_filter('the_content', function ($content) {
+
+  $content = str_replace('<p></p>', '', $content);
+  $content = str_replace('<p class="wp-block-paragraph"></p>', '', $content);
+  $content = str_replace('<p>&nbsp;</p>', '', $content);
+  $content = str_replace('<li></li>', '', $content);
+  return $content;
+
+}, 100);
