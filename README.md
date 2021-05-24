@@ -1,4 +1,4 @@
-# Axio by Generaxion (previously Aucor Starter)
+# Axio Starter (previously Aucor Starter)
 
 **🖥 For developer from developers:**
 
