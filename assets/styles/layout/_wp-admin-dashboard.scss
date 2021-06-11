@@ -1,0 +1,52 @@
+@import "../utils/variables-scss";
+
+/* Recently edited widget
+-------------------------------------------------- */
+
+#aucor_recent_dashboard_widget {
+  .inside {
+    padding: 0;
+    margin: 0;
+    font-size: .875rem;
+  }
+  li {
+    list-style-type: none;
+    padding: 0 0 .1rem;
+    display: flex;
+    flex-direction: row;
+  }
+  .aucor-recent-time {
+    color: $color-primary;
+    padding-right: 1.5rem;
+    min-width: 100px;
+  }
+  p {
+    color: $color-primary;
+    font-size: .875rem;
+  }
+  li {
+    @media(max-width: 420px) {
+      flex-wrap: wrap;
+    }
+  }
+  .aucor-recent-link {
+    @media(max-width: 420px) {
+      min-width: 250px;
+    }
+    a {
+      //color: var(--color-link);
+    }
+  }
+  .aucor-recent-section {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    h3 {
+      font-weight: var(--font-weight-bold);
+      color: $color-primary;
+    }
+  }
+  .aucor-recent-section:last-of-type {
+    border-bottom: 0;
+  }
+}
