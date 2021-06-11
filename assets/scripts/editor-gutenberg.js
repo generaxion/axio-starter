@@ -15,28 +15,29 @@ wp.hooks.addFilter(
 );
 
 /**
+ * SDM this causes reformat errors on blocks in wp-admin
  * Force default block classnames (ie. 'wp-block-list')
  */
-wp.hooks.addFilter(
-  'blocks.registerBlockType',
-  'x/filters',
-  (settings, name) => {
-
-    // skip block types without wrapper or have known issues
-    const skip_blocks = [
-      'core/html',
-      'core/shortcode',
-      'core/block',
-      'core/file',
-    ];
-    if (skip_blocks.indexOf(name) !== -1) {
-      return settings;
-    }
-
-    return lodash.assign({}, settings, {
-      supports: lodash.assign({}, settings.supports, {
-        className: true
-      }),
-    });
-  }
-);
+//wp.hooks.addFilter(
+//  'blocks.registerBlockType',
+//  'x/filters',
+//  (settings, name) => {
+//
+//    // skip block types without wrapper or have known issues
+//    const skip_blocks = [
+//      'core/html',
+//      'core/shortcode',
+//      'core/block',
+//      'core/file',
+//    ];
+//    if (skip_blocks.indexOf(name) !== -1) {
+//      return settings;
+//    }
+//
+//    return lodash.assign({}, settings, {
+//      supports: lodash.assign({}, settings.supports, {
+//        className: true
+//      }),
+//    });
+//  }
+//);

@@ -13,11 +13,20 @@
  * @package axio
  */
 
+/** SD */
+define( 'THEME_ABSPATH', __DIR__ );
+define( 'THEME_URI', get_stylesheet_directory_uri() );
+
+/** Inlcude all files who's directory names and file names do not start with _ */
+foreach ( glob( __DIR__ . "/inc/auto/*.php", GLOB_BRACE ) as $file ) {
+  if ( strpos( $file, '/_' ) < 1 ) require $file;
+}
+
 /**
  * Configuration
  */
 require_once 'inc/_conf/register-assets.php';
-require_once 'inc/_conf/register-blocks.php';
+//require_once 'inc/_conf/register-blocks.php';
 require_once 'inc/_conf/register-colors.php';
 require_once 'inc/_conf/register-image-sizes.php';
 require_once 'inc/_conf/register-localization.php';
@@ -45,12 +54,12 @@ require_once 'inc/setup-theme-support.php';
  *
  * You can disable a module by starting directory with underscore
  */
-foreach (glob(__DIR__ . '/modules/*', GLOB_ONLYDIR) as $dir) {
-  if (!strstr($dir, '/modules/_') && file_exists($dir . '/_.json')) {
-    $parts = json_decode(file_get_contents($dir . '/_.json'), true);
-    if (isset($parts['php'], $parts['php']['inc'])) {
-      foreach ($parts['php']['inc'] as $file) {
-        if (!strstr($file, '..')) {
+foreach ( glob( __DIR__ . '/modules/*', GLOB_ONLYDIR ) as $dir ) {
+  if ( ! strstr( $dir, '/modules/_' ) && file_exists( $dir . '/_.json' ) ) {
+    $parts = json_decode( file_get_contents( $dir . '/_.json' ), true );
+    if ( isset( $parts['php'], $parts['php']['inc'] ) ) {
+      foreach ( $parts['php']['inc'] as $file ) {
+        if ( ! strstr( $file, '..' ) ) {
           require_once $dir . '/' . $file;
         }
       }

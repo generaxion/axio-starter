@@ -2,20 +2,28 @@
  # Variables (CSS)
 ========================================================================== */
 
+// SDM
+@import "../utils";
+// Created via `gulp vars`. Defined in theme's manifest.js
+@import "variables-var";
+@import "variables-has";
+@import "variables-scss";
+
 :root {
 
   /* Basic colors
   ----------------------------------------------- */
 
-  --color-primary:          #367EF7;
-  --color-primary-dark:     #2c67cc;
-
-  --color-black:            hsl(0, 0%, 0%);
-  --color-grey-dark:        hsl(0, 0%, 30%);
-  --color-grey:             hsl(0, 0%, 70%);
-  --color-grey-light:       hsl(0, 0%, 85%);
-  --color-grey-extra-light: hsl(0, 0%, 93%);
-  --color-white:            hsl(0, 0%, 100%);
+  // from assets/manifest.js vars
+  //--color-primary:          #367EF7;
+  //--color-primary-dark:     #2c67cc;
+  //
+  //--color-black:            hsl(0, 0%, 0%);
+  //--color-grey-dark:        hsl(0, 0%, 30%);
+  //--color-grey:             hsl(0, 0%, 70%);
+  //--color-grey-light:       hsl(0, 0%, 85%);
+  //--color-grey-extra-light: hsl(0, 0%, 93%);
+  //--color-white:            hsl(0, 0%, 100%);
 
   /* Context colors
   ----------------------------------------------- */

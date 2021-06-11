@@ -5,73 +5,74 @@
 /**
  * Site config
  */
-const manifest     = require('./assets/manifest.js');
-const timestamps   = require('./assets/last-edited.json');
+const manifest = require('./assets/manifest.js');
+const timestamps = require('./assets/last-edited.json');
 
 /**
  * Global modules
  */
-const argv         = require('minimist')(process.argv.slice(2));
+const argv = require('minimist')(process.argv.slice(2));
 const autoprefixer = require('gulp-autoprefixer');
-const beeper       = require('beeper');
-const browsersync  = require('browser-sync').create();
-const concat       = require('gulp-concat');
-const flatten      = require('gulp-flatten');
-const gulp         = require('gulp');
-const del          = require('del');
-const gulpif       = require('gulp-if');
-const imagemin     = require('gulp-imagemin');
-const jshint       = require('gulp-jshint');
-const lazypipe     = require('lazypipe');
-const merge        = require('merge-stream');
-const cleancss     = require('gulp-clean-css');
-const plumber      = require('gulp-plumber');
-const sass         = require('gulp-sass');
-const sourcemaps   = require('gulp-sourcemaps');
-const uglify       = require('gulp-uglify');
-const rename       = require('gulp-rename');
-const svgstore     = require('gulp-svgstore');
-const file         = require('gulp-file');
-const babel        = require('gulp-babel');
+const beeper = require('beeper');
+const browsersync = require('browser-sync').create();
+const concat = require('gulp-concat');
+const flatten = require('gulp-flatten');
+const gulp = require('gulp');
+const del = require('del');
+const gulpif = require('gulp-if');
+const imagemin = require('gulp-imagemin');
+const jshint = require('gulp-jshint');
+const lazypipe = require('lazypipe');
+const merge = require('merge-stream');
+const cleancss = require('gulp-clean-css');
+const plumber = require('gulp-plumber');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
+const svgstore = require('gulp-svgstore');
+const file = require('gulp-file');
+const babel = require('gulp-babel');
 
-const fs           = require('fs');
-const path_module  = require('path');
+const fs = require('fs');
+const path_module = require('path');
+
 
 /**
  * Asset paths
  */
 const path = {
-  "base" : {
+  "base"   : {
     "source": "assets/",
-    "dist":   "dist/",
+    "dist"  : "dist/",
   },
-  "scripts" : {
+  "scripts": {
     "source": "assets/scripts/",
-    "dist":   "dist/scripts/",
+    "dist"  : "dist/scripts/",
   },
   "styles" : {
     "source": "assets/styles/",
-    "dist":   "dist/styles/",
+    "dist"  : "dist/styles/",
   },
-  "fonts" : {
+  "fonts"  : {
     "source": "assets/fonts/",
-    "dist":   "dist/fonts/",
+    "dist"  : "dist/fonts/",
   },
   "images" : {
     "source": "assets/images/",
-    "dist":   "dist/images/",
+    "dist"  : "dist/images/",
   },
   "sprite" : {
     "source": "assets/sprite/",
-    "dist":   "dist/sprite/",
+    "dist"  : "dist/sprite/",
   },
-  "favicon" : {
+  "favicon": {
     "source": "assets/favicon/",
-    "dist":   "dist/favicon/",
+    "dist"  : "dist/favicon/",
   },
-  "modules" : {
+  "modules": {
     "source": "modules/",
-  }
+  },
 };
 
 /**
@@ -79,13 +80,13 @@ const path = {
  */
 const enabled = {
   // disable source maps when `--production`
-  maps: !argv.production,
+  maps         : !argv.production,
   // fail styles task on error when `--production`
   failStyleTask: argv.production,
   // fail due to JSHint warnings only when `--production`
-  failJSHint: argv.production,
+  failJSHint   : argv.production,
   // strip debug statments from javascript when `--production`
-  stripJSDebug: argv.production
+  stripJSDebug : argv.production,
 };
 
 /**
@@ -98,9 +99,9 @@ const updateTimestamp = (stamp) => {
   return file(
     'last-edited.json',
     JSON.stringify(timestamps, null, 2),
-    {src: true}
+    {src: true},
   )
-  .pipe(gulp.dest('./assets'));
+    .pipe(gulp.dest('./assets'));
 };
 
 /**
@@ -108,11 +109,11 @@ const updateTimestamp = (stamp) => {
  */
 const getModules = () => {
   return fs.readdirSync(path.modules.source)
-    .filter(function(module) {
-      if (!module.includes("_", 0)) {
-        return fs.statSync(path_module.join('./modules/', module)).isDirectory();
-      }
-    });
+           .filter(function(module) {
+             if (!module.includes("_", 0)) {
+               return fs.statSync(path_module.join('./modules/', module)).isDirectory();
+             }
+           });
 }
 /**
  * getModuleJsons helper function for collecting all modules _.json files
@@ -134,7 +135,7 @@ var getModuleJsons = () => {
 
 const getAssets = () => {
   let manifest_json = {
-    'js': manifest.js(),
+    'js' : manifest.js(),
     'css': manifest.css(),
   }
 
@@ -179,13 +180,13 @@ var buildAssets = (buildFiles) => {
       buildFiles[buildFile][i] = path.base.source + buildFiles[buildFile][i];
     }*/
     result.push({
-      'name': buildFile,
+      'name' : buildFile,
       'globs': buildFiles[buildFile],
     });
   }
   return result;
 };
-var jsAssets  = buildAssets(getAssets().js);
+var jsAssets = buildAssets(getAssets().js);
 var cssAssets = buildAssets(getAssets().css);
 
 /**
@@ -199,7 +200,7 @@ var cssAssets = buildAssets(getAssets().css);
  */
 const cssTasks = (filename) => {
   return lazypipe()
-    // catch syntax errors (don't break pipe)
+  // catch syntax errors (don't break pipe)
     .pipe(function() {
       return gulpif(!enabled.failStyleTask, plumber());
     })
@@ -210,15 +211,15 @@ const cssTasks = (filename) => {
     // sass
     .pipe(function() {
       return gulpif('*.scss', sass({
-        outputStyle: 'nested', // libsass doesn't support expanded yet
-        precision: 8,
-        includePaths: ['.'],
-        errLogToConsole: !enabled.failStyleTask
+        outputStyle    : 'nested', // libsass doesn't support expanded yet
+        precision      : 8,
+        includePaths   : ['.'],
+        errLogToConsole: !enabled.failStyleTask,
       }));
     })
     // autoprefix
     .pipe(autoprefixer, {
-      "grid": "no-autoplace"
+      "grid": "no-autoplace",
     })
     // combine files
     .pipe(concat, filename)
@@ -227,7 +228,7 @@ const cssTasks = (filename) => {
     // build sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.write('.', {
-        sourceRoot: path.styles.source
+        sourceRoot: path.styles.source,
       }));
     })();
 };
@@ -245,7 +246,7 @@ const cssTasks = (filename) => {
 const jsTasks = (filename) => {
   updateTimestamp('js');
   return lazypipe()
-    // init sourcemaps
+  // init sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.init());
     })
@@ -253,11 +254,13 @@ const jsTasks = (filename) => {
     // transpile
     .pipe(function() {
       return babel({
-        presets: ["@babel/preset-env", "@babel/preset-react"],
-        overrides: [{
-          test: manifest.babelIgnores(),
-          sourceType: "script",
-        }],
+        presets  : ["@babel/preset-env", "@babel/preset-react"],
+        overrides: [
+          {
+            test      : manifest.babelIgnores(),
+            sourceType: "script",
+          },
+        ],
       });
     })
 
@@ -266,13 +269,13 @@ const jsTasks = (filename) => {
     // minify
     .pipe(uglify, {
       compress: {
-        'drop_debugger': enabled.stripJSDebug
-      }
+        'drop_debugger': enabled.stripJSDebug,
+      },
     })
     // build sourcemaps
     .pipe(function() {
       return gulpif(enabled.maps, sourcemaps.write('.', {
-        sourceRoot: path.scripts.source
+        sourceRoot: path.scripts.source,
       }));
     })();
 };
@@ -305,7 +308,7 @@ gulp.task('styles', () => {
     // merge
     merged.add(
       gulp.src(asset.globs, {base: 'styles'})
-        .pipe(cssTasksInstance)
+          .pipe(cssTasksInstance),
     );
   }
   return merged
@@ -332,7 +335,7 @@ gulp.task('scripts', () => {
     //merge
     merged.add(
       gulp.src(asset.globs, {base: 'scripts'})
-        .pipe(jsTasksInstance)
+          .pipe(jsTasksInstance),
     );
   }
   return merged
@@ -352,12 +355,12 @@ gulp.task('scripts', () => {
  */
 gulp.task('fonts', () => {
   return gulp.src([path.fonts.source + '**/*'])
-    // flatten directory structures
-    .pipe(flatten())
-    // send to /dist/fonts/
-    .pipe(gulp.dest(path.fonts.dist))
-    // browsersync result
-    .pipe(gulpif(!argv.q, browsersync.stream()));
+             // flatten directory structures
+             .pipe(flatten())
+             // send to /dist/fonts/
+             .pipe(gulp.dest(path.fonts.dist))
+             // browsersync result
+             .pipe(gulpif(!argv.q, browsersync.stream()));
 });
 
 /**
@@ -370,7 +373,7 @@ gulp.task('images', () => {
   // Gather all image sources to one array
   let image_sources = [
     path.images.source + '**/*',
-    path.modules.source + '**/images/*'
+    path.modules.source + '**/images/*',
   ];
 
   return gulp
@@ -379,9 +382,9 @@ gulp.task('images', () => {
     .pipe(
       imagemin({
         progressive: true,
-        interlaced: true,
-        svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}, {removeDimensions: true}]
-      })
+        interlaced : true,
+        svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}, {removeDimensions: true}],
+      }),
     )
 
     // send to /dist/images
@@ -408,7 +411,7 @@ gulp.task('svgstore', async () => {
   // Get names of icons in /assets/sprite/ directory for later name comparison
   await fs.promises.readdir(path.sprite.source).then(
     files => files.forEach(file => spriteSources.push(path.sprite.source + file)),
-    err => console.error({err})
+    err => console.error({err}),
   );
 
   // Add module sprites to spriteSources if icon with the same name is not found
@@ -419,7 +422,7 @@ gulp.task('svgstore', async () => {
   for (const module of dropIns) {
     await fs.promises.readdir(path.modules.source + module + '/assets/sprite').then(
       files => files.forEach(file => spriteSources.push(path.modules.source + module + '/assets/sprite/' + file)),
-      err => null // directory doesn't exist
+      err => null, // directory doesn't exist
     );
   }
 
@@ -440,26 +443,27 @@ gulp.task('svgstore', async () => {
   }
 
   return gulp.src(Object.keys(spriteFilenameReference))
-  // rename SVG IDs by "icon-filename"
-  .pipe(rename({prefix: 'icon-'}))
-  // optimize SVG
-  .pipe(imagemin([
-    imagemin.svgo({
-      plugins: [
-        { removeViewBox: false },
-        { collapseGroups: true },
-        { convertColors: {
-            currentColor: true
-          }
-        }
-      ]
-    })
-  ]))
-  // store SVG into sprite
-  .pipe(svgstore())
-  .pipe(gulp.dest(path.sprite.dist))
-  // browsersync result
-  .pipe(gulpif(!argv.q, browsersync.stream()));
+             // rename SVG IDs by "icon-filename"
+             .pipe(rename({prefix: 'icon-'}))
+             // optimize SVG
+             .pipe(imagemin([
+               imagemin.svgo({
+                 plugins: [
+                   {removeViewBox: false},
+                   {collapseGroups: true},
+                   {
+                     convertColors: {
+                       currentColor: true,
+                     },
+                   },
+                 ],
+               }),
+             ]))
+             // store SVG into sprite
+             .pipe(svgstore())
+             .pipe(gulp.dest(path.sprite.dist))
+             // browsersync result
+             .pipe(gulpif(!argv.q, browsersync.stream()));
 
 });
 
@@ -477,11 +481,11 @@ gulp.task('jshint', () => {
     }
   }
   return gulp.src([
-    'gulpfile.js'
+    'gulpfile.js',
   ].concat(allJS))
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
+             .pipe(jshint())
+             .pipe(jshint.reporter('jshint-stylish'))
+             .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
 });
 
 /**
@@ -491,18 +495,18 @@ gulp.task('jshint', () => {
  */
 gulp.task('favicon', () => {
   return gulp.src([path.favicon.source + '**/*'])
-    // optimize images
-    .pipe(imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [
-        {removeUnknownsAndDefaults: false},
-        {cleanupIDs: false},
-        {removeDimensions: true}
-      ]
-    }))
-    // send to /dist/favicon
-    .pipe(gulp.dest(path.favicon.dist));
+             // optimize images
+             .pipe(imagemin({
+               progressive: true,
+               interlaced : true,
+               svgoPlugins: [
+                 {removeUnknownsAndDefaults: false},
+                 {cleanupIDs: false},
+                 {removeDimensions: true},
+               ],
+             }))
+             // send to /dist/favicon
+             .pipe(gulp.dest(path.favicon.dist));
 });
 
 /**
@@ -529,37 +533,37 @@ gulp.task('watch', () => {
   if (!argv.q) {
     // browsersync changes unless in quiet mode
     browsersync.init({
-      files: [
+      files         : [
         '{inc,blocks,modules}/**/*.php',
-        '*.php'
+        '*.php',
       ],
-      proxy: manifest.devUrl(),
+      proxy         : manifest.devUrl(),
       snippetOptions: {
         whitelist: ['/wp-admin/admin-ajax.php'],
-        blacklist: ['/wp-admin/**']
+        blacklist: ['/wp-admin/**'],
       },
-      open: 'local'
+      open          : 'local',
     });
   }
 
   // watch these files
-  gulp.watch(path.styles.source   + '**/*', gulp.task('styles'));
-  gulp.watch(path.scripts.source  + '**/*', gulp.task('scripts'));
-  gulp.watch(path.fonts.source    + '**/*', gulp.task('fonts'));
-  gulp.watch(path.images.source   + '**/*', gulp.task('images'));
-  gulp.watch(path.sprite.source   +    '*', gulp.task('svgstore'));
-  gulp.watch(path.favicon.source  +    '*', gulp.task('favicon'));
+  gulp.watch(path.styles.source + '**/*', gulp.task('styles'));
+  gulp.watch(path.scripts.source + '**/*', gulp.task('scripts'));
+  gulp.watch(path.fonts.source + '**/*', gulp.task('fonts'));
+  gulp.watch(path.images.source + '**/*', gulp.task('images'));
+  gulp.watch(path.sprite.source + '*', gulp.task('svgstore'));
+  gulp.watch(path.favicon.source + '*', gulp.task('favicon'));
 
   // modules
-  gulp.watch(path.modules.source +           '**/*.scss', gulp.task('styles'));
-  gulp.watch(path.modules.source +       '**/*.js', gulp.task('scripts'));
-  gulp.watch(path.modules.source +    '**/images/*', gulp.task('images'));
-  gulp.watch(path.modules.source +     '**/sprite/*', gulp.task('svgstore'));
+  gulp.watch(path.modules.source + '**/*.scss', gulp.task('styles'));
+  gulp.watch(path.modules.source + '**/*.js', gulp.task('scripts'));
+  gulp.watch(path.modules.source + '**/images/*', gulp.task('images'));
+  gulp.watch(path.modules.source + '**/sprite/*', gulp.task('svgstore'));
 
   gulp.watch([
     'gulpfile.js',
     'assets/manifest.js',
-    path.modules.source + '*/_.json'
+    path.modules.source + '*/_.json',
   ], () => {
     console.error("\n⚠️  Congifuration modified. Restart gulp. ⚠️\n");
     beeper();
@@ -567,9 +571,9 @@ gulp.task('watch', () => {
   });
 
   gulp.watch([
-    path.modules.source + '*',
-  ],
-    gulp.task('default')
+      path.modules.source + '*',
+    ],
+    gulp.task('default'),
   )
 });
 
@@ -579,10 +583,9 @@ gulp.task('watch', () => {
  * `gulp build` - Run all the build tasks but don't clean up beforehand.
  * Generally you should be running `gulp` instead of `gulp build`.
  */
-
 gulp.task('build', gulp.series(
-  gulp.parallel('styles', 'scripts','jshint'),
-  gulp.parallel('fonts', 'images', 'svgstore', 'favicon')
+  gulp.parallel('styles', 'scripts', 'jshint'),
+  gulp.parallel('fonts', 'images', 'svgstore', 'favicon'),
 ));
 
 /**
@@ -591,3 +594,16 @@ gulp.task('build', gulp.series(
  * `gulp` - Run a complete build. To compile for production run `gulp --production`.
  */
 gulp.task('default', gulp.series('clean', 'build'));
+
+
+/**
+ * SD Gulp
+ */
+
+const {vars} = require('./gulpfiles/create-vars.js')
+exports.vars = vars
+
+const {fonts} = require('./gulpfiles/fonts.js')
+exports.fonts = fonts
+
+

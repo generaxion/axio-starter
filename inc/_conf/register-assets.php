@@ -12,109 +12,150 @@
 /**
  * Enqueue scripts and styles
  */
-add_action('wp_enqueue_scripts', function() {
+add_action( 'wp_enqueue_scripts', function() {
+
+  // This is compiled into hw-style SDM
+  wp_dequeue_style( 'wp-block-library' );
+  wp_dequeue_style( 'wp-block-library-theme' );
+  wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
 
   // main css
   wp_enqueue_style(
     'x-style',
     get_template_directory_uri() . '/dist/styles/main.css',
     [],
-    x_last_edited('css')
+    x_last_edited( 'css' )
   );
 
-    // background colors
-    if (function_exists('x_enqueue_color_variables')) {
-      wp_add_inline_style('x-style', x_enqueue_color_variables());
-    }
+  // background colors
+  if ( function_exists( 'x_enqueue_color_variables' ) ) {
+    wp_add_inline_style( 'x-style', x_enqueue_color_variables() );
+  }
 
   // main js
   wp_enqueue_script(
     'x-js',
     get_template_directory_uri() . '/dist/scripts/main.js',
     [],
-    x_last_edited('js'),
+    x_last_edited( 'js' ),
     true
   );
 
   // comments
-  if (is_singular() && comments_open() && get_option('thread_comments')) {
-    wp_enqueue_script('comment-reply');
+  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+    wp_enqueue_script( 'comment-reply' );
   }
 
   // wp-embed
-  wp_deregister_script('wp-embed');
+  wp_deregister_script( 'wp-embed' );
 
-});
+} );
 
 /**
  * Enqueue styles for Gutenberg Editor
  */
-add_action('enqueue_block_editor_assets', function() {
+add_action( 'enqueue_block_editor_assets', function() {
 
   // editor styles
   wp_enqueue_style(
     'x-editor-gutenberg-style',
     get_stylesheet_directory_uri() . '/dist/styles/editor-gutenberg.css',
     [],
-    x_last_edited('css')
+    x_last_edited( 'css' )
   );
 
   // custom colors
-  if (function_exists('x_enqueue_color_variables')) {
-    wp_add_inline_style('x-editor-gutenberg-style', x_enqueue_color_variables());
+  if ( function_exists( 'x_enqueue_color_variables' ) ) {
+    wp_add_inline_style( 'x-editor-gutenberg-style', x_enqueue_color_variables() );
   }
 
   // editor scripts
   wp_enqueue_script(
     'x-editor-gutenberg-scripts',
     get_stylesheet_directory_uri() . '/dist/scripts/editor-gutenberg.js',
-    ['wp-i18n', 'wp-blocks', 'wp-dom-ready'],
-    x_last_edited('js'),
+    [ 'wp-i18n', 'wp-blocks', 'wp-dom-ready' ],
+    x_last_edited( 'js' ),
     true
   );
 
-}, 10);
+}, 10 );
 
 /**
  * Enqueue scripts and styles for admin
  */
-add_action('admin_enqueue_scripts', function() {
+add_action( 'admin_enqueue_scripts', function() {
 
   // admin.css
   wp_enqueue_style(
     'x-admin-css',
     get_template_directory_uri() . '/dist/styles/admin.css',
     [],
-    x_last_edited('css')
+    x_last_edited( 'css' )
   );
 
-});
+} );
 
 /**
  * Enqueue styles for Classic Editor
  */
-add_action('admin_init', function() {
+add_action( 'admin_init', function() {
 
-  add_editor_style('dist/styles/editor-classic.css');
+  add_editor_style( 'dist/styles/editor-classic.css' );
 
-});
+} );
 
 /**
  * Append to <head>
  */
-add_action('wp_head', function() {
+add_action( 'wp_head', function() {
 
   // replace class no-js with js in html tag
   echo "<script>(function(d){d.className = d.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
 
+} );
+
+/**
+ * admin pages <head> SD
+ */
+add_action('admin_head', function() {
+  // Clean up dom for users
+  $current_user = wp_get_current_user();
+  if ($current_user->user_login != 'sunny') {
+    ?>
+    <style>
+      #wposes-settings-sub-nav {
+        display: none !important;
+      }
+    </style>
+    <?php
+  }
 });
+
+
+/**
+ * login page head SD
+ */
+add_action('login_head', function() {
+  // Display logo on login page
+  ?>
+  <style>
+    .login h1 a {
+      background: url('<?php echo get_stylesheet_directory_uri(); ?>/dist/images/logo.png') no-repeat center;
+      background-size: contain;
+      width: 100%;
+      height: 160px;
+    }
+  </style>
+  <?php
+});
+
 
 /**
  * Append to footer
  */
-add_action('wp_footer', function() {
+add_action( 'wp_footer', function() {
 
-});
+} );
 
 /**
  * Favicons
@@ -126,6 +167,7 @@ function x_favicons() {
   // echo get_stylesheet_directory_uri() . /dist/favicon/
 
 }
-add_action('wp_head',    'x_favicons');
-add_action('admin_head', 'x_favicons');
-add_action('login_head', 'x_favicons');
+
+add_action( 'wp_head', 'x_favicons' );
+add_action( 'admin_head', 'x_favicons' );
+add_action( 'login_head', 'x_favicons' );
