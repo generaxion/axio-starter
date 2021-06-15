@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "author",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "component.php",
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/style.scss"
+    ],
+    "editor-gutenberg.css": [
+      "assets/styles/style.scss"
+    ],
+    "admin.css": []
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}

@@ -1,0 +1,94 @@
+///* ==========================================================================
+// # Primary menu
+//========================================================================== */
+//@import '../../../../assets/styles/utils.scss';
+//
+//.menu-module ul {
+//
+//  /* Both navigations
+//  ----------------------------------------------- */
+//
+//  a {}
+//
+//  &, ul {
+//    @include list-reset;
+//  }
+//
+//  .sub-menu {
+//    flex-direction: column;
+//  }
+//
+//  .horizontal {
+//    > ul {
+//      display: flex;
+//      flex-direction: row;
+//      > li {
+//      }
+//    }
+//  }
+//
+//  /* Mobile navigation
+//  ----------------------------------------------- */
+//
+//  @include breakpoint($breakpoint-mobile-menu) {
+//    display: block;
+//
+//    // all <li>
+//    li {
+//
+//      // all <a>
+//      a {
+//        flex-grow: 1;
+//        text-decoration: none;
+//      }
+//
+//      & > span {
+//        display: flex;
+//      }
+//    }
+//
+//    // 1st level <li>
+//    & > li {
+//
+//      padding: .25rem 0;
+//
+//      // 1st level <a>
+//      & > span > a {
+//      }
+//    }
+//  }
+//
+//  /* Desktop navigation
+//  ----------------------------------------------- */
+//
+//  @include breakpoint($breakpoint-desktop-menu) {
+//
+//    display: flex;
+//    flex-wrap: wrap;
+//
+//    // all <li>
+//    li {
+//      & > span {
+//        width: 100%;
+//        display: flex;
+//      }
+//    }
+//
+//    // all <a>
+//    a {
+//      @include transition;
+//      text-decoration: none;
+//      flex-grow: 1;
+//      &:hover, &:focus, &:active {
+//      }
+//    }
+//
+//    // 1st level <li>
+//    & > li {
+//      position: relative;
+//      &:last-of-type {
+//      }
+//    }
+//
+//  }
+//}

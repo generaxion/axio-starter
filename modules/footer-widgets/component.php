@@ -4,32 +4,21 @@
  * Component: Footer
  *
  * @example
- * X_Footer::render();
+ * Aucor_Footer::render();
  *
- * @package axio
+ * @package hw
  */
-class X_Footer extends X_Component {
+class X_Footer_Widgets extends X_Component {
 
   public static function frontend( $data ) {
     ?>
     <footer <?php parent::render_attributes( $data['attr'] ); ?>>
 
       <div class="site-footer__container">
-
-        <div class="site-footer__branding">
-          <span class="site-footer__branding__title">
-                 &copy; <?php echo date( "Y" ) . ' ' . get_bloginfo( 'name', 'display' ) . '  All Rights Reserved.' ?>
-          </span>
-        </div>
-
-        <?php if ( class_exists( 'X_Menu_Social' ) ) : ?>
-          <div class="site-footer__social">
-            <?php X_Menu_Social::render(); ?>
-          </div>
-        <?php endif; ?>
-
+        <?php
+        dynamic_sidebar( 'footer' );
+        ?>
       </div>
-
 
     </footer>
     <?php
@@ -51,14 +40,12 @@ class X_Footer extends X_Component {
     $args['attr']['class'][] = 'site-footer';
 
     // id
-    $args['attr']['id'] = 'colophon';
+    $args['attr']['id'] = 'site-footer-widgets';
 
     // Schema.org
     $args['attr']['itemscope'] = null;
     $args['attr']['itemtype']  = 'https://schema.org/WPFooter';
 
     return $args;
-
   }
-
 }

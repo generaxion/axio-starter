@@ -1,0 +1,43 @@
+/* ==========================================================================
+ # Gallery block
+========================================================================== */
+@import '../../../../assets/styles/utils.scss';
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .footnotes,
+.blocks .footnotes {
+
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.footnote-link {
+  //background: var(--color-primary);
+  color: var(--color-secondary);
+  //font-weight: var(--font-weight-bold);
+  //font-family: var(--font-title);
+  text-decoration: none;
+  border: 1.6px solid var(--color-secondary);
+  border-radius: 20px;
+  min-width: 1.3rem;
+  min-height: 1.3rem;
+  display: inline-block;
+  text-align: center;
+  line-height: 1rem;
+}
+
+.blocks .footnotes {
+  //list-style: none;
+  //padding: 0;
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.editor-styles-wrapper .footnotes {
+
+}
