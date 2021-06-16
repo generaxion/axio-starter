@@ -1,0 +1,23 @@
+{
+	"meta": {
+		"title": "core-buttons",
+		"version": "1.0.0"
+	},
+	"php": {
+		"inc": [
+			"setup.php"
+		]
+	},
+	"css": {
+		"main.css": [
+			"assets/styles/core-buttons.scss"
+		],
+		"editor-gutenberg.css": [
+			"assets/styles/core-buttons.scss"
+		]
+	},
+	"js": {
+		"main.js": [],
+		"editor-gutenberg.js": []
+	}
+}

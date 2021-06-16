@@ -1,0 +1,23 @@
+{
+	"meta": {
+		"title": "core-group",
+		"version": "1.0.0"
+	},
+	"php": {
+		"inc": [
+			"setup.php"
+		]
+	},
+	"css": {
+		"main.css": [
+			"assets/styles/core-group.scss"
+		],
+		"editor-gutenberg.css": [
+			"assets/styles/core-group.scss"
+		]
+	},
+	"js": {
+		"main.js": [],
+		"editor-gutenberg.js": []
+	}
+}

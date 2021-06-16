@@ -1,0 +1,30 @@
+/* ==========================================================================
+ # Heading block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/*
+block-library/style.min.css
+C:\www\node_modules\@wordpress\block-library\src
+*/
+// @import "../../../../../../../../node_modules/@wordpress/block-library/src/group/style.scss";
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/group'] > *,
+.blocks .wp-block-group {
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.blocks .wp-block-group {
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/group'] > * {
+}

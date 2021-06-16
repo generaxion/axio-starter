@@ -1,0 +1,39 @@
+/* ==========================================================================
+ # Heading block
+========================================================================== */
+@import '../../../../assets/styles/utils.scss';
+
+/*
+block-library/style.min.css
+C:\www\node_modules\@wordpress\block-library\src
+*/
+// @import "../../../../../../../../node_modules/@wordpress/block-library/src/block-cover/style.scss";
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/cover'] > *,
+.blocks .wp-block-cover {
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.blocks .wp-block-cover {
+
+	width: initial; // fix full width wp bug
+
+	&.is-first-block {
+		margin-top: 0
+	}
+	&.is-last-block {
+		margin-bottom: 0;
+	}
+
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/cover'] > * {
+}

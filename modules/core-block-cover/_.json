@@ -1,0 +1,23 @@
+{
+	"meta": {
+		"title": "core-block-cover",
+		"version": "1.0.0"
+	},
+	"php": {
+		"inc": [
+			"setup.php"
+		]
+	},
+	"css": {
+		"main.css": [
+			"assets/styles/core-block-cover.scss"
+		],
+		"editor-gutenberg.css": [
+			"assets/styles/core-block-cover.scss"
+		]
+	},
+	"js": {
+		"main.js": [],
+		"editor-gutenberg.js": []
+	}
+}

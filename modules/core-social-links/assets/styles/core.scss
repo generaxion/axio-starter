@@ -1,0 +1,32 @@
+/* ==========================================================================
+ # Heading block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/*
+block-library/style.min.css
+C:\www\node_modules\@wordpress\block-library\src
+*/
+// @import '../../../../../../../../node_modules/@wordpress/block-library/src/social-links/style.scss';
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/social-links'] > *,
+.blocks .wp-block-social-links {
+  .wp-block-social-link {
+  }
+}
+
+/* Only front-end
+----------------------------------------------- */
+
+.blocks .wp-block-social-links {
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/social-links'] > * {
+}

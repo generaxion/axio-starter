@@ -1,0 +1,39 @@
+/* ==========================================================================
+ # Heading block
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/*
+block-library/style.min.css?ver=5.8-beta1
+C:\www\node_modules\@wordpress\block-library\src
+*/
+// @import '../../../../../../../../node_modules/@wordpress/block-library/src/button/style.scss';
+// @import '../../../../../../../../node_modules/@wordpress/block-library/src/buttons/style.scss';
+
+/* Front-end and back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/buttons'] > *,
+.blocks {
+  .wp-block-buttons {
+    .wp-block-button {
+      .wp-block-button__link {
+      }
+    }
+  }
+  .wp-block-button__link {
+    @include button('solid');
+  }
+}
+/* Only front-end
+----------------------------------------------- */
+
+.blocks .wp-block-buttons {
+}
+
+/* Only back-end
+----------------------------------------------- */
+
+.block-editor .wp-block[data-type='core/buttons'] > * {
+}

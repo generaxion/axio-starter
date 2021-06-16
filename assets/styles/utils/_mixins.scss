@@ -71,49 +71,57 @@
 }
 
 /* Headings
+10px = 0.625rem
+12px = 0.75rem
+14px = 0.875rem
+16px = 1rem (base)
+18px = 1.125rem
+20px = 1.25rem
+24px = 1.5rem
+30px = 1.875rem
+32px = 2rem
 ----------------------------------------------- */
 
 @mixin heading($size: m) {
 
+	font-family: var(--font-title);
+  font-weight: var(--font-weight-bold);
+	$scale: 1;
+
   @if ($size == xl) {
 
-    font-size: 2rem;
+    font-size: 2rem * $scale;
     @include breakpoint($breakpoint-s) {
-      font-size: 2.5rem;
+      font-size: 2.5rem * $scale;
     }
-    font-weight: var(--font-weight-bold);
     line-height: 1.125;
 
   } @else if ($size == l) {
 
-    font-size: 1.5rem;
+    font-size: 1.5rem * $scale;
     @include breakpoint($breakpoint-s) {
-      font-size: 2rem;
+      font-size: 2rem * $scale;
     }
-    font-weight: var(--font-weight-bold);
     line-height: 1.333333;
 
   } @else if ($size == s) {
 
-    font-size: 1rem;
+    font-size: 1rem * $scale;
     @include breakpoint($breakpoint-s) {
-      font-size: 1.25rem;
+      font-size: 1.25rem * $scale;
     }
-    font-weight: var(--font-weight-bold);
 
   } @else if ($size == xs) {
 
-    font-size: 1rem;
-    font-weight: var(--font-weight-bold);
+    font-size: 1rem * $scale;
     line-height: 1.5;
 
   } @else {
 
-    font-size: 1.125rem;
+    font-size: 1.125rem * $scale;
     @include breakpoint($breakpoint-s) {
-      font-size: 1.5rem;
+      font-size: 1.5rem * $scale;
     }
-    font-weight: var(--font-weight-bold);
     line-height: 1.5;
 
   }
