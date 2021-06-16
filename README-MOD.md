@@ -6,62 +6,51 @@ axio-starter-6.0.0
 - https://github.com/generaxion/axio-starter
 - https://github.com/aucor/aucor-core
 
+## Helpful links
+- Icons - https://thenounproject.com/search/?q=basket
+- Favicons - https://realfavicongenerator.net/
+
 ## Clone
 
 Clone my Axio Starter Fork  
 (assuming I can keep mod branch up to date with axio-starter master )
 
 ```bash
+cd wp-content/themes/
 git clone https://github.com/kauaicreative/axio-starter.git
 git git branch -av
 git switch mod
 ```
 
-### or
-
-Clone Axio Starter  
-Clone Axio Starter Custom  
-(And overwrite files from axio-starter-custom)
-
-```bash
-cd wp-content
-
-git clone https://github.com/generaxion/axio-starter.git themes
-git clone https://github.com/aucor/aucor-core.git mu-plugin 
-
-git clone https://github.com/kauaicreative/axio-starter-custom.git
-
-cp -R axio-starter-custom/axio-starter/* themes/axio-starter -Force
-cp -R axio-starter-custom/mu-plugins/* mu-plugins -Force
-```
-
 Create new git https://github.com/new
 
 ```bash
-mv themes/axio-starter themes/SITE
-cd themes/SITE
+$sitename = "SITE_NAME"
+mv themes/axio-starter themes/$sitename
+cd themes/$sitename
 
-rm -rf .git # Linux
-rm -r -Force .git # Powershell
+rm -r -Force .git
 
 git init
 git add .
 git commit -m "axio"
 git branch -M main
-git remote add origin https://github.com/kauaicreative/SITE.git
+git remote add origin https://github.com/kauaicreative/$sitename.git
 git push -u origin main
 ```
 
 
-Install
+Install via bash
 ```bash
-bash # must be completed from WSL 
+bash 
 sh bin/setup.sh
 sh bin/localizator.sh
-# exit WSL
+```
 
+Edit `assets/manifest.js`
+```bash
 npm i
-gulp vars
+gulp vars # depreciated 
 gulp fonts
 gulp 
 
@@ -72,7 +61,7 @@ Rename (hide) or delete
 - modules/_button, _gravity-forms, _media-text
 - inc/auto/_hide?
 
-Edit
+Edit logo dimensions
 - modules/header/component.php
 
 ```bash
