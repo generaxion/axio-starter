@@ -35,15 +35,13 @@
  ./assets/styles/utils/_variables-has.css
  ./inc/editor-color-palette.php
  */
-
+const tinycolor = require("tinycolor2");
 const fs = require('fs');
-
 const manifest = require('../assets/manifest.js');
+
 let config = {
   'vars': manifest.vars(),
 }
-
-// todo: we could do custom font sizes here as well
 
 exports.vars = () => {
   if (!config.vars) {
@@ -54,7 +52,9 @@ exports.vars = () => {
   let scss_file = './assets/styles/utils/_variables-scss.scss';
   let var_file = './assets/styles/utils/_variables-var.css';
   let has_file = './assets/styles/utils/_variables-has.css'
-  let themeSupport_file = './inc/auto/editor-color-palette.php'
+  let themeSupportColor_file = './inc/auto/theme-support-color.php'
+  let themeSupportText_file = './inc/auto/theme-support-text.php'
+  let x_background_colors_file = './inc/auto/x-background-colors.php'
   let scssColors = ''
   let hasBackground = ''
   let hasColor = ''
@@ -62,6 +62,7 @@ exports.vars = () => {
   let varData = ''
   let themeSupportColor = ''
   let themeSupportSize = ''
+  let x_background_colors = ''
 
   if (config.vars.colors) {
     console.log("Vars - create colors:")
@@ -70,6 +71,7 @@ exports.vars = () => {
       let color = config.vars.colors[i].replace('$', '').replace(';', '').split(':')
       let key = color[0]
       let val = color[1]
+      let tcolor = tinycolor(val)
       let styles = `background:${val}; color:white; display:block;`;
 
       console.log(`%c\t🎨 ${key} = ${val}`, styles);
@@ -90,11 +92,26 @@ exports.vars = () => {
     'slug' => '${key}', 
     'color' => '${val}', 
   ],`;
+
+      x_background_colors += `
+	'${key}' => [
+		'label'   => __( '${key.charAt(0).toUpperCase() + key.slice(1)}' ),
+		'color'   => '${val}',
+		'is_dark' => ${tcolor.isDark()},
+	],`;
+
     }
+
 
     themeSupportColor = `add_theme_support( 'editor-color-palette', [${themeSupportColor}
 ]);
 `
+
+    x_background_colors = `add_filter( 'x_background_colors', function( $colors = [] ) {
+	return array_merge( $colors, [ ${x_background_colors} ] );
+} );
+`
+
   }
 
   if (config.vars.sizes) {
@@ -136,7 +153,11 @@ ${hasBackground}
 ${hasColor}
 ${hasSize}`
 
-  let themeSupport = `<?php\n// ${comment}\n${themeSupportColor}\n${themeSupportSize}\n`
+  themeSupportColor = `<?php\n// ${comment}\n${themeSupportColor}\n`
+
+  themeSupportSize = `<?php\n// ${comment}\n${themeSupportSize}\n`
+
+  x_background_colors = `<?php\n// ${comment}\n${x_background_colors}\n`
 
   varData = `:root {\n${varData}}`
 
@@ -151,8 +172,14 @@ ${hasSize}`
   console.log(`\t${has_file}`);
   fs.writeFileSync(has_file, hasData);
 
-  console.log(`\t${themeSupport_file}`);
-  fs.writeFileSync(themeSupport_file, themeSupport);
+  //console.log(`\t${themeSupportColor_file}`);
+  //fs.writeFileSync(themeSupportColor_file, themeSupportColor);
+
+  console.log(`\t${themeSupportText_file}`);
+  fs.writeFileSync(themeSupportText_file, themeSupportSize);
+
+  console.log(`\t${x_background_colors_file}`);
+  fs.writeFileSync(x_background_colors_file, x_background_colors);
 
   return Promise.resolve();
 }

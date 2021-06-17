@@ -26,7 +26,7 @@ foreach ( glob( __DIR__ . "/inc/auto/*.php", GLOB_BRACE ) as $file ) {
  * Configuration
  */
 require_once 'inc/_conf/register-assets.php';
-//require_once 'inc/_conf/register-blocks.php';
+require_once 'inc/_conf/register-blocks.php';
 require_once 'inc/_conf/register-colors.php';
 require_once 'inc/_conf/register-image-sizes.php';
 require_once 'inc/_conf/register-localization.php';
