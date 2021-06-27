@@ -1,6 +1,7 @@
 /* ==========================================================================
  # Blocks
 ========================================================================== */
+@import "../utils";
 
 /* Only front-end
 ----------------------------------------------- */
@@ -14,9 +15,8 @@
   & > :first-child,
   & > .is-first-block {
     @include spacing-l(margin-top);
-    .has-no-hero-background & {
-      @include spacing-m(margin-top);
-    }
+		// sdm should this be moved to module?
+		.has-no-hero-background & {@include spacing-m(margin-top);}
   }
 
   & > :last-child,
@@ -25,6 +25,8 @@
   }
 
   // each block takes care of its own width
+	// sdm - all __inner-container blocks. e.g. .wp-block-cover__inner-container, .wp-block-group__inner-container
+	[class*='__inner-container'] > *,
   & > *,
   .inner-blocks > *,
   .block-editor-block-list__layout > * {
@@ -32,16 +34,22 @@
     margin-left:  auto;
     margin-right: auto;
     max-width: var(--width-content-m);
+		//sdm
+		&.is-style-subheading {@include negative-spacing(margin-top);}
   }
 
   .alignfull {
     @include alignfull;
     @include spacing-l(margin-top, margin-bottom);
+		//sdm
+		&.is-style-subheading {@include negative-spacing-l(margin-top);}
   }
 
   .alignwide {
     @include alignwide;
     @include spacing-m(margin-top, margin-bottom);
+		//sdm
+		&.is-style-subheading {@include negative-spacing-m(margin-top);}
     &.is-first-block {
       @include spacing-l(margin-top);
     }
@@ -67,5 +75,10 @@
       margin-right: auto;
     }
   }
+
+	// sdm - clearfix so margin-bottom is respected withing container not it's parent
+	[class*='__inner-container'] {
+		display: flow-root;
+	}
 
 }

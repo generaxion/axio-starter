@@ -13,7 +13,7 @@
  * @package axio
  */
 
-/** SD */
+// SD
 define( 'THEME_ABSPATH', __DIR__ );
 define( 'THEME_URI', get_stylesheet_directory_uri() );
 

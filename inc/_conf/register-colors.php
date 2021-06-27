@@ -5,31 +5,30 @@
  * @package axio
  */
 
-add_filter('x_background_colors', function ($colors = []) {
-
-  return array_merge($colors, [
-
-    'default' => [
-      'label'   => __('Default'),
-      'color'   => 'transparent',
-      'is_dark' => false,
-    ],
-
-    'light' => [
-      'label'   => __('Light'),
-      'color'   => 'hsl(0, 0%, 95%)',
-      'is_dark' => false,
-    ],
-
-    // 'dark' => [
-    //   'label'   => __('Dark'),
-    //   'color'   => 'hsl(0, 0%, 5%)',
-    //   'is_dark' => true,
-    // ],
-
-  ]);
-
-});
+//add_filter( 'x_background_colors', function( $colors = [] ) {
+//
+//	return array_merge( $colors, [
+//
+//		'default' => [
+//			'label'   => __('Default'),
+//			'color'   => 'transparent',
+//			'is_dark' => false,
+//    ],
+//
+//		'light' => [
+//			'label'   => __('Light'),
+//			'color'   => 'hsl(0, 0%, 95%)',
+//			'is_dark' => false,
+//		],
+//
+//		// 'dark' => [
+//		//   'label'   => __('Dark'),
+//		//   'color'   => 'hsl(0, 0%, 5%)',
+//		//   'is_dark' => true,
+//		// ],
+//
+//	] );
+//} );
 
 /**
  * Enqueue inline color varaibles

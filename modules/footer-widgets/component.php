@@ -14,7 +14,7 @@ class X_Footer_Widgets extends X_Component {
     ?>
     <footer <?php parent::render_attributes( $data['attr'] ); ?>>
 
-      <div class="site-footer__container">
+      <div class="site-footer__container blocks">
         <?php
         dynamic_sidebar( 'footer' );
         ?>

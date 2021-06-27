@@ -3,6 +3,50 @@
 ========================================================================== */
 @import '../../../../assets/styles/utils.scss';
 
-.site-footer {
+#site-footer-widgets {
+	padding: var(--spacing-l) 0 0;
 
+	.widget_block {
+		p:first-child {margin-top: 0;}
+		p:last-child {margin-bottom: 0;}
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	ul {
+		@include list-reset;
+	}
+
+	li {
+		padding: 0 0 var(--spacing-xxs) 0;
+	}
+
+	.widget_nav_menu {
+		ul {
+			@include list-reset;
+		}
+	}
+
+	.site-footer__container {
+		flex-direction: column;
+
+		& > * {
+			margin: var(--spacing-m) 0;
+		}
+	}
+
+	@include breakpoint($breakpoint-l) {
+		.site-footer__container {
+			flex-direction: row;
+		}
+		.widget {
+			max-width: 33.33vw;
+			margin-right: var(--spacing-l);
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
 }

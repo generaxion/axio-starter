@@ -23,7 +23,9 @@ const tagFirstAndLastBlock = () => {
     }
   }
 
-  let innerBlocks = document.querySelectorAll('.inner-blocks');
+  // sdm
+  let innerBlocks = document.querySelectorAll("[class*='__inner-container'], .inner-blocks");
+  //let innerBlocks = document.querySelectorAll('.inner-blocks');
   if (innerBlocks.length) {
     for (let i = 0; i < innerBlocks.length; i++) {
       for (let j = 0; j < innerBlocks[i].childNodes.length; j++) {

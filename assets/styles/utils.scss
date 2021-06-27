@@ -1,6 +1,20 @@
 /* Utils
 ----------------------------------------------- */
 
-@import "../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss";
-@import "utils/env";
-@import "utils/mixins";
+/*
+SDM
+Source block style-min.css
+C:\www\node_modules\@wordpress/base-styles
+mixins, sass vars, etc..
+required after wp_dequeue_style('wp-block-library');
+override
+*/
+@import '../../../../../../node_modules/@wordpress/base-styles/breakpoints';
+$break-small: 720px;
+@import '../../../../../../node_modules/@wordpress/base-styles/variables';
+$white: #fff;
+@import '../../../../../../node_modules/@wordpress/base-styles/mixins';
+
+@import '../../node_modules/breakpoint-sass/stylesheets/_breakpoint.scss';
+@import 'utils/env';
+@import 'utils/mixins';

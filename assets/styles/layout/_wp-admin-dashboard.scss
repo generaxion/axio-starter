@@ -16,12 +16,10 @@
     flex-direction: row;
   }
   .aucor-recent-time {
-    color: $color-primary;
     padding-right: 1.5rem;
     min-width: 100px;
   }
   p {
-    color: $color-primary;
     font-size: .875rem;
   }
   li {
@@ -43,7 +41,6 @@
     border-bottom: 1px solid #eee;
     h3 {
       font-weight: var(--font-weight-bold);
-      color: $color-primary;
     }
   }
   .aucor-recent-section:last-of-type {

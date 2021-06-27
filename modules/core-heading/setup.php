@@ -6,6 +6,16 @@
  */
 
 /**
+ * New styles
+ */
+add_action( 'init', function() {
+	register_block_style( 'core/heading', [
+		'name'  => 'subheading',
+		'label' => 'Subheading',
+	] );
+} );
+
+/**
  * Allow block
  */
 add_filter('allowed_block_types', function($blocks, $post) {

@@ -2,34 +2,34 @@
 /**
  * Default template for pages.
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link    https://codex.wordpress.org/Template_Hierarchy
  *
  * @package axio
  */
 
 get_header(); ?>
 
-  <?php
-    if (has_action('theme_hero')) {
-      do_action('theme_hero');
-    }
-  ?>
+<?php
+if ( has_action( 'theme_hero' ) ) {
+  do_action( 'theme_hero' );
+}
+?>
 
   <div id="primary" class="primary primary--page">
 
-      <?php while (have_posts()) : the_post(); ?>
+    <?php while ( have_posts() ) : the_post(); ?>
 
-        <article id="post-<?php the_ID(); ?>" <?php post_class('entry entry--page'); ?>>
+      <article id="post-<?php the_ID(); ?>" <?php post_class( 'entry entry--page' ); ?>>
 
-          <div class="entry__content blocks">
+        <div class="entry__content blocks">
 
-            <?php the_content(); ?>
+          <?php the_content(); ?>
 
-          </div>
+        </div>
 
-        </article>
+      </article>
 
-      <?php endwhile; ?>
+    <?php endwhile; ?>
 
   </div><!-- #primary -->
 

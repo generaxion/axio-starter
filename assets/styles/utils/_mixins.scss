@@ -10,7 +10,7 @@
   @include button-reset;
   @include transition;
   border: 0;
-  border-radius: 5rem;
+  border-radius: var(--border-radius) !important;
   display: inline-block;
   position: relative;
   font-size: 1rem;

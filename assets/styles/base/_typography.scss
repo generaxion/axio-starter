@@ -73,7 +73,9 @@ ul, ol {
 
 a {
   color: var(--color-link);
-  &:hover, &:active, &:focus {}
+	&:hover, &:active, &:focus {
+		color: var(--color-primary-dark);
+	}
 }
 
 /* Accessibility

@@ -1,6 +1,6 @@
 {
 	"meta": {
-		"title": "core",
+		"title": "social-links",
 		"version": "1.0.0"
 	},
 	"php": {
@@ -10,10 +10,10 @@
 	},
 	"css": {
 		"main.css": [
-			"assets/styles/core.scss"
+			"assets/styles/style.scss"
 		],
 		"editor-gutenberg.css": [
-			"assets/styles/core.scss"
+			"assets/styles/style.scss"
 		]
 	},
 	"js": {

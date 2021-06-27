@@ -17,7 +17,7 @@ function processFonts() {
   if (!config) return Promise.resolve();
 
   return new GetGoogleFonts().download(config, {
-    outputDir  : './dist/fonts/',
+		outputDir  : './assets/fonts/',
     overwriting: true,
     verbose    : true,
     path       : './',

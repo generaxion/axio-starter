@@ -166,6 +166,9 @@ function x_favicons() {
 
   // echo get_stylesheet_directory_uri() . /dist/favicon/
 
+	?>
+	<link href='<?php echo THEME_URI ?>/dist/fonts/fonts.css' rel='stylesheet'>
+	<?php
 }
 
 add_action( 'wp_head', 'x_favicons' );

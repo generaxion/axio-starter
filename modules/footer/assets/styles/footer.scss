@@ -4,22 +4,27 @@
 
 @import '../../../../assets/styles/utils.scss';
 
-:root {
-  --color-footer:       var(--color-white);
-  --color-footer-bg:    var(--color-black);
-}
-
 .site-footer {
-  background: var(--color-footer-bg);
+	background: var(--color-black);
   padding: 2rem 0;
+
+	h2, h3, h4, h5, h6, p, span, li, a {
+		color: var(--color-grey-light);
+	}
+
+	.strong a, b, strong {
+		color: #fff;
+		font-weight: bold;
+	}
+
+	.site-footer__branding {
+		//font-size: .875rem;
+	}
 
   &__container {
     @include wrap;
     display: flex;
     justify-content: space-between;
-    h2, h3, h4, h5, h6, p, span, li, a {
-      color: var(--color-footer);
-    }
   }
 
 }

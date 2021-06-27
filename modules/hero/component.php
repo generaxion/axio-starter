@@ -65,10 +65,10 @@ class X_Hero extends X_Component {
     $args['attr']['class'][] = 'hero';
 
     // title
-    $args['title'] = (is_singular()) ? get_the_title() : self::get_the_archive_title();
+		if ( ! $args['title'] ) $args['title'] = ( is_singular() ) ? get_the_title() : self::get_the_archive_title();
 
     // description
-    $args['description'] = (is_singular()) ? get_post_meta(get_the_ID(), 'lead', true) : get_the_archive_description();
+		if ( ! $args['description'] ) $args['description'] = ( is_singular() ) ? get_post_meta( get_the_ID(), 'lead', true ) : get_the_archive_description();
 
     // meta
     if (is_singular() && get_post_type() === 'post') {
@@ -101,8 +101,6 @@ class X_Hero extends X_Component {
    */
   public static function get_the_archive_title() {
 
-    $title = ask__('Title: Archives');
-
     if (is_tag() || is_category() || is_tax()) {
       $title = single_term_title('', false);
     } elseif (is_home()) {
@@ -111,6 +109,10 @@ class X_Hero extends X_Component {
       $title = ask__('Title: Search') . ': <span class="search-terms">' . get_search_query() . '</span>';
     } elseif (is_404()) {
       $title = ask__('Title: 404');
+		} elseif ( is_archive() ) {
+			$title = ask__( 'Title: Archives' );
+		} else {
+			$title = get_the_title();
     }
 
     return $title;

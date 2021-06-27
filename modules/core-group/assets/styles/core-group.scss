@@ -15,6 +15,20 @@ C:\www\node_modules\@wordpress\block-library\src
 
 .block-editor .wp-block[data-type='core/group'] > *,
 .blocks .wp-block-group {
+
+	//@include child-margin-reset;
+
+	&.is-first-block {
+		margin-top: 0
+	}
+	&.is-last-block {
+		margin-bottom: 0;
+	}
+
+	&.has-black-background-color {
+		color: var(--color-primary);
+	}
+
 }
 
 /* Only front-end
