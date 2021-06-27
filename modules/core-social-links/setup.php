@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Setup: core/heading block
+ * Setup: core/social-links block
  *
  * @package axio
  */
