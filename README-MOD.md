@@ -18,7 +18,7 @@ Clone my Axio Starter Fork
 ```bash
 cd wp-content/themes/
 git clone https://github.com/kauaicreative/axio-starter.git
-git git branch -av
+git branch -av
 git switch mod
 ```
 
