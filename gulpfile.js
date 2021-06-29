@@ -358,7 +358,6 @@ gulp.task('scripts', () => {
  */
 gulp.task('fonts', async () => {
 
-	await del(path.fonts.dist);
 	await del(path.fonts.source);
 
 	await processFonts();
