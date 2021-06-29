@@ -608,5 +608,4 @@ gulp.task('default', gulp.series('clean', 'build'));
 /**
  * SD Gulp
  */
-//exports.vars = vars
-
+exports.vars = vars
