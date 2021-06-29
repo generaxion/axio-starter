@@ -10,9 +10,10 @@
 
 	h2, h3, h4, h5, h6, p, span, li, a {
 		color: var(--color-grey-light);
+		margin-top: 0;
 	}
 
-	.strong a, b, strong {
+	.strong, strong, b, a {
 		color: #fff;
 		font-weight: bold;
 	}
