@@ -1,0 +1,12 @@
+:root {
+/* Created via `gulp vars`. Defined in theme's manifest.js */
+	--color-primary: #fe0700;
+	--color-primary-dark: #a00700;
+	--color-secondary: #d08a4e;
+	--color-black: #000;
+	--color-grey-dark: #333;
+	--color-grey: #777;
+	--color-grey-light: #bbb;
+	--color-grey-extra-light: #eee;
+	--color-white: #fff;
+}

@@ -12,18 +12,18 @@ const manifest = require('../assets/manifest.js');
  */
 let config = manifest.fonts();
 
-function processFonts() {
+async function processFonts() {
 
-  if (!config) return Promise.resolve();
+	if (!config) return Promise.resolve();
 
-  return new GetGoogleFonts().download(config, {
+	return new GetGoogleFonts().download(config, {
 		outputDir  : './assets/fonts/',
-    overwriting: true,
-    verbose    : true,
-    path       : './',
-  }).catch((e) => {
-    console.log(e)
-  })
+		overwriting: true,
+		verbose    : true,
+		path       : './',
+	}).catch((e) => {
+		console.log(e)
+	})
 }
 
-exports.fonts = processFonts;
+exports.processFonts = processFonts;
