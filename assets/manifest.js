@@ -31,6 +31,7 @@ module.exports = {
 
   /**
    * SDM
+	 * https://fonts.google.com/
    */
   fonts: () => "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap",
 
