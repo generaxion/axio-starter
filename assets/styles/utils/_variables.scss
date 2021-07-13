@@ -1,7 +1,6 @@
 /* ==========================================================================
  # Variables (CSS)
 ========================================================================== */
-
 // SDM
 @import "../utils";
 // Created via `gulp vars`. Defined in theme's manifest.js
@@ -37,58 +36,58 @@
 	// --h2: calc(var(--h3) * var(--ratio));
 	// --h1: calc(var(--h2) * var(--ratio));
 
-  /* Basic colors
-  ----------------------------------------------- */
+	/* Basic colors
+	----------------------------------------------- */
 
-  // from assets/manifest.js vars
-  //--color-primary:          #367EF7;
-  //--color-primary-dark:     #2c67cc;
-  //
-  //--color-black:            hsl(0, 0%, 0%);
-  //--color-grey-dark:        hsl(0, 0%, 30%);
-  //--color-grey:             hsl(0, 0%, 70%);
-  //--color-grey-light:       hsl(0, 0%, 85%);
-  //--color-grey-extra-light: hsl(0, 0%, 93%);
-  //--color-white:            hsl(0, 0%, 100%);
+	// from assets/manifest.js vars
+	//--color-primary:          #367EF7;
+	//--color-primary-dark:     #2c67cc;
+	//
+	//--color-black:            hsl(0, 0%, 0%);
+	//--color-grey-dark:        hsl(0, 0%, 30%);
+	//--color-grey:             hsl(0, 0%, 70%);
+	//--color-grey-light:       hsl(0, 0%, 85%);
+	//--color-grey-extra-light: hsl(0, 0%, 93%);
+	//--color-white:            hsl(0, 0%, 100%);
 
-  /* Context colors
-  ----------------------------------------------- */
+	/* Context colors
+	----------------------------------------------- */
 
-  --color-text:             hsl(0, 0%, 15%);
-  --color-text-light:       hsl(0, 0%, 52.5%);
+	--color-text: hsl(0, 0%, 15%);
+	--color-text-light: hsl(0, 0%, 52.5%);
 
-  --color-link:             var(--color-primary);
-  --color-border:           var(--color-grey-light);
+	--color-link: var(--color-primary);
+	--color-border: var(--color-grey-light);
 
-  --color-success:          #98C93C;
-  --color-error:            #D95757;
+	--color-success: #98C93C;
+	--color-error: #D95757;
 
-  /* Typography
-  ----------------------------------------------- */
+	/* Typography
+	----------------------------------------------- */
 
-  --font-weight-heavy:  900;
-  --font-weight-bold:   700;
-  --font-weight-normal: 400;
-  --font-weight-light:  300;
+	--font-weight-heavy: 900;
+	--font-weight-bold: 700;
+	--font-weight-normal: 400;
+	--font-weight-light: 300;
 
-  --font-default: "Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  --font-title: var(--font-default);
+	--font-default: "Helvetica Neue", "Helvetica", Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+	--font-title: var(--font-default);
 
-  /* Spacing
-  ----------------------------------------------- */
+	/* Spacing
+	----------------------------------------------- */
 
-  --spacing-xl:   6rem;
-  --spacing-l:    3rem;
-  --spacing-m:    1.5rem;
-  --spacing-s:    1rem;
-  --spacing-xs:   .75rem;
-  --spacing-xxs:  .5rem;
+	--spacing-xl: 6rem;
+	--spacing-l: 3rem;
+	--spacing-m: 1.5rem;
+	--spacing-s: 1rem;
+	--spacing-xs: .75rem;
+	--spacing-xxs: .5rem;
 
-  --width-xl:     90rem; // 1440
-  --width-l:      76rem; // 1216
-  --width-m:      50rem; // 800
-  --width-s:      40rem; // 640
+	--width-xl: 90rem; // 1440
+	--width-l: 76rem; // 1216
+	--width-m: 50rem; // 800
+	--width-s: 40rem; // 640
 
-  --width-content-m: var(--width-m);
+	--width-content-m: var(--width-m);
 
 }
