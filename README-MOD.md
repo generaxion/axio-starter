@@ -21,6 +21,7 @@ git clone https://github.com/kauaicreative/axio-starter.git
 cd axio-starter
 git branch -av
 git switch mod
+cd ..
 ```
 
 Create new git https://github.com/new
