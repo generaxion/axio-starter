@@ -16,7 +16,7 @@ Clone my Axio Starter Fork
 (assuming I can keep mod branch up to date with axio-starter master )
 
 ```bash
-cd wp-content/themes
+cd themes
 git clone https://github.com/kauaicreative/axio-starter.git
 cd axio-starter
 git branch -av
@@ -28,8 +28,8 @@ Create new git https://github.com/new
 
 ```bash
 $sitename = "SITE_NAME"
-mv themes/axio-starter themes/$sitename
-cd themes/$sitename
+mv axio-starter $sitename
+cd $sitename
 
 rm -r -Force .git
 
