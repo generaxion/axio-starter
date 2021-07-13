@@ -42,7 +42,8 @@ git push -u origin main
 ```
 
 
-Install via bash
+Install via bash. Clone from Ubuntu not Windows. Or change the line endings of the setup.sh file to LF (Linux)
+todo: do previous commands via bash?
 ```bash
 bash 
 sh bin/setup.sh
