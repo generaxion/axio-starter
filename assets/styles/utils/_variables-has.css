@@ -1,4 +1,4 @@
-/* Created via `gulp vars`. Defined in theme's manifest.js */ 
+/* Created via `gulp colors`. Defined in theme's manifest.js */ 
 .has-primary-background-color {background-color: var(--color-primary)}
 .has-primary-dark-background-color {background-color: var(--color-primary-dark)}
 .has-secondary-background-color {background-color: var(--color-secondary)}

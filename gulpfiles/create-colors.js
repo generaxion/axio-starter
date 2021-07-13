@@ -1,29 +1,22 @@
 /**
- * `gulp vars` automates the creation of editor-color-palette theme_support php file
+ * `gulp colors` automates the creation of editor-color-palette theme_support php file
  * and related scss and css files all from the manifest.js gulp configuration file.
  * V1.0
 
  *
- * Add to gulpfile.js
- *
- const {vars} = require('./gulpfiles/create-vars.js')
- exports.vars = vars
-
- *
  * Add config to manafest.js
  *
- vars: () => {
+ colors: () => {
     return {
-      "colors": [
-        "primary:#053b49",
-        "accent:#14a79d",
-        "tertiary:#d64947",
-        "black:#000",
-        "grey-dark:#053B49",
-        "grey:#707070",
-        "grey-light:#E3E3E3",
-        "white:#fff",
-      ],
+			"primary"         : {color: "#fe0700"},
+			"primary-dark"    : {color: "#a00700"},
+			"secondary"       : {color: "#d08a4e"},
+			"black"           : {color: "#000"},
+			"grey-dark"       : {color: "#333"},
+			"grey"            : {color: "#777"},
+			"grey-light"      : {color: "#bbb"},
+			"grey-extra-light": {color: "#eee"},
+			"white"           : {color: "#fff"},
     }
   },
 
@@ -37,21 +30,21 @@
  */
 
 const manifest = require('../assets/manifest.js');
-if (!manifest || typeof manifest.vars !== "function") return;
+if (!manifest || typeof manifest.colors !== "function") return;
 
 const tinycolor = require("tinycolor2");
 const fs = require('fs');
 
 let config = {
-	'vars': manifest.vars(),
+	'colors': manifest.colors(),
 }
 
-exports.vars = () => {
-	if (!config.vars) {
-		console.log('No vars found in manifest!');
+exports.colors = () => {
+	if (!config.colors) {
+		console.log('No colors found in manifest!');
 		return Promise.resolve();
 	}
-	let comment = "Created via `gulp vars`. Defined in theme's manifest.js"
+	let comment = "Created via `gulp colors`. Defined in theme's manifest.js"
 	let scss_file = './assets/styles/utils/_variables-scss.scss';
 	let var_file = './assets/styles/utils/_variables-var.css';
 	let has_file = './assets/styles/utils/_variables-has.css'
@@ -67,40 +60,37 @@ exports.vars = () => {
 	let themeSupportSize = ''
 	let x_background_colors = ''
 
-	if (config.vars.colors) {
-		console.log("Vars - create colors:")
+	if (config.colors) {
+		console.log("Create colors:")
 
-		for (let i in config.vars.colors) {
-			let color = config.vars.colors[i].replace('$', '').replace(';', '').split(':')
-			let key = color[0]
-			let val = color[1]
-			let tcolor = tinycolor(val)
-			let styles = `background:${val}; color:white; display:block;`;
+		for (const obj of config.colors) {
+			let slug = obj.slug
+			let color = obj.color
+			let name = obj.name
+			let dark = obj.dark
+			let tcolor = tinycolor(color)
+			let styles = `background:${color}; color:white; display:block;`;
 
-			console.log(`%c\t🎨 ${key} = ${val}`, styles);
+			console.log(`%c\t🎨 ${slug} = ${color}`, styles);
 
-			scssColors += `$color-${key}: ${val};\n`;
+			scssColors += `$color-${slug}: ${color};\n`;
 
-			// hex
-			//dataScss2 += `.has-${key}-background-color {background-color: ${val};}\n`;
-			//dataScss3 += `.has-${key}-color {color: ${val};}\n`;
-			//--vars
-			hasBackground += `.has-${key}-background-color {background-color: var(--color-${key})}\n`;
-			hasColor += `.has-${key}-color {color: var(--color-${key})}\n`;
+			hasBackground += `.has-${slug}-background-color {background-color: var(--color-${slug})}\n`;
+			hasColor += `.has-${slug}-color {color: var(--color-${slug})}\n`;
 
-			varData += `\t--color-${key}: ${val};\n`;
+			varData += `\t--color-${slug}: ${color};\n`;
 
 			themeSupportColor += `
-  [ 'name' => '${key.charAt(0).toUpperCase() + key.slice(1)}', 
-    'slug' => '${key}', 
-    'color' => '${val}', 
+  [ 'name' => '${name ?? slug.charAt(0).toUpperCase() + slug.slice(1)}', 
+    'slug' => '${slug}', 
+    'color' => '${color}', 
   ],`;
 
 			x_background_colors += `
-	'${key}' => [
-		'label'   => __( '${key.charAt(0).toUpperCase() + key.slice(1)}' ),
-		'color'   => '${val}',
-		'is_dark' => ${tcolor.isDark()},
+	'${slug}' => [
+		'label'   => __( '${name ?? slug.charAt(0).toUpperCase() + slug.slice(1)}' ),
+		'color'   => '${color}',
+		'is_dark' => ${dark ?? tcolor.isDark()},
 	],`;
 
 		}
@@ -117,13 +107,13 @@ exports.vars = () => {
 
 	}
 
-	if (config.vars.sizes) {
-		console.log("Vars - create sizes:")
+	if (config.sizes) {
+		console.log("Sizes - create sizes:")
 
 		varData += `\n`
 
-		for (let i in config.vars.sizes) {
-			let size = config.vars.sizes[i].split(':')
+		for (let i in config.sizes) {
+			let size = config.sizes[i].split(':')
 			let key = size[0]
 			let val = size[1]
 
@@ -164,7 +154,7 @@ ${hasSize}`
 
 	varData = `:root {\n${varData}}`
 
-	console.log('Vars - write Files');
+	console.log('Colors - write Files');
 
 	console.log(`\t${scss_file}`);
 	fs.writeFileSync(scss_file, scssColors);

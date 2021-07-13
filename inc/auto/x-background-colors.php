@@ -1,5 +1,5 @@
 <?php
-// Created via `gulp vars`. Defined in theme's manifest.js
+// Created via `gulp colors`. Defined in theme's manifest.js
 add_filter( 'x_background_colors', function( $colors = [] ) {
 	return array_merge( $colors, [ 
 	'primary' => [
@@ -8,7 +8,7 @@ add_filter( 'x_background_colors', function( $colors = [] ) {
 		'is_dark' => true,
 	],
 	'primary-dark' => [
-		'label'   => __( 'Primary-dark' ),
+		'label'   => __( 'Primary Dark' ),
 		'color'   => '#a00700',
 		'is_dark' => true,
 	],
@@ -23,7 +23,7 @@ add_filter( 'x_background_colors', function( $colors = [] ) {
 		'is_dark' => true,
 	],
 	'grey-dark' => [
-		'label'   => __( 'Grey-dark' ),
+		'label'   => __( 'Dark Grey' ),
 		'color'   => '#333',
 		'is_dark' => true,
 	],
@@ -33,12 +33,12 @@ add_filter( 'x_background_colors', function( $colors = [] ) {
 		'is_dark' => true,
 	],
 	'grey-light' => [
-		'label'   => __( 'Grey-light' ),
+		'label'   => __( 'Light Grey' ),
 		'color'   => '#bbb',
 		'is_dark' => false,
 	],
 	'grey-extra-light' => [
-		'label'   => __( 'Grey-extra-light' ),
+		'label'   => __( 'Extra Light Grey' ),
 		'color'   => '#eee',
 		'is_dark' => false,
 	],

@@ -38,7 +38,8 @@ const fs = require('fs');
 const path_module = require('path');
 
 const {processFonts} = require('./gulpfiles/fonts.js')
-const {vars} = require('./gulpfiles/create-vars.js')
+//const {vars} = require('./gulpfiles/create-vars.js')
+const {colors} = require('./gulpfiles/create-colors.js')
 
 
 /**
@@ -592,7 +593,8 @@ gulp.task('watch', () => {
  * Generally you should be running `gulp` instead of `gulp build`.
  */
 gulp.task('build', gulp.series(
-	gulp.parallel(vars),
+	//gulp.parallel(vars),
+	gulp.parallel(colors),
 	gulp.parallel('styles', 'scripts', 'jshint'),
 	gulp.parallel('fonts', 'images', 'svgstore', 'favicon'),
 ));
@@ -608,4 +610,5 @@ gulp.task('default', gulp.series('clean', 'build'));
 /**
  * SD Gulp
  */
-exports.vars = vars
+//exports.vars = vars
+exports.colors = colors
