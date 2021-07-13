@@ -1,0 +1,92 @@
+os: linux
+dist: trusty
+
+language: php
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+  slack:
+    secure: g0cerLT21QyE+Xu6mV2nLZJ/HdBHwvA8QDq6JK4KxceOYRouR8yf4YtKNKd+3e71dnDUYJMlQ+smpi7B4e9f2nkW30xVabyN4VXETbRCCNNoGsxtb4W7Jx/dk2s1PZEdPu0l5nmW5UWi+FVXtWmZgVL1CRmmIhTme99pcmaV0BPtML5xXO0i3PnCTfiph+j6O8hFXTgNZJ1FonIr7PLphjzFBz0/5oFnWrmyLGiS8QWWoDe7Kcyq6hwWzKv8nERUcHVHgLbLYYjhP3TbiIExgd9aZ20qTB8aHrnJcyOw6tbwEskhvlbfGDvQ5RCFsaDswfehW15sro6SDIwKDj/GZYKvZVlpdct8a6XNl7DnnzrI+hQKkpakc41QDPei7IF0ztWTYv108G7U0EFMdwuhkEW6/HHUHxDvr8xEunhIm1OGzb4X4AVDMaA/zrz4EZbZZ91jLR7kw26AxqD0kAqFf2aN69eT4xgH28EIcxiPzs/pljgtfp0Tan3eaj1YP1dG4l4EqH5aAlQ2vGEpRWkK6gq7J2SdgeqYtSGZZsOugrrWSlfJs1r3p4fh7xns+GRf6UcQ3ZwY4+Ik+xXKbtL+tBjL3HwqDC5Gf0+dE9Nq7PpDSCNIxJMIW6n6bLg0foVEEFWFQK5viiJAGeYpyCDuDCQ3W02aOGWSjH52ATe8IKI=
+
+branches:
+  only:
+    - /.*/
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+jobs:
+  include:
+    - php: 7.4
+      env: WP_TRAVISCI=phpcs
+    - php: 7.4
+      env: WP_VERSION=latest
+    - php: 7.4
+      env: WP_VERSION=5.4
+    - php: 7.4
+      env: WP_VERSION=5.3
+    - php: 7.3
+      env: WP_VERSION=latest
+    - php: 7.3
+      env: WP_VERSION=5.4
+    - php: 7.3
+      env: WP_VERSION=5.3
+    - php: 7.3
+      env: WP_VERSION=5.2
+    - php: 7.3
+      env: WP_VERSION=5.1
+    - php: 7.3
+      env: WP_VERSION=5.0
+    - php: 7.2
+      env: WP_VERSION=latest
+    - php: 7.2
+      env: WP_VERSION=5.4
+    - php: 7.2
+      env: WP_VERSION=5.3
+    - php: 7.2
+      env: WP_VERSION=5.2
+    - php: 7.2
+      env: WP_VERSION=5.1
+    - php: 7.2
+      env: WP_VERSION=5.0
+    - php: 7.2
+      env: WP_VERSION=4.9
+
+before_script:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - |
+    # Remove Xdebug for a huge performance increase:
+    if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
+      phpenv config-rm xdebug.ini
+    else
+      echo "xdebug.ini does not exist"
+    fi
+  - |
+    # Install WP test environment
+    if [[ ! -z "$WP_VERSION" ]] ; then
+      bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+    fi
+  - |
+    # Install PHPUnit (version depending on WP version, older cores are incompatible with PHPUnit 7)
+    if [[ "$WP_VERSION" == "5.0" || "$WP_VERSION" == "4.9" ]] ; then
+      composer global require "phpunit/phpunit:^6"
+    else
+      composer global require "phpunit/phpunit:^7"
+    fi
+  - |
+    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
+      composer global require "squizlabs/php_codesniffer:^3"
+    fi
+
+script:
+  - |
+    if [[ ! -z "$WP_VERSION" ]] ; then
+      phpunit
+    fi
+  - |
+    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
+      phpcs --extensions=php --ignore=*/vendor/*
+    fi

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	>
+	<testsuites>
+		<testsuite name="features">
+			<directory prefix="test-" suffix=".php">./tests/admin/</directory>
+      <directory prefix="test-" suffix=".php">./tests/classic-editor/</directory>
+      <directory prefix="test-" suffix=".php">./tests/dashboard/</directory>
+      <directory prefix="test-" suffix=".php">./tests/debug/</directory>
+      <directory prefix="test-" suffix=".php">./tests/frontend/</directory>
+      <directory prefix="test-" suffix=".php">./tests/localization/</directory>
+      <directory prefix="test-" suffix=".php">./tests/plugins/</directory>
+      <directory prefix="test-" suffix=".php">./tests/security/</directory>
+      <directory prefix="test-" suffix=".php">./tests/speed/</directory>
+		</testsuite>
+	</testsuites>
+  <filter>
+    <whitelist>
+      <directory suffix=".php">./features/</directory>
+       <file>helpers.php</file>
+    </whitelist>
+  </filter>
+</phpunit>

@@ -1,0 +1,30 @@
+# Version control and temp files
+*~
+.DS_Store
+.svn
+.cvs
+.git
+.listing
+*.bak
+*.swp
+*.tmp
+
+bower_components
+node_modules
+.sass-cache
+
+# Log and database files
+*.sql
+*.log
+
+# known large file types
+*.zip
+*.tar
+*.tgz
+*.gz
+
+# Files through Composer
+vendor
+
+# PHPUnit code coverage
+coverage

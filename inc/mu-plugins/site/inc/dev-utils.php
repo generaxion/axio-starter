@@ -17,6 +17,32 @@ if ( ! class_exists( 'SD_Debug' ) ) {
 			touch( get_stylesheet_directory() . '\temp.php' );
 		} );
 	}
+
+	if ( ! function_exists( 'd2' ) ) {
+
+		function d2( $obj = '', $args = [ 'print' => true, ] ) {
+			if ( WP_DEBUG ) {
+
+				// Query Monitor
+				if ( class_exists( 'QM_Plugin' ) ) {
+					do_action( 'qm/debug', $obj );
+				}
+				else {
+					$obj = '<pre style="position: absolute; z-index: 9999999999999; background:#000;color:#fff; padding:40px;">' .
+					       preg_replace( '(\d+\s=>)', "", var_export( $obj, true ) ) .
+					       '</pre>';
+
+					if ( isset( $args['print'] ) ) echo $obj;
+				}
+
+				return $obj;
+			}
+
+			return '';
+		}
+	}
+
+
 	if ( ! function_exists( 'd' ) ) {
 		/**
 		 * Example
@@ -28,44 +54,23 @@ if ( ! class_exists( 'SD_Debug' ) ) {
 		 *
 		 * @return  mixed
 		 */
-		function d(
-			$obj,
-			$args = [
-				'qm'       => true,
-				'print'    => true,
-				'var'      => false,
-				'position' => 'relative'
-			]
-		) {
+		function d( $obj = '', $args = [ 'print' => true, ] ) {
 			if ( WP_DEBUG ) {
+				?>
+				<div style="position:sticky; z-index: 9999999999999; background:rgba(230,230,230,0.94);color:#000; padding:40px;"> <?php
+				highlight_string( "<?php " . var_export( $obj, true ) . " ?>" );
+				$obj = '<script>document.getElementsByTagName("code")[0].getElementsByTagName("span")[1].remove() ;document.getElementsByTagName("code")[0].getElementsByTagName("span")[document.getElementsByTagName("code")[0].getElementsByTagName("span").length - 1].remove() ; </script>';
+				?></div><?php
 
-				// Query Monitor
-				if ( class_exists( 'QM_Plugin' ) ) {
-					do_action( 'qm/debug', $obj );
-				} else {
-					if ( $args['var'] ) {
-						$obj = '<pre style="position: absolute; z-index: 9999999999999; background:#000;color:#fff; padding:40px;">' .
-						       preg_replace( '(\d+\s=>)', "", var_export( $obj, true ) ) .
-						       '</pre>';
-					} else {
-						?>
-						<div style="position:initial; z-index: 9999999999999; background:rgba(230,230,230,0.94);color:#000; padding:40px;"> <?php
-						highlight_string( "<?php " . var_export( $obj, true ) . " ?>" );
-						$obj = '<script>document.getElementsByTagName("code")[0].getElementsByTagName("span")[1].remove() ;document.getElementsByTagName("code")[0].getElementsByTagName("span")[document.getElementsByTagName("code")[0].getElementsByTagName("span").length - 1].remove() ; </script>';
-						?></div><?php
-					}
-					if ( $args['print'] ) {
-						echo $obj;
-					}
-				}
+				if ( isset( $args['print'] ) ) echo $obj;
 
 				return $obj;
 			}
 
 			return '';
-
 		}
 	}
+
 
 	if ( ! function_exists( 'dd' ) ) {
 		/**

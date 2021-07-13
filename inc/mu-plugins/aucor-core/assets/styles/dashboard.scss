@@ -1,0 +1,60 @@
+/* 1. Variables
+-------------------------------------------------- */
+
+$pink: #C82986;
+$white: #fff;
+$blue: #42a0d9;
+$blue-dark: #293942;
+$dark: #293942;
+
+/* Recently edited widget
+-------------------------------------------------- */
+
+#aucor_recent_dashboard_widget {
+  .inside {
+    padding: 0;
+    margin: 0;
+    font-size: .875rem;
+  }
+  li {
+    display: block;
+    list-style-type: none;
+    padding: 0 0 .1rem;
+    display: flex;
+    flex-direction: row;
+  }
+  .aucor-recent-time {
+    color: #72777c;
+    padding-right: 1.5rem;
+    min-width: 100px;
+  }
+  p {
+    color: #72777c;
+    font-size: .875rem;
+  }
+  li {
+    @media(max-width: 420px) {
+      flex-wrap: wrap;
+    }
+  }
+  .aucor-recent-link {
+    @media(max-width: 420px) {
+      min-width: 250px;
+    }
+    a {
+      color: $blue;
+    }
+  }
+  .aucor-recent-section {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    h3 {
+      font-weight: 500;
+      color: $dark;
+    }
+  }
+  .aucor-recent-section:last-of-type {
+    border-bottom: 0;
+  }
+}
