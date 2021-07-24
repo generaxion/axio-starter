@@ -13,17 +13,17 @@ module.exports = {
 	 * SDM
 	 * X@returns {{colors: string[]}}
 	 */
-	colors: () => [
-		{slug: "primary", color: "#fe0700"},
-		{slug: "primary-dark", name: "Primary Dark", color: "#a00700"},
-		{slug: "secondary", color: "#d08a4e"},
-		{slug: "black", color: "#000"},
-		{slug: "grey-dark", name: "Dark Grey", dark: true, color: "#333"},
-		{slug: "grey", color: "#777"},
-		{slug: "grey-light", name: "Light Grey", color: "#bbb"},
-		{slug: "grey-extra-light", name: "Extra Light Grey", color: "#eee"},
-		{slug: "white", color: "#fff"},
-	],
+	//colors: () => [
+	//	{slug: "primary", color: "#fe0700"},
+	//	{slug: "primary-dark", name: "Primary Dark", color: "#a00700"},
+	//	{slug: "secondary", color: "#d08a4e"},
+	//	{slug: "black", color: "#000"},
+	//	{slug: "grey-dark", name: "Dark Grey", dark: true, color: "#333"},
+	//	{slug: "grey", color: "#777"},
+	//	{slug: "grey-light", name: "Light Grey", color: "#bbb"},
+	//	{slug: "grey-extra-light", name: "Extra Light Grey", color: "#eee"},
+	//	{slug: "white", color: "#fff"},
+	//],
 
 	/**
 	 * SDM
