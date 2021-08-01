@@ -6,22 +6,22 @@
  * @example
  * Aucor_Footer::render();
  *
- * @package hw
+ * @package axio
  */
 class X_Footer_Widgets extends X_Component {
 
   public static function frontend( $data ) {
     ?>
-    <footer <?php parent::render_attributes( $data['attr'] ); ?>>
+<footer <?php parent::render_attributes( $data['attr'] ); ?>>
 
-      <div class="site-footer__container blocks">
-        <?php
+	<div class="site-footer__container blocks">
+		<?php
         dynamic_sidebar( 'footer' );
         ?>
-      </div>
+	</div>
 
-    </footer>
-    <?php
+</footer>
+<?php
   }
 
   public static function backend( $args = [] ) {

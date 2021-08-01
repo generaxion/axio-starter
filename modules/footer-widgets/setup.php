@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Setup: Footer
  *
- * @package hw
+ * @package axio
  */
 
 /**
@@ -31,4 +32,3 @@ add_action( 'widgets_init', function() {
 	register_sidebar( $args );
 
 } );
-

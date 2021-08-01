@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Setup: Footer
  *
- * @package hw
+ * @package axio
  */
 
 /**
@@ -27,4 +28,3 @@ add_action('after_setup_theme', function() {
   ]);
 
 });
-
