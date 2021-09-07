@@ -11,6 +11,8 @@
 
 $align = $block['align'] ? $block['align'] : 'full';
 
+$classes = $block['className'] ? $block['className'] : '';
+
 $allowed_blocks = [
   'acf/button',
   'acf/buttons',
@@ -43,15 +45,10 @@ if ($is_preview) {
 
 $fields = get_fields();
 
-if (isset($block['className'])) {
-  $classes = explode(' ', $block['className']);
-  foreach ($classes as $class) {
-    $fields['class'][] = $class;
-  }
-}
+
 ?>
 
-<div class="wp-block-acf-background align<?php echo esc_attr($align); ?>">
+<div class="wp-block-acf-background align<?php echo esc_attr($align); ?> <?php echo esc_attr($classes); ?>">
   <?php
     X_Background::render([
       'fields'        => $fields,

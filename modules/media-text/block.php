@@ -10,6 +10,8 @@
 
 $align = $block['align'] ? $block['align'] : 'default';
 
+$classes = $block['className'] ? $block['className'] : '';
+
 $allowed_blocks = [
   'core/heading',
   'core/paragraph',
@@ -38,22 +40,14 @@ if ($is_preview) {
   $contents = $content;
 }
 
-$class = [];
-if (!empty($block['className'])) {
-  $class[] = $block['className'];
-}
-
 ?>
-<div class="wp-block-acf-media-text align<?php echo esc_attr($align); ?>">
+<div class="wp-block-acf-media-text align<?php echo esc_attr($align); ?> <?php echo esc_attr($classes); ?>">
   <?php
     X_Media_Text::render([
       'is_preview'  => $is_preview,
       'contents'    => $contents,
       'fields'      => get_fields(),
       'width'       => $block['align'],
-      'attr'        => [
-        'class' => $class
-      ]
     ]);
   ?>
 </div>
