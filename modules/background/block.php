@@ -1,5 +1,4 @@
 <?php
-
 /**
  * ACF Block: Background
  *
@@ -9,9 +8,8 @@
  * @param (int|string) $post_id The post ID this block is saved to.
  */
 
-$align = $block['align'] ? $block['align'] : 'full';
-
-$classes = $block['className'] ? $block['className'] : '';
+$align    = isset($block['align']) ? $block['align'] : 'full';
+$classes  = isset($block['className']) ? $block['className'] : '';
 
 $allowed_blocks = [
   'acf/button',
@@ -26,7 +24,6 @@ $allowed_blocks = [
   'gravityforms/form',
 ];
 
-
 $placeholder_content = [
   ['core/heading', [
     'placeholder' => __('Title'),
@@ -37,22 +34,13 @@ $placeholder_content = [
   ]],
 ];
 
-if ($is_preview) {
-  $contents = '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
-} else {
-  $contents = $content;
-}
-
-$fields = get_fields();
-
-
 ?>
 
 <div class="wp-block-acf-background align<?php echo esc_attr($align); ?> <?php echo esc_attr($classes); ?>">
   <?php
     X_Background::render([
-      'fields'        => $fields,
-      'contents'      => $contents
+      'fields'        => get_fields(),
+      'contents'      => '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />',
     ]);
   ?>
 </div>

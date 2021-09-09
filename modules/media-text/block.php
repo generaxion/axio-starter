@@ -8,9 +8,8 @@
  * @param (int|string) $post_id The post ID this block is saved to.
  */
 
-$align = $block['align'] ? $block['align'] : 'default';
-
-$classes = $block['className'] ? $block['className'] : '';
+$align    = isset($block['align']) ? $block['align'] : 'default';
+$classes  = isset($block['className']) ? $block['className'] : '';
 
 $allowed_blocks = [
   'core/heading',
@@ -34,20 +33,14 @@ $placeholder_content = [
   ]],
 ];
 
-if ($is_preview) {
-  $contents = '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
-} else {
-  $contents = $content;
-}
-
 ?>
 <div class="wp-block-acf-media-text align<?php echo esc_attr($align); ?> <?php echo esc_attr($classes); ?>">
   <?php
     X_Media_Text::render([
       'is_preview'  => $is_preview,
-      'contents'    => $contents,
+      'contents'    => '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />',
       'fields'      => get_fields(),
-      'width'       => $block['align'],
+      'width'       => $align,
     ]);
   ?>
 </div>

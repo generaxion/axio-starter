@@ -22,6 +22,10 @@ $class[] = 'buttons--align-' . $alignment;
 $layout = isset($f['buttons_layout']) ? $f['buttons_layout'] : 'horizontal';
 $class[] = 'buttons--layout-' . $layout;
 
+if (isset($block['className']) && !empty($block['className'])) {
+  $class[] = $block['className'];
+}
+
 ?>
 
 <div class="<?php echo esc_attr(implode(' ', $class)); ?>">
