@@ -10,6 +10,8 @@
 
 $align = $block['align'] ? $block['align'] : 'default';
 
+$classes = $block['className'] ? $block['className'] : '';
+
 $allowed_blocks = [
   'core/heading',
   'core/paragraph',
@@ -32,28 +34,20 @@ $placeholder_content = [
   ]],
 ];
 
-$contents = $content;
-
 if ($is_preview) {
-  $contents .= '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
-}
-
-$class = [];
-if (!empty($block['className'])) {
-  $class[] = $block['className'];
+  $contents = '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
+} else {
+  $contents = $content;
 }
 
 ?>
-<div class="wp-block-acf-media-text align<?php echo esc_attr($align); ?>">
+<div class="wp-block-acf-media-text align<?php echo esc_attr($align); ?> <?php echo esc_attr($classes); ?>">
   <?php
     X_Media_Text::render([
       'is_preview'  => $is_preview,
       'contents'    => $contents,
       'fields'      => get_fields(),
       'width'       => $block['align'],
-      'attr'        => [
-        'class' => $class
-      ]
     ]);
   ?>
 </div>

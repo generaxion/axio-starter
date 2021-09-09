@@ -11,6 +11,8 @@
 
 $align = $block['align'] ? $block['align'] : 'full';
 
+$classes = $block['className'] ? $block['className'] : '';
+
 $allowed_blocks = [
   'acf/button',
   'acf/buttons',
@@ -35,22 +37,18 @@ $placeholder_content = [
   ]],
 ];
 
-$contents = $content;
 if ($is_preview) {
-  $contents .= '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
+  $contents = '<InnerBlocks allowedBlocks="' . esc_attr(wp_json_encode($allowed_blocks)) . '" template="' . esc_attr(wp_json_encode($placeholder_content)) . '" />';
+} else {
+  $contents = $content;
 }
 
 $fields = get_fields();
 
-if (isset($block['className'])) {
-  $classes = explode(' ', $block['className']);
-  foreach ($classes as $class) {
-    $fields['class'][] = $class;
-  }
-}
+
 ?>
 
-<div class="wp-block-acf-background align<?php echo esc_attr($align); ?>">
+<div class="wp-block-acf-background align<?php echo esc_attr($align); ?> <?php echo esc_attr($classes); ?>">
   <?php
     X_Background::render([
       'fields'        => $fields,
