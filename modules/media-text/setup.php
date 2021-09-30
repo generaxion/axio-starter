@@ -112,7 +112,7 @@ add_filter('acf/load_field', function ($f) {
 /**
  * Allow block
  */
-add_filter('allowed_block_types', function($blocks, $post) {
+add_filter('allowed_block_types_all', function($blocks, $post) {
 
   $blocks[] = 'acf/media-text';
   return $blocks;
