@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "cookiebot",
+    "version": "1.0.0"
+  },
+  "php": {
+    "inc": [
+      "setup.php"
+    ]
+  },
+  "css": {
+    "main.css": [
+      "assets/styles/cookiebot-declaration.scss",
+      "assets/styles/cookiebot-dialog.scss"
+    ],
+    "admin.css": [],
+    "editor-gutenberg.css": []
+  },
+  "js": {
+    "main.js": [],
+    "editor-gutenberg.js": []
+  }
+}

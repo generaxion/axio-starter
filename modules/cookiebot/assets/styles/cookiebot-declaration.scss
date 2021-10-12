@@ -1,0 +1,50 @@
+/* ==========================================================================
+ # Cookiebot declaration
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+/**
+ * Additional styling for declaration
+ */
+
+.CookieDeclaration {
+
+  // Type
+  .CookieDeclarationType {
+    padding: 1rem;
+    overflow: auto;
+    
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    td,
+    th {
+      font-size: 1rem;
+      line-height: 1.5;
+      padding: .5rem .25rem;
+    }
+  }
+  
+  // Header
+  .CookieDeclarationTypeHeader {
+    margin-top: 0;
+  }
+
+  // Table
+  .CookieDeclarationTable {
+    overflow-x: auto;
+    table-layout: auto;
+  
+    th,
+    td {
+      min-width: 8rem;
+    }
+  
+    tbody tr:last-of-type td {
+      border-bottom: 0;
+    }
+  }
+}
