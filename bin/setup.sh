@@ -41,7 +41,7 @@ read name
 if test -n "$name"; then
   echo ""
 else
-  id=$default_name
+  name=$default_name
 fi
 
 echo "2) Set local development url. (Default: $default_url)"
