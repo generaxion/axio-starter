@@ -93,29 +93,43 @@ class X_Teaser extends X_Component {
       return parent::error('Invalid post object ($args[\'post\'])');
     }
 
+
     // validate post status
     if ($args['post']->post_status !== 'publish') {
       return parent::error('Target post is not published');
     }
 
-    // setup rest internal vars
-    $args['attachment_id']  = get_post_thumbnail_id($args['post']);
-    $args['id']             = $args['post']->ID;
-    $args['permalink']      = get_permalink($args['post']);
-    $args['post_title']     = get_the_title($args['post']);
-    $args['post_type']      = $args['post']->post_type;
-    $args['post_excerpt']   = get_the_excerpt($args['post']);
-
-    if (!empty($args['post_excerpt'])) {
-      $args['post_excerpt'] = wpautop($args['post_excerpt']);
-    }
+    // basic data
+    $args['id']         = $args['post']->ID;
+    $args['post_type']  = $args['post']->post_type;
 
     // setup html attributes
     if (!isset($args['attr']['class'])) {
       $args['attr']['class'] = [];
     }
     $args['attr']['class'][] = 'teaser';
+
+    // post type
     $args['attr']['class'][] = 'teaser--' . $args['post_type'];
+
+    // setup rest internal vars
+    if (empty($args['attachment_id'])) {
+      $args['attachment_id']  = get_post_thumbnail_id($args['post']);
+    }
+    $args['attr']['class'][] = !empty($args['attachment_id']) ? 'teaser--has-media' : 'teaser--no-media';
+
+
+    // setup url
+    $args['permalink']      = get_permalink($args['post']);
+
+    // setup title
+    $args['post_title']     = get_the_title($args['post']);
+
+    // setup excerpt
+    $args['post_excerpt']   = get_the_excerpt($args['post']);
+    if (!empty($args['post_excerpt'])) {
+      $args['post_excerpt'] = wpautop($args['post_excerpt']);
+    }
 
     return $args;
 

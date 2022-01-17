@@ -8,19 +8,20 @@
   @include narrow-content;
   margin-left: auto;
   margin-right: auto;
-
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-m);
 }
 
 .teaser {
+  position: relative;
+  word-break: break-word;
 
   // entrance animation
   &.has-viewport-effect {
     &.is-in-viewport {
     }
   }
-
-  position: relative;
-  margin-bottom: var(--spacing-m);
 
   &__link {
     position: absolute;
