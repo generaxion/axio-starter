@@ -330,3 +330,22 @@
 @mixin narrow-content {
   max-width: calc(var(--width-m) + 2 * var(--spacing-m));
 }
+
+/* Animations
+----------------------------------------------- */
+
+@mixin stagger-transitions($interval: 75, $min: 0, $max: 12) {
+  @for $i from $min through $max {
+    &:nth-of-type(#{$i}) {
+      transition-delay: #{$interval * $i}ms
+    }
+  }
+}
+
+@mixin stagger-animations($interval: 75, $min: 0, $max: 12) {
+  @for $i from $min through $max {
+    &:nth-of-type(#{$i}) {
+      animation-delay: #{$interval * $i}ms
+    }
+  }
+}

@@ -7,7 +7,7 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-image,
+.block-editor [data-type="core/image"],
 .blocks .wp-block-image {
 
   line-height: 0;
@@ -58,6 +58,12 @@
 // image block
 .blocks .wp-block-image {
 
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
 }
 
 // classic editor images
@@ -68,6 +74,6 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-image {
+.block-editor [data-type="core/image"] {
 
 }

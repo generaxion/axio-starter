@@ -38,6 +38,19 @@
 
 .blocks .wp-block-columns {
 
+  // entrance animation (whole block)
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
+  // entrance animation (separate columns)
+  .wp-block-column {
+    &.has-viewport-effect {
+      @include stagger-transitions;
+    }
+  }
+
 }
 
 /* Only back-end

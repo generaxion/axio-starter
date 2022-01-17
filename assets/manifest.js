@@ -36,6 +36,7 @@ module.exports = {
         "node_modules/fitvids/dist/fitvids.js",
 
         // project specific js
+        "assets/scripts/lib/in-viewport.js",
         "assets/scripts/lib/blocks.js",
         "assets/scripts/main.js"
 

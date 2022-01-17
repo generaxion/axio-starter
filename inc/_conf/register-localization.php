@@ -10,11 +10,11 @@
  *
  * Module specific strings should be registeder from the module.
  *
- * @uses Aucor Core filter: aucor_core_pll_register_strings
+ * @uses Axio Core filter: axio_core_pll_register_strings
  *
  * @return array list of translatabel strings
  */
-add_filter('aucor_core_pll_register_strings', function($strings) {
+add_filter('axio_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
 

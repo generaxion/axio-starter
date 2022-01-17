@@ -1,12 +1,13 @@
 {
   "meta": {
     "title": "File",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "php": {
     "inc": [
       "component.php",
-      "setup.php"    ]
+      "setup.php"
+    ]
   },
   "css": {
     "main.css": [

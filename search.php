@@ -19,7 +19,7 @@ get_header(); ?>
 
     <?php if (have_posts()) : ?>
 
-      <div class="teaser-container">
+      <div class="teaser-container js-teaser-container">
 
         <?php while (have_posts()) : the_post(); ?>
 

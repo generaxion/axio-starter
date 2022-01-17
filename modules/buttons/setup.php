@@ -99,7 +99,7 @@ add_filter('allowed_block_types_all', function($blocks, $post) {
 /**
  * Localization
  */
-add_filter('aucor_core_pll_register_strings', function($strings) {
+add_filter('axio_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
     'Button: Type Solid'              => 'Solid',

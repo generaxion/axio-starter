@@ -12,5 +12,5 @@ add_action('theme_footer', function() {
 
   X_Footer::render();
 
-}, 100, 0);
+}, 100);
 

@@ -154,6 +154,12 @@ $breakpoint-media-text-desktop:  min-width 920px;
   display: flex;
   flex-wrap: wrap;
 
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
   &__content {
     & > * {
       max-width: 100%;

@@ -22,7 +22,7 @@ get_header(); ?>
 
   <div id="primary" class="primary primary--index">
 
-      <div class="teaser-container">
+      <div class="teaser-container js-teaser-container">
         <?php while (have_posts()) : the_post(); ?>
           <?php if (class_exists('X_Teaser')) : ?>
             <?php X_Teaser::render(['id' => get_the_ID()]); ?>

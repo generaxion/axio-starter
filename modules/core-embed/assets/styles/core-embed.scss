@@ -27,6 +27,12 @@
 
 .blocks .wp-block-embed {
 
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
 }
 
 /* Only back-end

@@ -21,8 +21,8 @@ abstract class X_Component {
 
       // display error
       if (defined('WP_DEBUG') && WP_DEBUG === true) {
-        if (function_exists('aucor_core_debug_msg')) {
-          aucor_core_debug_msg($data->get_error_message(), ['backend', 'frontend', 'render', 'get']);
+        if (function_exists('axio_core_debug_msg')) {
+          axio_core_debug_msg($data->get_error_message(), ['backend', 'frontend', 'render', 'get']);
         } else {
           trigger_error($data->get_error_message(), E_USER_WARNING);
         }

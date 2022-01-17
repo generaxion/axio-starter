@@ -132,7 +132,7 @@ add_filter('acf/settings/load_json', function ($paths) {
 /**
  * Localization
  */
-add_filter('aucor_core_pll_register_strings', function($strings) {
+add_filter('axio_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, []);
 

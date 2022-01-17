@@ -43,3 +43,20 @@ const tagFirstAndLastBlock = () => {
 
 };
 tagFirstAndLastBlock();
+
+/**
+ * Add columns count classes to cloumn blocks like before: 'has-3-columns'
+ */
+const addColumnCountClasses = function() {
+
+  const columnBlocks = document.querySelectorAll('.wp-block-columns');
+  if (columnBlocks.length) {
+    for (let i = 0; i < columnBlocks.length; i++) {
+      const columnBlock = columnBlocks[i];
+      const columns = columnBlock.querySelectorAll('.wp-block-column');
+      columnBlock.classList.add('has-' + columns.length + '-columns');
+    }
+  }
+
+};
+addColumnCountClasses();

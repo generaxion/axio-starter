@@ -48,6 +48,7 @@ class X_Footer extends X_Component {
       $args['attr']['class'] = [];
     }
     $args['attr']['class'][] = 'site-footer';
+    $args['attr']['class'][] = 'js-site-footer';
 
     // id
     $args['attr']['id'] = 'colophon';

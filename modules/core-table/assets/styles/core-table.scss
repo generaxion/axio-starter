@@ -7,7 +7,7 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block-table,
+.block-editor [data-type="core/table"],
 .blocks .wp-block-table {
   font-size: .875rem;
   @include breakpoint($breakpoint-s) {
@@ -106,11 +106,17 @@
 
 .blocks .wp-block-table {
 
+  // entrance animation (whole block)
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
 }
 
 /* Only back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block-table {
+.block-editor [data-type="core/table"] {
 
 }

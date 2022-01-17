@@ -53,7 +53,7 @@
 /* Block front-end and back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block-acf-files,
+.block-editor [data-type="acf/file"],
 .blocks .wp-block-acf-files {
 
 }
@@ -62,6 +62,12 @@
 ----------------------------------------------- */
 
 .blocks .wp-block-acf-files {
+
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
 
 }
 

@@ -24,6 +24,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
+
+  // entrance animation (whole block)
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
+  // entrance animation (child buttons)
+  .c-button {
+    &.has-viewport-effect {
+      @include stagger-transitions;
+      &.is-in-viewport {
+      }
+    }
+  }
+
   &.buttons--layout-horizontal {
     flex-direction: row;
     align-items: center;

@@ -6,7 +6,7 @@
  */
 
 /**
- * Fallbacks for the localization functions (aucor-core)
+ * Fallbacks for the localization functions (axio-core)
  */
 if (!function_exists('ask__')) {
   function ask__($s, $lang = null) {

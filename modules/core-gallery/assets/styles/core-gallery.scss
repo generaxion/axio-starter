@@ -34,6 +34,21 @@
 
 .blocks .wp-block-gallery {
 
+  // entrance animation (whole block)
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
+  // entrance animation (separate images)
+  .blocks-gallery-item {
+    &.has-viewport-effect {
+      @include stagger-transitions(75, 0, 20);
+      &.is-in-viewport {
+      }
+    }
+  }
+
 }
 
 /* Only back-end

@@ -4,6 +4,16 @@
 
 /* Only front-end
 ----------------------------------------------- */
+// .has-viewport-effect {
+//   opacity: 0 !important;
+//   transform: translateY(.25rem) !important;
+//   transition: none;
+//   &.is-in-viewport {
+//     opacity: 1 !important;
+//     transform: translateY(0) !important;
+//     transition: opacity .75s ease-in-out, transform .75s ease-in-out;
+//   }
+// }
 
 .blocks {
   @include clearfix;

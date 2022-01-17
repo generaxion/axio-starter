@@ -26,7 +26,7 @@ add_action('theme_header', function () {
 /**
  * Localization
  */
-add_filter('aucor_core_pll_register_strings', function($strings) {
+add_filter('axio_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
     'Menu: Primary Menu'        => 'Primary Menu',

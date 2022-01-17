@@ -17,7 +17,7 @@ add_action('theme_entry_footer', function ($post_obj) {
 /**
  * Localization
  */
-add_filter('aucor_core_pll_register_strings', function($strings) {
+add_filter('axio_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
 

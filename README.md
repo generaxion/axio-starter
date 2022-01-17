@@ -8,7 +8,7 @@ Superior Gutenberg WordPress starter theme with modern build tools by **[Generax
 
 **🔌 Required plugins:**
 
-* **[Aucor Core](https://wordpress.org/plugins/aucor-core/)**: Core functionality that is clever to be centrally updated.
+* **[Axio Core](https://github.org/generaxiom/axio-core/)**: Core functionality that is clever to be centrally updated.
 * **[Advanced Custom Fields Pro](https://www.advancedcustomfields.com/)**: Some custom blocks use ACF. You can do without, but should remove them.
 
 **🏷 Buzz-words**:
@@ -104,13 +104,13 @@ Theme strings are by default in English but we do support Finnish and probably S
 2. Input language code
 3. Select to remove language packages after running
 
-#### Install Aucor Core
+#### Install Axio Core
 
-Some of the functionality of Axio by Generaxion require plugin Aucor Core. The plugin is centrally updated so that sites using starter will be easier to maintain and there will be less duplicate code from project to project. Axio by Generaxion won't have fatal errors without it, but for example localization won't work without it.
+Some of the functionality of Axio by Generaxion require plugin Axio Core. The plugin is centrally updated so that sites using starter will be easier to maintain and there will be less duplicate code from project to project. Axio by Generaxion won't have fatal errors without it, but for example localization won't work without it.
 
-Download Aucor Core from [WordPress.org](https://wordpress.org/plugins/aucor-core/) or [Github](https://github.com/aucor/aucor-core) and activate.
+Download Axio Core from [WordPress.org](https://wordpress.org/plugins/axio-core/) or [Github](https://github.com/generaxion/axio-core) and activate.
 
-**Protip**: If you are using composer: `composer require wpackagist-plugin/aucor-core` or WP-CLI: `wp plugin install aucor-core`.
+**Protip**: If you are using composer: `composer require wpackagist-plugin/axio-core` or WP-CLI: `wp plugin install axio-core`.
 
 #### First 15 minutes of your new site
 
@@ -553,7 +553,7 @@ Javascript can be written with modern ES6 syntax as Babel compiles it to work on
 * [Responsive video embds: fitvids (jQuery-free)](https://www.npmjs.com/package/fitvids)
 * [Accessible modals/mobile menu: a11y-dialog](https://github.com/edenspiekermann/a11y-dialog)
 
-**Protip:** If you are using jQuery, take into account that Aucor Core moves jQuery to the bottom of the document as a speed optimization. If it causes a problem for you, add a filter `add_filter('aucor_core_speed_move_jquery', '__return_false');` (has to be executed from a plugin).
+**Protip:** If you are using jQuery, take into account that Axio Core moves jQuery to the bottom of the document as a speed optimization. If it causes a problem for you, add a filter `add_filter('axio_core_speed_move_jquery', '__return_false');`.
 
 
 #### Add new global script
@@ -728,7 +728,7 @@ Module's `setup.php`:
 /**
  * Localization
  */
-add_filter('aucor_core_pll_register_strings', function($strings) {
+add_filter('axio_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
     'Menu: Button label'  => 'Menu',

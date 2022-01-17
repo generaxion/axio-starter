@@ -40,10 +40,10 @@ class X_Button extends X_Component {
     $args['attr']['class'][] = 'c-button--type-' . $args['type'];
 
     if (!isset($args['attr']['href'])) {
-      $args['attr']['href']= $args['url'];
+      $args['attr']['href'] = $args['url'];
     }
     if (!isset($args['attr']['target'])) {
-      $args['attr']['target']= $args['target'];
+      $args['attr']['target'] = $args['target'];
     }
 
     return $args;

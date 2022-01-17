@@ -11,6 +11,7 @@
  * @package axio
  */
 class X_Background extends X_Component {
+
   public static function frontend($data) {
   ?>
 
@@ -52,8 +53,8 @@ class X_Background extends X_Component {
     <?php
   }
 
-  public static function backend($args = [])
-  {
+  public static function backend($args = []) {
+
     $placeholders = [
 
       // required
@@ -200,4 +201,5 @@ class X_Background extends X_Component {
     return $args;
 
   }
+
 }

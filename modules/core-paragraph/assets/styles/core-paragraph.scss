@@ -7,7 +7,7 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-paragraph,
+.block-editor [data-type="core/paragraph"],
 .blocks .wp-block-paragraph {
 
 }
@@ -17,11 +17,17 @@
 
 .blocks .wp-block-paragraph {
 
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
 }
 
 /* Only back-end
 ----------------------------------------------- */
 
-.editor-styles-wrapper .wp-block-paragraph {
+.block-editor [data-type="core/paragraph"] {
   line-height: 1.5;
 }

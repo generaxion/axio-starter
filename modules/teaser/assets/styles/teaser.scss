@@ -8,9 +8,16 @@
   @include narrow-content;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 .teaser {
+
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
 
   position: relative;
   margin-bottom: var(--spacing-m);

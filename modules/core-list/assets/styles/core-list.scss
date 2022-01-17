@@ -1,5 +1,5 @@
 /* ==========================================================================
- # Heading block
+ # List block
 ========================================================================== */
 
 @import '../../../../assets/styles/utils.scss';
@@ -8,22 +8,28 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block[data-type="core/heading"] > *,
-.blocks .wp-block-heading {
+.block-editor [data-type="core/list"] > *,
+.blocks .wp-block-list {
 
 }
 
 /* Only front-end
 ----------------------------------------------- */
 
-.blocks .wp-block-heading {
+.blocks .wp-block-list {
+
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
 
 }
 
 /* Only back-end
 ----------------------------------------------- */
 
-.block-editor .wp-block[data-type="core/heading"] > * {
+.block-editor [data-type="core/list"] > * {
 
 }
 

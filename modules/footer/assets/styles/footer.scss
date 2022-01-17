@@ -13,6 +13,12 @@
   background: var(--color-footer-bg);
   padding: 2rem 0;
 
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
   &__container {
     @include wrap;
     display: flex;
