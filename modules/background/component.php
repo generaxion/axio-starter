@@ -15,7 +15,7 @@ class X_Background extends X_Component {
   public static function frontend($data) {
   ?>
 
-    <div <?php parent::render_attributes($data['attr']); ?>>
+    <section <?php parent::render_attributes($data['attr']); ?>>
       <?php if ($data['has_background']) : ?>
           <div class="background__media js-background__media">
             <?php if ($data['type'] == 'image') : ?>
@@ -49,7 +49,7 @@ class X_Background extends X_Component {
         <?php echo $data['contents']; ?>
       </div>
 
-    </div>
+    </section>
     <?php
   }
 
