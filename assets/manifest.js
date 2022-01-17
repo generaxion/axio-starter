@@ -26,9 +26,6 @@ module.exports = {
         // IE11 polyfill for external x:link svg (https://github.com/Keyamoon/svgxuse)
         "node_modules/svgxuse/svgxuse.js",
 
-        // IE11 polyfill for object-fit
-        "node_modules/objectFitPolyfill/dist/objectFitPolyfill.min.js",
-
         // IE11 polyfill for forEach
         "node_modules/nodelist-foreach-polyfill/index.js",
 
