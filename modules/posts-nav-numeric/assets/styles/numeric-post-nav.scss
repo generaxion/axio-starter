@@ -4,28 +4,53 @@
 
 @import '../../../../assets/styles/utils.scss';
 
+:root {
+  --numeric-navigation-min-size: 2.125rem;
+  --numeric-navigation-gap: .375rem;
+  --numeric-navigation-font-size: .875rem;
+  @include breakpoint($breakpoint-s) {
+    --numeric-navigation-min-size: 2.5rem;
+    --numeric-navigation-gap: .5rem;
+    --numeric-navigation-font-size: 1rem;
+  }
+}
+
 .numeric-navigation {
+  @include narrow-content;
   display: block;
-  text-align: center;
-  margin: 1.5rem 0;
+  margin: 2rem auto;
+  @include breakpoint($breakpoint-s) {
+    margin: 3rem auto;
+  }
+
   ul {
     @include list-reset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--numeric-navigation-gap);
   }
 
   &__item {
-    display: inline-block;
-    margin: .5rem .125rem;
+    display: flex;
+    text-align: center;
+    font-size: var(--numeric-navigation-font-size);
     a {
       @include transition;
-      background: var(--color-grey-light);
+      border-radius: 50%;
+      min-width: var(--numeric-navigation-min-size);
+      min-height: var(--numeric-navigation-min-size);
+      padding: .125rem;
+      font-size: var(--numeric-navigation-font-size);
+      border: 1px solid rgba(0,0,0,.5);
       color: var(--color-text);
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 1;
-      min-width: 2rem;
-      padding: .5rem;
       text-decoration: none;
       &:hover, &:focus, &:active {
-        background: var(--color-grey);
+        border-color: var(--color-text);
       }
     }
 
@@ -48,8 +73,10 @@
 
       a {
         background: var(--color-primary);
+        border-color: var(--color-primary);
         color: var(--color-white);
         &:hover, &:focus, &:active {
+          border-color: var(--color-primary);
           background: var(--color-primary);
         }
       }
@@ -57,14 +84,15 @@
     }
 
     &--separator {
-
+      align-items: center;
+      justify-content: center;
     }
 
   }
 
   .icon {
-    width: 1rem;
-    height: 1rem;
+    width: var(--numeric-navigation-font-size);
+    height: var(--numeric-navigation-font-size);
   }
 
 }

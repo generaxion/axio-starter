@@ -26,10 +26,12 @@ class X_Posts_Nav_Numeric extends X_Component {
           <li <?php parent::render_attributes($item['attr']); ?>>
             <?php if (!empty($item['url'])) : ?>
               <a <?php parent::render_attributes($item['sub-attr']); ?>>
-                <?php echo $item['label']; ?>
+                <span><?php echo $item['label']; ?></span>
               </a>
             <?php else : ?>
+              <span <?php parent::render_attributes($item['sub-attr']); ?>>
               <?php echo $item['label']; ?>
+              </span>
             <?php endif; ?>
           </li>
         <?php endforeach; ?>
@@ -49,8 +51,8 @@ class X_Posts_Nav_Numeric extends X_Component {
       'attr'               => [],
       'wp_query'           => null,
       'paged_var'          => '',
-      'label_next'         => X_SVG::get(['name' => 'caret-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Next') . '</span>',
-      'label_prev'         => X_SVG::get(['name' => 'caret-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Previous') . '</span>',
+      'label_next'         => X_SVG::get(['name' => 'chevron-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Next') . '</span>',
+      'label_prev'         => X_SVG::get(['name' => 'chevron-right']) . '<span class="screen-reader-text">' . ask__('Navigation: Previous') . '</span>',
 
       // internal
       'items'              => [],
@@ -221,6 +223,10 @@ class X_Posts_Nav_Numeric extends X_Component {
         } else {
           $sub_attr['aria-label'] = sprintf(ask__('Navigation: Go to page x'), $item['label']);
         }
+      }
+
+      if ($item['type'] === 'separator') {
+        $attr['aria-hidden'] = 'true';
       }
 
       if (!empty($item['url'])) {
