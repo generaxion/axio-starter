@@ -2,7 +2,7 @@
 /**
  * Hero: Data structures
  *
- * @package aucor_starter
+ * @package axio
  */
 
 /**
