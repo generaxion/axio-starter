@@ -13,17 +13,22 @@ $breakpoint-hero-columns-l: 1200px;
   margin-left: auto;
   margin-right: auto;
   display: block;
-  max-width: var(--width-xl, 1440px);
   margin-top: 0;
   @include breakpoint($breakpoint-hero-columns-m) {
     margin-top: 1rem;
     display: flex;
   }
-  & > * {
-    @include breakpoint($breakpoint-hero-columns-m) {
-      flex-grow: 1;
-      flex-shrink: 0;
-      width: 50%;
+  &.hero-columns--no-media {
+    @include narrow-content;
+  }
+  &.hero-columns--has-media {
+  max-width: var(--width-xl, 1440px);
+    & > * {
+      @include breakpoint($breakpoint-hero-columns-m) {
+        flex-grow: 1;
+        flex-shrink: 0;
+        width: 50%;
+      }
     }
   }
   &__container {
@@ -33,32 +38,38 @@ $breakpoint-hero-columns-l: 1200px;
       padding: 1.5rem;
       margin-left: 0;
       margin-right: 0;
-      @include breakpoint($breakpoint-hero-columns-m) {
-        background: var(--color-white);
-        box-shadow: 0 0 1.5rem rgba(0, 0, 0, .075);
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        padding: 3rem;
-        .hero-columns--align-default &,
-        .hero-columns--align-left & {
-          margin-right: -2rem;
+      .hero-columns--has-media & {
+        @include breakpoint($breakpoint-hero-columns-m) {
+          background: var(--color-white);
+          box-shadow: 0 0 1.5rem rgba(0, 0, 0, .075);
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          padding: 3rem;
         }
-        .hero-columns--align-right & {
-          margin-left: -2rem;
+        @include breakpoint($breakpoint-hero-columns-l) {
+          margin-top: 3rem;
+          margin-bottom: 3rem;
+          padding: 5rem;
         }
       }
-      @include breakpoint($breakpoint-hero-columns-l) {
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-        padding: 5rem;
-        .hero-columns--align-default &,
-        .hero-columns--align-left & {
+      .hero-columns--has-media.hero-columns--align-default &,
+      .hero-columns--has-media.hero-columns--align-left & {
+        @include breakpoint($breakpoint-hero-columns-m) {
+          margin-right: -2rem;
+        }
+        @include breakpoint($breakpoint-hero-columns-l) {
           margin-right: -3rem;
         }
-        .hero-columns--align-right & {
+      }
+      .hero-columns--has-media.hero-columns--align-right & {
+        @include breakpoint($breakpoint-hero-columns-m) {
+          margin-left: -2rem;
+        }
+        @include breakpoint($breakpoint-hero-columns-l) {
           margin-left: -3rem;
         }
       }
+
     }
   }
   &__media {
