@@ -7,13 +7,17 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.block-editor [data-type="core/columns"] .wp-block-columns,
+.block-editor [data-type="core/columns"],
 .blocks .wp-block-columns {
 
   .wp-block-column {
     @include child-margin-reset;
     @include breakpoint($breakpoint-sub-l) {
       margin-bottom: 1.5rem;
+    }
+    // clear floats inside column
+    & > * {
+      clear: both;
     }
   }
 
@@ -29,6 +33,25 @@
 
   &.is-last-inner-block {
     margin-bottom: 0;
+  }
+
+  // variation: background
+  &.is-style-background {
+    .wp-block-column {
+      padding: 2rem;
+      box-shadow: 0 0 1.5rem rgba(0, 0, 0, .075);
+      background: var(--color-white);
+    }
+    // .wp-block-column.has-viewport-effect {
+    //   @include transition;
+    //   transition-duration: .75s;
+    //   opacity: 0;
+    //   transform: translateY(.5rem);
+    //   &.is-in-viewport {
+    //     opacity: 1;
+    //     transform: translateY(0);
+    //   }
+    // }
   }
 
 }
@@ -56,6 +79,6 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.block-editor [data-type="core/columns"] .wp-block-columns {
+.block-editor [data-type="core/columns"] {
 
 }

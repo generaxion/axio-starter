@@ -14,7 +14,7 @@ wp.domReady(() => {
 /**
  * Modify alignment options
  */
-wp.hooks.addFilter('blocks.registerBlockType', 'x/filters', (settings, name) => {
+wp.hooks.addFilter('blocks.registerBlockType', 'x/blockFilters', (settings, name) => {
 
   if (name === 'core/table') {
     return lodash.assign({}, settings, {

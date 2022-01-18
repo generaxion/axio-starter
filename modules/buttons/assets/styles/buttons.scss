@@ -78,11 +78,13 @@
 
 .blocks .wp-block-acf-button {
 
-  &.is-first-block {
+  &.is-first-block,
+  &.is-first-inner-block {
     margin-top: 0;
   }
 
-  &.is-last-block {
+  &.is-last-block,
+  &.is-last-inner-block {
     margin-bottom: 0;
   }
 

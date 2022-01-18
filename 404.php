@@ -9,33 +9,17 @@
 
 get_header(); ?>
 
-  <?php
-    if (has_action('theme_hero')) {
-      do_action('theme_hero');
-    }
-  ?>
-
   <div id="primary" class="primary primary--404">
 
-    <article class="entry entry--404">
+    <div class="heading heading--404">
 
-      <div class="entry__content blocks">
+      <h1 class="heading__title"><?php echo esc_html(ask__('Title: 404')); ?></h1>
 
-        <p><?php ask_e('404: Page not found description'); ?></p>
-
-        <?php if (class_exists('X_Search_Form')) : ?>
-          <?php
-            X_Search_Form::render([
-              'attr' => [
-                'class' => ['search-form--404'],
-              ],
-            ]);
-          ?>
-        <?php endif; ?>
-
+      <div class="heading__description">
+        <p role="status"><?php ask_e('404: Page not found description'); ?></p>
       </div>
 
-    </article>
+    </div>
 
   </div><!-- #primary -->
 

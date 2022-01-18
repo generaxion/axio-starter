@@ -9,13 +9,25 @@
 
 get_header(); ?>
 
-  <?php
-    if (has_action('theme_hero')) {
-      do_action('theme_hero');
-    }
-  ?>
-
   <div id="primary" class="primary primary--search">
+
+    <div class="heading heading--search">
+
+      <h1 class="heading__title">
+        <?php echo esc_html(ask__('Title: Search')) . ': '; ?>
+        <?php echo esc_html(get_search_query()); ?>
+      </h1>
+
+      <?php if (!have_posts()) : ?>
+        <div class="heading__description">
+          <p role="status"><?php ask_e('Search: Nothing found description'); ?></p>
+        </div>
+        <?php if (class_exists('X_Search_Form')) : ?>
+          <?php X_Search_Form::render(); ?>
+        <?php endif; ?>
+      <?php endif; ?>
+
+    </div>
 
     <?php if (have_posts()) : ?>
 
@@ -32,28 +44,6 @@ get_header(); ?>
       </div>
 
       <?php X_Posts_Nav_Numeric::render(); ?>
-
-    <?php else : ?>
-
-      <article class="entry entry--search-empty">
-
-        <div class="entry__content blocks">
-
-          <p role="status"><?php ask_e('Search: Nothing found description'); ?></p>
-
-          <?php if (class_exists('X_Search_Form')) : ?>
-            <?php
-              X_Search_Form::render([
-                'attr' => [
-                  'class' => ['search-form--no-results'],
-                ],
-              ]);
-            ?>
-          <?php endif; ?>
-
-        </div>
-
-      </article>
 
     <?php endif; ?>
 

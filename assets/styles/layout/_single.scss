@@ -6,6 +6,45 @@
 
   .entry {
 
+    &__header {
+      @include wrap;
+      @include narrow-content;
+      @include child-margin-reset;
+      @include spacing-m(margin-bottom);
+      text-align: center;
+      &--has-media {
+        margin-top: 0;
+        @include breakpoint($breakpoint-s) {
+          margin-top: 1.5rem;
+        }
+      }
+      &--no-media {
+        margin-top: 1.5rem;
+        @include breakpoint($breakpoint-s) {
+          margin-top: 3rem;
+        }
+      }
+    }
+    &__media {
+      @include spacing-m(margin-bottom);
+      &, img {
+        display: block;
+        line-height: 0;
+      }
+      img {
+        max-height: 60vh; // enhance readability
+        object-fit: contain;
+        object-position: 50% 50%;
+      }
+    }
+    &__title {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    &__meta {
+      margin-top: 1rem;
+    }
+
     &__footer {
       @include wrap;
       @include narrow-content;

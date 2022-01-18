@@ -12,25 +12,35 @@
  * @package axio
  */
 
-get_header(); ?>
+$title = ask__('Title: Archives');
+if (is_tag() || is_category() || is_tax()) {
+  $title = single_term_title('', false);
+} elseif (is_home()) {
+  $title = ask__('Title: Home');
+}
 
-  <?php
-    if (has_action('theme_hero')) {
-      do_action('theme_hero');
-    }
-  ?>
+$description = get_the_archive_description();
+
+get_header(); ?>
 
   <div id="primary" class="primary primary--index">
 
-      <div class="teaser-container js-teaser-container">
-        <?php while (have_posts()) : the_post(); ?>
-          <?php if (class_exists('X_Teaser')) : ?>
-            <?php X_Teaser::render(['id' => get_the_ID()]); ?>
-          <?php endif; ?>
-        <?php endwhile; ?>
+    <div class="heading heading--index">
+      <h1 class="heading__title"><?php echo esc_html($title); ?></h1>
+      <div class="heading__description">
+        <?php echo apply_filters('the_content', $description); ?>
       </div>
+    </div>
 
-      <?php X_Posts_Nav_Numeric::render(); ?>
+    <div class="teaser-container js-teaser-container">
+      <?php while (have_posts()) : the_post(); ?>
+        <?php if (class_exists('X_Teaser')) : ?>
+          <?php X_Teaser::render(['id' => get_the_ID()]); ?>
+        <?php endif; ?>
+      <?php endwhile; ?>
+    </div>
+
+    <?php X_Posts_Nav_Numeric::render(); ?>
 
   </div><!-- #primary -->
 

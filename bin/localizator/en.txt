@@ -1,6 +1,6 @@
 # Generic
 
-404: Page not found description     || Page might have been deleted or moved. Try the search below.
+404: Page not found description     || Page might have been deleted or moved.
 Search: Title                       || Search:
 Search: Nothing found               || No results
 Search: Nothing found description   || No results found. Try different words.

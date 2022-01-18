@@ -18,8 +18,14 @@ add_filter('axio_core_pll_register_strings', function($strings) {
 
   return array_merge($strings, [
 
+    // titles
+    'Title: Home'                       => 'Blog',
+    'Title: Archives'                   => 'Archives',
+    'Title: Search'                     => 'Search',
+    'Title: 404'                        => 'Page not found',
+
     // 404
-    '404: Page not found description'   => 'Page might have been deleted or moved. Try the search below.',
+    '404: Page not found description'   => 'Page might have been deleted or moved.',
 
     // search
     'Search: Title'                      => 'Search:',

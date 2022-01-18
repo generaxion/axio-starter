@@ -1,0 +1,111 @@
+/* ==========================================================================
+ # Hero (background layout)
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+$breakpoint-hero-bg-s:  530px;
+$breakpoint-hero-bg-m:  650px;
+$breakpoint-hero-bg-l:  1120px;
+
+.hero-bg {
+
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+
+  &.is-dark-mode {
+    h1, h2, h3, h4, h5, p, span, a, li, td {
+      color: var(--color-white) !important;
+      text-shadow: 0 0 1rem rgba(0,0,0,.6);
+      @include breakpoint($breakpoint-hero-bg-s) {
+        text-shadow: 0 0 1rem rgba(0,0,0,.4);
+      }
+    }
+  }
+
+  &__container {
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    z-index: 4;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    &__inner {
+      @include wrap;
+      max-width: 640px;
+    }
+  }
+
+  &__media,
+  &__media__image,
+  &__media__video {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
+
+  // min-height as aspect ratio but grow with the content
+  &.hero-bg--has-media {
+    &:before {
+      content: '';
+      float: left;
+      // 8:5 for smaller screens
+      @include aspect-ratio(8, 5);
+      // 8:3 for middle size
+      @include breakpoint($breakpoint-hero-bg-m) {
+        @include aspect-ratio(8, 3);
+      }
+      // 3:1 for bigger screens
+      @include breakpoint($breakpoint-hero-bg-l) {
+        @include aspect-ratio(3, 1);
+      }
+    }
+    &:after {
+      clear: left;
+      content: ' ';
+      display: table;
+    }
+  }
+
+  &__media {
+    img,
+    video {
+      display: block;
+      line-height: 0;
+      z-index: 2;
+      position: absolute;
+
+      // proper way to cover
+      object-fit: cover;
+
+      // close enough cover for older browsers
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+
+
+    }
+    &__dimming {
+      display: block;
+      position: absolute;
+      line-height: 0;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      background: linear-gradient(rgba(0,0,0, .875), rgba(0,0,0, .975));
+
+    }
+  }
+
+
+
+}

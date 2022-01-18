@@ -17,7 +17,7 @@ wp.domReady(() => {
 /**
  * Modify alignment options
  */
-wp.hooks.addFilter('blocks.registerBlockType', 'x/filters', (settings, name) => {
+wp.hooks.addFilter('blocks.registerBlockType', 'x/blockFilters', (settings, name) => {
 
   if (name === 'core/paragraph') {
     return lodash.assign({}, settings, {

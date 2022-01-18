@@ -1,0 +1,46 @@
+/* ==========================================================================
+ # Hero (stack layout)
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+$breakpoint-hero-stack-s:  530px;
+$breakpoint-hero-stack-m:  650px;
+$breakpoint-hero-stack-l:  1120px;
+
+.hero-stack {
+
+  width: 100%;
+  display: block;
+  &__media {
+    &__image,
+    &__video {
+      line-height: 0;
+    }
+    img,
+    video {
+      max-width: none;
+      width: 100%;
+      max-height: 100vh;
+      aspect-ratio: 8/5;
+      @include breakpoint($breakpoint-hero-stack-m) {
+        aspect-ratio: 8/3;
+      }
+      @include breakpoint($breakpoint-hero-stack-l) {
+        aspect-ratio: 3/1;
+      }
+      @include breakpoint($breakpoint-hero-stack-m) {
+        max-height: 65vh;
+      }
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+  }
+
+  &__container {
+    @include wrap;
+    @include narrow-content;
+    @include spacing-l(margin-top);
+  }
+
+}

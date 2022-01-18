@@ -1,6 +1,6 @@
 # Generic
 
-404: Page not found description     || Sivu on saatettu poistaa tai siirtää eri osoitteeseen. Käytä alla olevaa hakua löytääksesi etsimäsi.
+404: Page not found description     || Sivu on saatettu poistaa tai siirtää toiseen osoitteeseen.
 Search: Title                       || Haku:
 Search: Nothing found               || Ei hakutuloksia
 Search: Nothing found description   || Hakutuloksia ei löytynyt. Kokeile eri hakusanoja.

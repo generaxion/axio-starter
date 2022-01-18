@@ -14,7 +14,7 @@ wp.domReady(() => {
 /**
  * Modify alignment options
  */
-wp.hooks.addFilter('blocks.registerBlockType', 'x/filters', (settings, name) => {
+wp.hooks.addFilter('blocks.registerBlockType', 'x/blockFilters', (settings, name) => {
 
   // @todo: restrict when bug fixed: https://github.com/WordPress/gutenberg/issues/19103
   // if (name === 'core/image') {

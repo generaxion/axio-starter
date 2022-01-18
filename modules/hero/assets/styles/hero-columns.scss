@@ -1,0 +1,107 @@
+/* ==========================================================================
+ # Hero (columns layout)
+========================================================================== */
+
+@import '../../../../assets/styles/utils.scss';
+
+$breakpoint-hero-columns-s: 600px;
+$breakpoint-hero-columns-m: 800px;
+$breakpoint-hero-columns-l: 1200px;
+
+.hero-columns {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: var(--width-xl, 1440px);
+  margin-top: 0;
+  @include breakpoint($breakpoint-hero-columns-m) {
+    margin-top: 1rem;
+    display: flex;
+  }
+  & > * {
+    @include breakpoint($breakpoint-hero-columns-m) {
+      flex-grow: 1;
+      flex-shrink: 0;
+      width: 50%;
+    }
+  }
+  &__container {
+    text-align: left;
+    &__inner {
+      position: relative;
+      padding: 1.5rem;
+      margin-left: 0;
+      margin-right: 0;
+      @include breakpoint($breakpoint-hero-columns-m) {
+        background: var(--color-white);
+        box-shadow: 0 0 1.5rem rgba(0, 0, 0, .075);
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 3rem;
+        .hero-columns--align-default &,
+        .hero-columns--align-left & {
+          margin-right: -2rem;
+        }
+        .hero-columns--align-right & {
+          margin-left: -2rem;
+        }
+      }
+      @include breakpoint($breakpoint-hero-columns-l) {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        padding: 5rem;
+        .hero-columns--align-default &,
+        .hero-columns--align-left & {
+          margin-right: -3rem;
+        }
+        .hero-columns--align-right & {
+          margin-left: -3rem;
+        }
+      }
+    }
+  }
+  &__media {
+    .hero-columns--align-default &,
+    .hero-columns--align-left & {
+      order: 2;
+    }
+    align-self: stretch;
+    display: flex;
+    align-items: stretch;
+    // width: 100%;
+    &__image,
+    &__video {
+      align-items: stretch;
+      display: flex;
+      width: 100%;
+      line-height: 0;
+    }
+    img,
+    video {
+      display: block;
+      object-fit: cover;
+      object-position: 50% 50%;
+      line-height: 0;
+      width: 100%;
+      max-width: none;
+      .hero-columns--aspect-ratio-default & {
+        aspect-ratio: 16/9;
+      }
+      @include breakpoint($breakpoint-hero-columns-m) {
+        .hero-columns--aspect-ratio-default & {
+          aspect-ratio: 16/10;
+        }
+      }
+    }
+  }
+  h1 {
+    font-size: 1.75rem;
+    @include breakpoint($breakpoint-hero-columns-s) {
+      font-size: 2rem;
+    }
+    @include breakpoint($breakpoint-hero-columns-m) {
+      font-size: 2.25rem;
+    }
+  }
+}

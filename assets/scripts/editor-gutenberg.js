@@ -19,7 +19,7 @@ wp.hooks.addFilter(
  */
 wp.hooks.addFilter(
   'blocks.registerBlockType',
-  'x/filters',
+  'x/blockFilters',
   (settings, name) => {
 
     // skip block types without wrapper or have known issues
