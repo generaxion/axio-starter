@@ -75,7 +75,7 @@ add_filter('acf/settings/load_json', function ($paths) {
 /**
  * Allow button block
  */
-add_filter('allowed_block_types_all', function($blocks, $post) {
+add_filter('allowed_block_types_all', function($blocks, $block_editor_context) {
 
   $blocks[] = 'acf/file';
   return $blocks;

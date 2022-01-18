@@ -68,9 +68,11 @@ add_action('acf/init', function () {
 /**
  * Allow hero block
  */
-add_filter('allowed_block_types_all', function($blocks, $post) {
+add_filter('allowed_block_types_all', function($blocks, $block_editor_context) {
 
-  $blocks[] = 'acf/hero';
+  if ($block_editor_context->post instanceof WP_Post && in_array($block_editor_context->post->post_type, x_get_post_types_with_hero())) {
+    $blocks[] = 'acf/hero';
+  }
   return $blocks;
 
 }, 11, 2);

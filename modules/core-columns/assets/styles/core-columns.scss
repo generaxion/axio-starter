@@ -10,11 +10,18 @@
 .block-editor [data-type="core/columns"],
 .blocks .wp-block-columns {
 
+  gap: 1rem;
+  @include breakpoint($breakpoint-s) {
+    gap: 1.5rem;
+  }
+  @include breakpoint($breakpoint-l) {
+    gap: 2rem;
+  }
+
   .wp-block-column {
     @include child-margin-reset;
-    @include breakpoint($breakpoint-sub-l) {
-      margin-bottom: 1.5rem;
-    }
+    // gap takes care of margins
+    margin: 0;
     // clear floats inside column
     & > * {
       clear: both;
@@ -24,6 +31,12 @@
   &.alignfull {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  &.alignwide {
+    & + .wp-block-columns.alignwide {
+      margin-top: -.5rem;
+    }
   }
 
   &.alignwide,
@@ -42,16 +55,6 @@
       box-shadow: 0 0 1.5rem rgba(0, 0, 0, .075);
       background: var(--color-white);
     }
-    // .wp-block-column.has-viewport-effect {
-    //   @include transition;
-    //   transition-duration: .75s;
-    //   opacity: 0;
-    //   transform: translateY(.5rem);
-    //   &.is-in-viewport {
-    //     opacity: 1;
-    //     transform: translateY(0);
-    //   }
-    // }
   }
 
 }

@@ -89,7 +89,7 @@ add_filter('acf/load_field', function ($field) {
 /**
  * Allow button block
  */
-add_filter('allowed_block_types_all', function($blocks, $post) {
+add_filter('allowed_block_types_all', function($blocks, $block_editor_context) {
 
   $blocks[] = 'acf/buttons';
   return $blocks;
