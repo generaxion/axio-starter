@@ -33,16 +33,26 @@
   }
 
   .wp-block {
-    font-family: var(--font-default);
-    max-width: var(--width-m);
+    &,
+    .inner-blocks & {
+      font-family: var(--font-default);
+      max-width: var(--width-m);
 
-    &[data-align="wide"] {
-      max-width: var(--width-l);
-    }
+      &[data-align="wide"] {
+        max-width: var(--width-l);
+      }
 
-    &[data-align="full"] {
-      max-width: none;
+      &[data-align="full"] {
+        max-width: none;
+      }
     }
+  }
+
+  // fix alignwide / alignfull inside inner-blocks
+  .block-editor-inner-blocks,
+  .block-editor-block-list__layout:not(.wp-block) {
+    max-width: none;
+    width: 100%;
   }
 
   .block-editor-writing-flow__click-redirect {
