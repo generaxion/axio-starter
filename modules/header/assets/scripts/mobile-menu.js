@@ -1,12 +1,12 @@
 /**
  * Mobile menu
  */
-var component_mobile_menu = function(args) {
+const componentMobileMenu = (args) => {
 
   // setup args
-  var menu     = args.menu,
-      site     = args.site,
-      toggles  = args.toggles;
+  let menu     = args.menu;
+  let site     = args.site;
+  let toggles  = args.toggles;
 
   // validate
   if (!menu || !site || !toggles.length) {
@@ -15,20 +15,18 @@ var component_mobile_menu = function(args) {
   }
 
   // setup a11y dialog
-  var dialog = new A11yDialog(menu, site);
+  const dialog = new A11yDialog(menu, site);
 
   // tasks to open menu visually
-  var open_menu = function() {
-
+  const openMenu = () => {
    document.body.classList.add('is-active-menu');
-
   };
 
   // tasks to close menu visually
-  var close_menu = function() {
+  const closeMenu = () => {
 
     document.body.classList.add('is-closing-menu');
-    setTimeout(function(){
+    setTimeout(() => {
       document.body.classList.remove('is-active-menu');
       document.body.classList.remove('is-closing-menu');
      }, 200);
@@ -36,16 +34,15 @@ var component_mobile_menu = function(args) {
   };
 
   // hooks
-  dialog.on('show', function (element, event) {
-    open_menu();
+  dialog.on('show', (element, event) => {
+    openMenu();
   });
-  dialog.on('hide', function (element, event) {
-    close_menu();
+  dialog.on('hide', (element, event) => {
+    closeMenu();
   });
-
 
   // toggle click
-  var handle_toggle = function(e) {
+  const handleToggle = (e) => {
     if (document.body.classList.contains('is-active-menu')) {
        dialog.hide();
     } else {
@@ -54,7 +51,7 @@ var component_mobile_menu = function(args) {
   };
 
   for (var i = 0; i < toggles.length; i++) {
-    toggles[i].addEventListener('click', handle_toggle, false);
+    toggles[i].addEventListener('click', handleToggle, false);
   }
 
   // make the call chainable
@@ -65,7 +62,7 @@ var component_mobile_menu = function(args) {
 /**
  * Init mobile menu
  */
-component_mobile_menu({
+componentMobileMenu({
   menu:     document.querySelector('.js-mobile-menu'),
   site:     document.querySelector('.js-page'),
   toggles:  document.querySelectorAll('.js-menu-toggle')

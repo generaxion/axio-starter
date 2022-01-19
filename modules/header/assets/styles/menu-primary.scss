@@ -6,9 +6,9 @@
 
 :root {
 
-  --color-menu-dropdown-bg:         hsl(0, 0%, 15%);
-  --color-menu-dropdown-bg-hover:   hsl(0, 0%, 20%);
-  --color-menu-dropdown-text:       var(--color-white);
+  --color-menu-dropdown-bg:         hsl(0, 0%, 100%);
+  --color-menu-dropdown-bg-hover:   hsl(0, 0%, 95%);
+  --color-menu-dropdown-text:       var(--color-text);
   --width-menu-dropdown:            12rem;
 
 }
@@ -72,12 +72,20 @@
         flex-grow: 1;
         font-size: 1rem;
         text-decoration: none;
+        outline-offset: 0;
       }
 
       & > span {
         align-items: center;
         display: flex;
         min-height: 2rem;
+      }
+
+      &.current-menu-item,
+      &.current-menu-ancestor {
+        & > span > a {
+          font-weight: var(--font-weight-bold);
+        }
       }
 
       // call to action
@@ -146,10 +154,10 @@
     // all .sub-menu
     .sub-menu {
       display: none;
-      padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-xs);
+      padding: .75rem 0 .75rem .75rem;
       &[aria-hidden="false"] {
         display: block;
-        animation: dropdown-in .25s;
+        animation: mobile-submenu-in .25s ease-in-out;
       }
 
       // all lower <li>
@@ -227,6 +235,12 @@
         display: flex;
         align-items: center;
       }
+      &.current-menu-item,
+      &.current-menu-ancestor {
+        & > span > a {
+          font-weight: var(--font-weight-bold);
+        }
+      }
     }
 
     // all <a>
@@ -281,14 +295,24 @@
           font-size: 1.125rem;
         }
 
+        &:hover, &:focus, &:active {
+          text-decoration: underline;
+        }
+
       }
 
       // all dropdown <li>
       li {
         background: var(--color-menu-dropdown-bg);
+        &:first-of-type {
+          margin-top: .5rem;
+        }
+        &:last-of-type {
+          margin-bottom: .5rem;
+        }
         & > span > a {
           color: var(--color-menu-dropdown-text);
-          padding: .5rem .75rem;
+          padding: .5rem 1.5rem;
           font-size: .875rem;
           display: block;
         }
@@ -307,6 +331,7 @@
         display: block;
         opacity: 1;
         left: 50%;
+        animation: main-submenu-in .25s ease-in-out;
         &.is-out-of-bounds {
           left: auto;
           right: 0;
@@ -326,7 +351,7 @@
         position: absolute;
         left: -999em;
         z-index: 99;
-        box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+        box-shadow: 0 2px 18px 0 rgba(0,0,0,.15);
         opacity: 0;
         transition: opacity .2s ease-out;
 
@@ -346,6 +371,7 @@
           top: -.4rem;
           left: 50%;
           left: calc(50% - .2rem);
+          filter: drop-shadow(0px -2px 3px rgba(0,0,0,.1));
         }
 
         // 2nd level <li>
@@ -369,7 +395,7 @@
           // 3rd level <ul class="sub-menu"> [open]
           &:hover > .sub-menu,
           & > .sub-menu[aria-hidden="false"] {
-            animation: dropdown-in .25s;
+            animation: child-submenu-in .25s ease-in-out;
             opacity: 1;
             display: block;
             left: var(--width-menu-dropdown);
@@ -388,9 +414,10 @@
             position: absolute;
             left: -999em;
             z-index: 99;
-            box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);
+            box-shadow: 0 5px 18px 0 rgba(0,0,0,.175);
             opacity: 0;
             transition: opacity .2s ease-out;
+            margin-top: -.5rem; // compensate extra padding
 
           }
 
@@ -402,11 +429,32 @@
   }
 }
 
-@keyframes dropdown-in {
-  from {opacity: 0}
-  to   {opacity: 1}
+@keyframes mobile-submenu-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-@keyframes dropdown-out {
-  from {opacity: 1}
-  to   {opacity: 0}
+
+@keyframes main-submenu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  };
 }
+
+@keyframes child-submenu-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
