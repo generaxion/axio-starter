@@ -29,7 +29,7 @@ class X_Media_Text extends X_Component {
                    * 2. Transparent poster is set for faster rendering
                    */
                 ?>
-                <video autoplay loop muted playsinline width="800" height="450" loading="lazy" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+                <video autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" width="800" height="450" loading="lazy" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
                   <source src="<?php echo esc_attr($data['video_url']); ?>" type="video/mp4" />
                 </video>
               </div>
