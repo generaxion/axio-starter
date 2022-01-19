@@ -139,6 +139,7 @@ add_action('save_post', function($post_id, $post_obj, $update) {
                   wp_update_post([
                     'ID'          => $post_id,
                     'post_title'  => $block_title,
+                    'post_name' => '', // force new slug
                   ]);
                 }
                 // copy post title to block title if it is not set
