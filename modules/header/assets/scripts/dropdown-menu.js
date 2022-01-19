@@ -1,6 +1,6 @@
 /**
  * Dropdown menu
-
+ *
  * Timer for hover exit: better usability
  * Works with keyboard: a11y
  * Desktop menu with touch: doubletap
@@ -240,7 +240,7 @@ const componentDropdownMenu = (args) => {
     e.preventDefault();
 
     // activate or deactivate <li>
-    var li = getAncestor(e.currentTarget, 'menu-item-has-children');
+    const li = getAncestor(e.currentTarget, 'menu-item-has-children');
     if (li) {
       if (li.classList.contains('is-clicked')) {
         deactivateMenuItem(li);

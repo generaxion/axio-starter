@@ -21,7 +21,7 @@
   .wp-block-column {
     @include child-margin-reset;
     // gap takes care of margins
-    margin: 0;
+    margin: 0 !important;
     // clear floats inside column
     & > * {
       clear: both;

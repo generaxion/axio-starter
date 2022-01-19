@@ -8,14 +8,14 @@ Superior Gutenberg WordPress starter theme with modern build tools by **[Generax
 
 **🔌 Required plugins:**
 
-* **[Axio Core](https://github.org/generaxiom/axio-core/)**: Core functionality that is clever to be centrally updated.
+* **[Axio Core](https://wordpress.org/plugins/axio-core/)**: Core functionality that is clever to be centrally updated.
 * **[Advanced Custom Fields Pro](https://www.advancedcustomfields.com/)**: Some custom blocks use ACF. You can do without, but should remove them.
 
 **🏷 Buzz-words**:
 
 Gutenberg, Gulp, Yarn, SVG, SASS, Browsersync, a11y, l18n, Advanced Custom Fields, Polylang, Schema.org, Native lazyload, BEM, Babel, Responsive images
 
-![screenshot-axio-generaxion](https://user-images.githubusercontent.com/9577084/119238078-08d33c00-bb49-11eb-916f-770af029c75e.png)
+![screenshot-axio-generaxion](https://user-images.githubusercontent.com/9577084/150126560-28b2502e-b1fa-4a33-9bb0-78e6e2b16e04.png)
 
 ## Table of contents
 
@@ -285,7 +285,7 @@ A few modules are required or there are more changes needed than just deleting t
 |------------------------|----------------|----------------|
 | `/footer/`             | Yes            | Template part for footer |
 | `/header/`             | Yes            | Template part for header with menus and logo |
-| `/hero/`               | Yes            | Template part for hero section |
+| `/hero/`               | Yes            | Custom block version of hero |
 | `/image/`              | Yes            | Component to show responsive images |
 | `/svg/`                | Yes            | Component to display SVG sprite icons |
 | `/teaser/`             | Yes            | Component to display teaser cards |
@@ -541,6 +541,7 @@ Javascript can be written with modern ES6 syntax as Babel compiles it to work on
 #### Directory structure
 
   * `/lib/` directory for small global scripts
+      * `in-viewport.js` adds helper classes to element you can use for entrance animations
       * `blocks.js` frontend markup enhancements for Gutenberg content
   * `main.js` primary js file that is run in footer
   * `editor-gutenberg.js` modifies gutenberg editor
