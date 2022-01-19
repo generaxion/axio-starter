@@ -15,7 +15,7 @@ class X_Hero_Background extends X_Component {
         <div class="hero-bg__media">
           <?php if (!empty($data['video'])) : ?>
             <div class="hero-bg__media__video">
-              <video autoplay loop muted playsinline width="<?php echo esc_attr($data['video']['width']); ?>" height="<?php echo esc_attr($data['video']['height']); ?>" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+              <video autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" width="<?php echo esc_attr($data['video']['width']); ?>" height="<?php echo esc_attr($data['video']['height']); ?>" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
                 <source src="<?php echo esc_attr($data['video']['url']); ?>" type="<?php echo esc_attr($data['video']['mime_type']); ?>">
               </video>
             </div>
