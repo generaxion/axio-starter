@@ -1,11 +1,12 @@
 {
   "meta": {
     "title": "footer",
-    "version": "1.1.0"
+    "version": "2.0.0"
   },
   "php": {
     "inc": [
-      "component.php",
+      "component-menu-legal.php",
+      "component-footer.php",
       "setup.php"
     ]
   },

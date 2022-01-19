@@ -8,14 +8,9 @@
 
   &__items {
     @include list-reset;
-
-    li {
-      display: inline-block;
-      margin-right: .75rem;
-      &:last-of-type {
-        margin-right: 0;
-      }
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
 
     a {
       @include transition;
@@ -28,6 +23,10 @@
     svg {
       height: 1.5rem;
       width: 1.5rem;
+      @include breakpoint($breakpoint-s) {
+        height: 1.75rem;
+        width: 1.75rem;
+      }
     }
 
     .social-navigation__item__label {

@@ -16,6 +16,10 @@ Button: Type Outline             || Outline
 Files: Accessability download      || Downloadable file
 Files: New block instructions      || Click to add files...
 
+# Module: Footer
+
+Menu: Legal Menu         || Legal Menu
+
 # Module: Header
 
 Menu: Primary Menu         || Primary Menu

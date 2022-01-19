@@ -12,6 +12,9 @@
 .site-footer {
   background: var(--color-footer-bg);
   padding: 2rem 0;
+  @include breakpoint($breakpoint-s) {
+    padding: 2.5rem 0;
+  }
 
   // entrance animation
   &.has-viewport-effect {
@@ -19,12 +22,64 @@
     }
   }
 
+  h2, h3, h4, h5, h6, p, span, li, a {
+    color: var(--color-footer);
+  }
+
   &__container {
     @include wrap;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include breakpoint($breakpoint-s) {
+      gap: 1.5rem;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    h2, h3, h4, h5, h6, p, span, li, a {
-      color: var(--color-footer);
+  }
+
+  &__additional {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    @include breakpoint($breakpoint-s) {
+      gap: 1.5rem;
+    }
+  }
+
+  &__branding {
+    &__title {
+      font-weight: var(--font-weight-bold);
+      font-size: 1rem;
+      @include breakpoint($breakpoint-s) {
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  .legal-navigation {
+    ul {
+      @include list-reset;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      @include breakpoint($breakpoint-s) {
+        gap: 1.5rem;
+      }
+    }
+    a {
+      @include transition;
+      text-decoration: none;
+      color: var(--color-text-light);
+      &:hover, &:focus, &:active {
+        color: var(--color-footer);
+        text-decoration: underline;
+      }
     }
   }
 

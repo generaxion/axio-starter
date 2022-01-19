@@ -43,7 +43,6 @@ add_filter('axio_core_pll_register_strings', function($strings) {
 /**
  * Register menu positions
  */
-
 add_action('after_setup_theme', function() {
 
   register_nav_menus([

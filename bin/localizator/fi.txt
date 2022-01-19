@@ -16,6 +16,10 @@ Button: Type Outline             || Reunaviiva
 Files: Accessability download      || Ladattava tiedosto
 Files: New block instructions      || Klikkaa ja lisää tiedosto(t)...
 
+# Module: Footer
+
+Menu: Legal Menu         || Lakisääteinen valikko
+
 # Module: Header
 
 Menu: Primary Menu         || Päävalikko

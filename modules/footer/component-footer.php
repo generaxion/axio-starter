@@ -15,20 +15,27 @@ class X_Footer extends X_Component {
 
       <div class="site-footer__container">
 
-        <div class="site-footer__branding">
-          <span class="site-footer__branding__title">
-            <?php bloginfo('name'); ?>
-          </span>
+        <div class="site-footer__main">
+
+          <div class="site-footer__branding">
+            <span class="site-footer__branding__title">
+              <?php bloginfo('name'); ?>
+            </span>
+          </div>
+
         </div>
 
-        <?php if (class_exists('X_Menu_Social')) : ?>
-          <div class="site-footer__social">
+        <div class="site-footer__additional">
+
+          <?php if (class_exists('X_Menu_Social')) : ?>
             <?php X_Menu_Social::render(); ?>
-          </div>
-        <?php endif; ?>
+          <?php endif; ?>
+
+          <?php X_Menu_Legal::render(); ?>
+
+        </div>
 
       </div>
-
 
     </footer>
     <?php
