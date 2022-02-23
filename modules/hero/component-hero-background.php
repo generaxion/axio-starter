@@ -29,7 +29,7 @@ class X_Hero_Background extends X_Component {
               ?>
             </div>
           <?php endif; ?>
-          <div class="hero-bg__media__dimming" style="opacity:<?php echo esc_attr($data['dimming_opacity'] / 100); ?>"></div>
+          <div <?php parent::render_attributes($data['dimming_attr']); ?>></div>
         </div>
       <?php endif; ?>
 
@@ -61,6 +61,7 @@ class X_Hero_Background extends X_Component {
       'video'             => null,
       'layout'            => 'full',
       'dimming_opacity'   => 20,
+      'dimming_attr'      => [],
       'is_dark_mode'      => true,
 
     ];
@@ -89,10 +90,17 @@ class X_Hero_Background extends X_Component {
       ];
     }
 
+    // dimming attributes
+    if (!isset($args['dimming_attr']['class'])) {
+      $args['dimming_attr']['class'] = [];
+    }
+    $args['dimming_attr']['class'][] = 'hero-bg__media__dimming';
+
     // dimming opacity
-    if (isset($f['dimming']) && !empty($f['dimming'])) {
+    if (isset($f['dimming'])) {
       $args['dimming_opacity'] = absint($f['dimming']);
     }
+    $args['dimming_attr']['style'] = (!empty($args['dimming_opacity'])) ? 'opacity:' . $args['dimming_opacity'] / 100 : 'opacity:0';
 
     // dark mode
     if (empty($args['image_id']) && empty($args['video'])) {
