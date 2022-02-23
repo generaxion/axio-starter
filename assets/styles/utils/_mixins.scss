@@ -337,7 +337,7 @@
 
 @mixin stagger-transitions($interval: 75, $min: 0, $max: 12) {
   @for $i from $min through $max {
-    &:nth-of-type(#{$i}) {
+    &:nth-child(#{$i}) {
       transition-delay: #{$interval * $i}ms
     }
   }
@@ -345,7 +345,7 @@
 
 @mixin stagger-animations($interval: 75, $min: 0, $max: 12) {
   @for $i from $min through $max {
-    &:nth-of-type(#{$i}) {
+    &:nth-child(#{$i}) {
       animation-delay: #{$interval * $i}ms
     }
   }
