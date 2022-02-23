@@ -16,7 +16,7 @@
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
+<body <?php body_class('front-end'); ?> itemscope itemtype="https://schema.org/WebPage">
 
 <?php do_action('theme_before_page'); ?>
 
