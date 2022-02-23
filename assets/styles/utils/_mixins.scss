@@ -75,6 +75,9 @@
 
 @mixin heading($size: m) {
 
+  display: block;
+  font-family: var(--font-title);
+
   @if ($size == xl) {
 
     font-size: 2rem;
@@ -117,8 +120,6 @@
     line-height: 1.5;
 
   }
-
-  display: block;
 
 }
 
