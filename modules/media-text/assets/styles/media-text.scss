@@ -66,6 +66,12 @@ $breakpoint-media-text-desktop:  min-width 920px;
 
   }
 
+  // entrance animation
+  &.has-viewport-effect {
+    &.is-in-viewport {
+    }
+  }
+
 }
 
 /* Front-end and back-end
@@ -153,12 +159,6 @@ $breakpoint-media-text-desktop:  min-width 920px;
 .blocks .media-text {
   display: flex;
   flex-wrap: wrap;
-
-  // entrance animation
-  &.has-viewport-effect {
-    &.is-in-viewport {
-    }
-  }
 
   &__content {
     & > * {
