@@ -8,7 +8,7 @@
 /* Front-end and back-end
 ----------------------------------------------- */
 
-.block-editor [data-type="core/list"] > *,
+.block-editor [data-type="core/list"],
 .blocks .wp-block-list {
 
 }
@@ -29,7 +29,7 @@
 /* Only back-end
 ----------------------------------------------- */
 
-.block-editor [data-type="core/list"] > * {
+.block-editor [data-type="core/list"] {
 
 }
 
