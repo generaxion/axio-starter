@@ -38,7 +38,8 @@ class X_Image extends X_Component {
       // optional
       'attr'         => [],
       'alt'          => '',
-      'loading'     => 'lazy',
+      'loading'      => 'lazy',
+      'decoding'     => 'async',
 
     ];
     $args = wp_parse_args($args, $placeholders);
@@ -125,6 +126,11 @@ class X_Image extends X_Component {
     // loading
     if (!isset($args['attr']['loading'])) {
       $args['attr']['loading'] = $args['loading'];
+    }
+
+    // decoding
+    if (!isset($args['attr']['decoding'])) {
+      $args['attr']['decoding'] = $args['decoding'];
     }
 
     return $args;
