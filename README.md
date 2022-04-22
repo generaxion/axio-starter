@@ -556,7 +556,6 @@ Javascript can be written with modern ES6 syntax as Babel compiles it to work on
 
 **Protip:** If you are using jQuery, take into account that Axio Core moves jQuery to the bottom of the document as a speed optimization. If it causes a problem for you, add a filter `add_filter('axio_core_speed_move_jquery', '__return_false');`.
 
-
 #### Add new global script
 
 Put file in `/assets/scripts/lib/hello-world.js`. Add script to main.js (or some other file) in `/assets/manifest.js`:
@@ -601,9 +600,10 @@ Put all icons to `/assets/sprite/` and Gulp will combine and minify them into `/
 In PHP you can get these images with:
 
 ```php
-<?php X_SVG::render([
+<?php
+X_SVG::render([
   'name' => 'facebook'
-]); ?>
+]);
 ```
 
 Theme includes one big SVG sprite `/assets/images/icons.svg`. Add your own svg icons in `/assets/sprite/` and Gulp will add them to this sprite with id from filename.
@@ -923,8 +923,7 @@ You can add new blocks by simply finding out their name like `acf/your-custom-bl
 
 Gutenberg has still many improvements and bugfixes on the way. These are some issues at the moment:
 
-  * You cannot disable Inline Image block because it comes from Paragraph block [#12680](https://github.com/WordPress/gutenberg/issues/12680)
-  * Many features can't be disabled like paragraph drop caps.
+  * Editor wrapper markup keeps changing so that targetting editor styles has been historically unstable.
   * Colors can't be scoped to specific blocks. If you register colors for Gutenberg, they will become available to every block that supports colors.
 
 Gutenberg development is moving fast and there are a lot of people working hard to improve Gutenberg.
