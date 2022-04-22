@@ -10,9 +10,8 @@
 const componentDropdownMenu = (args) => {
 
   // setup args
-  let desktopMinWidth = args.desktopMinWidth; // match this to $breakpoint-desktop-menu SASS variable
-  let menu            = args.menu;
-  let screenWidth;
+  let menu = args.menu;
+  let menuType = args.type;
   let hoverTimeout;
 
   // validate
@@ -77,8 +76,7 @@ const componentDropdownMenu = (args) => {
    */
   const isDesktopMenu = () => {
 
-    screenWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    if (screenWidth < desktopMinWidth) {
+    if (menuType === 'mobile') {
       return false;
     }
     return true;
@@ -369,7 +367,7 @@ const componentDropdownMenu = (args) => {
 const dropdownMenus = document.querySelectorAll('.js-navigation');
 for (let i = 0; i < dropdownMenus.length; i++) {
   componentDropdownMenu({
-    desktopMinWidth: 890,
-    menu: dropdownMenus[i]
+    menu: dropdownMenus[i],
+    type: dropdownMenus[i].getAttribute('data-navigation-type') === 'mobile' ? 'mobile' : 'desktop'
   });
 }

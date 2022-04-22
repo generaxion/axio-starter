@@ -34,6 +34,9 @@ class X_Menu_Primary extends X_Component {
 
     $placeholders = [
 
+      // type
+      'type' => 'desktop',
+
       // optional
       'attr' => [],
 
@@ -47,6 +50,9 @@ class X_Menu_Primary extends X_Component {
     $args['attr']['class'][] = 'js-navigation';
     $args['attr']['class'][] = 'primary-navigation';
     $args['attr']['class'][] = 'header-navigation';
+
+    // type
+    $args['attr']['data-navigation-type'] = $args['type'];
 
     // a11y
     $args['attr']['aria-label'] = ask__('Menu: Primary Menu');

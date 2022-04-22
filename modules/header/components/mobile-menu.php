@@ -16,8 +16,16 @@ class X_Mobile_Menu extends X_Component {
       <div class="mobile-menu__nav" role="dialog">
         <?php X_Menu_Toggle::render(); ?>
         <div class="mobile-menu__nav__inner">
-          <?php X_Menu_Primary::render(); ?>
-          <?php X_Menu_Additional::render(); ?>
+          <?php
+            X_Menu_Primary::render([
+              'type' => 'mobile',
+            ]);
+          ?>
+          <?php
+            X_Menu_Additional::render([
+              'type' => 'mobile'
+            ]);
+          ?>
         </div>
       </div>
       <div class="mobile-menu__overlay" data-a11y-dialog-hide tabindex="-1"></div>

@@ -41,6 +41,7 @@ class X_Menu_Additional extends X_Component {
     $placeholders = [
 
       // optional
+      'type' => 'desktop',
       'attr' => [],
 
       // internal
@@ -56,6 +57,9 @@ class X_Menu_Additional extends X_Component {
     $args['attr']['class'][] = 'js-navigation';
     $args['attr']['class'][] = 'additional-navigation';
     $args['attr']['class'][] = 'header-navigation';
+
+    // type
+    $args['attr']['data-navigation-type'] = $args['type'];
 
     // a11y
     $args['attr']['aria-label'] = ask__('Menu: Additional Menu');

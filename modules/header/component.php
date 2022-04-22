@@ -28,7 +28,8 @@ class X_Header extends X_Component {
             X_Menu_Additional::render([
               'attr' => [
                 'class' => ['site-header__additional', 'desktop-menu']
-              ]
+              ],
+              'type' => 'desktop'
             ]);
           ?>
 
@@ -36,7 +37,8 @@ class X_Header extends X_Component {
             X_Menu_Primary::render([
               'attr' => [
                 'class' => ['site-header__main', 'desktop-menu']
-              ]
+              ],
+              'type' => 'desktop'
             ]);
           ?>
 
