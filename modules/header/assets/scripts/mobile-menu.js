@@ -51,7 +51,7 @@ const componentMobileMenu = (args) => {
   };
 
   // close on anchor link
-  const anchorLinks = menu.querySelectorAll('a[href^="#"]');
+  const anchorLinks = menu.querySelectorAll('a[href*="#"]');
   for (let i = 0; i < anchorLinks.length; i++) {
     if (anchorLinks[i].getAttribute('href') !== '#') {
       anchorLinks[i].addEventListener('click', (e) => {
