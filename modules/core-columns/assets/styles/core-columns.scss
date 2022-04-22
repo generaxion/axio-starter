@@ -19,6 +19,7 @@
   }
 
   .wp-block-column {
+
     @include child-margin-reset;
     // gap takes care of margins
     margin: 0 !important;
@@ -26,6 +27,34 @@
     & > * {
       clear: both;
     }
+
+    // variant: no content
+    &.is-empty-column {
+      @include breakpoint($breakpoint-sub-s) {
+        display: none;
+      }
+    }
+
+    // variant: image (no other content)
+    &.is-image-column {
+
+    }
+
+    // variant: list (no other content)
+    &.is-list-column {
+
+    }
+
+    // variant: background (no other content)
+    &.is-background-column {
+
+    }
+
+    // variant: dafault
+    &.is-default-column {
+
+    }
+
   }
 
   &.alignfull {

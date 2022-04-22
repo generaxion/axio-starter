@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "core-columns",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "php": {
     "inc": [
@@ -17,7 +17,9 @@
     ]
   },
   "js": {
-    "main.js": [],
+    "main.js": [
+      "assets/scripts/front-end.js"
+    ],
     "editor-gutenberg.js": [
       "assets/scripts/editor.js"
     ]
