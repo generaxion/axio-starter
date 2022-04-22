@@ -50,7 +50,17 @@ const componentMobileMenu = (args) => {
     }
   };
 
-  for (var i = 0; i < toggles.length; i++) {
+  // close on anchor link
+  const anchorLinks = menu.querySelectorAll('a[href^="#"]');
+  for (let i = 0; i < anchorLinks.length; i++) {
+    if (anchorLinks[i].getAttribute('href') !== '#') {
+      anchorLinks[i].addEventListener('click', (e) => {
+        dialog.hide();
+      });
+    }
+  }
+
+  for (let i = 0; i < toggles.length; i++) {
     toggles[i].addEventListener('click', handleToggle, false);
   }
 
