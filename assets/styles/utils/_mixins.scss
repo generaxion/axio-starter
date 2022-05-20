@@ -305,6 +305,33 @@
   word-wrap: normal;
 }
 
+// show text to screen readers and to everybody on focus
+@mixin visuallyhidden-before-focus {
+  @include button-reset;
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal;
+  display: block;
+  &:focus {
+    clip: unset;
+    clip-path: unset;
+    position: relative;
+    height: auto;
+    width: auto;
+    margin: .75rem 0;
+    padding: .25rem;
+    overflow: visible;
+    word-wrap: initial;
+  }
+}
+
 // fix float overflow
 @mixin clearfix {
   &:after {
