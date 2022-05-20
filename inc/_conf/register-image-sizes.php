@@ -59,7 +59,7 @@ add_filter('theme_image_sizing', function($sizes) {
 
   $sizes['large'] = [
     'primary'    => 'large',
-    'supporting' => ['full', 'large', 'medium'],
+    'supporting' => ['full', 'wide_l', 'wide_m', 'large', 'medium'],
     'sizes'      => '(min-width: 800px) 800px, 100vw'
   ];
 
